@@ -1,0 +1,55 @@
+---
+type: foundation
+slug: "03-how-people-trade"
+title: "How people actually trade"
+session: 3
+description: "The mechanics of placing an order. Market orders, limit orders, the bid-ask spread, and what happens between click and settlement."
+duration: "40 min"
+publishedAt: "2026-02-15"
+status: published
+locale: en
+authors:
+  - ahmed-raslan
+tags:
+  - foundations
+  - order-types
+  - execution
+prerequisites:
+  - "02-market-landscape"
+videoUrl: null
+---
+
+Trading sounds technical. The underlying acts are simple: you decide you want to own something, you communicate that decision to the market, the market finds someone with the opposite view, and you exchange.
+
+## Two ways to say "I want to buy"
+
+**Market order:** Buy immediately at whatever the current price is. Fast. Certain. You'll get filled. You won't control the price.
+
+**Limit order:** Buy only if the price reaches a level I specify. You control the price. You might not get filled if the market never reaches your level.
+
+Most sophisticated participants use limit orders. Market orders are for when speed matters more than price.
+
+## The bid-ask spread
+
+At any moment, the best price a buyer is willing to pay is the **bid**. The best price a seller is willing to accept is the **ask**. The difference is the **spread**.
+
+On EGX, for a liquid stock like CIB, the spread might be EGP 0.05 on a EGP 50 stock — 0.1%. For an illiquid stock, it might be 1-2%. That spread is a real cost every time you trade.
+
+## What happens after you click
+
+1. Your order goes to your broker's system
+2. The broker routes it to EGX's matching engine
+3. The matching engine finds a counterpart order
+4. The trade is reported; you see it in your portfolio
+5. Two business days later (T+2), ownership formally transfers via MCDR
+
+## Stop orders
+
+A **stop order** triggers a market order when price reaches a specified level. Used for risk management: "if SWDY falls to EGP 14, sell immediately to limit my loss."
+
+## What you should now understand
+
+- Market orders guarantee execution but not price; limit orders guarantee price but not execution
+- The bid-ask spread is a real transaction cost
+- EGX settlement happens T+2 via MCDR
+- Stop orders trigger market orders at a specified price level

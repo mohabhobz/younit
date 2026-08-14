@@ -1,0 +1,61 @@
+---
+type: capstone
+slug: "egx-volatility-ml"
+title: "Predicting EGX 30 Volatility Using Machine Learning"
+status: live
+description: "An ensemble model that forecasts next-day realized volatility for the EGX 30 index using technical indicators, news sentiment scores, and macroeconomic inputs. Outperforms GARCH benchmarks on most evaluation windows."
+builders:
+  - name: "Mariam El-Sayed"
+    role: "Lead researcher"
+    university: "AUC"
+    photo: /images/builders/mariam-el-sayed.jpg
+    linkedIn: ""
+  - name: "Karim Abdallah"
+    role: "Model engineering"
+    university: "AUC"
+    photo: /images/builders/karim-abdallah.jpg
+    linkedIn: ""
+supervisor:
+  name: "Dr. Hana Khalil"
+  university: "AUC"
+  department: "Computer Science"
+university: "AUC"
+semester: "Spring 2026"
+tags:
+  - machine-learning
+  - volatility
+  - egx-30
+  - time-series
+  - lightgbm
+repoUrl: "https://github.com/efg-hermes/egx-volatility-ml"
+liveUrl: null
+screenshots:
+  - /images/capstones/egx-volatility-1.png
+publishedAt: "2026-05-01"
+featured: true
+---
+
+## Abstract
+
+Standard GARCH models perform well for Egyptian market volatility during calm periods but break down during geopolitical shocks — the 2022 FX crisis, the 2023 rate shock — where volatility regimes shift abruptly. This project tests whether gradient-boosted tree models with lagged sentiment features can improve on GARCH-based forecasts across different market regimes.
+
+## What we built
+
+A LightGBM ensemble trained on five years of EGX 30 data with the following feature set:
+- Lagged realized volatility (1, 5, 21-day windows)
+- OHLCV-derived technical indicators (ATR, RSI, Bollinger band width)
+- Arabic news sentiment scores from the Hub's sentiment API
+- Macro features: USD/EGP rate, 10Y T-bill yield, overnight rate
+
+## Results
+
+Against a GARCH(1,1) benchmark:
+- Calm periods (2021–2023): roughly equivalent RMSE
+- High-volatility periods (2023–2025): LightGBM RMSE 18% lower
+- The sentiment feature added 4% improvement; macro features added 6%
+
+The model is not production-ready — it hasn't been through the full validation pipeline needed for a live risk system. But the research result is credible.
+
+## What we'd do next
+
+Extend to individual EGX 30 constituents. The challenge is sparse data for smaller names. Also explore LSTM-based approaches for potentially capturing longer memory in the volatility series.

@@ -1,0 +1,368 @@
+/* ---------------------------------------------------------------------------
+   Younit design tokens
+
+   Every value here is transcribed from the Claude Design source —
+   `Younit Homepage.dc.html` and `Younit Style Guide.dc.html`. Nothing is
+   estimated and nothing is "improved". Where a value disagrees with anything
+   else, the template wins.
+
+   A plain stylesheet on purpose: Vite does not regenerate Tailwind utilities
+   when a config file changes while the dev server is running, so anything that
+   has to take effect live lives here and is read through custom properties.
+   --------------------------------------------------------------------------- */
+
+:root {
+  /* --- Palette ----------------------------------------------------------- */
+  --yn-blue: #a3c6d7;
+  --yn-purple: #ac91e1;
+  --yn-grey: #d7d7d7;
+  --yn-grey-dark: #444444;
+  --yn-amber: #ffd05a;
+  --yn-white: #ffffff;
+  --yn-ink: #000000;
+  --yn-ink-2: #1a1a1a;
+
+  /* --- Type -------------------------------------------------------------- */
+  /* Poppins 300/400 stands in for ITC Avant Garde Gothic Pro (Book).
+     Never above 400. */
+  --yn-display: Poppins, sans-serif;
+  --yn-body: 'Anybody Variable', 'Anybody', system-ui, sans-serif;
+  --yn-mono: 'IBM Plex Mono', monospace;
+  --yn-arabic: 'IBM Plex Sans Arabic', sans-serif;
+  --yn-body-variation: 'wdth' 117, 'wght' 348;
+
+  --yn-hero: 76px;
+  --yn-h1: 64px;
+  --yn-h2: 48px;
+  --yn-h2-journey: 44px;
+  --yn-eyebrow: 34px;
+  --yn-h3: 30px;
+  --yn-card-title: 26px;
+  --yn-track-title: 24px;
+  --yn-stat: 62px;
+  --yn-stat-2: 52px;
+  --yn-body-size: 15px;
+  --yn-small: 13px;
+  --yn-micro: 11px;
+  --yn-mono-size: 13px;
+
+  /* --- Shape ------------------------------------------------------------- */
+  --yn-r-pill: 999px;
+  --yn-r-band: 24px;
+  --yn-r-card: 20px;
+  --yn-r-tile: 16px;
+  --yn-r-editorial: 12px;
+
+  /* --- Rhythm ------------------------------------------------------------ */
+  --yn-frame: 1440px;
+  --yn-gutter: 64px;
+  --yn-section: 96px;
+
+  /* The template's hero split: copy 1.15, artwork 1. */
+  --yn-hero-cols: minmax(0, 1.15fr) minmax(0, 1fr);
+
+  --yn-ease: cubic-bezier(0.2, 0.75, 0.3, 1);
+}
+
+/* The template is drawn at 1440. Below that the frame tightens; the type scale
+   steps down only once the desktop layout can no longer hold it. Rendering at
+   1440 and above is untouched. */
+@media (max-width: 1100px) {
+  :root {
+    --yn-gutter: 40px;
+    --yn-hero: 58px;
+    --yn-h1: 48px;
+    --yn-h2: 38px;
+    --yn-h2-journey: 36px;
+    --yn-eyebrow: 27px;
+    --yn-h3: 24px;
+    --yn-stat: 52px;
+    --yn-stat-2: 44px;
+  }
+}
+
+@media (max-width: 860px) {
+  :root {
+    --yn-hero-cols: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  :root {
+    --yn-gutter: 22px;
+    --yn-section: 64px;
+    --yn-hero: 42px;
+    --yn-h1: 36px;
+    --yn-h2: 30px;
+    --yn-h2-journey: 32px;
+    --yn-eyebrow: 22px;
+    --yn-h3: 20px;
+    --yn-card-title: 22px;
+    --yn-stat: 46px;
+    --yn-stat-2: 38px;
+  }
+}
+
+/* --- Base ---------------------------------------------------------------- */
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--yn-grey);
+}
+
+body {
+  font-family: var(--yn-body);
+  font-variation-settings: var(--yn-body-variation);
+  font-size: var(--yn-body-size);
+  color: var(--yn-ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+  text-wrap: pretty;
+}
+
+a {
+  color: var(--yn-ink);
+  text-decoration: none;
+}
+
+/* Inline links inside prose take the purple. Navigation, cards and buttons do
+   not: purple on the blue band reads at 1.8:1 and purple on a white card at
+   2.7:1, so those get their own hover below. */
+.yn-prose a:hover {
+  color: var(--yn-purple);
+}
+
+/* Header and footer links: underline, and a tap target that clears 32px on a
+   phone without changing how the row looks. */
+.yn-navlink {
+  /* Inherit the band's colour. Without this the base `a { color: ink }` wins and
+     the links go black on the Compete page's near-black footer. */
+  color: inherit;
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  transition: opacity 160ms var(--yn-ease);
+}
+
+.yn-navlink:hover,
+.yn-navlink:focus-visible {
+  opacity: 1;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+pre {
+  margin: 0;
+}
+
+:where(a, button):focus-visible {
+  outline: 2px solid var(--yn-ink);
+  outline-offset: 3px;
+}
+
+[dir='rtl'] body {
+  font-family: var(--yn-arabic);
+  font-variation-settings: normal;
+}
+
+/* --- Motion -------------------------------------------------------------- */
+
+@keyframes younit-unit-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-46px);
+  }
+  55% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* --- Type primitives ------------------------------------------------------ */
+
+.yn-display {
+  font-family: var(--yn-display);
+  font-weight: 300;
+}
+
+.yn-micro {
+  font-size: var(--yn-micro);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--yn-grey-dark);
+}
+
+/* --- Interaction ---------------------------------------------------------- */
+
+/* A button inverts on hover: the fill becomes ink and the label takes the fill.
+   Both states read custom properties the component sets inline, so no rule here
+   has to out-specify an inline style — which is what made the label vanish when
+   the background was set inline and only the colour flipped. */
+.yn-btn {
+  background: var(--yn-btn-bg);
+  color: var(--yn-btn-fg, var(--yn-ink));
+  transition:
+    background 180ms var(--yn-ease),
+    color 180ms var(--yn-ease);
+}
+
+.yn-btn:hover,
+.yn-btn:focus-visible {
+  background: var(--yn-btn-hover-bg, var(--yn-ink));
+  color: var(--yn-btn-hover-fg, var(--yn-btn-bg));
+}
+
+.yn-card-hover {
+  transition:
+    border-color 200ms linear,
+    transform 220ms var(--yn-ease);
+}
+
+.yn-card-hover:hover {
+  border-color: var(--yn-ink);
+  transform: translateY(-5px);
+}
+
+/* A card link lifts and darkens its outline; recolouring the title as well
+   would drop it to 2.7:1 against white. */
+.yn-card-hover:hover,
+.yn-card-hover:hover * {
+  color: var(--yn-ink);
+}
+
+/* --- Prose ---------------------------------------------------------------- */
+
+.yn-prose {
+  font-size: var(--yn-body-size);
+  line-height: 1.75;
+  max-width: 72ch;
+}
+
+.yn-prose > * + * {
+  margin-block-start: 1.35em;
+}
+
+.yn-prose h2 {
+  font-family: var(--yn-display);
+  font-weight: 300;
+  font-size: var(--yn-h3);
+  line-height: 1.15;
+  margin-block-start: 1.8em;
+}
+
+.yn-prose h3 {
+  font-family: var(--yn-display);
+  font-weight: 400;
+  font-size: 20px;
+  margin-block-start: 1.6em;
+}
+
+.yn-prose ul,
+.yn-prose ol {
+  padding-inline-start: 1.25em;
+}
+
+.yn-prose li + li {
+  margin-block-start: 0.4em;
+}
+
+.yn-prose a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.yn-prose hr {
+  border: 0;
+  border-block-start: 1px solid var(--yn-purple);
+  margin-block: 2.5em;
+}
+
+.yn-prose code {
+  font-family: var(--yn-mono);
+  font-size: 0.92em;
+  overflow-wrap: anywhere;
+}
+
+.yn-prose pre {
+  font-family: var(--yn-mono);
+  font-size: var(--yn-mono-size);
+  line-height: 1.75;
+  background: var(--yn-white);
+  border: 1px solid var(--yn-ink);
+  border-radius: var(--yn-r-card);
+  padding: 26px 24px;
+  overflow-x: auto;
+}
+
+.yn-prose blockquote {
+  font-family: var(--yn-display);
+  font-weight: 300;
+  font-size: var(--yn-h3);
+  line-height: 1.2;
+  margin-inline: 0;
+  padding-block-start: 20px;
+  border-block-start: 1px solid var(--yn-purple);
+}
+
+.yn-scroll {
+  overflow-x: auto;
+}
+
+.yn-prose table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: var(--yn-small);
+}
+
+.yn-prose th,
+.yn-prose td {
+  border: 1px solid var(--yn-ink);
+  padding: 9px 12px;
+  text-align: start;
+  vertical-align: top;
+}
+
+.yn-prose th {
+  background: var(--yn-blue);
+}
+
+/* Authored in the source content as <Term> and <Callout>. */
+.yn-term {
+  font-variation-settings: 'wdth' 117, 'wght' 600;
+}
+
+.yn-callout {
+  background: var(--yn-blue);
+  border: 1px solid var(--yn-ink);
+  border-radius: var(--yn-r-editorial);
+  padding: 20px 24px;
+}
+
+.yn-callout__label {
+  font-size: var(--yn-micro);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 6px;
+}
+
+.yn-callout p:last-child {
+  margin: 0;
+}

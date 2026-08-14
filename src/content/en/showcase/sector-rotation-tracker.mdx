@@ -1,0 +1,39 @@
+---
+type: showcase
+slug: "sector-rotation-tracker"
+title: "EGX Sector Rotation Tracker"
+status: live
+description: "A visualization tool that maps capital flows between EGX sectors over rolling time windows. Shows which sectors are receiving institutional attention and which are being distributed."
+builders:
+  - name: "Laila Nour"
+    role: "Developer"
+    photo: /images/builders/laila-nour.jpg
+    linkedIn: ""
+tags:
+  - visualization
+  - sectors
+  - egx
+  - d3
+repoUrl: "https://github.com/efg-hermes/sector-rotation-tracker"
+liveUrl: "https://sectors.egx-tools.com"
+screenshots:
+  - /images/showcase/sector-rotation-1.png
+publishedAt: "2026-05-05"
+featured: true
+---
+
+## What we built
+
+A D3.js visualization that shows relative strength across EGX sectors over a rolling 4-week, 12-week, and 52-week window. Sectors are ranked by relative performance versus EGX 30, with volume-weighted flow overlaid.
+
+## Why we built it
+
+Sector rotation is a well-documented phenomenon globally but rarely discussed in Egyptian market commentary. The tool makes the pattern visible — which sectors are outperforming, which are lagging, and how quickly the rotation is happening.
+
+## How it works
+
+The EFG API provides daily OHLCV for all EGX constituents. I map each ticker to its EGX sector classification, compute sector-level returns, and normalize against EGX 30. The D3 chart updates daily.
+
+## What I'd do next
+
+Add a forward-looking layer: historically, which sector transitions have tended to follow the current configuration? Not a prediction — an observation about historical patterns.

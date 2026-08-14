@@ -1,0 +1,45 @@
+---
+type: deep-dive
+slug: "egx-liquidity-why-stocks-dont-move"
+title: "EGX Liquidity: Why Some Stocks Don't Move"
+description: "Half the stocks on EGX trade fewer than 1,000 shares on a typical day. This is what illiquidity costs you, how to measure it, and which names actually have tradeable float."
+publishedAt: "2026-04-01"
+status: published
+locale: en
+authors:
+  - ahmed-raslan
+tags:
+  - egx
+  - liquidity
+  - market-microstructure
+readingTime: 9
+heroImage: /images/deep-dives/egx-liquidity.jpg
+---
+
+EGX has roughly 220 listed companies. On a typical trading day, fewer than 80 of them trade more than EGP 1 million in value. About 40 account for over 90% of total market turnover.
+
+This matters if you're building a strategy. A strategy that looks excellent on historical prices can fail completely when you try to execute it, because the fills you assumed are unavailable at the prices you expected.
+
+## What illiquidity actually costs
+
+Illiquidity costs show up in two ways:
+
+**The spread.** On EGX, liquid stocks like CIB trade with spreads of 0.05-0.10%. An illiquid stock might have a 1-3% spread. Every round trip (buy and sell) costs you the spread. At 2%, that's EGP 2,000 on a EGP 100,000 position, before any consideration of market impact.
+
+**Market impact.** When your order is large relative to the daily volume, executing it moves the price against you. If you're buying 1% of a stock's daily volume, you're fine. If you're buying 10%, you'll pay more for later fills than for earlier ones.
+
+## The EGX 30 liquidity concentration
+
+The EGX 30 index captures the 30 most liquid stocks by a rolling liquidity measure. Within even this index, liquidity is highly concentrated. CIB, EFIH, TALAT, and COMI together account for a disproportionate share of daily EGX 30 turnover.
+
+When building and backtesting strategies, a conservative practice is to only trade names where your expected position size represents less than 5% of the 20-day average daily volume (ADV). This forces you to confront whether your strategy is actually executable.
+
+## Measuring liquidity
+
+The EFG API provides daily OHLCV data. From this, you can compute:
+
+- **ADV** (average daily volume) — trailing 20 or 63 days
+- **ADTV** (average daily traded value) — ADV × average price; more comparable across names
+- **Turnover ratio** — ADTV / market cap; measures how fast the float rotates
+
+A name with ADTV under EGP 500,000 is generally untradeable for any position above EGP 50,000.

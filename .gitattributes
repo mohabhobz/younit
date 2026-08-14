@@ -1,0 +1,14 @@
+* text=auto eol=lf
+
+# The client's own content and lesson decks are carried over byte-for-byte.
+# Leave their line endings alone so they stay identical to the source site.
+src/content/** -text
+public/sessions/** -text
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.woff2 binary
+*.svg text eol=lf
+*.ico binary

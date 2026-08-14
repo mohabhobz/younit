@@ -1,0 +1,14 @@
+/* Fonts are self-hosted from node_modules — no third-party request at runtime,
+   and the build does not depend on a CDN being reachable.
+
+   Poppins stands in for ITC Avant Garde Gothic Pro (Book).
+   Anybody is loaded from the wdth bundle because the brand specifies width 117;
+   that bundle registers the family as "Anybody Variable". */
+@import '@fontsource/poppins/300.css';
+@import '@fontsource/poppins/400.css';
+@import '@fontsource-variable/anybody/wdth.css';
+@import '@fontsource/ibm-plex-mono/400.css';
+@import '@fontsource/ibm-plex-mono/500.css';
+@import '@fontsource/ibm-plex-sans-arabic/400.css';
+
+@import './tokens.css';

@@ -1,0 +1,54 @@
+---
+type: deep-dive
+slug: "efg-api-what-you-can-build"
+title: "The EFG API: What You Can Build With It"
+description: "A technical overview of what the EFG market data API provides, what it doesn't, and a taxonomy of what builders are actually using it for."
+publishedAt: "2026-04-15"
+status: published
+locale: en
+authors:
+  - ahmed-raslan
+tags:
+  - api
+  - build
+  - data
+  - efg
+readingTime: 8
+heroImage: /images/deep-dives/efg-api.jpg
+---
+
+The EFG API is a market data API, not a trading API. You can read prices, historical data, fundamentals, and corporate actions. You cannot submit orders, manage positions, or access custody accounts through it.
+
+This distinction matters because it defines what you're building: analysis tools, screeners, educational apps, research infrastructure. Not execution systems.
+
+## What the API provides
+
+**Price data.** End-of-day OHLCV for all EGX-listed securities, going back several years. Adjusted for splits and dividends. Intraday data (1-minute bars) is available for the current and prior 30 trading days.
+
+**Fundamentals.** Quarterly and annual financial statements for listed companies, as reported to EGX. Income statement, balance sheet, cash flow. Coverage is comprehensive for EGX 30 constituents; thinner for small-caps.
+
+**Corporate actions.** Dividend announcements, stock splits, rights issues, delistings. Critical for backtesting — you need these to build accurate price series.
+
+**Index data.** EGX 30 and EGX 70 constituents and weights, updated daily. Historical constituent changes are available, which matters for avoiding survivorship bias in backtests.
+
+**Screener endpoints.** Filter securities by financial metrics — P/E range, market cap, sector, liquidity threshold. Returns a list of tickers matching your criteria at a given date.
+
+## What it doesn't provide
+
+- Real-time data (end-of-day only for historical; 15-minute delay for intraday)
+- Order book data (level 2)
+- Options or derivatives data
+- Macro data (interest rates, FX, inflation) — use public sources for these
+- Sentiment or news data — this is what builders are adding on top
+
+## What people are actually building
+
+Looking at the showcase projects, a pattern emerges. The most useful applications fall into three categories:
+
+**Screeners.** Filter the EGX universe by fundamental or technical criteria. Screen for low P/E with high ROE. Screen for stocks near 52-week lows with rising volume. The API's screener endpoint makes this tractable.
+
+**Analytics tools.** Deeper analysis of individual securities or portfolios. Risk metrics, attribution analysis, drawdown analysis. Tools that answer specific questions rather than scan the whole universe.
+
+**Educational tools.** Applications that help users understand market data — visualizing how P/E has changed over time for a specific company, showing how a portfolio would have performed, explaining what a financial statement means.
+
+The showcase section has working examples of all three.

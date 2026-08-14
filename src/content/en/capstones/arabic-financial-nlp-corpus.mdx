@@ -1,0 +1,60 @@
+---
+type: capstone
+slug: "arabic-financial-nlp-corpus"
+title: "Arabic Financial NLP Corpus for Egyptian Markets"
+status: live
+description: "A labelled dataset of 55,000 Arabic-language financial news items from Egyptian sources, with entity annotations, sentiment labels, and ticker linkage. Released under CC BY 4.0."
+builders:
+  - name: "Ahmed Farouk"
+    role: "Data curation"
+    university: "GUC"
+    photo: /images/builders/ahmed-farouk.jpg
+    linkedIn: ""
+  - name: "Menna Tarek"
+    role: "Annotation methodology"
+    university: "GUC"
+    photo: /images/builders/menna-tarek.jpg
+    linkedIn: ""
+supervisor:
+  name: "Dr. Mohamed Abdelnabi"
+  university: "GUC"
+  department: "Data Science and Engineering"
+university: "GUC"
+semester: "Spring 2026"
+tags:
+  - nlp
+  - arabic
+  - dataset
+  - open-data
+  - annotation
+repoUrl: "https://github.com/efg-hermes/arabic-financial-nlp-corpus"
+liveUrl: null
+screenshots: []
+publishedAt: "2026-05-08"
+featured: true
+---
+
+## Abstract
+
+Arabic NLP research is constrained by data. Labelled financial text datasets for Egyptian Arabic do not exist in the public domain. This project builds one — 55,000 news items from six Egyptian financial news sources, annotated for named entities (companies, people, instruments), sentiment, and EGX ticker linkage.
+
+The dataset is released under Creative Commons Attribution 4.0. Anyone can use it.
+
+## What we built
+
+A data pipeline that:
+1. Scraped and deduplicated 140,000 raw Arabic financial news items (2020–2025)
+2. Filtered to 55,000 high-quality items with clear financial content
+3. Annotated a 10,000-item subset for entities, sentiment, and ticker linkage using an annotation team of 6 volunteers
+
+The full 55,000-item corpus is available in the repository. The annotated 10,000-item subset is in a separate folder.
+
+## Methodology
+
+We developed annotation guidelines specific to Egyptian financial Arabic — including handling of mixed Arabic/English company names (which appear frequently in Egyptian financial media), abbreviations, and informal language used in social-media-adjacent financial commentary.
+
+Inter-annotator agreement (Cohen's kappa) was 0.82 on sentiment, 0.91 on entity identification.
+
+## What we'd do next
+
+Expand the annotated subset to 30,000 items. Train and release a benchmark model on the corpus. Create an Arabic-language financial NER model specifically for Egyptian company names and their common variants.

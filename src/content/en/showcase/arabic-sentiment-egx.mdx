@@ -1,0 +1,47 @@
+---
+type: showcase
+slug: "arabic-sentiment-egx"
+title: "Arabic Sentiment Engine for EGX News"
+status: live
+description: "A fine-tuned Arabic NLP model that scores EGX-related news articles for market sentiment. Trained on 40,000 labelled financial news items from Egyptian Arabic sources."
+builders:
+  - name: "Aliaa Mansour"
+    role: "Lead developer"
+    university: "AUC"
+    photo: /images/builders/aliaa-mansour.jpg
+    linkedIn: ""
+  - name: "Omar Hassan"
+    role: "Model training"
+    university: "AUC"
+    photo: /images/builders/omar-hassan.jpg
+    linkedIn: ""
+tags:
+  - nlp
+  - arabic
+  - sentiment
+  - machine-learning
+repoUrl: "https://github.com/efg-hermes/arabic-sentiment-egx"
+liveUrl: null
+screenshots:
+  - /images/showcase/arabic-sentiment-1.png
+publishedAt: "2026-05-01"
+featured: true
+---
+
+## What we built
+
+A fine-tuned CAMeL-BERT model that classifies Egyptian Arabic financial news as positive, negative, or neutral with respect to a specific EGX ticker. Feed it an article about CIB; it tells you whether the article is bullish, bearish, or neutral on CIB.
+
+## Why we built it
+
+Arabic financial NLP models trained on Egyptian news are nearly nonexistent. The few Arabic sentiment models that exist are trained on Gulf Arabic, which has meaningfully different vocabulary and idioms for financial concepts.
+
+We curated and labelled our own dataset of 40,000 news items from Egyptian financial news sources, spanning 2020–2025.
+
+## How it works
+
+The model is a CAMeL-BERT base fine-tuned on our labelled dataset. Inference runs in under 100ms per article. We expose it via a simple REST API that accepts article text and an optional ticker context.
+
+## What we'd do next
+
+Expand the training set to 200,000 items. Add entity extraction to automatically identify which tickers are discussed in a given article. Integrate with the EFG API to run daily against the news feed.

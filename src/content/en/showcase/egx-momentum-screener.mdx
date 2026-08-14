@@ -1,0 +1,50 @@
+---
+type: showcase
+slug: "egx-momentum-screener"
+title: "EGX Momentum Screener"
+status: live
+description: "A web screener that ranks EGX stocks by momentum score — a composite of price momentum, volume trend, and relative strength versus EGX 30. Updates daily after market close."
+builders:
+  - name: "Youssef Ibrahim"
+    role: "Developer"
+    university: "GUC"
+    photo: /images/builders/youssef-ibrahim.jpg
+    linkedIn: ""
+  - name: "Nada El-Khatib"
+    role: "Quantitative research"
+    university: "GUC"
+    photo: /images/builders/nada-el-khatib.jpg
+    linkedIn: ""
+tags:
+  - screener
+  - momentum
+  - egx
+  - python
+repoUrl: "https://github.com/efg-hermes/egx-momentum-screener"
+liveUrl: "https://momentum.egx-tools.com"
+screenshots:
+  - /images/showcase/momentum-screener-1.png
+publishedAt: "2026-04-15"
+featured: true
+---
+
+## What we built
+
+A daily-updated momentum screener for EGX. Every evening after market close, the system pulls OHLCV data for all EGX-listed stocks via the EFG API, computes a composite momentum score, and ranks the universe.
+
+The momentum score combines:
+- 12-1 price momentum (12-month return minus most recent month)
+- Volume trend (current 20-day ADV vs. 63-day ADV)
+- Relative strength versus EGX 30
+
+## Why we built it
+
+Most Egyptian investors have access to raw price data but no systematic way to rank stocks. We wanted to build something that would be genuinely useful for someone managing a portfolio of EGX stocks.
+
+## How it works
+
+Python backend pulling from the EFG API. Pandas for computation. Results stored in a PostgreSQL database. Frontend is a simple React table with column sorting and basic filtering.
+
+## What we'd do next
+
+Add sector-relative momentum (rank stocks within their sector, not just versus the whole market). Add a backtesting view showing how the top-decile momentum portfolio performed historically.
