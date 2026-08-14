@@ -98,17 +98,42 @@ maps in `src/lib/sessions.js` are the original site's, carried over verbatim, so
 every Foundation and Algo Track session links to its own deck. A deck opens
 full-screen at `/learn/:track/:slug/deck`, the way the original site opened it.
 
-Three things were fixed in the decks, and nothing else in them was touched:
+### The decks are on the Younit brand
 
-1. Each carried `<script src="/review-overlay.js">` — the internal review tool,
-   not part of the product, 404ing on every lesson. Removed from all thirteen.
-2. Five loaded Chart.js and two its annotation plugin from cdnjs. Both are now
-   served from `public/vendor/`, at the same versions the decks pinned.
-3. All thirteen loaded Playfair Display, IBM Plex Mono and IBM Plex Sans from
-   Google. Those nine latin woff2 files now sit in `public/vendor/fonts/`, with
-   `public/vendor/deck-fonts.css` declaring them.
+They arrived in the previous identity: navy ground, gold and teal accents,
+Playfair Display headings, an EFG lockup. The teaching content and the markup
+are exactly as written — every sentence, table, chart and section. Only the
+presentation changed:
 
-A deck now makes zero external requests. Charts draw with no network.
+- `public/vendor/deck.css` rebinds the decks' own colour variables to Younit
+  values and restyles the shared component vocabulary. One sheet governs all
+  thirteen, loaded after each deck's own `<style>`, so it overrides rather than
+  edits.
+- 642 inline style attributes carried the old palette. Inline styles beat any
+  stylesheet, so those were remapped in place — by property, because a hue that
+  was text on navy has to become ink on grey while the same hue stays a fill.
+- 78 selectors painted text in an accent. Each read well on navy and between
+  1.0 and 2.7 to one on the grey. Emphasis now carries weight instead of
+  colour; labels and states go to ink; up/down and pass/fail keep a hue of
+  their own, darkened for a light ground.
+- Playfair Display is replaced by Poppins, and the body face is Anybody, so a
+  deck sets in the same faces as the site.
+- Chart colours are remapped in the chart configs, where Chart.js reads them —
+  a stylesheet cannot reach those.
+- The EFG lockup is the younit wordmark, with each deck naming its own track.
+- Thirty fixed two-column grids never collapsed, so a phone scrolled sideways.
+
+Three defects were also fixed:
+
+1. Each deck carried `<script src="/review-overlay.js">` — the internal review
+   tool, not part of the product, 404ing on every lesson. Removed.
+2. Five loaded Chart.js and two its annotation plugin from cdnjs; both are now
+   served from `public/vendor/` at the versions the decks pinned.
+3. All thirteen loaded webfonts from Google; those woff2 files are local now.
+
+A deck makes zero external requests. `tools/check-decks.mjs` walks all thirteen
+at 390 and 1440 and fails on unreadable text, a surviving colour from the
+previous brand, a request leaving the machine, or horizontal overflow.
 
 The homepage's editorial cards and project tracks resolve against these real
 files — the template's titles were already the real ones. Their dates and
@@ -225,7 +250,11 @@ writes a full-page screenshot of each route to `tools/shots/`.
 1440 and measures the contrast between each label and whatever is actually
 painted behind it, in both states, plus tap-target size at phone width. It asks
 whether the text can be read, not whether a rule applied — which is what catches
-a hover that turns a label the same colour as its own background.
+a hover that turns a label the same colour as its own background. It collapses
+transitions before measuring, so a sample is always the settled state rather
+than the middle of a 180ms crossfade; the first run that did so found a real
+one — the arrow in a pill row went ink-on-ink, because the card-hover reset and
+`.yn-btn:hover` have equal specificity and the reset came later.
 
 `tools/shot.mjs` captures the homepage after the motion has settled, which is
 what to compare against the Claude Design render.

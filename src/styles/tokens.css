@@ -264,9 +264,14 @@ pre {
 }
 
 /* A card link lifts and darkens its outline; recolouring the title as well
-   would drop it to 2.7:1 against white. */
+   would drop it to 2.7:1 against white.
+
+   A button nested in the card is left alone. It carries its own inverted pair,
+   and this rule has the same specificity as `.yn-btn:hover` but comes later —
+   so without the exclusion the arrow in a pill row went ink-on-ink the moment
+   you pointed at it. */
 .yn-card-hover:hover,
-.yn-card-hover:hover * {
+.yn-card-hover:hover *:not(.yn-btn) {
   color: var(--yn-ink);
 }
 

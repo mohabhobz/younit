@@ -108,6 +108,16 @@ for (const width of [390, 1440]) {
     const context = await browser.newContext({ viewport: { width, height: 900 } })
     const page = await context.newPage()
     await page.goto(`${BASE}${route}`, { waitUntil: 'networkidle' })
+
+    // A button crossfades its fill and its label over 180ms. Measuring the
+    // moment the pointer lands samples the middle of that crossfade, where the
+    // two colours are briefly the same — a reading that says nothing about
+    // whether the button is readable. Collapse transitions so every sample is
+    // the settled state. Animations are untouched, so reveals still fire and
+    // controls still end up where they belong.
+    await page.addStyleTag({
+      content: '*, *::before, *::after { transition-duration: 0s !important; }',
+    })
     await page.waitForTimeout(150)
 
     // Resting state.
