@@ -108,7 +108,7 @@ export default function Article() {
               This session has a complete illustrated deck — the same one used to teach
               it. It fills the screen, and closes back to this page.
             </p>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16 }}>
+            <div className="yn-cta-row">
               <Button tone="white" to={`/learn/${collection}/${doc.slug}/deck`}>
                 Open the session deck
               </Button>

@@ -82,7 +82,7 @@ export default function ProjectDetail() {
 
         <PageHeading sub={doc.description}>{doc.title}</PageHeading>
 
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 24 }}>
+        <div className="yn-cta-row">
           {doc.repoUrl ? (
             <Button tone="white" href={doc.repoUrl}>
               Repository →

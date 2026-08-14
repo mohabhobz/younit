@@ -106,7 +106,7 @@ function Hero() {
           learn.
         </p>
 
-        <div data-cta="" style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
+        <div data-cta="" className="yn-cta-row">
           <Button tone="amber" href="#journey">
             Start the foundation series
           </Button>

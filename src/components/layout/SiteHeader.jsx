@@ -61,12 +61,6 @@ export default function SiteHeader({ tone = 'blue' }) {
         ))}
       </nav>
 
-      {/* One locale ships, so there is nothing to switch between. The layout is
-          already logical-property based, so adding عربي back is a content job,
-          not a refactor. See README, "Arabic". */}
-      <div style={{ fontSize: 13, letterSpacing: '0.06em', color: '#fff' }}>
-        <span style={{ textDecoration: 'underline', textUnderlineOffset: 3 }}>EN</span>
-      </div>
     </header>
   )
 }

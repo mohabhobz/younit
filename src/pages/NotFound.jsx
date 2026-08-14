@@ -9,9 +9,11 @@ export default function NotFound() {
         <PageHeading sub="That page does not exist — or has not been built yet.">
           Not found
         </PageHeading>
-        <Button tone="blue" to="/">
-          Back to the homepage
-        </Button>
+        <div className="yn-cta-row">
+          <Button tone="blue" to="/">
+            Back to the homepage
+          </Button>
+        </div>
       </Section>
     </Page>
   )
