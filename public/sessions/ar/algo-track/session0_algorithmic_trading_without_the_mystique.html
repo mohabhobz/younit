@@ -1,0 +1,270 @@
+<!-- Younit lesson deck — a fragment, not a document.
+
+     Rendered into the site by src/pages/SessionDeck.jsx. Every style below is
+     scoped to .yn-deck, so nothing here reaches the page around it and nothing
+     out there reaches in. Generated from the original standalone deck by
+     tools/scope-decks.mjs; the markup and the copy are as they were written. -->
+<link href="/vendor/deck-fonts.css" rel="stylesheet">
+<link href="/vendor/deck.css" rel="stylesheet">
+<style>
+.yn-deck {
+  --bg:#D7D7D7;--bg2:#FFFFFF;--bg3:#FFFFFF;--card:#FFFFFF;--border:#AC91E1;
+  --gold:#FFD05A;--gold-light:#FFD05A;--teal:#A3C6D7;--teal-dim:#A3C6D7;
+  --red:#B3261E;--green:#1C7A3E;--text:#000000;--text-dim:#444444;--text-muted:#666666;
+}
+.yn-deck *{margin:0;padding:0;box-sizing:border-box;}
+.yn-deck{scroll-behavior:smooth;}
+.yn-deck{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-serif;font-size:15px;line-height:1.7;overflow-x:hidden;}
+
+/* BACK BUTTON */
+.yn-deck .back-btn{position:absolute;top:24px;left:24px;display:inline-flex;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--text-muted);text-decoration:none;text-transform:uppercase;border:1px solid var(--border);padding:6px 14px;border-radius:2px;transition:all .2s;z-index:10;}
+.yn-deck .back-btn:hover{border-color:var(--gold);color:var(--gold);}
+.yn-deck .back-btn::before{content:'←';margin-right:2px;}
+
+/* HEADER */
+.yn-deck header{position:relative;padding:60px 0 86px;text-align:center;overflow:hidden;border-bottom:1px solid var(--border);}
+.yn-deck header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(255,208,90,.12) 0%,transparent 70%),radial-gradient(ellipse 50% 40% at 80% 50%,rgba(163,198,215,.06) 0%,transparent 60%);}
+.yn-deck .efg-logo{display:inline-flex;align-items:center;gap:10px;margin-bottom:32px;position:relative;}
+.yn-deck .efg-logo-mark{width:36px;height:36px;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-weight:700;color:var(--gold);font-size:14px;letter-spacing:1px;}
+.yn-deck .efg-logo-text{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:3px;color:var(--text-dim);text-transform:uppercase;}
+.yn-deck .session-tag{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--teal);border:1px solid var(--teal-dim);padding:4px 14px;border-radius:2px;margin-bottom:20px;position:relative;}
+.yn-deck h1{font-family:'Poppins',sans-serif;font-size:clamp(42px,6vw,76px);font-weight:900;line-height:1.02;position:relative;background:linear-gradient(135deg,#fff 30%,var(--gold) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:18px;}
+.yn-deck .subtitle{color:var(--text-dim);font-size:17px;max-width:660px;margin:0 auto;position:relative;line-height:1.75;}
+.yn-deck .header-actions{display:flex;justify-content:center;gap:12px;margin-top:34px;position:relative;flex-wrap:wrap;}
+.yn-deck .primary-btn,.yn-deck .ghost-btn{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:1px;text-transform:uppercase;text-decoration:none;border-radius:2px;padding:12px 24px;transition:all .2s;}
+.yn-deck .primary-btn{background:var(--gold);color:#000;border:1px solid var(--gold);font-weight:500;}
+.yn-deck .primary-btn:hover{background:var(--gold-light);border-color:var(--gold-light);}
+.yn-deck .ghost-btn{color:var(--text-dim);border:1px solid var(--border);}
+.yn-deck .ghost-btn:hover{border-color:var(--gold);color:var(--gold);}
+
+/* LAYOUT */
+.yn-deck .container{max-width:960px;margin:0 auto;padding:0 24px;}
+.yn-deck .section{padding:64px 0;border-bottom:1px solid var(--border);}
+.yn-deck .section-num{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:3px;margin-bottom:8px;display:block;text-transform:uppercase;}
+.yn-deck .section-title{font-family:'Poppins',sans-serif;font-size:32px;font-weight:700;color:var(--yn-ink);margin-bottom:8px;}
+.yn-deck .section-lead{color:var(--text-dim);font-size:15px;max-width:640px;margin-bottom:40px;}
+.yn-deck .prose{color:var(--text-dim);font-size:15px;line-height:1.8;margin-bottom:24px;max-width:720px;}
+.yn-deck .prose strong{color:var(--yn-ink);}
+.yn-deck .prose em{color:var(--gold);font-style:normal;}
+
+/* MISSION */
+.yn-deck .mission-wrap{background:linear-gradient(135deg,rgba(255,208,90,.07),rgba(163,198,215,.04));border:1px solid rgba(255,208,90,.25);border-radius:4px;padding:36px 40px;margin-bottom:32px;position:relative;overflow:hidden;}
+.yn-deck .mission-wrap::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent);}
+.yn-deck .mission-label{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:16px;}
+.yn-deck .mission-statement{font-family:'Poppins',sans-serif;font-size:clamp(24px,3vw,36px);font-weight:700;line-height:1.25;color:var(--yn-ink);margin-bottom:18px;}
+.yn-deck .mission-body{color:var(--text-dim);font-size:15px;line-height:1.8;max-width:720px;}
+.yn-deck .mission-body strong{color:var(--yn-ink);}
+
+/* PRINCIPLES */
+.yn-deck .principle-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:32px;}
+.yn-deck .principle-card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:24px;position:relative;overflow:hidden;transition:border-color .2s,transform .2s;}
+.yn-deck .principle-card:hover{border-color:var(--gold);transform:translateY(-2px);}
+.yn-deck .principle-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent);opacity:0;transition:opacity .2s;}
+.yn-deck .principle-card:hover::before{opacity:1;}
+.yn-deck .principle-label{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:10px;}
+.yn-deck .principle-body{color:var(--text-dim);font-size:13px;line-height:1.65;}
+.yn-deck .principle-body strong{color:var(--yn-ink);}
+
+/* TRACK MAP */
+.yn-deck .track-list{list-style:none;padding:0;margin:0;}
+.yn-deck .track-item{display:grid;grid-template-columns:92px 1fr auto;gap:22px;align-items:start;padding:22px 0;border-bottom:1px solid var(--border);}
+.yn-deck .track-item:last-child{border-bottom:none;}
+.yn-deck .track-num{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;padding-top:4px;}
+.yn-deck .track-title{font-family:'Poppins',sans-serif;font-size:23px;line-height:1.25;color:var(--yn-ink);margin-bottom:8px;}
+.yn-deck .track-desc{color:var(--text-dim);font-size:14px;line-height:1.65;max-width:620px;}
+.yn-deck .track-link{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);text-decoration:none;border:1px solid var(--border);border-radius:2px;padding:8px 12px;transition:all .2s;white-space:nowrap;margin-top:4px;}
+.yn-deck .track-link:hover{color:var(--gold);border-color:var(--gold);}
+.yn-deck .track-item.current .track-num{color:var(--teal);}
+.yn-deck .track-item.current .track-link{color:#000;background:var(--gold);border-color:var(--gold);}
+.yn-deck .track-item.current .track-link:hover{background:var(--gold-light);border-color:var(--gold-light);}
+
+/* CALLOUT */
+.yn-deck .callout{background:rgba(255,208,90,.06);border:1px solid rgba(255,208,90,.2);border-radius:4px;padding:16px 20px;margin:28px 0 0;font-size:13px;color:var(--text-dim);font-family:'IBM Plex Mono',monospace;line-height:1.6;}
+.yn-deck .callout strong{color:var(--yn-ink);}
+
+/* REPO */
+.yn-deck .repo-wrap{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:4px;padding:28px 32px;margin-top:16px;}
+.yn-deck .repo-heading{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:14px;}
+.yn-deck .repo-body{color:var(--text-dim);font-size:14px;line-height:1.75;max-width:720px;}
+.yn-deck .repo-body strong{color:var(--yn-ink);}
+.yn-deck .repo-slot{margin-top:18px;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--yn-ink);background:var(--bg3);border:1px solid var(--border);border-radius:3px;padding:12px 14px;display:inline-block;}
+
+/* FINAL CTA */
+.yn-deck .next-card{background:linear-gradient(135deg,rgba(255,208,90,.08),rgba(163,198,215,.05));border:1px solid var(--gold);border-radius:4px;padding:32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;margin-top:8px;}
+.yn-deck .next-label{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:2px;margin-bottom:8px;}
+.yn-deck .next-title{font-family:'Poppins',sans-serif;font-size:22px;color:var(--yn-ink);}
+.yn-deck .next-btn{background:var(--gold);color:#000;border:none;padding:12px 28px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:1px;cursor:pointer;border-radius:2px;text-transform:uppercase;font-weight:500;text-decoration:none;transition:background .15s;}
+.yn-deck .next-btn:hover{background:var(--gold-light);}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.yn-deck .section{animation:fadeUp .5s ease both;}
+
+@media(max-width:760px){
+  .yn-deck .back-btn{position:relative;top:auto;left:auto;margin:18px 0 0 18px;}
+  .yn-deck header{padding-top:38px;}
+  .yn-deck .mission-wrap{padding:28px 24px;}
+  .yn-deck .track-item{grid-template-columns:1fr;gap:8px;padding:24px 0;}
+  .yn-deck .track-link{width:max-content;}
+}
+</style>
+<div class="yn-deck">
+<header>
+  <a class="back-btn" href="/learn" target="_top">تعلّم</a>
+  <div class="container">
+    <div class="efg-logo">
+      <div class="efg-logo-mark">EFG</div>
+      <div class="efg-logo-text">مسار الخوارزميات</div>
+    </div>
+    <div class="session-tag">7 أجزاء</div>
+    <h1>التداول الخوارزمي،<br>بلا غموض</h1>
+    <p class="subtitle">جسر للمبتدئين من أساسيات سوق الأسهم إلى القواعد والاختبارات الرجعية وضوابط المخاطر وأنظمة صغيرة يستطيع الناس فهمها وبناءها فعلاً.</p>
+    <div class="header-actions">
+      <a class="primary-btn" href="/learn/algo-track/01-what-is-an-algorithm" target="_top">ابدأ الجزء 01</a>
+      <a class="ghost-btn" href="#track-map">اعرض خريطة المسار</a>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <span class="section-num">01 — المهمة</span>
+    <h2 class="section-title">ما الغرض من هذا المسار</h2>
+    <p class="section-lead">هذه ليست شهادة، وليست وعداً بأن الأتمتة تجعل التداول سهلاً. هي مقدمة مفتوحة المصدر لمن يفهمون أساسيات الأسهم ويريدون تعلّم كيف تتحول أفكار التداول إلى أنظمة.</p>
+
+    <div class="mission-wrap">
+      <div class="mission-label">الوعد</div>
+      <div class="mission-statement">فتح سوق الأسهم كساحة تجريب لطلاب مصر والشرق الأوسط، والبنّائين، والمستثمرين الفضوليين.</div>
+      <p class="mission-body">لست بحاجة لأن تكون محلّلاً كمّياً. لست بحاجة إلى الذكاء الاصطناعي. لست بحاجة إلى رياضيات متقدمة. أنت بحاجة إلى فهم <strong>القواعد</strong> و<strong>الاختبار</strong> و<strong>المخاطر</strong> و<strong>التنفيذ</strong> بوضوح يكفي للتجريب بمسؤولية.</p>
+    </div>
+
+    <p class="prose">مسار الأساسيات يعلّم سوق الأسهم نفسه. ومسار الخوارزميات يبدأ بعده: بمجرد أن تعرف ما السهم، وما السعر، وكيف يتداول الناس، يصير السؤال التالي بسيطاً — <em>هل يمكن كتابة فكرة تداول على هيئة قواعد؟</em></p>
+    <p class="prose">إن أمكن، أمكن اختبارها. وإن أمكن اختبارها، أمكن تحسينها. وإن أمكن تحسينها، أمكن أن تصير نظاماً صغيراً. هذا هو التحول الذهني الذي بُني حوله هذا المسار.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <span class="section-num">02 — المبادئ</span>
+    <h2 class="section-title">قواعد المسار</h2>
+    <p class="section-lead">الهدف جعل التداول الخوارزمي في المتناول دون تحويله إلى ضجيج.</p>
+
+    <div class="principle-grid">
+      <div class="principle-card">
+        <div class="principle-label">لا سحر</div>
+        <div class="principle-body">الخوارزمية مجرد مجموعة قواعد محددة. الحاسوب يضيف السرعة والاتساق والتغطية — لا تنبؤاً خارقاً.</div>
+      </div>
+      <div class="principle-card">
+        <div class="principle-label">لا ضجيج</div>
+        <div class="principle-body">الأتمتة لا تعني الربحية. كل جزء في هذا المسار يُبقي الحدود ظاهرة.</div>
+      </div>
+      <div class="principle-card">
+        <div class="principle-label">المخاطر أولاً</div>
+        <div class="principle-body">الاستراتيجية ناقصة بلا تحديد لحجم المركز، وقواعد إيقاف، وحدود للتراجع، ومفتاح إيقاف طارئ.</div>
+      </div>
+      <div class="principle-card">
+        <div class="principle-label">عقلية البنّاء</div>
+        <div class="principle-body">المقالات تشرح المفاهيم. والمستودعات ستحتوي لاحقاً الأمثلة العاملة والقوالب والتجارب.</div>
+      </div>
+    </div>
+
+    <div class="callout">↳ الهدف ليس جعل المبتدئين متهورين. الهدف جعل التجريب أكثر أماناً ووضوحاً وصدقاً.</div>
+  </div>
+</section>
+
+<section class="section" id="track-map">
+  <div class="container">
+    <span class="section-num">03 — خريطة المسار</span>
+    <h2 class="section-title">٧ أجزاء، مسار واحد واضح</h2>
+    <p class="section-lead">ينتقل المسار من القواعد البسيطة إلى التفكير في أنظمة تعمل مباشرة. كل جزء قصير ومحدود ومفهوم دون الحاجة إلى البرمجة أولاً.</p>
+
+    <ul class="track-list">
+      <li class="track-item current">
+        <div class="track-num">الجزء 01</div>
+        <div>
+          <div class="track-title">ما الخوارزمية حقاً؟</div>
+          <div class="track-desc">انزع الغموض. الخوارزمية مجموعة قواعد محددة تُطبَّق باتساق. إذا أمكن كتابة فكرة تداول بوضوح، فهي قابلة للتحويل إلى خوارزمية.</div>
+        </div>
+        <a class="track-link" href="/learn/algo-track/01-what-is-an-algorithm" target="_top">افتح</a>
+      </li>
+      <li class="track-item">
+        <div class="track-num">الجزء 02</div>
+        <div>
+          <div class="track-title">لماذا الخوارزميات أصلاً؟</div>
+          <div class="track-desc">الحجة الصادقة والحدود الصادقة: العاطفة، والاتساق، والحجم، وتغطية السوق كاملاً، والإفراط في المواءمة، وتغيّر الأنظمة السوقية، ولماذا لا تعني الأتمتة الربح.</div>
+        </div>
+        <a class="track-link" href="/learn/algo-track/02-why-algos-at-all" target="_top">افتح</a>
+      </li>
+      <li class="track-item">
+        <div class="track-num">الجزء 03</div>
+        <div>
+          <div class="track-title">تشريح الصفقة والاستراتيجية</div>
+          <div class="track-desc">كل صفقة تحتاج نقطة دخول، وجني أرباح، ووقف خسارة، ومدة. وكل استراتيجية تحتاج إشارة، وقاعدة دخول، وقاعدة خروج، وتحديداً لحجم المركز.</div>
+        </div>
+        <a class="track-link" href="/learn/algo-track/03-anatomy-of-a-trade" target="_top">افتح</a>
+      </li>
+      <li class="track-item">
+        <div class="track-num">الجزء 04</div>
+        <div>
+          <div class="track-title">الاختبار الرجعي</div>
+          <div class="track-desc">كيف تختبر الأفكار على الماضي — ولماذا يكذب الماضي. تحيّز النظر المسبق، وتحيّز البقاء، والإفراط في المواءمة، والعمولة، والانزلاق السعري، والبيانات الحديثة التي لم تُمَس.</div>
+        </div>
+        <a class="track-link" href="/learn/algo-track/04-backtesting" target="_top">افتح</a>
+      </li>
+      <li class="track-item">
+        <div class="track-num">الجزء 05</div>
+        <div>
+          <div class="track-title">من الاختبار الرجعي إلى التشغيل المباشر</div>
+          <div class="track-desc">الفجوة بين الورق والمال الحقيقي: أنواع الأوامر، وأخطاء الوسيط، والتنفيذات السيئة، والحد الأقصى للخسارة اليومية، والإيقاف عند التراجع، ومفاتيح الإيقاف الطارئ، وتغيّر الأنظمة السوقية، وتآكل الميزة.</div>
+        </div>
+        <a class="track-link" href="/learn/algo-track/05-from-backtest-to-live" target="_top">افتح</a>
+      </li>
+      <li class="track-item">
+        <div class="track-num">الجزء 06</div>
+        <div>
+          <div class="track-title">صمّم خوارزميتك كشركة مصغّرة</div>
+          <div class="track-desc">النظام الجاد ليس سكربتاً عملاقاً واحداً. له أدوار: البيانات، والبحث، والتنفيذ، وإدارة المحفظة، ومسؤول مخاطر يستطيع إيقاف كل شيء.</div>
+        </div>
+        <a class="track-link" href="/learn/algo-track/06-architect-your-algo" target="_top">افتح</a>
+      </li>
+      <li class="track-item">
+        <div class="track-num">الجزء 07</div>
+        <div>
+          <div class="track-title">ما الذي يضيفه الذكاء الاصطناعي للتداول الخوارزمي</div>
+          <div class="track-desc">الذكاء الاصطناعي امتداد لا بديل: المشاعر، والبيانات غير المهيكلة، والاستراتيجيات المتكيفة، وإعادة التدريب، وخطر الإفراط في مواءمة أنظمة لا تتوقف عن التغيّر.</div>
+        </div>
+        <a class="track-link" href="/learn/algo-track/07-what-ai-brings" target="_top">افتح</a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <span class="section-num">04 — المستودعات</span>
+    <h2 class="section-title">المقالات تشرح. المستودعات تُظهر.</h2>
+    <p class="section-lead">ينبغي أن يبقى الكود العامل خارج المقال كي يتطور ويتحسن ويُصحَّح مع الوقت.</p>
+
+    <div class="repo-wrap">
+      <div class="repo-heading">خانات المستودعات</div>
+      <p class="repo-body">كل جزء سينتهي لاحقاً بمربع مثال عامل نظيف. يبقى المقال مفاهيمياً؛ ويصير المستودع المثال الحي. وإلى أن تجهز EFG API والأمثلة، يمكن لكل جزء أن يحمل عنصراً بديلاً مؤقتاً.</p>
+      <div class="repo-slot">&lt;RepoLink&gt; الكود العامل لهذا الجزء: المسار يُحدَّد لاحقاً بمجرد تشغيل EFG API.</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="border-bottom:none;">
+  <div class="container">
+    <span class="section-num">05 — البداية</span>
+    <h2 class="section-title">ابدأ بأبسط فكرة</h2>
+    <p class="section-lead">قبل الاختبارات الرجعية وواجهات API والذكاء الاصطناعي والمعمارية، ابدأ بسؤال واحد: هل يمكن كتابة الفكرة على هيئة قاعدة؟</p>
+
+    <div class="next-card">
+      <div>
+        <div class="next-label">البداية — الجزء 01 / 07</div>
+        <div class="next-title">ما الخوارزمية حقاً؟<br><span style="font-size:16px;color:var(--text-dim);font-family:'IBM Plex Sans',sans-serif;font-weight:400;">التعريف، وأبسط خوارزمية ممكنة، وما الذي يتغير حين يشغّلها الحاسوب.</span></div>
+      </div>
+      <a class="next-btn" href="/learn/algo-track/01-what-is-an-algorithm" target="_top">الجزء 01 ←</a>
+    </div>
+  </div>
+</section>
+</div>

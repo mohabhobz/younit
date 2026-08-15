@@ -25,6 +25,7 @@ const MIN_CONTRAST = 4.4
 
 /** A route with the site chrome and no deck, to measure the chrome against. */
 const CONTROL = '/learn/foundation/01-market-basics'
+const CONTROL_AR = '/ar/learn/foundation/01-market-basics'
 
 // Hues that belonged to the previous brand. None may survive anywhere.
 const RETIRED = [
@@ -32,11 +33,15 @@ const RETIRED = [
   'rgb(10, 14, 20)', 'rgb(17, 24, 39)', 'rgb(30, 45, 66)', 'rgb(226, 232, 240)',
 ]
 
+// Each deck twice: it is translated, so the Arabic one is its own page with
+// its own scripts, its own charts and its own direction.
 const decks = Object.entries(deckMaps).flatMap(([collection, { map }]) =>
-  Object.keys(map).map((slug) => ({
-    route: `/learn/${collection}/${slug}/deck`,
-    name: `${collection}/${slug}`,
-  })),
+  Object.keys(map).flatMap((slug) =>
+    ['', '/ar'].map((prefix) => ({
+      route: `${prefix}/learn/${collection}/${slug}/deck`,
+      name: `${prefix ? 'ar ' : ''}${collection}/${slug}`,
+    })),
+  ),
 )
 
 /** The site's own chrome, as the browser resolves it. */
@@ -178,9 +183,11 @@ for (const width of [390, 1440]) {
   const context = await browser.newContext({ viewport: { width, height: 1000 } })
   const page = await context.newPage()
 
-  // The chrome as it looks with no deck on the page.
+  // The chrome as it looks with no deck on the page, in each language.
   await page.goto(`${BASE}${CONTROL}`, { waitUntil: 'networkidle' })
-  const control = await page.evaluate(CHROME)
+  const controlEn = await page.evaluate(CHROME)
+  await page.goto(`${BASE}${CONTROL_AR}`, { waitUntil: 'networkidle' })
+  const controlAr = await page.evaluate(CHROME)
   await context.close()
 
   for (const deck of decks) {
@@ -259,6 +266,7 @@ for (const width of [390, 1440]) {
     if (errors.length) failures.push(`${name}: ${errors[0]}`)
 
     // Nothing in the deck may reach the site's own header and footer.
+    const control = deck.route.startsWith('/ar') ? controlAr : controlEn
     for (const part of ['header', 'footer', 'link']) {
       for (const [prop, value] of Object.entries(control[part] ?? {})) {
         if (chrome[part]?.[prop] !== value) {
@@ -274,7 +282,10 @@ for (const width of [390, 1440]) {
 await browser.close()
 stopServer()
 
-console.log(`${decks.length} decks checked in place at 390 and 1440`)
+console.log(
+  `${decks.length} deck pages checked in place ` +
+    `(${decks.length / 2} in each language) at 390 and 1440`,
+)
 if (failures.length) {
   const unique = [...new Set(failures)]
   console.log(`\n${unique.length} FAILURES:`)

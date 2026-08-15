@@ -1,0 +1,517 @@
+<!-- Younit lesson deck — a fragment, not a document.
+
+     Rendered into the site by src/pages/SessionDeck.jsx. Every style below is
+     scoped to .yn-deck, so nothing here reaches the page around it and nothing
+     out there reaches in. Generated from the original standalone deck by
+     tools/scope-decks.mjs; the markup and the copy are as they were written. -->
+<link href="/vendor/deck-fonts.css" rel="stylesheet">
+<link href="/vendor/deck.css" rel="stylesheet">
+<style>
+.yn-deck {
+  --bg:#D7D7D7;--bg2:#FFFFFF;--bg3:#FFFFFF;--card:#FFFFFF;--border:#AC91E1;
+  --gold:#FFD05A;--gold-light:#FFD05A;--teal:#A3C6D7;--teal-dim:#A3C6D7;
+  --red:#B3261E;--green:#1C7A3E;--text:#000000;--text-dim:#444444;--text-muted:#666666;
+}
+.yn-deck *{margin:0;padding:0;box-sizing:border-box;}
+.yn-deck{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-serif;font-size:15px;line-height:1.7;overflow-x:hidden;}
+
+/* BACK BUTTON */
+.yn-deck .back-btn{position:absolute;top:24px;left:24px;display:inline-flex;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--text-muted);text-decoration:none;text-transform:uppercase;border:1px solid var(--border);padding:6px 14px;border-radius:2px;transition:all .2s;z-index:10;}
+.yn-deck .back-btn:hover{border-color:var(--gold);color:var(--gold);}
+.yn-deck .back-btn::before{content:'←';margin-right:2px;}
+
+/* HEADER */
+.yn-deck header{position:relative;padding:60px 0 80px;text-align:center;overflow:hidden;border-bottom:1px solid var(--border);}
+.yn-deck header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(255,208,90,.12) 0%,transparent 70%),radial-gradient(ellipse 50% 40% at 80% 50%,rgba(163,198,215,.06) 0%,transparent 60%);}
+.yn-deck .efg-logo{display:inline-flex;align-items:center;gap:10px;margin-bottom:32px;position:relative;}
+.yn-deck .efg-logo-mark{width:36px;height:36px;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-weight:700;color:var(--gold);font-size:14px;letter-spacing:1px;}
+.yn-deck .efg-logo-text{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:3px;color:var(--text-dim);text-transform:uppercase;}
+.yn-deck .session-tag{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--teal);border:1px solid var(--teal-dim);padding:4px 14px;border-radius:2px;margin-bottom:20px;position:relative;}
+.yn-deck h1{font-family:'Poppins',sans-serif;font-size:clamp(36px,5vw,64px);font-weight:900;line-height:1.1;position:relative;background:linear-gradient(135deg,#fff 30%,var(--gold) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:16px;}
+.yn-deck .subtitle{color:var(--text-dim);font-size:16px;max-width:580px;margin:0 auto;position:relative;}
+.yn-deck .progress-bar-wrap{display:flex;justify-content:center;gap:6px;margin-top:40px;position:relative;}
+.yn-deck .prog-dot{width:32px;height:4px;border-radius:2px;background:var(--border);}
+.yn-deck .prog-dot.active{background:var(--gold);}
+.yn-deck .prog-dot.current{background:var(--teal);}
+
+/* LAYOUT */
+.yn-deck .container{max-width:960px;margin:0 auto;padding:0 24px;}
+.yn-deck .section{padding:64px 0;border-bottom:1px solid var(--border);}
+.yn-deck .section-num{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:3px;margin-bottom:8px;display:block;}
+.yn-deck .section-title{font-family:'Poppins',sans-serif;font-size:32px;font-weight:700;color:var(--yn-ink);margin-bottom:8px;}
+.yn-deck .section-lead{color:var(--text-dim);font-size:15px;max-width:600px;margin-bottom:40px;}
+
+/* PROSE */
+.yn-deck .prose{color:var(--text-dim);font-size:15px;line-height:1.8;margin-bottom:28px;max-width:720px;}
+.yn-deck .prose strong{color:var(--yn-ink);}
+.yn-deck .prose em{color:var(--gold);font-style:normal;}
+.yn-deck .prose + .prose{margin-top:-8px;}
+
+/* RULE / QUOTE BLOCK */
+.yn-deck .rule-block{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:4px;padding:28px 32px;margin-bottom:24px;}
+.yn-deck .rule-block blockquote{font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--yn-ink);line-height:1.8;font-style:normal;}
+.yn-deck .rule-block blockquote strong{color:var(--gold);}
+
+/* CALLOUT */
+.yn-deck .callout{background:rgba(255,208,90,.06);border:1px solid rgba(255,208,90,.2);border-radius:4px;padding:14px 20px;margin-bottom:24px;font-size:13px;color:var(--text-dim);font-family:'IBM Plex Mono',monospace;line-height:1.6;}
+.yn-deck .callout strong{color:var(--yn-ink);}
+
+/* COMPARE */
+.yn-deck .compare-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:16px;margin-bottom:32px;}
+.yn-deck .compare-card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:24px 28px;}
+.yn-deck .compare-label{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;margin-bottom:12px;text-transform:uppercase;}
+.yn-deck .compare-label.rules{color:var(--teal);}
+.yn-deck .compare-label.ai{color:var(--gold);}
+.yn-deck .compare-label.red{color:var(--red);}
+.yn-deck .compare-body{font-size:13px;color:var(--text-dim);line-height:1.65;}
+.yn-deck .compare-body strong{color:var(--yn-ink);}
+.yn-deck .compare-body em{color:var(--gold);font-style:normal;}
+
+/* CAPABILITY CARDS */
+.yn-deck .cap-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px;margin-bottom:32px;}
+.yn-deck .cap-card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:28px;position:relative;overflow:hidden;transition:border-color .2s,transform .2s;}
+.yn-deck .cap-card:hover{border-color:var(--gold);transform:translateY(-2px);}
+.yn-deck .cap-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent);opacity:0;transition:opacity .2s;}
+.yn-deck .cap-card:hover::before{opacity:1;}
+.yn-deck .cap-num{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--teal);text-transform:uppercase;margin-bottom:12px;}
+.yn-deck .cap-title{font-family:'Poppins',sans-serif;font-size:23px;font-weight:700;color:var(--yn-ink);line-height:1.2;margin-bottom:14px;}
+.yn-deck .cap-body{font-size:13px;color:var(--text-dim);line-height:1.65;}
+.yn-deck .cap-body strong{color:var(--yn-ink);}
+
+/* FLOW */
+.yn-deck .flow-row{display:flex;align-items:stretch;gap:0;flex-wrap:wrap;margin-bottom:32px;}
+.yn-deck .flow-item{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:18px 20px;flex:1;min-width:130px;text-align:center;position:relative;}
+.yn-deck .flow-item-label{font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--gold);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
+.yn-deck .flow-item-val{font-size:14px;color:var(--yn-ink);font-weight:500;line-height:1.45;}
+.yn-deck .flow-arrow{color:var(--gold);font-size:20px;padding:18px 8px;flex-shrink:0;display:flex;align-items:center;}
+
+/* ITEM LIST */
+.yn-deck .item-list{display:flex;flex-direction:column;gap:0;margin-bottom:32px;}
+.yn-deck .item-entry{padding:28px 0;border-bottom:1px solid var(--border);}
+.yn-deck .item-entry:last-child{border-bottom:none;}
+.yn-deck .item-head{display:flex;align-items:baseline;gap:16px;margin-bottom:12px;}
+.yn-deck .item-num{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;flex-shrink:0;min-width:44px;color:var(--gold);}
+.yn-deck .item-title{font-family:'Poppins',sans-serif;font-size:22px;font-weight:700;color:var(--yn-ink);}
+.yn-deck .item-body{color:var(--text-dim);font-size:15px;line-height:1.8;max-width:720px;padding-left:60px;}
+.yn-deck .item-body strong{color:var(--yn-ink);}
+.yn-deck .item-body em{color:var(--gold);font-style:normal;}
+
+/* CHECKLIST */
+.yn-deck .checklist{list-style:none;padding:0;margin:0 0 32px;}
+.yn-deck .checklist li{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--border);font-size:14px;color:var(--text-dim);line-height:1.65;max-width:760px;}
+.yn-deck .checklist li:last-child{border-bottom:none;}
+.yn-deck .checklist li::before{content:'✓';color:var(--teal);font-family:'IBM Plex Mono',monospace;font-size:12px;flex-shrink:0;margin-top:2px;}
+.yn-deck .checklist li strong{color:var(--yn-ink);}
+
+/* FINAL MAP */
+.yn-deck .map-wrap{background:var(--card);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:32px;}
+.yn-deck .map-head{padding:16px 24px;border-bottom:1px solid var(--border);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--text-muted);text-transform:uppercase;}
+.yn-deck .map-steps{display:grid;grid-template-columns:repeat(7,1fr);}
+.yn-deck .map-step{padding:22px 14px;border-right:1px solid var(--border);text-align:center;min-height:118px;}
+.yn-deck .map-step:last-child{border-right:none;}
+.yn-deck .map-num{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:2px;margin-bottom:10px;}
+.yn-deck .map-title{font-size:13px;color:var(--yn-ink);font-weight:600;line-height:1.35;margin-bottom:6px;}
+.yn-deck .map-desc{font-size:11px;color:var(--text-muted);line-height:1.35;}
+
+/* TAKEAWAYS */
+.yn-deck .takeaway-wrap{background:linear-gradient(135deg,rgba(255,208,90,.06),rgba(163,198,215,.04));border:1px solid rgba(255,208,90,.25);border-radius:4px;padding:36px 40px;margin-top:16px;}
+.yn-deck .takeaway-heading{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:20px;}
+.yn-deck .takeaway-list{list-style:none;padding:0;}
+.yn-deck .takeaway-list li{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid var(--border);font-size:14px;color:var(--text-dim);line-height:1.6;}
+.yn-deck .takeaway-list li:last-child{border-bottom:none;}
+.yn-deck .takeaway-list li::before{content:'✓';color:var(--teal);font-family:'IBM Plex Mono',monospace;font-size:12px;flex-shrink:0;margin-top:2px;}
+.yn-deck .takeaway-list li strong{color:var(--yn-ink);}
+
+/* NEXT CARD */
+.yn-deck .next-card{background:linear-gradient(135deg,rgba(255,208,90,.08),rgba(163,198,215,.05));border:1px solid var(--gold);border-radius:4px;padding:32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;margin-top:40px;}
+.yn-deck .next-label{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:2px;margin-bottom:8px;}
+.yn-deck .next-title{font-family:'Poppins',sans-serif;font-size:22px;color:var(--yn-ink);}
+.yn-deck .next-btn{background:var(--gold);color:#000;border:none;padding:12px 28px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:1px;cursor:pointer;border-radius:2px;text-transform:uppercase;font-weight:500;transition:background .15s;}
+.yn-deck .next-btn:hover{background:var(--gold-light);}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.yn-deck .section{animation:fadeUp .5s ease both;}
+
+@media(max-width:850px){
+  .yn-deck .map-steps{grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));}
+  .yn-deck .map-step{border-bottom:1px solid var(--border);}
+}
+@media(max-width:700px){
+  .yn-deck .compare-row{grid-template-columns:1fr;}
+  .yn-deck .flow-arrow{display:none;}
+  .yn-deck .item-body{padding-left:0;}
+}
+@media(max-width:520px){
+  .yn-deck .map-steps{grid-template-columns:1fr;}
+  .yn-deck .map-step{border-right:none;}
+}
+</style>
+<div class="yn-deck">
+<!-- HEADER -->
+<header>
+  <a class="back-btn" href="/learn/algo-track" target="_top">مسار الخوارزميات</a>
+  <div class="container">
+    <div class="efg-logo">
+      <div class="efg-logo-mark">EFG</div>
+      <div class="efg-logo-text">مسار الخوارزميات</div>
+    </div>
+    <div class="session-tag">الجزء 07 / 07</div>
+    <h1>ما الذي يضيفه الذكاء الاصطناعي<br>للتداول الخوارزمي</h1>
+    <p class="subtitle">ما الذي يصير ممكنًا حديثًا — ولماذا يأتي الذكاء الاصطناعي بعد القواعد والاختبار والمخاطر والمعمار.</p>
+    <div class="progress-bar-wrap">
+      <div class="prog-dot active"></div>
+      <div class="prog-dot active"></div>
+      <div class="prog-dot active"></div>
+      <div class="prog-dot active"></div>
+      <div class="prog-dot active"></div>
+      <div class="prog-dot active"></div>
+      <div class="prog-dot current"></div>
+    </div>
+  </div>
+</header>
+
+<!-- INTRO -->
+<div class="section">
+  <div class="container">
+    <span class="section-num">01 — لماذا يأتي الذكاء الاصطناعي أخيرًا</span>
+    <h2 class="section-title">الذكاء الاصطناعي ليس نقطة البداية</h2>
+    <p class="section-lead">تجنّبت الأجزاء الستة الأولى الذكاء الاصطناعي عمدًا. لا لأنه بلا صلة. بل لأنه لا يصير قويًا إلا بعد أن يتضح الأساس.</p>
+
+    <p class="prose">كثيرًا ما يسمع المبتدئ «التداول بالذكاء الاصطناعي» فيتخيل نظامًا يتنبأ بالسوق من تلقاء نفسه. هذا إطار خاطئ. قبل أن يصير الذكاء الاصطناعي مفيدًا، تظل تحتاج الأساسيات: قواعد واضحة، وبيانات نظيفة، وانضباط في الاختبار الرجعي، وضوابط مخاطر حية، ومعمارًا يمكن مراقبته.</p>
+
+    <p class="prose">الذكاء الاصطناعي لا يلغي هذه المتطلبات. هو يجلس فوقها. يساعد النظام على أن يقرأ أكثر، ويتكيف أكثر، ويتعلم من الظروف المتغيرة — لكنه لا يغني عن معرفة ما يفعله النظام.</p>
+
+    <div class="rule-block">
+      <blockquote>التسلسل يبقى كما هو:<br><strong>خوارزمية قائمة على القواعد أولًا → خوارزمية معزّزة بالذكاء الاصطناعي لاحقًا.</strong></blockquote>
+    </div>
+  </div>
+</div>
+
+<!-- ALGO VS AI -->
+<div class="section">
+  <div class="container">
+    <span class="section-num">02 — التمييز</span>
+    <h2 class="section-title">القائم على القواعد مقابل المعزّز بالذكاء الاصطناعي</h2>
+    <p class="section-lead">كثيرًا ما تختلط الكلمتان. لا ينبغي أن تختلطا.</p>
+
+    <div class="compare-row">
+      <div class="compare-card">
+        <div class="compare-label rules">خوارزمية قائمة على القواعد</div>
+        <div class="compare-body">
+          <p>الإنسان يحدد القواعد. والنظام يتبعها باتساق: متى يدخل، ومتى يخرج، وبأي حجم، ومتى يتوقف.</p>
+          <br>
+          <p><strong>القوة:</strong> واضحة، وقابلة للاختبار، وقابلة للشرح، وأسهل في التصحيح.</p>
+        </div>
+      </div>
+
+      <div class="compare-card">
+        <div class="compare-label ai">خوارزمية معزّزة بالذكاء الاصطناعي</div>
+        <div class="compare-body">
+          <p>يُضاف الذكاء الاصطناعي إلى نظام قائم على القواعد ليقرأ المعلومات غير المهيكلة، أو يعدّل السلوك، أو يحدّث المعاملات مع تغير الظروف.</p>
+          <br>
+          <p><strong>القوة:</strong> مدخلات أوسع، وقدرة أكبر على التكيف، وتعامل أفضل مع المعلومات الفوضوية.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      ↳ الذكاء الاصطناعي ليس غبارًا سحريًا يُنثر على قواعد سيئة. القواعد السيئة مع الذكاء الاصطناعي تبقى قواعد سيئة — لكنها أصعب في الفهم.
+    </div>
+  </div>
+</div>
+
+<!-- THREE CAPABILITIES -->
+<div class="section">
+  <div class="container">
+    <span class="section-num">03 — ثلاث قدرات</span>
+    <h2 class="section-title">ما الذي يضيفه الذكاء الاصطناعي فعلًا</h2>
+    <p class="section-lead">في هذا المسار المبتدئ، اقتصر على ثلاث قدرات مفاهيمية. وما هو أعمق مكانه تحليلات معمّقة قادمة.</p>
+
+    <div class="cap-grid">
+      <div class="cap-card">
+        <div class="cap-num">القدرة 01</div>
+        <h3 class="cap-title">قراءة البيانات غير المهيكلة</h3>
+        <div class="cap-body">يستطيع الذكاء الاصطناعي معالجة الأخبار والإفصاحات والنصوص المفرّغة ومشاعر وسائل التواصل والنصوص التي لا تحوّلها القواعد التقليدية إلى إشارات بسهولة.</div>
+      </div>
+
+      <div class="cap-card">
+        <div class="cap-num">القدرة 02</div>
+        <h3 class="cap-title">سلوك استراتيجي متكيف</h3>
+        <div class="cap-body">بدل استخدام معاملات ثابتة إلى الأبد، يمكن للذكاء الاصطناعي أن يساعد النظام على تعديل سلوكه حين تتغير ظروف السوق.</div>
+      </div>
+
+      <div class="cap-card">
+        <div class="cap-num">القدرة 03</div>
+        <h3 class="cap-title">إعادة التدريب في مواجهة التآكل</h3>
+        <div class="cap-body">مع ضعف الأفضليات، يمكن إعادة تدريب النماذج على بيانات أحدث حتى لا يبقى النظام متجمدًا في نظام سوق قديم.</div>
+      </div>
+    </div>
+
+    <p class="prose">هذه قدرات ذات معنى. وهي أيضًا ليست اختصارات. كل واحدة منها تخلق مشكلات جديدة في الاختبار والبيانات والمراقبة. وكلما صار النظام أكثر تكيفًا، وجب أن تكون أكثر حذرًا في طريقة التحقق منه.</p>
+  </div>
+</div>
+
+<!-- UNSTRUCTURED DATA -->
+<div class="section">
+  <div class="container">
+    <span class="section-num">04 — الأخبار والنصوص</span>
+    <h2 class="section-title">المشاعر والبيانات غير المهيكلة</h2>
+    <p class="section-lead">الخوارزميات التقليدية جيدة مع الأرقام. والذكاء الاصطناعي يجعل النص قابلًا للاستخدام.</p>
+
+    <p class="prose">النظام القائم على القواعد يقرأ بسهولة السعر وحجم التداول والمتوسطات المتحركة والتقلب وحقول الميزانية العمومية. لكنه يتعثر مع النص الفوضوي: الأخبار العاجلة، وتعليقات الإدارة، والإفصاحات التنظيمية، ومنشورات التواصل الاجتماعي، ومذكرات المحللين، وشائعات السوق.</p>
+
+    <p class="prose">الذكاء الاصطناعي يغير ذلك. يستطيع تصنيف الخبر إن كان إيجابيًا أو سلبيًا، وتحديد الشركة التي يمسّها، وتلخيص بيان الأرباح، ورصد حدث تنظيمي، أو التنبيه إلى تحول مفاجئ في المشاعر.</p>
+
+    <div class="flow-row">
+      <div class="flow-item">
+        <div class="flow-item-label">مدخل</div>
+        <div class="flow-item-val">أخبار / نصوص</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item">
+        <div class="flow-item-label">طبقة الذكاء الاصطناعي</div>
+        <div class="flow-item-val">تصنيف + تلخيص</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item">
+        <div class="flow-item-label">إشارة</div>
+        <div class="flow-item-val">درجة الحدث</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item">
+        <div class="flow-item-label">قواعد</div>
+        <div class="flow-item-val">تصرّف أو تجاهل</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      ↳ العمل الجاد على المشاعر يحتاج تاريخًا من البيانات. إذا أردت استخدام إشارات الأخبار أو التواصل الاجتماعي لاحقًا، فابدأ الآن في جمع بيانات نظيفة موسومة بالوقت.
+    </div>
+
+    <p class="prose">هذه النقطة الأخيرة تهم. غالبًا لا تملك بيانات أخبار تاريخية مثالية بالدقة نفسها التي تملكها لبيانات الأسعار. قد تعرف أن حدثًا كبيرًا وقع، لكن ليس كل عنوان صغير رآه السوق في الوقت الحقيقي. لذا قد تكون مشاعر الذكاء الاصطناعي قوية في السوق الحي، لكن يصعب اختبارها رجعيًا بنظافة ما لم تبنِ مجموعة البيانات بنفسك عبر الزمن.</p>
+  </div>
+</div>
+
+<!-- ADAPTATION -->
+<div class="section">
+  <div class="container">
+    <span class="section-num">05 — التكيف</span>
+    <h2 class="section-title">الاستراتيجيات المتكيفة</h2>
+    <p class="section-lead">الخوارزميات التقليدية ساكنة عادة. والذكاء الاصطناعي يمكن أن يساعد الأنظمة على التعديل مع تغير السوق.</p>
+
+    <p class="prose">قد تستخدم استراتيجية متوسط متحرك بسيطة النافذتين نفسيهما، 20 يومًا و50 يومًا، إلى الأبد. هذا واضح وقابل للاختبار، لكنه يفترض أن الإعدادات نفسها تظل مفيدة عبر أنظمة سوق مختلفة. وفي الواقع تتغير الأسواق. يتغير التقلب. تتغير السيولة. وتتآكل الصفقات المزدحمة.</p>
+
+    <p class="prose">يمكن للذكاء الاصطناعي أن يساعد بتعديل المعاملات، أو ترجيح الإشارات على نحو مختلف، أو تعلّم أي الظروف تناسب أي سلوك. والتعلم المعزز نسخة واحدة من هذه الفكرة: النظام يتعلم من الأفعال والنتائج عبر الزمن.</p>
+
+    <div class="compare-row">
+      <div class="compare-card">
+        <div class="compare-label rules">استراتيجية ساكنة</div>
+        <div class="compare-body">
+          <p>تبقى القواعد والمعاملات ثابتة ما لم يغيّرها إنسان. أسهل في الفهم والاختبار والتصحيح.</p>
+        </div>
+      </div>
+
+      <div class="compare-card">
+        <div class="compare-label ai">استراتيجية متكيفة</div>
+        <div class="compare-body">
+          <p>يستطيع النظام تحديث سلوكه مع تغير الظروف. أكثر مرونة، لكنه أصعب في التحقق والمراقبة.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="rule-block">
+      <blockquote>التكيف قوي، لكنه خطر إن لم تستطع اختباره.<br><br>والنموذج الذي يتغير باستمرار يمكن أن يفرط في المواءمة باستمرار.</blockquote>
+    </div>
+  </div>
+</div>
+
+<!-- RETRAINING -->
+<div class="section">
+  <div class="container">
+    <span class="section-num">06 — تآكل الأفضلية</span>
+    <h2 class="section-title">إعادة التدريب كدفاع ضد التآكل</h2>
+    <p class="section-lead">عرّف الجزء 5 تآكل الأفضلية: التآكل البطيء لأفضلية ما مع تكيف الأسواق والمتداولين. والذكاء الاصطناعي يقدم استجابة ممكنة.</p>
+
+    <p class="prose">الاستراتيجية الساكنة قد تبقى متجمدة حول السوق الذي بُنيت له. وقد ينجح ذلك لبعض الوقت. لكن إذا تغير السوق، أو ازدحم متداولون آخرون على الفرصة نفسها، فقد تضعف الأفضلية. وقد تظل الاستراتيجية تعمل بلا خلل بينما تتدهور عوائدها بهدوء.</p>
+
+    <p class="prose">إعادة التدريب هي فكرة تغذية النموذج ببيانات أحدث دوريًا وتحديث سلوكه. وقد يحدث ذلك كل بضعة أسابيع أو أشهر أو أرباع سنة بحسب الاستراتيجية والسوق. الهدف ليس مطاردة كل حركة حديثة. الهدف منع النظام من أن يعلق في نسخة قديمة من السوق.</p>
+
+    <div class="flow-row">
+      <div class="flow-item">
+        <div class="flow-item-label">01</div>
+        <div class="flow-item-val">جمع بيانات جديدة</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item">
+        <div class="flow-item-label">02</div>
+        <div class="flow-item-val">إعادة تدريب النموذج</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item">
+        <div class="flow-item-label">03</div>
+        <div class="flow-item-val">التحقق بالاحتياطي</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item">
+        <div class="flow-item-label">04</div>
+        <div class="flow-item-val">نشر بحذر</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      ↳ قاعدة البيانات الحديثة غير الممسوسة من الجزء 4 ما زالت سارية. كل دورة إعادة تدريب تحتاج بيانات لم يرها النموذج قط، وإلا فأنت تفرط في المواءمة مع أحدث ضجيج السوق.
+    </div>
+  </div>
+</div>
+
+<!-- HOW AI FITS ARCHITECTURE -->
+<div class="section">
+  <div class="container">
+    <span class="section-num">07 — تصميم النظام</span>
+    <h2 class="section-title">أين يقع الذكاء الاصطناعي في المعمار</h2>
+    <p class="section-lead">ينبغي أن يكون الذكاء الاصطناعي مكوّنًا داخل النظام، لا ذريعة لجعل النظام غير قابل للشرح.</p>
+
+    <p class="prose">في معمار الجزء 6، يمكن للذكاء الاصطناعي أن يسكن أماكن عدة. قد يدعم وكيل البحث بتحويل الأخبار إلى إشارات. وقد يدعم مدير المحفظة بتقدير التقلب المتغير. وقد يدعم المراقبة بالتنبيه إلى سلوك غير معتاد. لكن لا ينبغي أن يتجاوز المخاطر.</p>
+
+    <div class="item-list">
+      <div class="item-entry">
+        <div class="item-head">
+          <span class="item-num">A1</span>
+          <h3 class="item-title">الذكاء الاصطناعي داخل البحث</h3>
+        </div>
+        <div class="item-body">
+          <p>يقرأ النص، ويصنّف المشاعر، ويرصد الأحداث، أو يولّد مدخلات إشارة إضافية. وتظل الصفقة النهائية تمر عبر تحديد الحجم والمخاطر والتنفيذ.</p>
+        </div>
+      </div>
+
+      <div class="item-entry">
+        <div class="item-head">
+          <span class="item-num">A2</span>
+          <h3 class="item-title">الذكاء الاصطناعي داخل المراقبة</h3>
+        </div>
+        <div class="item-body">
+          <p>ينبّه إلى سلوك حي غير معتاد: تنفيذ أسوأ من المتوقع، أو إشارات تنطلق أكثر من اللازم، أو أنماط تراجع تتغير، أو بيانات تتصرف بغرابة.</p>
+        </div>
+      </div>
+
+      <div class="item-entry">
+        <div class="item-head">
+          <span class="item-num">A3</span>
+          <h3 class="item-title">الذكاء الاصطناعي داخل التكيف</h3>
+        </div>
+        <div class="item-body">
+          <p>يحدّث المعاملات أو سلوك الاستراتيجية عبر الزمن، لكن فقط من خلال عملية إعادة تدريب وتحقق مضبوطة.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="rule-block">
+      <blockquote>يستطيع الذكاء الاصطناعي أن يقترح ويصنّف ويتكيف ويراقب.<br><br>لكن <strong>مسؤول المخاطر يظل يعلو عليه</strong>.</blockquote>
+    </div>
+  </div>
+</div>
+
+<!-- WHAT NOT TO DO -->
+<div class="section">
+  <div class="container">
+    <span class="section-num">08 — ما لا ينبغي فعله</span>
+    <h2 class="section-title">لا تستخدم الذكاء الاصطناعي لإخفاء تفكير غامض</h2>
+    <p class="section-lead">أسرع طريق لبناء نظام لا تثق به هو أن تدع الذكاء الاصطناعي يحل محل الوضوح.</p>
+
+    <ul class="checklist">
+      <li><strong>لا</strong> تستخدم الذكاء الاصطناعي لأنك لا تملك استراتيجية واضحة.</li>
+      <li><strong>لا</strong> تدع نموذجًا يتخذ قرارات حية لا تستطيع مراقبتها أو تحديدها.</li>
+      <li><strong>لا</strong> تعد التدريب على بيانات حديثة وتسمي ذلك تحسينًا دون اختبار احتياطي نظيف.</li>
+      <li><strong>لا</strong> تدع الذكاء الاصطناعي يتجاوز تحديد حجم المركز، أو حدود التعرض، أو حدود التراجع، أو مفاتيح الإيقاف.</li>
+      <li><strong>لا</strong> تخلط بين التعقيد والأفضلية.</li>
+    </ul>
+
+    <p class="prose">أفضل أنظمة الذكاء الاصطناعي في التداول ليست صناديق سوداء غامضة تطفو خارج المعمار. هي مكوّنات في نظام منضبط. لها مدخلات ومخرجات وحدود وسجلات وأنماط إخفاق.</p>
+  </div>
+</div>
+
+<!-- SERIES CLOSE -->
+<div class="section">
+  <div class="container">
+    <span class="section-num">09 — المسار كاملًا</span>
+    <h2 class="section-title">الرحلة الكاملة</h2>
+    <p class="section-lead">بدأ هذا المسار بفكرة واحدة: التداول الخوارزمي ليس سحرًا. هو قواعد، تُختبر وتُنفَّذ بانضباط.</p>
+
+    <div class="map-wrap">
+      <div class="map-head">مسار الخوارزميات · رحلة من سبعة أجزاء</div>
+      <div class="map-steps">
+        <div class="map-step">
+          <div class="map-num">01</div>
+          <div class="map-title">القواعد</div>
+          <div class="map-desc">ما هي الخوارزمية حقًا.</div>
+        </div>
+        <div class="map-step">
+          <div class="map-num">02</div>
+          <div class="map-title">لماذا الخوارزميات</div>
+          <div class="map-desc">الحجة والحدود.</div>
+        </div>
+        <div class="map-step">
+          <div class="map-num">03</div>
+          <div class="map-title">الاستراتيجية</div>
+          <div class="map-desc">الصفقات والإشارات والأحجام والخروج.</div>
+        </div>
+        <div class="map-step">
+          <div class="map-num">04</div>
+          <div class="map-title">الاختبار الرجعي</div>
+          <div class="map-desc">اختبار الأفكار على الماضي.</div>
+        </div>
+        <div class="map-step">
+          <div class="map-num">05</div>
+          <div class="map-title">المخاطر الحية</div>
+          <div class="map-desc">التنفيذ والضوابط.</div>
+        </div>
+        <div class="map-step">
+          <div class="map-num">06</div>
+          <div class="map-title">المعمار</div>
+          <div class="map-desc">ابنِه كنظام.</div>
+        </div>
+        <div class="map-step">
+          <div class="map-num">07</div>
+          <div class="map-title">الذكاء الاصطناعي</div>
+          <div class="map-desc">التعزيز بعد الأساس.</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="prose">هذا يكفي للبدء. لا يكفي للتهور. ولا يكفي لتقديم خدمات. ولا يكفي للتظاهر بأنك صندوق تحوط. لكنه يكفي لفهم الخريطة، والقراءة بذكاء أكبر، والشروع في بناء تجارب صغيرة باحترام للمخاطر.</p>
+
+    <div class="rule-block">
+      <blockquote>لم يكن الهدف قط أن يبدو التداول الخوارزمي سهلًا.<br><br>الهدف كان جعله <strong>مفهومًا بما يكفي للاقتراب منه بمسؤولية</strong>.</blockquote>
+    </div>
+  </div>
+</div>
+
+<!-- SUMMARY / NEXT -->
+<div class="section" style="border-bottom:none;">
+  <div class="container">
+    <span class="section-num">10 — الخلاصة</span>
+    <h2 class="section-title">ما ينبغي أن تفهمه الآن</h2>
+    <p class="section-lead">أهم النقاط الأخيرة من مسار الخوارزميات.</p>
+
+    <div class="takeaway-wrap">
+      <div class="takeaway-heading">أهم النقاط — الجزء 07</div>
+      <ul class="takeaway-list">
+        <li>أفضل فهم للتداول بالذكاء الاصطناعي هو أنه <strong>تداول خوارزمي معزّز بالذكاء الاصطناعي</strong>، لا بديل عن التفكير القائم على القواعد.</li>
+        <li>يضيف الذكاء الاصطناعي ثلاث قدرات كبرى: قراءة البيانات غير المهيكلة، وتكييف سلوك الاستراتيجية، وإعادة التدريب في مواجهة تآكل الأفضلية.</li>
+        <li>إشارات المشاعر والأخبار قوية، لكن الاستخدام الجاد يتطلب بيانات نظيفة موسومة بالوقت تُجمع عبر الزمن.</li>
+        <li>الاستراتيجيات المتكيفة قد تساعد مع الأسواق المتغيرة، لكنها أصعب في التحقق وأسهل في الإفراط في المواءمة.</li>
+        <li>ينبغي أن يسكن الذكاء الاصطناعي داخل المعمار. ولا ينبغي أبدًا أن يتجاوز تحديد الأحجام، أو ضوابط المخاطر، أو المراقبة، أو مفاتيح الإيقاف.</li>
+        <li>يبقى الأساس كما هو: القواعد، والاختبار، والضوابط الحية، والمعمار، والإشراف المنضبط.</li>
+      </ul>
+    </div>
+
+    <div class="next-card">
+      <div>
+        <div class="next-label">اكتمل المسار</div>
+        <div class="next-title">ابدأ البناء بحذر<br><span style="font-size:16px;color:var(--text-dim);font-family:'IBM Plex Sans',sans-serif;font-weight:400;">عد إلى صفحة مسار الخوارزميات، ثم استخدم المستودعات متى صارت متاحة.</span></div>
+      </div>
+      <a class="next-btn" href="/learn/algo-track">مسار الخوارزميات →</a>
+    </div>
+  </div>
+</div>
+</div>

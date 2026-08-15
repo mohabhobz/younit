@@ -305,12 +305,11 @@ All 45 content files are translated, at `src/content/ar/` mirroring
 English original per document, so a half-translated site would still be a whole
 site.
 
-**The thirteen lesson decks are in English.** They are the client's own
-illustrated material — hand-built HTML with charts and diagrams — and
-translating them is a separate piece of work with a separate cost. An Arabic
-reader is told so on the deck page rather than left to wonder why the page
-changed language, and the deck keeps `dir="ltr"` inside the Arabic page so it is
-not mirrored into nonsense.
+The thirteen lesson decks are translated too, at `public/sessions/ar/` mirroring
+the English filenames — every heading, caption, table cell, SVG label and chart
+label. Only the markup was left alone: the tag skeleton of each Arabic deck is
+byte-identical to its English twin, so the two cannot diverge structurally.
+Tickers, index names and code samples stay as they are.
 
 ### The header on a phone
 

@@ -1,0 +1,460 @@
+<!-- Younit lesson deck — a fragment, not a document.
+
+     Rendered into the site by src/pages/SessionDeck.jsx. Every style below is
+     scoped to .yn-deck, so nothing here reaches the page around it and nothing
+     out there reaches in. Generated from the original standalone deck by
+     tools/scope-decks.mjs; the markup and the copy are as they were written. -->
+<link href="/vendor/deck-fonts.css" rel="stylesheet">
+<link href="/vendor/deck.css" rel="stylesheet">
+<style>
+.yn-deck {
+  --bg:#D7D7D7;--bg2:#FFFFFF;--bg3:#FFFFFF;--card:#FFFFFF;--border:#AC91E1;
+  --gold:#FFD05A;--gold-light:#FFD05A;--teal:#A3C6D7;--teal-dim:#A3C6D7;
+  --red:#B3261E;--green:#1C7A3E;--text:#000000;--text-dim:#444444;--text-muted:#666666;
+}
+.yn-deck *{margin:0;padding:0;box-sizing:border-box;}
+.yn-deck{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-serif;font-size:15px;line-height:1.7;overflow-x:hidden;}
+
+/* BACK BUTTON */
+.yn-deck .back-btn{position:absolute;top:24px;left:24px;display:inline-flex;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--text-muted);text-decoration:none;text-transform:uppercase;border:1px solid var(--border);padding:6px 14px;border-radius:2px;transition:all .2s;z-index:10;}
+.yn-deck .back-btn:hover{border-color:var(--gold);color:var(--gold);}
+.yn-deck .back-btn::before{content:'←';margin-right:2px;}
+
+/* HEADER */
+.yn-deck header{position:relative;padding:60px 0 80px;text-align:center;overflow:hidden;border-bottom:1px solid var(--border);}
+.yn-deck header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(255,208,90,.12) 0%,transparent 70%),radial-gradient(ellipse 50% 40% at 80% 50%,rgba(163,198,215,.06) 0%,transparent 60%);}
+.yn-deck .efg-logo{display:inline-flex;align-items:center;gap:10px;margin-bottom:32px;position:relative;}
+.yn-deck .efg-logo-mark{width:36px;height:36px;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-weight:700;color:var(--gold);font-size:14px;letter-spacing:1px;}
+.yn-deck .efg-logo-text{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:3px;color:var(--text-dim);text-transform:uppercase;}
+.yn-deck .session-tag{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--teal);border:1px solid var(--teal-dim);padding:4px 14px;border-radius:2px;margin-bottom:20px;position:relative;}
+.yn-deck h1{font-family:'Poppins',sans-serif;font-size:clamp(36px,5vw,64px);font-weight:900;line-height:1.1;position:relative;background:linear-gradient(135deg,#fff 30%,var(--gold) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:16px;}
+.yn-deck .subtitle{color:var(--text-dim);font-size:16px;max-width:520px;margin:0 auto;position:relative;}
+.yn-deck .progress-bar-wrap{display:flex;justify-content:center;gap:6px;margin-top:40px;position:relative;}
+.yn-deck .prog-dot{width:32px;height:4px;border-radius:2px;background:var(--border);}
+.yn-deck .prog-dot.active{background:var(--gold);}
+.yn-deck .prog-dot.current{background:var(--teal);}
+
+/* LAYOUT */
+.yn-deck .container{max-width:960px;margin:0 auto;padding:0 24px;}
+.yn-deck .section{padding:64px 0;border-bottom:1px solid var(--border);}
+.yn-deck .section-num{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:3px;margin-bottom:8px;display:block;}
+.yn-deck .section-title{font-family:'Poppins',sans-serif;font-size:32px;font-weight:700;color:var(--yn-ink);margin-bottom:8px;}
+.yn-deck .section-lead{color:var(--text-dim);font-size:15px;max-width:560px;margin-bottom:40px;}
+
+/* PROSE */
+.yn-deck .prose{color:var(--text-dim);font-size:15px;line-height:1.8;margin-bottom:32px;max-width:720px;}
+.yn-deck .prose strong{color:var(--yn-ink);}
+.yn-deck .prose em{color:var(--gold);font-style:normal;}
+
+/* RULE BLOCK — large quoted rule display */
+.yn-deck .rule-block{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:4px;padding:28px 32px;margin-bottom:24px;position:relative;}
+.yn-deck .rule-block blockquote{font-family:'IBM Plex Mono',monospace;font-size:15px;color:var(--yn-ink);line-height:1.75;font-style:normal;}
+.yn-deck .rule-block blockquote strong{color:var(--gold);}
+
+/* HIGHLIGHT CALLOUT */
+.yn-deck .callout{background:rgba(255,208,90,.06);border:1px solid rgba(255,208,90,.2);border-radius:4px;padding:14px 20px;margin-bottom:24px;font-size:13px;color:var(--text-dim);font-family:'IBM Plex Mono',monospace;line-height:1.6;}
+.yn-deck .callout strong{color:var(--yn-ink);}
+
+/* ADVANTAGE GRID */
+.yn-deck .adv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-bottom:32px;}
+.yn-deck .adv-card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:24px;position:relative;overflow:hidden;transition:border-color .2s,transform .2s;}
+.yn-deck .adv-card:hover{border-color:var(--gold);transform:translateY(-2px);}
+.yn-deck .adv-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent);opacity:0;transition:opacity .2s;}
+.yn-deck .adv-card:hover::before{opacity:1;}
+.yn-deck .adv-card-label{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:10px;}
+.yn-deck .adv-card-body{color:var(--text-dim);font-size:13px;line-height:1.6;}
+
+/* COMPARISON ROW */
+.yn-deck .compare-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:16px;margin-bottom:32px;}
+.yn-deck .compare-card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:20px 24px;}
+.yn-deck .compare-label{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;margin-bottom:12px;text-transform:uppercase;}
+.yn-deck .compare-label.algo{color:var(--teal);}
+.yn-deck .compare-label.ai{color:var(--gold);}
+.yn-deck .compare-body{font-size:13px;color:var(--text-dim);line-height:1.65;}
+
+/* SERIES MAP */
+.yn-deck .series-list{list-style:none;padding:0;margin-bottom:32px;}
+.yn-deck .series-item{display:flex;align-items:baseline;gap:16px;padding:14px 0;border-bottom:1px solid var(--border);}
+.yn-deck .series-item:last-child{border-bottom:none;}
+.yn-deck .series-num{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-muted);letter-spacing:2px;min-width:60px;flex-shrink:0;}
+.yn-deck .series-title{font-size:14px;color:var(--text-dim);line-height:1.5;}
+.yn-deck .series-title strong{color:var(--yn-ink);}
+.yn-deck .series-item.current .series-num{color:var(--teal);}
+.yn-deck .series-item.current .series-title{color:var(--yn-ink);}
+
+/* TAKEAWAYS / SUMMARY BLOCK */
+.yn-deck .takeaway-wrap{background:linear-gradient(135deg,rgba(255,208,90,.06),rgba(163,198,215,.04));border:1px solid rgba(255,208,90,.25);border-radius:4px;padding:36px 40px;margin-top:16px;}
+.yn-deck .takeaway-heading{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:20px;}
+.yn-deck .takeaway-list{list-style:none;padding:0;}
+.yn-deck .takeaway-list li{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid var(--border);font-size:14px;color:var(--text-dim);line-height:1.6;}
+.yn-deck .takeaway-list li:last-child{border-bottom:none;}
+.yn-deck .takeaway-list li::before{content:'✓';color:var(--teal);font-family:'IBM Plex Mono',monospace;font-size:12px;flex-shrink:0;margin-top:2px;}
+.yn-deck .takeaway-list li strong{color:var(--yn-ink);}
+
+/* NEXT CARD */
+.yn-deck .next-card{background:linear-gradient(135deg,rgba(255,208,90,.08),rgba(163,198,215,.05));border:1px solid var(--gold);border-radius:4px;padding:32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;margin-top:40px;}
+.yn-deck .next-label{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:2px;margin-bottom:8px;}
+.yn-deck .next-title{font-family:'Poppins',sans-serif;font-size:22px;color:var(--yn-ink);}
+.yn-deck .next-btn{background:var(--gold);color:#000;border:none;padding:12px 28px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:1px;cursor:pointer;border-radius:2px;text-transform:uppercase;font-weight:500;transition:background .15s;}
+.yn-deck .next-btn:hover{background:var(--gold-light);}
+
+/* ── CAROUSEL ── */
+.yn-deck .carousel-section{position:relative;overflow:hidden;background:var(--bg);border-bottom:1px solid var(--border);}
+.yn-deck .carousel-track{display:flex;transition:transform .7s cubic-bezier(.77,0,.18,1);}
+.yn-deck .carousel-slide{min-width:100%;padding:80px 0;position:relative;overflow:hidden;}
+.yn-deck .carousel-slide-bg{position:absolute;inset:0;pointer-events:none;}
+
+.yn-deck .card-1 .carousel-slide-bg{background:radial-gradient(ellipse 70% 80% at 20% 50%,rgba(163,198,215,.07) 0%,transparent 60%);}
+.yn-deck .card-2 .carousel-slide-bg{background:radial-gradient(ellipse 70% 70% at 80% 50%,rgba(255,208,90,.07) 0%,transparent 70%);}
+.yn-deck .card-3 .carousel-slide-bg{background:radial-gradient(ellipse 70% 70% at 50% 50%,rgba(99,102,241,.07) 0%,transparent 70%);}
+.yn-deck .card-4 .carousel-slide-bg{background:radial-gradient(ellipse 80% 60% at 30% 40%,rgba(163,198,215,.07) 0%,transparent 60%);}
+.yn-deck .card-5 .carousel-slide-bg{background:radial-gradient(ellipse 80% 50% at 50% 50%,rgba(255,208,90,.06) 0%,transparent 70%);}
+
+.yn-deck .carousel-inner{max-width:960px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:60px;align-items:start;}
+.yn-deck .carousel-text{}
+.yn-deck .card-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--teal);text-transform:uppercase;margin-bottom:16px;}
+.yn-deck .card-headline{font-family:'Poppins',sans-serif;font-size:clamp(22px,3vw,36px);font-weight:700;line-height:1.25;color:var(--yn-ink);margin-bottom:20px;}
+.yn-deck .card-body-text{color:var(--text-dim);font-size:15px;line-height:1.75;}
+.yn-deck .carousel-rule{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:4px;padding:28px 32px;}
+.yn-deck .carousel-rule blockquote{font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--yn-ink);line-height:1.8;font-style:normal;}
+.yn-deck .carousel-rule-label{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--text-muted);text-transform:uppercase;margin-top:16px;}
+
+/* carousel nav */
+.yn-deck .carousel-nav{display:flex;justify-content:center;align-items:center;gap:16px;padding:24px 0 40px;}
+.yn-deck .c-dot{width:8px;height:8px;border-radius:50%;background:var(--border);cursor:pointer;transition:all .2s;border:none;}
+.yn-deck .c-dot.on{background:var(--gold);transform:scale(1.3);}
+.yn-deck .c-prev,.yn-deck .c-next{background:none;border:1px solid var(--border);color:var(--text-dim);width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.yn-deck .c-prev:hover,.yn-deck .c-next:hover{border-color:var(--gold);color:var(--gold);}
+.yn-deck .card-counter{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-muted);min-width:50px;text-align:center;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.yn-deck .section{animation:fadeUp .5s ease both;}
+
+@media(max-width:700px){
+  .yn-deck .carousel-inner{grid-template-columns:1fr;}
+  .yn-deck .compare-row{grid-template-columns:1fr;}
+}
+</style>
+<div class="yn-deck">
+<!-- HEADER -->
+<header>
+  <a class="back-btn" href="/learn/algo-track" target="_top">مسار الخوارزميات</a>
+  <div class="container">
+    <div class="efg-logo">
+      <div class="efg-logo-mark">EFG</div>
+      <div class="efg-logo-text">مسار الخوارزميات</div>
+    </div>
+    <div class="session-tag">الجزء 01 / 07</div>
+    <h1>ما هي<br>الخوارزمية حقًا؟</h1>
+    <p class="subtitle">قراءة في 10 دقائق تزيل الغموض عن التداول الخوارزمي.</p>
+    <div class="progress-bar-wrap">
+      <div class="prog-dot current"></div>
+      <div class="prog-dot"></div>
+      <div class="prog-dot"></div>
+      <div class="prog-dot"></div>
+      <div class="prog-dot"></div>
+      <div class="prog-dot"></div>
+      <div class="prog-dot"></div>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════════════════════════════════════
+     SECTION 1: THE WORD
+════════════════════════════════════════════ -->
+<div class="section">
+  <div class="container">
+    <span class="section-num">01 — تعريفات</span>
+    <h2 class="section-title">الكلمة نفسها تسبب ضررًا كبيرًا</h2>
+    <p class="section-lead">أزل الغموض وستجد شيئًا بسيطًا للغاية.</p>
+
+    <p class="prose">«التداول الخوارزمي» يبدو كشيء يُمارَس في برج زجاجي على يد أشخاص يحملون درجات الدكتوراه ولديهم كابلات ألياف بصرية لا يملكها البشر العاديون. وتُستخدم كلمة <strong>خوارزمية</strong> بمعنى «رياضيات معقدة لا أستطيع متابعتها». هذا التأطير أبعد كثيرًا من الفضوليين عن مجال كانوا قادرين تمامًا على فهمه.</p>
+
+    <div class="rule-block">
+      <blockquote>الـ<strong>خوارزمية</strong> مجموعة محددة من القواعد، تُطبَّق بالطريقة نفسها في كل مرة، لإنتاج نتيجة متوقعة. وصفة الطبخ خوارزمية. إشارة المرور خوارزمية. <em>إذا كان الضوء أحمر، توقف. وإذا تحول إلى الأخضر، انطلق.</em> هذا كل شيء.</blockquote>
+    </div>
+
+    <p class="prose"><strong>التداول الخوارزمي</strong> هو الفكرة نفسها مطبَّقة على الشراء والبيع: مجموعة قواعد لمتى تدخل الصفقة، ومتى تخرج منها، وكم تخصص لها — تُطبَّق آليًا، دون انفعال، ودون استثناءات.</p>
+
+    <div class="callout">
+      ↳ هذا هو المفهوم بالكامل. وكل ما عداه في هذه السلسلة تفاصيل.
+    </div>
+
+    <p class="prose">حاجز الدخول ليس الذكاء. إنه <strong>الوضوح</strong>. في اللحظة التي تستطيع فيها التعبير عن فكرتك في التداول كقاعدة بلا غموض، تصبح لديك خوارزمية. معظم من <em>يظنون</em> أنهم متداولون تقديريون يشغّلون في الحقيقة خوارزميات ضبابية نصف مصاغة في رؤوسهم — لكنهم لا يعرفون ذلك. «أشتري الأسهم عندما تبدو مفرطة في البيع» خوارزمية تُركت معاملاتها فارغة. وكتابتها هي العمل الذي يجعلك متداولًا أفضل، سواء أتممت أتمتتها أم لا.</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     CAROUSEL: FIVE EXAMPLES
+════════════════════════════════════════════ -->
+<div class="carousel-section">
+  <div class="carousel-track" id="carouselTrack">
+
+    <!-- CARD 1 -->
+    <div class="carousel-slide card-1">
+      <div class="carousel-slide-bg"></div>
+      <div class="carousel-inner">
+        <div class="carousel-text">
+          <div class="card-eyebrow">البطاقة 1 من 5 — أبسط قاعدة</div>
+          <h2 class="card-headline">شرط واحد.<br>إجراء واحد.</h2>
+          <p class="card-body-text">شرط واحد يُطلِق إجراءً واحدًا. أي شخص يستطيع فهمه. وأي شخص يستطيع تنفيذه يدويًا — لو كان يراقب الشاشة في الثانية نفسها التي يحدث فيها، وهو ما لن يفعله. الحاسوب يفعله.<br><br>من هنا تبدأ كل خوارزمية. بسيطة، قابلة للاختبار، بلا غموض.</p>
+        </div>
+        <div>
+          <div class="carousel-rule">
+            <blockquote>إذا انخفض سعر CIB بنسبة 5% عن إغلاق الأمس، اشترِ 100 سهم.</blockquote>
+            <div class="carousel-rule-label">شرط الدخول · الأداة · الكمية</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="carousel-slide card-2">
+      <div class="carousel-slide-bg"></div>
+      <div class="carousel-inner">
+        <div class="carousel-text">
+          <div class="card-eyebrow">البطاقة 2 من 5 — وقف خسارة متحرك</div>
+          <h2 class="card-headline">نقطة الخروج<br>تتحرك مع الصفقة.</h2>
+          <p class="card-body-text">إذا ارتفع CIB إلى 90، يرتفع وقف الخسارة إلى 85.5. وإذا ارتفع بعدها إلى 100، يرتفع الوقف إلى 95. الوقف يتحرك صعودًا فقط، ولا ينزل أبدًا.<br><br>هذا يستحيل إتقانه يدويًا. ستضطر إلى إعادة الحساب على كل مركز تملكه، طوال اليوم. الحاسوب يفعلها مع كل تحديث للسعر دون تذمر. وهذا ما يقصده الناس حين يقولون إن الخوارزميات تستطيع «ترك الرابح يجري».</p>
+        </div>
+        <div>
+          <div class="carousel-rule">
+            <blockquote>اشترِ CIB عند EGP 80. وضع وقف خسارة عند 5% أسفل أعلى سعر بلغه السهم منذ شرائي له.</blockquote>
+            <div class="carousel-rule-label">الدخول · خروج متحرك · إعادة حساب تلقائية</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="carousel-slide card-3">
+      <div class="carousel-slide-bg"></div>
+      <div class="carousel-inner">
+        <div class="carousel-text">
+          <div class="card-eyebrow">البطاقة 3 من 5 — الدخول التدريجي عبر الزمن</div>
+          <h2 class="card-headline">قسّم الأمر الكبير<br>إلى أجزاء صغيرة.</h2>
+          <p class="card-body-text">تقسيم الأمر الكبير من أقدم أسباب وجود الخوارزميات. عمليات الشراء الكبيرة تحرك الأسعار ضدك — كل سهم تشتريه يصبح أغلى قليلًا كلما انتبه السوق. وتوزيع الأمر يقلل هذا الأثر.<br><br>مكاتب المؤسسات تفعل ذلك باستمرار. وأنت تستطيع أيضًا، بخمسة أسطر من الشيفرة.</p>
+        </div>
+        <div>
+          <div class="carousel-rule">
+            <blockquote>أريد شراء 1,000 سهم من COMI، لكني لا أريد تحريك السعر. اشترِ 100 سهم كل 15 دقيقة بين 10 صباحًا و12:30 ظهرًا.</blockquote>
+            <div class="carousel-rule-label">تنفيذ TWAP · تقليل أثر السوق</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 4 -->
+    <div class="carousel-slide card-4">
+      <div class="carousel-slide-bg"></div>
+      <div class="carousel-inner">
+        <div class="carousel-text">
+          <div class="card-eyebrow">البطاقة 4 من 5 — مراقبة السوق بأكمله</div>
+          <h2 class="card-headline">التغطية<br>كأفضلية.</h2>
+          <p class="card-body-text">الإنسان يراقب خمسة أسهم. الحاسوب يراقب البورصة كلها. الخوارزمية هنا لا تنفذ صفقات أصلًا — إنها تُظهر فرصًا كنت ستفوّتها لأنك لا تستطيع أن تكون في كل مكان في وقت واحد.<br><br>حتى لو كان تداولك تقديريًا بالكامل، يمكن للخوارزمية أن تكون عينيك.</p>
+        </div>
+        <div>
+          <div class="carousel-rule">
+            <blockquote>كل دقيقة، امسح كل أسهم EGX. ونبّهني عندما يعبر أي سهم فوق متوسطه المتحرك لـ50 يومًا بحجم تداول يعادل ضعف متوسطه لـ20 يومًا على الأقل.</blockquote>
+            <div class="carousel-rule-label">مسح السوق · رصد الإشارة · دون تنفيذ صفقات</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 5 -->
+    <div class="carousel-slide card-5">
+      <div class="carousel-slide-bg"></div>
+      <div class="carousel-inner">
+        <div class="carousel-text">
+          <div class="card-eyebrow">البطاقة 5 من 5 — استراتيجية كاملة</div>
+          <h2 class="card-headline">خمس قواعد.<br>نظام تداول متكامل.</h2>
+          <p class="card-body-text">هكذا تبدو استراتيجية قابلة للتشغيل فعليًا — ومع ذلك ليست معقدة. كل قاعدة محددة، وقابلة للاختبار، وقابلة للتنفيذ. ومعًا تُعرّف نظامًا كاملًا يمكن أن يعمل دون إشراف لشهور.<br><br>لا تحتاج إلى دكتوراه لهذا. تحتاج إلى <strong style="color:var(--yn-ink);">الوضوح</strong>.<br><br><span style="font-size:13px;color:var(--text-muted);font-family:'IBM Plex Mono',monospace;">↳ كل خوارزمية من هذه الخمس ممكنة في أقل من 50 سطرًا من الشيفرة. ولا واحدة منها تحتاج إلى الذكاء الاصطناعي. وكلها بعيدة المنال يدويًا — ليس لأنها معقدة، بل لأنها تحتاج سرعة أو تغطية لا يملكها البشر.</span></p>
+        </div>
+        <div>
+          <div class="carousel-rule">
+            <blockquote>لأسهم EGX التي سعرها &gt; EGP 5 ومتوسط حجم تداولها لـ30 يومًا &gt; 100 ألف سهم:<br><br>
+            — ادخل شراءً عندما يعبر المتوسط المتحرك لـ20 يومًا فوق المتوسط المتحرك لـ50 يومًا.<br>
+            — حجم المركز: 2% من المحفظة.<br>
+            — وقف الخسارة: 8% أسفل الدخول، متحرك.<br>
+            — جني الأرباح: عندما يعود متوسط 20 يومًا للعبور أسفل متوسط 50 يومًا.<br>
+            — الحد الأقصى للمراكز المتزامنة: 10.</blockquote>
+            <div class="carousel-rule-label">الدخول · التحجيم · الوقف · الخروج · حدود المحفظة</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /carousel-track -->
+
+  <div class="carousel-nav">
+    <button class="c-prev" onclick="carouselBy(-1)">‹</button>
+    <div id="cDotWrap" style="display:flex;gap:8px;align-items:center;"></div>
+    <div class="card-counter" id="cardCounter">البطاقة 1 / 5</div>
+    <button class="c-next" onclick="carouselBy(1)">›</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 2: WHAT CHANGES
+════════════════════════════════════════════ -->
+<div class="section">
+  <div class="container">
+    <span class="section-num">02 — التحول</span>
+    <h2 class="section-title">ما الذي يتغير حين يشغّلها الحاسوب</h2>
+    <p class="section-lead">القواعد نفسها تُطبَّق. ما يتغير هو من يضغط الزر — وهذا التغيير وحده يتسلسل إلى أمور مهمة.</p>
+
+    <div class="adv-grid">
+      <div class="adv-card">
+        <div class="adv-card-label">السرعة</div>
+        <div class="adv-card-body">يستطيع الحاسوب تقييم القاعدة وإرسال الأمر في أجزاء من الألف من الثانية. أنت لا تستطيع — وهذه الأجزاء هي الفارق بين إدراك سعرك وتفويته.</div>
+      </div>
+      <div class="adv-card">
+        <div class="adv-card-label">الاتساق</div>
+        <div class="adv-card-body">يطبق الحاسوب القاعدة بالطريقة نفسها في 9 صباحًا وفي 2 ظهرًا، في اليوم الجيد واليوم السيئ. أنت لن تفعل — الانفعال يلوي القواعد في اللحظة.</div>
+      </div>
+      <div class="adv-card">
+        <div class="adv-card-label">التغطية</div>
+        <div class="adv-card-body">يستطيع الحاسوب مراقبة كل سهم في EGX في وقت واحد وفي الزمن الفعلي. أنت تستطيع متابعة خمسة ربما. التغطية على هذا النطاق غير متاحة بنيويًا لإنسان.</div>
+      </div>
+      <div class="adv-card">
+        <div class="adv-card-label">بلا انفعال</div>
+        <div class="adv-card-body">الحاسوب لا يخاف ولا يجشع ولا يتعب. ولا يشكك في القاعدة لأن صباحه كان سيئًا. سنخصص الجزء التالي لشرح لماذا هذا هو الأهم على الإطلاق.</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      ↳ لا شيء من هذا يحتاج إلى الذكاء الاصطناعي. ولا شيء منه يحتاج إلى رياضيات متقدمة. إنه يحتاج إلى <strong>قواعد محددة</strong>.
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 3: ALGO VS AI
+════════════════════════════════════════════ -->
+<div class="section">
+  <div class="container">
+    <span class="section-num">03 — تمييز مهم</span>
+    <h2 class="section-title">التداول الخوارزمي ليس تداول الذكاء الاصطناعي</h2>
+    <p class="section-lead">تُستخدم الكلمتان بالتبادل ولا ينبغي ذلك. والتمييز بينهما مهم لطريقة بنائك لأنظمتك وتصحيحها.</p>
+
+    <div class="compare-row">
+      <div class="compare-card">
+        <div class="compare-label algo">التداول الخوارزمي</div>
+        <div class="compare-body">تنفيذ قائم على قواعد يضعها البشر. موجود منذ ما قبل الذكاء الاصطناعي بزمن طويل. مورس على الورق في السبعينيات، وفي جداول البيانات في الثمانينيات، وفي الشيفرة من التسعينيات فصاعدًا. القواعد كتبها الناس دائمًا.</div>
+      </div>
+      <div class="compare-card">
+        <div class="compare-label ai">التداول بالذكاء الاصطناعي</div>
+        <div class="compare-body">امتداد للتداول الخوارزمي، لا بديل عنه. يمكن إضافة الذكاء الاصطناعي كطبقة لقراءة الأخبار، أو تفسير البيانات غير المهيكلة، أو تعديل المعاملات مع الوقت. لكن الإطار يظل خوارزميًا. الذكاء الاصطناعي يعيش <em style="color:var(--yn-ink);font-style:normal;">داخل</em> نظام من القواعد — ولا يحل محله.</div>
+      </div>
+    </div>
+
+    <div class="rule-block">
+      <blockquote>التسلسل هو: <strong>خوارزمية قائمة على القواعد أولًا → خوارزمية معززة بالذكاء الاصطناعي لاحقًا.</strong><br><br>تخطي الخطوة الأولى هو ما ينتهي بك إلى نظام معقد لا تفهمه ولا تستطيع تصحيحه. معظم الخوارزميات الاحترافية ما زالت تعمل بالقواعد وحدها. سنغطي ما يضيفه الذكاء الاصطناعي في الجزء 7. أما الأجزاء الخمسة التالية، فنحّ الذكاء الاصطناعي جانبًا تمامًا.</blockquote>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 4: WHAT'S COMING
+════════════════════════════════════════════ -->
+<div class="section">
+  <div class="container">
+    <span class="section-num">04 — خريطة السلسلة</span>
+    <h2 class="section-title">ما القادم في هذه السلسلة</h2>
+    <p class="section-lead">ستة أجزاء أخرى، كل منها يبني على هذا الجزء. وفي النهاية ستفهم كيف تصمم وتختبر وتبني خوارزمية حقيقية على EFG API.</p>
+
+    <ul class="series-list">
+      <li class="series-item current">
+        <span class="series-num">الجزء 01</span>
+        <span class="series-title"><strong>ما هي الخوارزمية حقًا؟</strong> — أنت هنا. التعريف، وأبسط خوارزمية ممكنة، وما الذي يتغير حين يشغّلها الحاسوب.</span>
+      </li>
+      <li class="series-item">
+        <span class="series-num">الجزء 02</span>
+        <span class="series-title"><strong>لماذا الخوارزميات أصلًا؟</strong> — الحجة الصادقة، والحدود الصادقة.</span>
+      </li>
+      <li class="series-item">
+        <span class="series-num">الجزء 03</span>
+        <span class="series-title"><strong>تشريح الصفقة.</strong> الأشياء الأربعة التي يجب أن تحددها كل صفقة، وما الذي يصنع منها استراتيجية.</span>
+      </li>
+      <li class="series-item">
+        <span class="series-num">الجزء 04</span>
+        <span class="series-title"><strong>الاختبار الرجعي.</strong> كيف تختبر على الماضي — ولماذا يكذب الماضي.</span>
+      </li>
+      <li class="series-item">
+        <span class="series-num">الجزء 05</span>
+        <span class="series-title"><strong>التشغيل الحي.</strong> الفجوة بين الورق والمال الحقيقي، وضوابط المخاطر التي تغلقها.</span>
+      </li>
+      <li class="series-item">
+        <span class="series-num">الجزء 06</span>
+        <span class="series-title"><strong>صمّم كشركة.</strong> كيف تُبنى أنظمة الخوارزميات الجادة.</span>
+      </li>
+      <li class="series-item">
+        <span class="series-num">الجزء 07</span>
+        <span class="series-title"><strong>ما يضيفه الذكاء الاصطناعي.</strong> القدرات الجديدة، على المستوى المفاهيمي.</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SUMMARY / TAKEAWAYS
+════════════════════════════════════════════ -->
+<div class="section" style="border-bottom:none;">
+  <div class="container">
+    <span class="section-num">05 — الخلاصة</span>
+    <h2 class="section-title">ما ينبغي أن تفهمه الآن</h2>
+    <p class="section-lead">خمسة أشياء تأخذها من الجزء 1 قبل المتابعة.</p>
+
+    <div class="takeaway-wrap">
+      <div class="takeaway-heading">أهم النقاط — الجزء 01</div>
+      <ul class="takeaway-list">
+        <li>الخوارزمية <strong>مجموعة محددة من القواعد تُطبَّق باتساق</strong> — لا أكثر ولا أقل. وصفة الطبخ خوارزمية. إشارة المرور خوارزمية.</li>
+        <li><strong>التداول الخوارزمي</strong> يطبق الفكرة نفسها على الشراء والبيع: قواعد للدخول والخروج وتحجيم المركز — تُنفَّذ آليًا، بلا استثناء.</li>
+        <li>الحاجز ليس الذكاء ولا الرياضيات. إنه <strong>انضباط كتابة قواعدك بلا غموض</strong>. الوضوح هو العمل.</li>
+        <li><strong>التداول الخوارزمي ليس تداول الذكاء الاصطناعي.</strong> الذكاء الاصطناعي طبقة لاحقة. القواعد تأتي أولًا. ومعظم الخوارزميات الاحترافية ما زالت تعمل دون سطر واحد من تعلّم الآلة.</li>
+        <li>ما يضيفه الحاسوب هو <strong>السرعة والاتساق والتغطية وانعدام الانفعال</strong> — لا السحر. والقواعد يمكن أن تكون بسيطة كمثال CIB أعلاه.</li>
+      </ul>
+    </div>
+
+    <div class="next-card">
+      <div>
+        <div class="next-label">التالي — الجزء 02 / 07</div>
+        <div class="next-title">لماذا الخوارزميات أصلًا؟<br><span style="font-size:16px;color:var(--text-dim);font-family:'IBM Plex Sans',sans-serif;font-weight:400;">الحجة الصادقة، والحدود الصادقة.</span></div>
+      </div>
+      <a class="next-btn" href="/learn/algo-track/02-why-algos-at-all">الجزء 02 →</a>
+    </div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════
+//  CAROUSEL
+// ═══════════════════════════════
+let cur = 0;
+const total = 5;
+const track = document.getElementById('carouselTrack');
+const dotWrap = document.getElementById('cDotWrap');
+const counter = document.getElementById('cardCounter');
+
+for(let i = 0; i < total; i++){
+  const d = document.createElement('button');
+  d.className = 'c-dot' + (i === 0 ? ' on' : '');
+  d.onclick = () => goCard(i);
+  dotWrap.appendChild(d);
+}
+
+function goCard(n){
+  cur = Math.max(0, Math.min(total - 1, n));
+  track.style.transform = `translateX(-${cur * 100}%)`;
+  document.querySelectorAll('.c-dot').forEach((d, i) => d.classList.toggle('on', i === cur));
+  counter.textContent = `البطاقة ${cur + 1} / ${total}`;
+}
+
+function carouselBy(d){ goCard(cur + d); }
+
+// pause on hover
+let autoTimer = setInterval(() => goCard((cur + 1) % total), 7000);
+document.querySelector('.carousel-section').addEventListener('mouseenter', () => clearInterval(autoTimer));
+</script>
+</div>

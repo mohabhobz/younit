@@ -105,14 +105,17 @@ export function neighbours(collection, slug, locale = DEFAULT_LOCALE) {
 }
 
 /**
- * The standalone lesson decks in public/sessions. Both tracks are mapped —
- * the maps are the original site's, carried over verbatim.
+ * The lesson decks in public/sessions. Both tracks are mapped — the maps are
+ * the original site's, carried over verbatim — and each deck has a translation
+ * beside it under `sessions/ar/`, same filename.
  */
-export function sessionHtmlFor(collection, slug) {
+export function sessionHtmlFor(collection, slug, locale = DEFAULT_LOCALE) {
   const entry = deckMaps[collection]
   if (!entry) return null
   const file = entry.map[slug]
-  return file ? `${import.meta.env.BASE_URL}sessions/${entry.dir}/${file}` : null
+  if (!file) return null
+  const prefix = locale === DEFAULT_LOCALE ? '' : `${locale}/`
+  return `${import.meta.env.BASE_URL}sessions/${prefix}${entry.dir}/${file}`
 }
 
 /**

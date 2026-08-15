@@ -7,7 +7,7 @@ import { Button } from '../components/ui/Button.jsx'
 import { Frame } from '../components/ui/Pieces.jsx'
 import { findDoc, neighbours, sessionHtmlFor } from '../lib/content.js'
 import { mountDeck } from '../lib/deck.js'
-import { DEFAULT_LOCALE, Link, useI18n, useNavigate } from '../lib/i18n.jsx'
+import { Link, useI18n, useNavigate } from '../lib/i18n.jsx'
 
 const TRACK = {
   foundation: { key: 'learn.foundationTitle', path: '/learn/foundation' },
@@ -22,13 +22,13 @@ const TRACK = {
  */
 export default function SessionDeck() {
   const { collection, slug } = useParams()
-  const { t, locale } = useI18n()
+  const { t, locale, dir } = useI18n()
   const navigate = useNavigate()
   const host = useRef(null)
   const [state, setState] = useState('loading')
 
   const doc = findDoc(collection, slug, locale)
-  const src = sessionHtmlFor(collection, slug)
+  const src = sessionHtmlFor(collection, slug, locale)
   const track = TRACK[collection]
   const { index, total } = neighbours(collection, slug, locale)
 
@@ -101,20 +101,6 @@ export default function SessionDeck() {
           {t('common.backArrow')} {t(track?.key ?? 'learn.title')}
         </Button>
 
-        {/* The decks are the client's own illustrated material and exist in
-            English only. An Arabic reader is told so rather than left to
-            wonder why the page changed language. */}
-        {locale !== DEFAULT_LOCALE ? (
-          <p
-            style={{
-              margin: '20px 0 0',
-              fontSize: 'var(--yn-small)',
-              color: 'var(--yn-grey-dark)',
-            }}
-          >
-            {t('learn.deckEnglishOnly')}
-          </p>
-        ) : null}
       </Frame>
 
       {state === 'error' ? (
@@ -137,10 +123,10 @@ export default function SessionDeck() {
 
       <div
         ref={host}
-        // The deck is English and laid out for it, so it keeps its own
-        // direction inside an Arabic page rather than being mirrored.
-        dir="ltr"
-        lang="en"
+        // Each deck has a translation, so it reads in the page's own language
+        // and mirrors with it.
+        dir={dir}
+        lang={locale}
         // Reserve the fold while the deck arrives, so the footer does not flash
         // up under the breadcrumb and then jump.
         style={{ minHeight: state === 'ready' ? 0 : '60vh' }}

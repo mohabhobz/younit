@@ -1,0 +1,261 @@
+<!-- Younit lesson deck — a fragment, not a document.
+
+     Rendered into the site by src/pages/SessionDeck.jsx. Every style below is
+     scoped to .yn-deck, so nothing here reaches the page around it and nothing
+     out there reaches in. Generated from the original standalone deck by
+     tools/scope-decks.mjs; the markup and the copy are as they were written. -->
+<link href="/vendor/deck-fonts.css" rel="stylesheet">
+<link href="/vendor/deck.css" rel="stylesheet">
+<style>
+.yn-deck {
+  --bg:#D7D7D7;--bg2:#FFFFFF;--bg3:#FFFFFF;--card:#FFFFFF;--border:#AC91E1;
+  --gold:#FFD05A;--gold-light:#FFD05A;--teal:#A3C6D7;--teal-dim:#A3C6D7;
+  --red:#B3261E;--green:#1C7A3E;--text:#000000;--text-dim:#444444;--text-muted:#666666;
+}
+.yn-deck *{margin:0;padding:0;box-sizing:border-box;}
+.yn-deck{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-serif;font-size:15px;line-height:1.7;overflow-x:hidden;}
+
+/* BACK BUTTON */
+.yn-deck .back-btn{position:absolute;top:24px;left:24px;display:inline-flex;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--text-muted);text-decoration:none;text-transform:uppercase;border:1px solid var(--border);padding:6px 14px;border-radius:2px;transition:all .2s;z-index:10;}
+.yn-deck .back-btn:hover{border-color:var(--gold);color:var(--gold);}
+.yn-deck .back-btn::before{content:'←';margin-right:2px;}
+
+/* HEADER */
+.yn-deck header{position:relative;padding:60px 0 80px;text-align:center;overflow:hidden;border-bottom:1px solid var(--border);}
+.yn-deck header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(255,208,90,.12) 0%,transparent 70%),radial-gradient(ellipse 50% 40% at 80% 50%,rgba(163,198,215,.06) 0%,transparent 60%);}
+.yn-deck .efg-logo{display:inline-flex;align-items:center;gap:10px;margin-bottom:32px;position:relative;}
+.yn-deck .efg-logo-mark{width:36px;height:36px;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-weight:700;color:var(--gold);font-size:14px;letter-spacing:1px;}
+.yn-deck .efg-logo-text{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:3px;color:var(--text-dim);text-transform:uppercase;}
+.yn-deck .session-tag{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--teal);border:1px solid var(--teal-dim);padding:4px 14px;border-radius:2px;margin-bottom:20px;position:relative;}
+.yn-deck h1{font-family:'Poppins',sans-serif;font-size:clamp(36px,5vw,64px);font-weight:900;line-height:1.1;position:relative;background:linear-gradient(135deg,#fff 30%,var(--gold) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:16px;}
+.yn-deck .subtitle{color:var(--text-dim);font-size:16px;max-width:520px;margin:0 auto;position:relative;}
+.yn-deck .progress-bar-wrap{display:flex;justify-content:center;gap:6px;margin-top:40px;position:relative;}
+.yn-deck .prog-dot{width:32px;height:4px;border-radius:2px;background:var(--border);}
+.yn-deck .prog-dot.active{background:var(--gold);}
+.yn-deck .prog-dot.current{background:var(--teal);}
+
+/* LAYOUT */
+.yn-deck .container{max-width:960px;margin:0 auto;padding:0 24px;}
+.yn-deck .section{padding:64px 0;border-bottom:1px solid var(--border);}
+.yn-deck .section-num{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:3px;margin-bottom:8px;display:block;}
+.yn-deck .section-title{font-family:'Poppins',sans-serif;font-size:32px;font-weight:700;color:var(--yn-ink);margin-bottom:8px;}
+.yn-deck .section-lead{color:var(--text-dim);font-size:15px;max-width:560px;margin-bottom:40px;}
+
+/* PROSE */
+.yn-deck .prose{color:var(--text-dim);font-size:15px;line-height:1.8;margin-bottom:32px;max-width:720px;}
+.yn-deck .prose strong{color:var(--yn-ink);}
+.yn-deck .prose em{color:var(--gold);font-style:normal;}
+
+/* RULE BLOCK — large quoted rule display */
+.yn-deck .rule-block{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:4px;padding:28px 32px;margin-bottom:24px;position:relative;}
+.yn-deck .rule-block blockquote{font-family:'IBM Plex Mono',monospace;font-size:15px;color:var(--yn-ink);line-height:1.75;font-style:normal;}
+.yn-deck .rule-block blockquote strong{color:var(--gold);}
+
+/* HIGHLIGHT CALLOUT */
+.yn-deck .callout{background:rgba(255,208,90,.06);border:1px solid rgba(255,208,90,.2);border-radius:4px;padding:14px 20px;margin-bottom:24px;font-size:13px;color:var(--text-dim);font-family:'IBM Plex Mono',monospace;line-height:1.6;}
+.yn-deck .callout strong{color:var(--yn-ink);}
+
+/* ADVANTAGE GRID */
+.yn-deck .adv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-bottom:32px;}
+.yn-deck .adv-card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:24px;position:relative;overflow:hidden;transition:border-color .2s,transform .2s;}
+.yn-deck .adv-card:hover{border-color:var(--gold);transform:translateY(-2px);}
+.yn-deck .adv-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent);opacity:0;transition:opacity .2s;}
+.yn-deck .adv-card:hover::before{opacity:1;}
+.yn-deck .adv-card-label{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:10px;}
+.yn-deck .adv-card-body{color:var(--text-dim);font-size:13px;line-height:1.6;}
+
+/* COMPARISON ROW */
+.yn-deck .compare-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:16px;margin-bottom:32px;}
+.yn-deck .compare-card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:20px 24px;}
+.yn-deck .compare-label{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;margin-bottom:12px;text-transform:uppercase;}
+.yn-deck .compare-label.algo{color:var(--teal);}
+.yn-deck .compare-label.ai{color:var(--gold);}
+.yn-deck .compare-body{font-size:13px;color:var(--text-dim);line-height:1.65;}
+
+/* SERIES MAP */
+.yn-deck .series-list{list-style:none;padding:0;margin-bottom:32px;}
+.yn-deck .series-item{display:flex;align-items:baseline;gap:16px;padding:14px 0;border-bottom:1px solid var(--border);}
+.yn-deck .series-item:last-child{border-bottom:none;}
+.yn-deck .series-num{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-muted);letter-spacing:2px;min-width:60px;flex-shrink:0;}
+.yn-deck .series-title{font-size:14px;color:var(--text-dim);line-height:1.5;}
+.yn-deck .series-title strong{color:var(--yn-ink);}
+.yn-deck .series-item.current .series-num{color:var(--teal);}
+.yn-deck .series-item.current .series-title{color:var(--yn-ink);}
+
+/* TAKEAWAYS / SUMMARY BLOCK */
+.yn-deck .takeaway-wrap{background:linear-gradient(135deg,rgba(255,208,90,.06),rgba(163,198,215,.04));border:1px solid rgba(255,208,90,.25);border-radius:4px;padding:36px 40px;margin-top:16px;}
+.yn-deck .takeaway-heading{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:20px;}
+.yn-deck .takeaway-list{list-style:none;padding:0;}
+.yn-deck .takeaway-list li{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid var(--border);font-size:14px;color:var(--text-dim);line-height:1.6;}
+.yn-deck .takeaway-list li:last-child{border-bottom:none;}
+.yn-deck .takeaway-list li::before{content:'✓';color:var(--teal);font-family:'IBM Plex Mono',monospace;font-size:12px;flex-shrink:0;margin-top:2px;}
+.yn-deck .takeaway-list li strong{color:var(--yn-ink);}
+
+/* NEXT CARD */
+.yn-deck .next-card{background:linear-gradient(135deg,rgba(255,208,90,.08),rgba(163,198,215,.05));border:1px solid var(--gold);border-radius:4px;padding:32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;margin-top:40px;}
+.yn-deck .next-label{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:2px;margin-bottom:8px;}
+.yn-deck .next-title{font-family:'Poppins',sans-serif;font-size:22px;color:var(--yn-ink);}
+.yn-deck .next-btn{background:var(--gold);color:#000;border:none;padding:12px 28px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:1px;cursor:pointer;border-radius:2px;text-transform:uppercase;font-weight:500;transition:background .15s;}
+.yn-deck .next-btn:hover{background:var(--gold-light);}
+
+/* ── CAROUSEL ── */
+.yn-deck .carousel-section{position:relative;overflow:hidden;background:var(--bg);border-bottom:1px solid var(--border);}
+.yn-deck .carousel-track{display:flex;transition:transform .7s cubic-bezier(.77,0,.18,1);}
+.yn-deck .carousel-slide{min-width:100%;padding:80px 0;position:relative;overflow:hidden;}
+.yn-deck .carousel-slide-bg{position:absolute;inset:0;pointer-events:none;}
+
+.yn-deck .card-1 .carousel-slide-bg{background:radial-gradient(ellipse 70% 80% at 20% 50%,rgba(163,198,215,.07) 0%,transparent 60%);}
+.yn-deck .card-2 .carousel-slide-bg{background:radial-gradient(ellipse 70% 70% at 80% 50%,rgba(255,208,90,.07) 0%,transparent 70%);}
+.yn-deck .card-3 .carousel-slide-bg{background:radial-gradient(ellipse 70% 70% at 50% 50%,rgba(99,102,241,.07) 0%,transparent 70%);}
+.yn-deck .card-4 .carousel-slide-bg{background:radial-gradient(ellipse 80% 60% at 30% 40%,rgba(163,198,215,.07) 0%,transparent 60%);}
+.yn-deck .card-5 .carousel-slide-bg{background:radial-gradient(ellipse 80% 50% at 50% 50%,rgba(255,208,90,.06) 0%,transparent 70%);}
+
+.yn-deck .carousel-inner{max-width:960px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:60px;align-items:start;}
+.yn-deck .carousel-text{}
+.yn-deck .card-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--teal);text-transform:uppercase;margin-bottom:16px;}
+.yn-deck .card-headline{font-family:'Poppins',sans-serif;font-size:clamp(22px,3vw,36px);font-weight:700;line-height:1.25;color:var(--yn-ink);margin-bottom:20px;}
+.yn-deck .card-body-text{color:var(--text-dim);font-size:15px;line-height:1.75;}
+.yn-deck .carousel-rule{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:4px;padding:28px 32px;}
+.yn-deck .carousel-rule blockquote{font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--yn-ink);line-height:1.8;font-style:normal;}
+.yn-deck .carousel-rule-label{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--text-muted);text-transform:uppercase;margin-top:16px;}
+
+/* carousel nav */
+.yn-deck .carousel-nav{display:flex;justify-content:center;align-items:center;gap:16px;padding:24px 0 40px;}
+.yn-deck .c-dot{width:8px;height:8px;border-radius:50%;background:var(--border);cursor:pointer;transition:all .2s;border:none;}
+.yn-deck .c-dot.on{background:var(--gold);transform:scale(1.3);}
+.yn-deck .c-prev,.yn-deck .c-next{background:none;border:1px solid var(--border);color:var(--text-dim);width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.yn-deck .c-prev:hover,.yn-deck .c-next:hover{border-color:var(--gold);color:var(--gold);}
+.yn-deck .card-counter{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-muted);min-width:50px;text-align:center;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.yn-deck .section{animation:fadeUp .5s ease both;}
+
+@media(max-width:700px){
+  .yn-deck .carousel-inner{grid-template-columns:1fr;}
+  .yn-deck .compare-row{grid-template-columns:1fr;}
+}
+
+.yn-deck .prose-list{color:var(--text-dim);font-size:14px;line-height:1.7;margin:0 0 28px 20px;max-width:720px;}
+.yn-deck .prose-list li{margin-bottom:8px;}
+.yn-deck .prose-list strong{color:var(--yn-ink);}
+.yn-deck .subhead{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin:28px 0 10px;}
+.yn-deck .rule-stack{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:24px 0 32px;}
+.yn-deck .rule-mini{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:4px;padding:22px 24px;}
+.yn-deck .rule-mini h3{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:12px;}
+.yn-deck .rule-mini p{font-size:13px;color:var(--text-dim);line-height:1.65;margin-bottom:10px;}
+.yn-deck .rule-mini p:last-child{margin-bottom:0;}
+.yn-deck .rule-mini strong{color:var(--yn-ink);}
+.yn-deck .example-list{list-style:none;margin:12px 0 0;padding:0;}
+.yn-deck .example-list li{border-bottom:1px solid var(--border);padding:8px 0;color:var(--text-dim);font-size:13px;line-height:1.55;}
+.yn-deck .example-list li:last-child{border-bottom:none;}
+</style>
+<div class="yn-deck">
+<header>
+  <a class="back-btn" href="/learn/algo-track" target="_top">مسار الخوارزميات</a>
+  <div class="container">
+    <div class="efg-logo"><div class="efg-logo-mark">EFG</div><div class="efg-logo-text">مسار الخوارزميات</div></div>
+    <div class="session-tag">الجزء 03 / 07</div>
+    <h1>تشريح الصفقة<br>والاستراتيجية</h1>
+    <p class="subtitle">قراءة في 10 دقائق عمّا يجب أن تحدده كل صفقة — وما الذي يصنع استراتيجية من الصفقات.</p>
+    <div class="progress-bar-wrap">
+      <div class="prog-dot active"></div><div class="prog-dot active"></div><div class="prog-dot current"></div><div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div>
+    </div>
+  </div>
+</header>
+
+<div class="section"><div class="container">
+  <span class="section-num">01 — لماذا يهم هذا</span>
+  <h2 class="section-title">لماذا يهم هذا الجزء</h2>
+  <p class="section-lead">قال الجزء 1 إن الخوارزمية مجموعة محددة من القواعد. وقدّم الجزء 2 الحجة لاستخدامها. وهذا الجزء يحدد ما هي تلك القواعد فعلًا.</p>
+  <p class="prose">هناك انضباط تفرضه عليك الخوارزمية ويتيح لك التداول اليدوي تخطيه: كل صفقة يجب أن تكون <strong>محددة بالكامل</strong> قبل حدوثها. لا نوايا غامضة، ولا &quot;سأعرف أين أبيع حين أصل إلى هناك&quot;. وإن نقص أي جزء، لا تستطيع الخوارزمية التنفيذ. وهذا القيد ليس نقصًا — إنه أنفع ما في التفكير الخوارزمي، حتى لو لم تؤتمت شيئًا أبدًا.</p>
+</div></div>
+
+<div class="section"><div class="container">
+  <span class="section-num">02 — خصائص الصفقة</span>
+  <h2 class="section-title">للصفقة أربع خصائص لازمة</h2>
+  <p class="section-lead">كل صفقة — كل واحدة منها، يدوية كانت أم مؤتمتة — تُعرَّف بأربعة أشياء بالضبط.</p>
+  <div class="rule-stack">
+    <div class="rule-mini"><h3>1. الدخول</h3><p ><strong>متى تدخل؟</strong> عند أي سعر، وتحت أي شروط، وبأي إشارة يُطلَق الدخول.</p><p >&quot;اشترِ CIB عند 80&quot; دخول. وكذلك &quot;اشترِ CIB عندما يعبر متوسطه المتحرك لـ20 يومًا فوق متوسطه المتحرك لـ50 يومًا&quot;. الصيغة تتغير. أما اللزوم فلا.</p></div>
+    <div class="rule-mini"><h3>2. الخروج / جني الأرباح</h3><p ><strong>عند أي سعر تأخذ الربح؟</strong> الخروج هو ما يحدد ما إذا كانت الصفقة قد ربحت.</p><p >&quot;بِع عند 90&quot; خروج. وكذلك &quot;بِع عندما يصبح السعر أعلى من الدخول بـ12%&quot;.</p></div>
+    <div class="rule-mini"><h3>3. وقف الخسارة</h3><p ><strong>عند أي سعر تقطع الخسارة؟</strong> وقف الخسارة ليس اختياريًا.</p><p >الصفقة بلا خروج خسارة محدد هي صفقة قادرة على إسقاط حسابك.</p></div>
+    <div class="rule-mini"><h3>4. المدة</h3><p ><strong>كم يمكن أن تعيش الصفقة قبل أن تخرج منها مهما كان؟</strong> الزمن نفسه إشارة.</p><p >&quot;احتفظ بها 30 يومًا كحد أقصى&quot; و&quot;اخرج قبل إغلاق الجمعة&quot; قاعدتا مدة.</p></div>
+  </div>
+</div></div>
+
+<div class="section"><div class="container">
+  <span class="section-num">03 — القاعدة</span>
+  <h2 class="section-title">الأربعة كلها لازمة</h2>
+  <p class="section-lead">إن كان أي واحد من هذه الأربعة غير محدد، فهي ليست استراتيجية بعد — إنها نية.</p>
+  <div class="rule-block"><blockquote>إن كان أي واحد من هذه الأربعة غير محدد، <strong>فهي ليست استراتيجية بعد — إنها نية.</strong></blockquote></div>
+  <p class="prose">هذا هو الانضباط الذي تفرضه عليك الخوارزميات. لا تستطيع أن تختبر رجعيًا &quot;اشترِ حين يبدو الوضع جيدًا&quot;. ولا تستطيع أن تختبر رجعيًا &quot;احتفظ حتى أشعر برغبة في البيع&quot;. الحاسوب يحتاج إلى الخانات الأربع كلها مملوءة بقيم ملموسة قابلة للاختبار.</p>
+  <p class="prose">والخانات نفسها يمكن أن تكون <em>متغيرة</em>. وقف الخسارة المتحرك — الذي يرتفع كلما تحركت الصفقة لصالحك — يظل وقفًا محددًا، لكنه يتحرك فقط. وجني الأرباح المعدَّل بالتقلب الذي يتوسع بقدر ما يتحرك السهم عادة يظل محددًا. الشكل قد يكون متطورًا. أما اللازم فهو أن <em>الخانة موجودة</em> وتحكمها قواعد.</p>
+  <p class="prose">إن لم تستطع صياغة الأربعة كلها لأي صفقة تفكر فيها، فليست لديك صفقة بعد. لديك شعور. وهذا التمييز سيوفر عليك مالًا كثيرًا مع الوقت.</p>
+</div></div>
+
+<div class="section"><div class="container">
+  <span class="section-num">04 — تجاوزات الذكاء الاصطناعي</span>
+  <h2 class="section-title">استطراد: ماذا لو أغلق الذكاء الاصطناعي صفقة على خبر عاجل؟</h2>
+  <p class="section-lead">تجاوزات الأحداث المدفوعة بالذكاء الاصطناعي حقيقية في التداول الحي، لكنها ليست الأساس القائم على القواعد الذي يمكنك اختباره رجعيًا.</p>
+  <p class="prose">نعم — في التداول الحي، تجاوزات الأحداث المدفوعة بالذكاء الاصطناعي حقيقية. والنظام الذي يقرأ الأخبار ويغلق مركزًا قبل أن ينطلق وقف الخسارة يمكن قطعًا أن يتفوق على نظام لا يفعل ذلك. هذا أحد ما يضيفه الذكاء الاصطناعي إلى التداول الخوارزمي، وسنغطيه في الجزء 7.</p>
+  <div class="callout">↳ تجاوزات الذكاء الاصطناعي طبقة تُضاف فوق أساس قائم على القواعد. إنها تعزيز، لا أساس.</div>
+  <p class="prose">هذه التجاوزات تقع <strong>خارج</strong> الخصائص الأربع القابلة للاختبار الرجعي. لا تستطيع أن تختبر رجعيًا بشكل موثوق &quot;ماذا كانت خوارزميتي ستفعل لو قرأت الأخبار&quot;، لأنك لا تملك بيانات أخبار تاريخية دقيقة، ولأن سلوك الذكاء الاصطناعي في الحالات الحدية ليس حتميًا.</p>
+</div></div>
+
+<div class="section"><div class="container">
+  <span class="section-num">05 — مكونات الاستراتيجية</span>
+  <h2 class="section-title">من الصفقات إلى الاستراتيجيات</h2>
+  <p class="section-lead">الصفقة حدث واحد بأربع خصائص. والاستراتيجية هي النظام الذي يولّد الصفقات.</p>
+  <p class="prose">الـ<strong>استراتيجية</strong> هي المحرك الذي يقرر متى تحدث كل صفقة، وما حجمها، وكيف ترتبط بالصفقات الأخرى.</p>
+  <div class="adv-grid">
+    <div class="adv-card"><div class="adv-card-label">الإشارة</div><div class="adv-card-body"><strong>أي شرط يُطلِق الفعل؟</strong> الإشارة هي الفرضية: الزخم، أو العودة إلى المتوسط، أو الأحداث، أو العلاقات الإحصائية.</div></div>
+    <div class="adv-card"><div class="adv-card-label">قاعدة الدخول</div><div class="adv-card-body"><strong>بعد الإشارة، متى وكيف تدخل؟</strong> أمر بسعر السوق، أو أمر محدد السعر، والسعر المقبول، ومدة بقاء الدخول صالحًا.</div></div>
+    <div class="adv-card"><div class="adv-card-label">قاعدة الخروج</div><div class="adv-card-body"><strong>متى تخرج؟</strong> هدف الربح، أو وقف الخسارة، أو الوقف المتحرك، أو انعكاس الإشارة، أو خروج زمني.</div></div>
+    <div class="adv-card"><div class="adv-card-label">تحجيم المركز</div><div class="adv-card-body"><strong>كم تخصص؟</strong> مبلغ ثابت، أو نسبة ثابتة، أو تحجيم معدَّل بالتقلب، أو تحجيم على طريقة كيلي.</div></div>
+  </div>
+  <div class="rule-block"><blockquote>إشارة ممتازة مع تحجيم سيئ للمركز قد تخسر المال. وإشارة متوسطة مع تحجيم منضبط قد تربح.</blockquote></div>
+</div></div>
+
+<div class="section"><div class="container">
+  <span class="section-num">06 — مثال محلول</span>
+  <h2 class="section-title">مثال محلول: استراتيجية كاملة</h2>
+  <p class="section-lead">تقاطع المتوسط المتحرك 20/50 الكلاسيكي على أسهم EGX.</p>
+  <div class="compare-row">
+    <div class="compare-card"><div class="compare-label algo">الإشارة</div><div class="compare-body">النطاق: أسهم EGX التي سعرها &gt; EGP 5 ومتوسط حجم تداولها اليومي لـ30 يومًا &gt; 100,000 سهم. المُطلِق: عبور المتوسط المتحرك لـ20 يومًا فوق المتوسط المتحرك لـ50 يومًا.</div></div>
+    <div class="compare-card"><div class="compare-label ai">قاعدة الدخول</div><div class="compare-body">اشترِ عند افتتاح يوم التداول التالي، بأمر محدد السعر عند إغلاق اليوم السابق. وإن لم يُنفَّذ الأمر خلال 30 دقيقة، تخلَّ عن الدخول.</div></div>
+  </div>
+  <div class="compare-row">
+    <div class="compare-card"><div class="compare-label algo">قاعدة الخروج</div><div class="compare-body">جني الأرباح عندما يعود المتوسط المتحرك لـ20 يومًا للعبور أسفل متوسط 50 يومًا. وقف الخسارة 8% أسفل الدخول، متحرك. المدة القصوى: 60 يوم تداول.</div></div>
+    <div class="compare-card"><div class="compare-label ai">تحجيم المركز</div><div class="compare-body">2% من رأس مال المحفظة الحالي لكل مركز. وبحد أقصى 10 مراكز متزامنة.</div></div>
+  </div>
+  <div class="callout">↳ هذه استراتيجية كاملة: قابلة للاختبار الرجعي، وقابلة للتنفيذ، ومحددة بما يكفي لأن ينتج شخصان يبرمجانها نتائج متطابقة تقريبًا.</div>
+</div></div>
+
+<div class="section"><div class="container">
+  <span class="section-num">07 — إدارة المخاطر</span>
+  <h2 class="section-title">استطراد: إدارة المخاطر وإدارة المحفظة</h2>
+  <p class="section-lead">إدارة المخاطر وإدارة المحفظة تنطبقان على كل تداول — يدوي وخوارزمي.</p>
+  <ul class="prose-list">
+    <li>تحجيم المركز كنسبة من رأس المال</li>
+    <li>التنويع عبر مراكز غير مترابطة</li>
+    <li>حدود التراجع — أقصى خسارة تحتملها قبل التوقف</li>
+    <li>سقوف الانكشاف — أقصى نسبة من رأس المال يجري نشرها في وقت واحد</li>
+  </ul>
+  <p class="prose">هذه ليست أدوات خاصة بالخوارزميات. إنها أساسيات التداول. وكثيرًا ما يظنها المبتدئون موضوعات &quot;متقدمة&quot; لما بعد إتقان الدخول والخروج. وليست كذلك. إنها الأساس الذي يجعل الدخول والخروج قابلين للنجاة.</p>
+  <p class="prose">الخوارزمية لا تجعل إدارة المخاطر أهم — بل تجعلها <strong>أظهر</strong>. فحين تبرمج استراتيجية، تُضطر إلى كتابة قاعدة التحجيم صراحة، ما يعني أنك تواجهها.</p>
+</div></div>
+
+<div class="section" style="border-bottom:none;"><div class="container">
+  <span class="section-num">08 — الخلاصة</span>
+  <h2 class="section-title">ما ينبغي أن تفهمه الآن</h2>
+  <p class="section-lead">ستة أشياء تأخذها قبل المتابعة.</p>
+  <div class="takeaway-wrap"><div class="takeaway-heading">أهم النقاط — الجزء 03</div><ul class="takeaway-list">
+    <li>كل صفقة تُعرَّف بالكامل بأربع خصائص: <strong>الدخول، والخروج/جني الأرباح، ووقف الخسارة، والمدة.</strong></li>
+    <li>إن نقص أي من الأربعة، فهي ليست استراتيجية — إنها نية.</li>
+    <li>الخانات يمكن أن تكون متغيرة — الأوقاف المتحركة والخروج المعدَّل بالتقلب تُحتسب — لكن يجب أن تكون موجودة.</li>
+    <li>الاستراتيجية هي المحرك الذي يولّد الصفقات، ويُبنى من أربعة مكونات: <strong>الإشارة، وقاعدة الدخول، وقاعدة الخروج، وتحجيم المركز.</strong></li>
+    <li>تجاوزات الأحداث المدفوعة بالذكاء الاصطناعي حقيقية في التداول الحي لكنها تعيش خارج مجموعة القواعد القابلة للاختبار الرجعي. إنها تعزيز، لا أساس.</li>
+    <li>إدارة المخاطر وإدارة المحفظة تنطبقان على كل تداول. وهما أساسيتان، لا متقدمتان.</li>
+  </ul></div>
+  <div class="next-card"><div><div class="next-label">التالي — الجزء 04 / 07</div><div class="next-title">الاختبار الرجعي.<br><span style="font-size:16px;color:var(--text-dim);font-family:'IBM Plex Sans',sans-serif;font-weight:400;">كيف تختبر على الماضي، ولماذا يكذب الماضي.</span></div></div><a class="next-btn" href="/learn/algo-track/04-backtesting">الجزء 04 →</a></div>
+</div></div>
+</div>
