@@ -328,14 +328,29 @@ silently until it was looked for:
 
 ## Verification
 
-Four commands, all of them behavioural — they ask what the browser paints, not
-whether a rule exists:
+Four checks, all of them behavioural — they ask what the browser paints, not
+whether a rule exists. `npm run check` runs all four; each can also be run on
+its own:
 
 ```
+npm run check            # all four, in order
+
 npm run audit:tokens     # the design system: no value written by hand
 npm run check:decks      # 13 decks in place, hovered, scoping intact
-npm run check:controls    # 702 controls, readable at rest and on hover
-npm run check:routes      # 31 routes x 9 widths
+npm run check:controls   # 702 controls, readable at rest and on hover
+npm run check:routes     # 31 routes x 9 widths
+```
+
+The three browser checks need the built site on a port, and they arrange that
+themselves: if nothing answers on `http://localhost:4173` they build, start a
+preview server for the length of the run, and stop it afterwards. If something
+is already answering — `npm run preview` in another terminal, or `npm run dev`
+with `BASE=http://localhost:5173` — that server is used as-is and left alone.
+
+They drive a real browser, so a fresh clone needs one, once:
+
+```
+npx playwright install chromium
 ```
 
 `node tools/verify.mjs` loads every route at 390 / 768 / 1024 / 1440 in
