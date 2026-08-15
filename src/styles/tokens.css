@@ -367,6 +367,11 @@ pre {
 
 .yn-article {
   display: grid;
+  /* `minmax(0, 1fr)`, not the default `auto`: a grid track sized `auto` is at
+     least as wide as its widest item's min-content, and a table or a code
+     block is as wide as its longest row. Without this the whole reading
+     column grows past the phone and the page clips it. */
+  grid-template-columns: minmax(0, 1fr);
   gap: 56px;
 }
 
@@ -424,6 +429,16 @@ pre {
   font-size: var(--yn-body-size);
   line-height: 1.75;
   max-width: 72ch;
+  /* Wherever the column lands — grid cell, flex item, plain block — it takes
+     the width it is given and lets a wide table scroll inside itself. */
+  min-width: 0;
+}
+
+/* Anything authored that can be wider than the measure: it fits the column and
+   handles its own overflow rather than setting the column's width. */
+.yn-prose > * {
+  max-width: 100%;
+  min-width: 0;
 }
 
 .yn-prose > * + * {
@@ -492,13 +507,39 @@ pre {
   border-block-start: 1px solid var(--yn-purple);
 }
 
+/* A table too wide for the column scrolls sideways inside this box. The box
+   keeps the page still: the scroll stops at its own edge instead of carrying
+   on to the window, and the bar is the one the reader already knows. */
 .yn-scroll {
+  max-width: 100%;
   overflow-x: auto;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  /* The bar is drawn rather than left to the overlay one, which stays hidden
+     until you already know to scroll. */
+  scrollbar-width: thin;
+  scrollbar-color: var(--yn-ink) var(--yn-purple);
+}
+
+.yn-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.yn-scroll::-webkit-scrollbar-track {
+  background: var(--yn-purple);
+}
+
+.yn-scroll::-webkit-scrollbar-thumb {
+  background: var(--yn-ink);
 }
 
 .yn-prose table {
   border-collapse: collapse;
   width: 100%;
+  /* Fits the column when it can; when it cannot, it keeps the width its words
+     need and the box above scrolls, rather than squeezing every cell to one
+     letter per line. */
+  min-width: min-content;
   font-size: var(--yn-small);
 }
 
