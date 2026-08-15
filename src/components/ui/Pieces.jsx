@@ -144,16 +144,26 @@ export function Display({ children, size = 'h2', as: Element = 'h2', style }) {
 }
 
 /** A page's opening: display title with an optional subline beneath it. */
-export function PageHeading({ children, sub, size = 'h1' }) {
+export function PageHeading({ children, sub, size = 'h1', measure }) {
+  // `measure` caps the heading at the reading column's width. A heading that
+  // runs the full frame above a 72-character column is what makes the space
+  // beside the column read as a mistake rather than as a margin.
+  const width = measure ? { maxWidth: '20ch' } : undefined
+
   return (
     <header style={{ marginBottom: 48 }}>
-      <Display as="h1" size={size}>
+      <Display as="h1" size={size} style={width}>
         {children}
       </Display>
       {sub ? (
         <p
           className="yn-display"
-          style={{ fontSize: 'var(--yn-h3)', lineHeight: 1.2, margin: '10px 0 0' }}
+          style={{
+            fontSize: 'var(--yn-h3)',
+            lineHeight: 1.2,
+            margin: '10px 0 0',
+            ...(measure ? { maxWidth: '46ch' } : null),
+          }}
         >
           {sub}
         </p>

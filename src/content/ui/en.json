@@ -147,7 +147,8 @@
     "deckCta": "Open the session deck",
     "deckFailed": "This session's deck could not be loaded. The written session is on the {link}.",
     "deckFailedLink": "lesson page",
-    "readingTimeOne": "1 min read"
+    "readingTimeOne": "1 min read",
+    "contents": "Contents"
   },
   "build": {
     "title": "Build",

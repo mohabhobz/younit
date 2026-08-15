@@ -46,6 +46,11 @@ function preprocess(body, id) {
   )
 }
 
+/** `<h2>Title</h2>` → `<h2 id="section-1">Title</h2>`, leaving the rest alone. */
+function withHeadingIds(html, nextId) {
+  return html.replace(/<h2>/g, () => `<h2 id="${nextId()}">`)
+}
+
 export default function markdown() {
   return {
     name: 'younit-markdown',
@@ -64,9 +69,15 @@ export default function markdown() {
         breaks: false,
       })
 
+      // Every section heading gets an id, so a page can link to it and build a
+      // contents list from it. Arabic headings have no ASCII to slug, so the
+      // id is the heading's position — stable for as long as the document is.
+      let heading = 0
+      const withIds = withHeadingIds(html, () => `section-${++heading}`)
+
       // A table wider than the viewport scrolls inside its own box rather than
       // pushing the page sideways.
-      const withScrollers = html.replace(
+      const withScrollers = withIds.replace(
         /<table>([\s\S]*?)<\/table>/g,
         (m) => `<div class="yn-scroll">${m}</div>`,
       )

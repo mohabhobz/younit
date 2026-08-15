@@ -92,7 +92,14 @@ function LocaleSwitch({ style, className, brandChrome }) {
                 className="yn-navlink"
                 data-brand-chrome={brandChrome}
                 lang={meta.htmlLang}
-                style={{ ...LINK_STYLE, ...style, opacity: 0.62 }}
+                style={{
+                  ...LINK_STYLE,
+                  ...style,
+                  opacity: 0.62,
+                  // "EN" is two letters wide; a tap target is not.
+                  minWidth: 32,
+                  justifyContent: 'center',
+                }}
               >
                 {meta.short}
               </RouterLink>

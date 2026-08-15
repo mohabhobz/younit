@@ -74,10 +74,9 @@ export function BrandDefs() {
 
 /** The wordmark. `tone="light"` is the reversed cut, for ink and blue grounds. */
 /**
- * The Arabic wordmark — "يونِت" — drawn with the same skeleton and letterforms
- * as the Latin one, traced from the brand PDF's own vector (page 5, "Arabic
- * Logo A"). It takes `currentColor`, so the light and dark variants are the
- * same mark.
+ * The Arabic wordmark, drawn with the same skeleton and letterforms as the
+ * Latin one, traced from the brand PDF's own vector (page 5, "Arabic Logo A").
+ * It takes its fill from the tone, so the light and dark variants are one mark.
  */
 const WORDMARK_AR = (
   <>

@@ -16,6 +16,7 @@ import {
 } from '../lib/content.js'
 import { useI18n } from '../lib/i18n.jsx'
 import Prose from '../components/ui/Prose.jsx'
+import Contents from '../components/ui/Contents.jsx'
 
 /**
  * `key` is the track; `rootKey` is the section it sits in. Editorial is its own
@@ -90,7 +91,9 @@ export default function Article() {
           ]}
         />
 
-        <PageHeading sub={doc.description}>{doc.title}</PageHeading>
+        <PageHeading sub={doc.description} measure>
+          {doc.title}
+        </PageHeading>
 
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px 24px' }}>
           <Micro>{doc.duration || readingTime(t, doc.readingMinutes)}</Micro>
@@ -103,8 +106,15 @@ export default function Article() {
         {isTrack && total > 0 ? <TrackProgress index={index} total={total} /> : null}
       </Section>
 
-      <Section style={{ paddingTop: 0 }}>
+      {/* The reading column keeps its measure; the space beside it carries the
+          contents rather than staying empty. Below the breakpoint the column
+          is the page and the contents are not shown — a phone has the scroll
+          bar for that. */}
+      <Section style={{ paddingTop: 0 }} className="yn-article">
         <Prose html={doc.html} />
+        <aside className="yn-article__aside">
+          <Contents html={doc.html} />
+        </aside>
       </Section>
 
       {deck ? (

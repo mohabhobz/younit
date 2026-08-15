@@ -147,7 +147,8 @@
     "deckCta": "افتح عرض الجلسة",
     "deckFailed": "تعذّر تحميل عرض هذه الجلسة. النص متاح في {link}.",
     "deckFailedLink": "صفحة الدرس",
-    "readingTimeOne": "دقيقة قراءة واحدة"
+    "readingTimeOne": "دقيقة قراءة واحدة",
+    "contents": "محتويات الجلسة"
   },
   "build": {
     "title": "ابنِ",
