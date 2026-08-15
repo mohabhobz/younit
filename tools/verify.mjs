@@ -5,6 +5,7 @@
  */
 import { mkdirSync, existsSync } from 'node:fs'
 import { chromium } from 'playwright'
+import { browserHint, ensureServer } from './server.mjs'
 
 const BASE = process.env.BASE || 'http://localhost:4173'
 const WIDTHS = [360, 390, 430, 768, 834, 1024, 1280, 1440, 1920]
@@ -54,9 +55,15 @@ mkdirSync(new URL('./shots/', import.meta.url), { recursive: true })
 // The sandbox ships a chromium build; point at it rather than downloading one.
 const EXECUTABLE =
   process.env.CHROMIUM_PATH || '/opt/pw-browsers/chromium-1194/chrome-linux/chrome'
+const stopServer = await ensureServer(BASE)
+
 const browser = await chromium.launch(
   existsSync(EXECUTABLE) ? { executablePath: EXECUTABLE } : {},
-)
+).catch((error) => {
+  stopServer()
+  console.error(browserHint(error) ?? error.message)
+  process.exit(1)
+})
 const failures = []
 let checks = 0
 
@@ -111,7 +118,6 @@ for (const [route, name] of ROUTES) {
     if (report.overflow > 1) failures.push(`${where}: horizontal overflow ${report.overflow}px`)
     if (report.text < 120) failures.push(`${where}: rendered only ${report.text} chars of text`)
     if (report.h1 !== 1) failures.push(`${where}: ${report.h1} <h1> elements (expected 1)`)
-    void 0
     if (report.broken.length) failures.push(`${where}: broken images ${report.broken.join(', ')}`)
     if (realErrors.length) failures.push(`${where}: console ${realErrors.slice(0, 2).join(' | ')}`)
 
@@ -127,6 +133,7 @@ for (const [route, name] of ROUTES) {
 }
 
 await browser.close()
+stopServer()
 
 console.log(`${checks} checks across ${ROUTES.length} routes x ${WIDTHS.length} widths`)
 if (failures.length) {

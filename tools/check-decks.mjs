@@ -15,6 +15,7 @@
  */
 import { existsSync } from 'node:fs'
 import { chromium } from 'playwright'
+import { browserHint, ensureServer } from './server.mjs'
 import { deckMaps } from '../src/lib/sessions.js'
 
 const BASE = process.env.BASE || 'http://localhost:4173'
@@ -162,9 +163,15 @@ const HOVERED = `(index) => {
   }
 }`
 
+const stopServer = await ensureServer(BASE)
+
 const browser = await chromium.launch(
   existsSync(EXECUTABLE) ? { executablePath: EXECUTABLE } : {},
-)
+).catch((error) => {
+  stopServer()
+  console.error(browserHint(error) ?? error.message)
+  process.exit(1)
+})
 const failures = []
 
 for (const width of [390, 1440]) {
@@ -265,6 +272,7 @@ for (const width of [390, 1440]) {
 }
 
 await browser.close()
+stopServer()
 
 console.log(`${decks.length} decks checked in place at 390 and 1440`)
 if (failures.length) {
