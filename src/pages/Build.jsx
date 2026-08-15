@@ -33,7 +33,7 @@ export default function Build() {
               This is where building happens, in the open.
             </p>
 
-            <p style={{ margin: '24px 0 16px', fontSize: 15, color: 'var(--yn-grey-dark)' }}>
+            <p style={{ margin: '24px 0 16px', fontSize: 'var(--yn-body-size)', color: 'var(--yn-grey-dark)' }}>
               Start by exploring EFG&apos;s public repositories.
             </p>
             <Button tone="purple" size="sm" href="https://github.com/efg-hermes">

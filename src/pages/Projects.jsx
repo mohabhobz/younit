@@ -64,7 +64,7 @@ export default function Projects() {
                 <p
                   style={{
                     margin: '12px 4px 0',
-                    fontSize: 13,
+                    fontSize: 'var(--yn-small)',
                     color: 'var(--yn-grey-dark)',
                     lineHeight: 1.6,
                   }}

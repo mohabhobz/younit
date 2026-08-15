@@ -37,6 +37,41 @@ regenerate utilities when a config file changes while the dev server is running,
 so a value edited in config silently renders as nothing until someone restarts.
 Anything that has to take effect live belongs in `tokens.css`.
 
+`src/styles/tokens.js` is its companion, and it holds no values: it names the
+tokens the components hand to inline styles, so a tone is written once instead
+of being restated as a hex in every component that offers one.
+
+**No value is written by hand where a token already carries it.**
+`npm run audit:tokens` proves it: it reads the token sheet, files each token by
+kind — colour, type, radius, rhythm — and fails on any literal in the source
+that a token of the same kind already covers. It also prints where the inline
+styles are, so the balance stays visible.
+
+```
+34 tokens defined, 181 references to them in the source
+185 inline style objects across 26 files
+0 colour literals and 77 size literals with no token to use
+PASS — no value is written by hand where a token already carries it
+```
+
+### Where style lives, and why it is split
+
+Two rules, and the split is deliberate rather than accidental:
+
+- **Anything with a state or a breakpoint is in the stylesheet.** Hover, focus,
+  the mobile CTA stack, the prose rules, the reduced-motion block. There is no
+  `onMouseEnter` anywhere in the source — not one — because a hover written in
+  JavaScript cannot be seen by the browser's own cascade, and that is how a
+  label ends up the same colour as the thing behind it.
+- **A composition's own geometry is inline.** The homepage is a transcription of
+  one design file, and its grid columns, spans and one-off offsets belong to
+  that composition rather than to the system. Every *value* in them is a token;
+  what is inline is where things sit, not what they are made of.
+
+The one-off sizes the audit counts (77 of them) are the template's own: a 22px
+caption, a 9px marker. Naming each of those would grow the vocabulary without
+making anything more consistent, so they stay literal and stay counted.
+
 ### Colour
 
 | Token | Hex | Role |
@@ -292,6 +327,16 @@ silently until it was looked for:
   ignored.
 
 ## Verification
+
+Four commands, all of them behavioural — they ask what the browser paints, not
+whether a rule exists:
+
+```
+npm run audit:tokens     # the design system: no value written by hand
+npm run check:decks      # 13 decks in place, hovered, scoping intact
+npm run check:controls    # 702 controls, readable at rest and on hover
+npm run check:routes      # 31 routes x 9 widths
+```
 
 `node tools/verify.mjs` loads every route at 390 / 768 / 1024 / 1440 in
 a real browser and fails on horizontal overflow, console errors, broken images,

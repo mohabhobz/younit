@@ -36,7 +36,7 @@ export default function Compete() {
                   <p
                     style={{
                       margin: 0,
-                      fontSize: 15,
+                      fontSize: 'var(--yn-body-size)',
                       color: 'var(--yn-grey-dark)',
                       flex: 1,
                       lineHeight: 1.6,

@@ -41,7 +41,7 @@ export default function CompeteSection() {
         <PageHeading sub={meta.description}>{meta.title}</PageHeading>
 
         <Card tone="blue" outline="ink">
-          <p style={{ margin: 0, fontSize: 15, lineHeight: 1.6 }}>
+          <p style={{ margin: 0, fontSize: 'var(--yn-body-size)', lineHeight: 1.6 }}>
             This section opens in Phase 2. The description above is accurate — not a
             placeholder.
           </p>

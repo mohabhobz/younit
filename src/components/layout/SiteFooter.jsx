@@ -27,7 +27,7 @@ function Column({ heading, items }) {
     <nav aria-label={heading}>
       <div
         style={{
-          fontSize: 11,
+          fontSize: 'var(--yn-micro)',
           letterSpacing: '0.09em',
           textTransform: 'uppercase',
           marginBottom: 16,
@@ -65,7 +65,7 @@ export default function SiteFooter({ tone = 'blue' }) {
     <footer
       style={{
         background: dark ? 'var(--yn-ink-2)' : 'var(--yn-blue)',
-        color: dark ? '#fff' : 'var(--yn-ink)',
+        color: dark ? 'var(--yn-white)' : 'var(--yn-ink)',
         padding: '56px var(--yn-gutter) 48px',
       }}
     >
@@ -92,8 +92,8 @@ export default function SiteFooter({ tone = 'blue' }) {
           </div>
           <p
             style={{
-              fontSize: 13,
-              color: dark ? '#fff' : 'var(--yn-ink-2)',
+              fontSize: 'var(--yn-small)',
+              color: dark ? 'var(--yn-white)' : 'var(--yn-ink-2)',
               opacity: 0.75,
               maxWidth: '38ch',
               margin: 0,
@@ -110,7 +110,7 @@ export default function SiteFooter({ tone = 'blue' }) {
       <hr
         style={{
           border: 0,
-          borderTop: `1px solid ${dark ? '#fff' : '#000'}`,
+          borderTop: `1px solid ${dark ? 'var(--yn-white)' : 'var(--yn-ink)'}`,
           opacity: 0.25,
           margin: '40px 0 18px',
         }}
@@ -124,10 +124,10 @@ export default function SiteFooter({ tone = 'blue' }) {
           justifyContent: 'space-between',
           flexWrap: 'wrap',
           gap: '12px 24px',
-          fontSize: 11,
+          fontSize: 'var(--yn-micro)',
           letterSpacing: '0.08em',
           textTransform: 'uppercase',
-          color: dark ? '#fff' : 'var(--yn-ink-2)',
+          color: dark ? 'var(--yn-white)' : 'var(--yn-ink-2)',
         }}
       >
         <span>

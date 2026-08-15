@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, Link } from 'react-router-dom'
 import Page from '../components/layout/Page.jsx'
 import NotFound from './NotFound.jsx'
 import Breadcrumb from '../components/ui/Breadcrumb.jsx'
@@ -99,13 +99,10 @@ export default function SessionDeck() {
       </Frame>
 
       {state === 'error' ? (
-        <Frame style={{ paddingBlock: 64 }}>
+        <Frame className="yn-prose" style={{ paddingBlock: 64 }}>
           <p style={{ margin: 0 }}>
             This session's deck could not be loaded. The written session is on the{' '}
-            <a className="yn-prose" href={`/learn/${collection}/${slug}`}>
-              lesson page
-            </a>
-            .
+            <Link to={`/learn/${collection}/${slug}`}>lesson page</Link>.
           </p>
         </Frame>
       ) : null}

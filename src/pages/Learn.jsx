@@ -59,7 +59,7 @@ export default function Learn() {
               <Display size="h2-journey" as="h2">
                 {track.title}
               </Display>
-              <p style={{ margin: 0, fontSize: 15, lineHeight: 1.6 }}>{track.description}</p>
+              <p style={{ margin: 0, fontSize: 'var(--yn-body-size)', lineHeight: 1.6 }}>{track.description}</p>
               <div style={{ marginTop: 'auto', paddingTop: 6 }}>
                 <Button tone={track.cta} size="sm" to={track.to}>
                   View all →

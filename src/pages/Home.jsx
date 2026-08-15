@@ -25,7 +25,7 @@ import photoWebp from "../assets/desk-code.webp";
 /* Shared inline styles that recur across sections. ---------------------------- */
 
 const LABEL = {
-  fontSize: 11,
+  fontSize: 'var(--yn-micro)',
   letterSpacing: "0.08em",
   textTransform: "uppercase",
   color: "var(--yn-ink-2)",
@@ -96,7 +96,7 @@ function Hero() {
         <p
           data-type=""
           style={{
-            fontSize: 15,
+            fontSize: 'var(--yn-body-size)',
             color: "var(--yn-grey-dark)",
             margin: "0 0 40px",
             maxWidth: "46ch",
@@ -134,10 +134,10 @@ function ProgressGrid() {
       key: i,
       filled,
       style: {
-        border: "1px solid #000",
-        borderLeft: i % 5 === 0 ? "1px solid #000" : 0,
-        borderTop: topRow ? "1px solid #000" : 0,
-        background: filled ? "#FFD05A" : "#fff",
+        border: "1px solid var(--yn-ink)",
+        borderLeft: i % 5 === 0 ? "1px solid var(--yn-ink)" : 0,
+        borderTop: topRow ? "1px solid var(--yn-ink)" : 0,
+        background: filled ? "var(--yn-amber)" : "var(--yn-white)",
       },
     };
   });
@@ -188,8 +188,8 @@ function FlowChip({ glyph, line1, line2 }) {
     <div
       style={{
         flex: 1,
-        background: "#fff",
-        border: "1px solid #000",
+        background: "var(--yn-white)",
+        border: "1px solid var(--yn-ink)",
         borderRadius: 8,
         padding: "8px 6px",
         textAlign: "center",
@@ -220,11 +220,11 @@ function RankSteps() {
       style={{ width: 150, height: 114, flex: "0 0 auto" }}
       aria-hidden="true"
     >
-      <g stroke="#000" strokeWidth="2">
-        <rect x="2" y="62" width="42" height="36" fill="#fff" />
-        <rect x="44" y="42" width="42" height="56" fill="#fff" />
-        <rect x="86" y="22" width="42" height="76" fill="#fff" />
-        <rect x="86" y="2" width="42" height="34" fill="#A3C6D7" />
+      <g stroke="var(--yn-ink)" strokeWidth="2">
+        <rect x="2" y="62" width="42" height="36" fill="var(--yn-white)" />
+        <rect x="44" y="42" width="42" height="56" fill="var(--yn-white)" />
+        <rect x="86" y="22" width="42" height="76" fill="var(--yn-white)" />
+        <rect x="86" y="2" width="42" height="34" fill="var(--yn-blue)" />
       </g>
     </svg>
   );
@@ -290,7 +290,7 @@ function Journey() {
                 <Glyph data-draw="" />
               </div>
             </div>
-            <hr style={{ border: 0, borderTop: "1px solid #000", margin: 0 }} />
+            <hr style={{ border: 0, borderTop: "1px solid var(--yn-ink)", margin: 0 }} />
             <div
               style={{
                 display: "flex",
@@ -343,7 +343,7 @@ function Journey() {
                 12
               </div>
             </div>
-            <hr style={{ border: 0, borderTop: "1px solid #000", margin: 0 }} />
+            <hr style={{ border: 0, borderTop: "1px solid var(--yn-ink)", margin: 0 }} />
             <div>
               <div style={LABEL}>Backtest return</div>
               <div
@@ -369,9 +369,9 @@ function Journey() {
               style={{ display: "flex", alignItems: "center", gap: 8 }}
             >
               <FlowChip glyph="step" line1="PRICE" line2="&gt;MA50" />
-              <span style={{ fontSize: 13 }}>→</span>
+              <span style={{ fontSize: 'var(--yn-small)' }}>→</span>
               <FlowChip glyph="bar" line1="VOLUME" line2="+20%" />
-              <span style={{ fontSize: 13 }}>→</span>
+              <span style={{ fontSize: 'var(--yn-small)' }}>→</span>
               <FlowChip glyph="step" line1="BUY" line2="POSITION" />
             </div>
             <CardCta tone="blue" href="#api">
@@ -404,7 +404,7 @@ function Journey() {
                 04/124
               </div>
             </div>
-            <hr style={{ border: 0, borderTop: "1px solid #000", margin: 0 }} />
+            <hr style={{ border: 0, borderTop: "1px solid var(--yn-ink)", margin: 0 }} />
             <div
               style={{
                 display: "flex",
@@ -420,7 +420,7 @@ function Journey() {
                   style={{ fontSize: "var(--yn-stat-2)", lineHeight: 1.1 }}
                 >
                   <span data-count="">5</span>{" "}
-                  <span style={{ fontSize: 34 }}>↑</span>
+                  <span style={{ fontSize: 'var(--yn-eyebrow)' }}>↑</span>
                 </div>
               </div>
               <RankSteps />
@@ -531,7 +531,7 @@ function ApiTwoWays() {
             <pre
               style={{
                 fontFamily: "var(--yn-mono)",
-                fontSize: 13,
+                fontSize: 'var(--yn-small)',
                 lineHeight: 1.75,
                 whiteSpace: "pre-wrap",
               }}
@@ -569,7 +569,7 @@ function ApiTwoWays() {
                   <hr
                     style={{
                       border: 0,
-                      borderTop: "1px solid #000",
+                      borderTop: "1px solid var(--yn-ink)",
                       margin: 0,
                     }}
                   />

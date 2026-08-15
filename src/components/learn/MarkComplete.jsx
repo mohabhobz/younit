@@ -47,7 +47,7 @@ export default function MarkComplete({ slug }) {
         style={{
           width: 14,
           height: 14,
-          borderRadius: '999px',
+          borderRadius: 'var(--yn-r-pill)',
           border: '1px solid currentColor',
           display: 'inline-flex',
           alignItems: 'center',

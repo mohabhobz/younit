@@ -35,7 +35,7 @@ function TrackProgress({ index, total }) {
             width: 26,
             height: 26,
             borderRadius: 4,
-            border: '1px solid #000',
+            border: '1px solid var(--yn-ink)',
             background: i === index ? 'var(--yn-amber)' : 'transparent',
           }}
         />
@@ -104,7 +104,7 @@ export default function Article() {
             <Display size="h3" as="h2">
               The full session
             </Display>
-            <p style={{ margin: 0, fontSize: 15, lineHeight: 1.6 }}>
+            <p style={{ margin: 0, fontSize: 'var(--yn-body-size)', lineHeight: 1.6 }}>
               This session has a complete illustrated deck — the same one used to teach
               it. It fills the screen, and closes back to this page.
             </p>
