@@ -6,8 +6,8 @@
  * iframe. This walks each deck at its real route and fails on anything either
  * change could plausibly have broken:
  *
- *   - unreadable text, a stray colour from the previous brand, a chart that
- *     did not draw, a page that scrolls sideways;
+ *   - unreadable text at rest or under the pointer, a stray colour from the
+ *     previous brand, a chart that did not draw, a page that scrolls sideways;
  *   - a deck style leaking out — the header and footer around the deck are
  *     compared, property by property, against the same chrome on a page with
  *     no deck on it;
@@ -126,6 +126,42 @@ const PROBE = `(() => {
   }
 })()`
 
+/** One control's label against whatever is painted behind it, right now. */
+const HOVERED = `(index) => {
+  const parse = (c) => {
+    const m = c.match(/rgba?\\(([^)]+)\\)/)
+    if (!m) return null
+    const [r, g, b, a = 1] = m[1].split(',').map((n) => parseFloat(n))
+    return { r, g, b, a }
+  }
+  const behind = (el) => {
+    let n = el
+    while (n && n !== document.documentElement) {
+      const c = parse(getComputedStyle(n).backgroundColor)
+      if (c && c.a > 0.9) return c
+      n = n.parentElement
+    }
+    return { r: 255, g: 255, b: 255, a: 1 }
+  }
+  const lum = ({ r, g, b }) =>
+    [r, g, b].map((v) => v / 255)
+      .map((v) => (v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4)))
+      .reduce((a, v, i) => a + v * [0.2126, 0.7152, 0.0722][i], 0)
+  const ratio = (a, b) => {
+    const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p)
+    return (x + 0.05) / (y + 0.05)
+  }
+
+  const el = [...document.querySelectorAll('.yn-deck a, .yn-deck button')][index]
+  if (!el) return null
+  const fg = parse(getComputedStyle(el).color)
+  if (!fg) return null
+  return {
+    label: (el.textContent || '').trim().slice(0, 34),
+    contrast: Math.round(ratio(fg, behind(el)) * 100) / 100,
+  }
+}`
+
 const browser = await chromium.launch(
   existsSync(EXECUTABLE) ? { executablePath: EXECUTABLE } : {},
 )
@@ -162,6 +198,35 @@ for (const width of [390, 1440]) {
       window.scrollTo(0, 0)
     })
     await page.waitForTimeout(400)
+
+    // Hovered state, control by control. A deck's controls are the client's
+    // own markup restyled, so this is where a half-applied hover shows up: a
+    // rule that repaints the label without repainting the fill leaves the two
+    // the same colour. Transitions are collapsed so each sample is settled.
+    await page.addStyleTag({
+      content: '*, *::before, *::after { transition-duration: 0s !important; }',
+    })
+    const controls = await page.$$('.yn-deck a, .yn-deck button')
+    for (let i = 0; i < controls.length; i++) {
+      const box = await controls[i].boundingBox().catch(() => null)
+      if (!box || box.width < 2 || box.height < 2) continue
+      try {
+        await controls[i].hover({ timeout: 700 })
+      } catch {
+        continue // covered or off-screen; the resting pass already saw it
+      }
+      const after = await page.evaluate(HOVERED, i)
+      if (after && after.contrast < MIN_CONTRAST) {
+        failures.push(
+          `${deck.name} @${width} HOVER: "${after.label}" contrast ${after.contrast}`,
+        )
+      }
+    }
+
+    // Back to a resting page: the last control is still under the pointer, and
+    // its hover state would otherwise be read as how the page normally looks.
+    await page.mouse.move(1, 1)
+    await page.evaluate(() => window.scrollTo(0, 0))
 
     const r = await page.evaluate(PROBE)
     const chrome = await page.evaluate(CHROME)

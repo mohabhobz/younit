@@ -125,10 +125,18 @@ intervals and window listeners without ever expecting to be torn down, so
 anything registered while a deck's script runs is recorded and undone when the
 reader navigates away.
 
-Two things follow from being inside the site: the deck reads from the left
+Some things follow from being inside the site. The deck reads from the left
 gutter of the 1440 frame like every other page rather than from a 960 column
-centred in the window, and its "next part" buttons are real links the router
-handles.
+centred in the window. Its "next part" buttons are real links the router
+handles. The way back is a pill under the breadcrumb, on the frame, the same on
+all thirteen — two decks pinned their own copy of that control to a corner,
+which was the only place for it in a full-screen frame; those are hidden.
+
+Every control in a deck is the site's pill, and it inverts on hover the way the
+site's buttons do. Both states read one custom property, so a variant restates
+only its fill and no rule can flip half the pair. That was a real defect: a
+group of rules repainting hover states in ink named the buttons too, so a
+hovered pill went ink on ink and the label vanished.
 
 ### The decks are on the Younit brand
 
@@ -157,6 +165,11 @@ presentation changed:
 - Thirty fixed two-column grids never collapsed, so a phone scrolled sideways.
 - A 28px button and an 8px carousel dot were below the 32px anyone can reliably
   hit on a phone. The boxes grew; the marks are the size they were drawn.
+- Rows that were hairline-separated list items became cards, and their padding
+  was vertical only — so once they had a border, the text touched it.
+- A link wrapping a whole card took the purple on hover along with every line
+  inside it, at 2.7 on white. Purple is for a link in a sentence now; a card
+  answers with its lift and its outline.
 
 Three defects were also fixed:
 
@@ -167,11 +180,12 @@ Three defects were also fixed:
 3. All thirteen loaded webfonts from Google; those woff2 files are local now.
 
 A deck makes zero external requests. `tools/check-decks.mjs` walks all thirteen
-at their real routes at 390 and 1440 and fails on unreadable text, a surviving
-colour from the previous brand, a chart that never drew, a script that threw, a
-request leaving the machine, or horizontal overflow. It also measures the site's
-own header and footer on every deck page against the same chrome on a page with
-no deck on it, property by property — which is what proves the scoping holds.
+at their real routes at 390 and 1440 and fails on unreadable text — at rest and
+with every control hovered one at a time — a surviving colour from the previous
+brand, a chart that never drew, a script that threw, a request leaving the
+machine, or horizontal overflow. It also measures the site's own header and
+footer on every deck page against the same chrome on a page with no deck on it,
+property by property — which is what proves the scoping holds.
 
 The homepage's editorial cards and project tracks resolve against these real
 files — the template's titles were already the real ones. Their dates and
