@@ -5,12 +5,16 @@ site.
 
 ```bash
 npm install
+npx playwright install chromium   # once, for the checks
+
 npm run dev      # http://localhost:5173
 npm run build    # -> dist/
 npm run preview  # serve the built dist
 npm run lint
-node tools/verify.mjs   # route crawl, needs `npm run preview` running
+npm run check    # the four checks below; they start their own server
 ```
+
+English at `/`, Arabic at `/ar`.
 
 ## The template is the source of truth
 
@@ -47,11 +51,13 @@ kind — colour, type, radius, rhythm — and fails on any literal in the source
 that a token of the same kind already covers. It also prints where the inline
 styles are, so the balance stays visible.
 
+It fails on one more thing: a comment written in Arabic. The site is bilingual;
+its source is not. Every comment in it is English, so anyone can maintain it.
+
 ```
-34 tokens defined, 181 references to them in the source
-185 inline style objects across 26 files
-0 colour literals and 77 size literals with no token to use
-PASS — no value is written by hand where a token already carries it
+36 tokens defined, 190 references to them in the source
+0 colour literals with no token to use
+PASS — every value reads its token, and every comment is in English
 ```
 
 ### Where style lives, and why it is split
@@ -119,7 +125,8 @@ A–Z grouping, the per-term pages, the Build and Compete sub-pages and the
 mark-complete control are all carried over rather than reinterpreted.
 
 Every article, session, glossary term and project is a Markdown file with
-frontmatter under `src/content/en/`. `tools/vite-plugin-markdown.js` turns each
+frontmatter under `src/content/en/`, and its translation sits at the same path
+under `src/content/ar/`. `tools/vite-plugin-markdown.js` turns each
 one into a module exporting `{ frontmatter, html, excerpt }` at build time, so a
 malformed file fails the build rather than the page. `src/lib/content.js` is the
 only thing that reads them; pages ask it for collections and documents.
@@ -260,14 +267,61 @@ Nothing on this site has launched. Compete shows no ranks, no names and no
 figures — only a description of what each section will be. The homepage snapshot
 figures are the design's sample values.
 
-## Arabic
+## Two languages
 
-The route tree, the layout and every spacing rule use logical properties
-(`margin-inline`, `padding-block`), so an RTL variant is a content drop rather
-than a refactor. There is no Arabic content yet — the source site's `content/ar`
-directories were all empty — so one locale ships and the header shows no locale
-switch. A switch that does not switch is worse than none; when Arabic content
-exists, `SiteHeader` is where it returns.
+English lives at the root and Arabic under `/ar`, so every English URL the
+client already has keeps working and the Arabic one is the same path with a
+prefix. The route tree is declared once and mounted once per locale, which is
+why the two can never drift apart.
+
+`src/lib/i18n.jsx` is the whole mechanism. It exports a `Link`, a `NavLink` and
+a `useNavigate` that add the prefix, so no page has to know which language it is
+in — a page writes `/learn` and an Arabic reader gets `/ar/learn`. The one link
+that deliberately uses the router's own is the language switch: it is the way
+out of the current language, so it must not be put back into it.
+
+`document.documentElement` carries `lang` and `dir`, so the browser mirrors the
+layout, picks the Arabic face and handles bidirectional text itself. Every
+spacing rule in the site was already logical (`padding-inline`,
+`border-inline-start`), so mirroring was a matter of removing the handful of
+physical values that had crept in, not a refactor.
+
+### Where the Arabic comes from
+
+The client's own. `messages/ar.json` in the original site carried an approved
+Arabic string for most of the interface — the navigation, the hero, the section
+titles, the footer, the statuses — and those are used verbatim. What the
+original had no string for was translated in the same voice: plain, declarative,
+no marketing register. `tools/TRANSLATION_BRIEF.md` is that voice written down,
+along with a sixty-term glossary, so a session, a glossary entry and a project
+page all name a spread the same way.
+
+Both dictionaries live in `src/content/ui/` and are checked against each other:
+they have the same 192 keys, and a key missing from Arabic falls back to English
+rather than rendering a dictionary key at a reader.
+
+All 45 content files are translated, at `src/content/ar/` mirroring
+`src/content/en/`. The loader reads the reader's language and falls back to the
+English original per document, so a half-translated site would still be a whole
+site.
+
+**The thirteen lesson decks are in English.** They are the client's own
+illustrated material — hand-built HTML with charts and diagrams — and
+translating them is a separate piece of work with a separate cost. An Arabic
+reader is told so on the deck page rather than left to wonder why the page
+changed language, and the deck keeps `dir="ltr"` inside the Arabic page so it is
+not mirrored into nonsense.
+
+### The header on a phone
+
+Below 860px the sections collapse behind one control: two lines that rotate into
+a cross, opening a panel that comes down from under the header with the four
+sections and then the language, last. While it is open the page behind does not
+scroll, Escape closes it, following a link closes it, and widening past the
+breakpoint closes it — that last one matters because above the breakpoint both
+the panel and the button that closes it are hidden, and a page left locked with
+nothing visible to unlock it is a trap. `npm run check:menu` drives all of it,
+in both languages.
 
 ## Defects found and fixed in review
 
@@ -328,17 +382,18 @@ silently until it was looked for:
 
 ## Verification
 
-Four checks, all of them behavioural — they ask what the browser paints, not
-whether a rule exists. `npm run check` runs all four; each can also be run on
+Five checks, all of them behavioural — they ask what the browser paints, not
+whether a rule exists. `npm run check` runs all five; each can also be run on
 its own:
 
 ```
-npm run check            # all four, in order
+npm run check            # all five, in order
 
 npm run audit:tokens     # the design system: no value written by hand
+npm run check:menu       # the phone menu and the language switch, driven
 npm run check:decks      # 13 decks in place, hovered, scoping intact
-npm run check:controls   # 702 controls, readable at rest and on hover
-npm run check:routes     # 31 routes x 9 widths
+npm run check:controls   # every control, in both languages
+npm run check:routes     # every route x 9 widths, in both languages
 ```
 
 The three browser checks need the built site on a port, and they arrange that

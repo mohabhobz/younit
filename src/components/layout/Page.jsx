@@ -3,6 +3,7 @@ import SiteHeader from './SiteHeader.jsx'
 import SiteFooter from './SiteFooter.jsx'
 import { BrandDefs } from '../../brand/marks.jsx'
 import { Frame } from '../ui/Pieces.jsx'
+import { useI18n } from '../../lib/i18n.jsx'
 
 /**
  * Page shell for everything except the homepage, which composes its own so it
@@ -18,11 +19,11 @@ export default function Page({
   // sits outside the 1440 frame and manages its own gutters.
   frame = true,
 }) {
+  const { t } = useI18n()
+
   useEffect(() => {
-    document.title = title
-      ? `${title} — Younit`
-      : "Younit — Egypt's open initiative for capital markets"
-  }, [title])
+    document.title = title ? `${title} — ${t('meta.titleSuffix')}` : t('meta.siteTitle')
+  }, [title, t])
 
   return (
     <div style={{ background: 'var(--yn-grey)', minHeight: '100vh', overflowX: 'hidden', display: 'flex', flexDirection: 'column' }}>

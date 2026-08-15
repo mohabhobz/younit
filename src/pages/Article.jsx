@@ -11,14 +11,22 @@ import {
   findDoc,
   formatDate,
   neighbours,
+  readingTime,
   sessionHtmlFor,
 } from '../lib/content.js'
+import { useI18n } from '../lib/i18n.jsx'
+import Prose from '../components/ui/Prose.jsx'
 
+/**
+ * `key` is the track; `rootKey` is the section it sits in. Editorial is its own
+ * section, so it has no track above it — naming it twice would print the same
+ * word either side of the separator.
+ */
 const CRUMBS = {
-  foundation: { label: 'Foundation Series', root: '/learn', rootLabel: 'Learn' },
-  'algo-track': { label: 'Algo Track', root: '/learn', rootLabel: 'Learn' },
-  'deep-dives': { label: 'Deep Dives', root: '/learn', rootLabel: 'Learn' },
-  editorial: { label: 'Editorial', root: '/editorial', rootLabel: 'Editorial' },
+  foundation: { key: 'learn.foundationTitle', root: '/learn', rootKey: 'learn.title' },
+  'algo-track': { key: 'learn.algoTrackTitle', root: '/learn', rootKey: 'learn.title' },
+  'deep-dives': { key: 'learn.deepDivesTitle', root: '/learn', rootKey: 'learn.title' },
+  editorial: { root: '/editorial', rootKey: 'nav.editorial' },
 }
 
 /** Only these live under /learn. `editorial` has its own top-level route. */
@@ -46,6 +54,7 @@ function TrackProgress({ index, total }) {
 
 export default function Article() {
   const params = useParams()
+  const { t, locale } = useI18n()
 
   // /editorial/:slug carries no :collection segment.
   const collection = params.collection ?? 'editorial'
@@ -55,14 +64,17 @@ export default function Article() {
   // article whose breadcrumb points at a page that does not exist, and every
   // editorial post would be reachable at a second URL under /learn.
   const allowed = params.collection ? LEARN_COLLECTIONS.has(params.collection) : true
-  const doc = allowed ? findDoc(collection, params.slug) : null
+  const doc = allowed ? findDoc(collection, params.slug, locale) : null
   if (!doc) return <NotFound />
 
-  const crumb = CRUMBS[collection] ?? { label: collection, root: '/learn', rootLabel: 'Learn' }
-  const { index, total, prev, next } = neighbours(collection, doc.slug)
+  const crumb = CRUMBS[collection]
+  const { index, total, prev, next } = neighbours(collection, doc.slug, locale)
   const authors = authorsOf(doc)
   const deck = sessionHtmlFor(collection, doc.slug)
   const isTrack = collection === 'foundation' || collection === 'algo-track'
+
+  // Reading order, not list order.
+  const [earlier, later] = isTrack ? [prev, next] : [next, prev]
   const base = collection === 'editorial' ? '/editorial' : `/learn/${collection}`
 
   return (
@@ -70,13 +82,10 @@ export default function Article() {
       <Section style={{ paddingBottom: 40 }}>
         <Breadcrumb
           trail={[
-            { label: crumb.rootLabel, to: crumb.root },
-            {
-              label: crumb.label,
-              to: collection === 'editorial' ? undefined : `/learn/${collection}`,
-            },
+            { label: t(crumb.rootKey), to: crumb.root },
+            ...(crumb.key ? [{ label: t(crumb.key), to: `/learn/${collection}` }] : []),
             ...(isTrack && index >= 0
-              ? [{ label: `Session ${index + 1} of ${total}` }]
+              ? [{ label: t('learn.sessionOf', { session: index + 1, total }) }]
               : []),
           ]}
         />
@@ -84,18 +93,18 @@ export default function Article() {
         <PageHeading sub={doc.description}>{doc.title}</PageHeading>
 
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px 24px' }}>
-          <Micro>{doc.duration || `${doc.readingMinutes} min read`}</Micro>
+          <Micro>{doc.duration || readingTime(t, doc.readingMinutes)}</Micro>
           {authors.map((person) => (
             <Micro key={person.name}>{person.name}</Micro>
           ))}
-          {doc.publishedAt ? <Micro>{formatDate(doc.publishedAt)}</Micro> : null}
+          {doc.publishedAt ? <Micro>{formatDate(doc.publishedAt, locale)}</Micro> : null}
         </div>
 
         {isTrack && total > 0 ? <TrackProgress index={index} total={total} /> : null}
       </Section>
 
       <Section style={{ paddingTop: 0 }}>
-        <div className="yn-prose" dangerouslySetInnerHTML={{ __html: doc.html }} />
+        <Prose html={doc.html} />
       </Section>
 
       {deck ? (
@@ -110,7 +119,7 @@ export default function Article() {
             </p>
             <div className="yn-cta-row">
               <Button tone="white" to={`/learn/${collection}/${doc.slug}/deck`}>
-                Open the session deck
+                {t('learn.deckCta')}
               </Button>
             </div>
           </SnapshotCard>
@@ -123,19 +132,28 @@ export default function Article() {
         </Section>
       ) : null}
 
-      {prev || next ? (
+      {/* A track reads forwards: the next session is the one after this in the
+          list. A dated collection is listed newest first, so the one after this
+          in the list is the older post — "previous" in time, not "next". */}
+      {earlier || later ? (
         <>
           <Rule animate={false} />
           <Section>
             <div style={{ display: 'grid', gap: 12 }}>
-              {prev ? (
-                <PillRow to={`${base}/${prev.slug}`} meta={isTrack ? "Previous session" : "Previous"}>
-                  {prev.title}
+              {earlier ? (
+                <PillRow
+                  to={`${base}/${earlier.slug}`}
+                  meta={isTrack ? t('learn.prevSession') : t('common.previous')}
+                >
+                  {earlier.title}
                 </PillRow>
               ) : null}
-              {next ? (
-                <PillRow to={`${base}/${next.slug}`} meta={isTrack ? "Next session" : "Next"}>
-                  {next.title}
+              {later ? (
+                <PillRow
+                  to={`${base}/${later.slug}`}
+                  meta={isTrack ? t('learn.nextSession') : t('common.next')}
+                >
+                  {later.title}
                 </PillRow>
               ) : null}
             </div>

@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom'
 import { Wordmark, Bullet } from '../../brand/marks.jsx'
+import { Link, useI18n } from '../../lib/i18n.jsx'
 
 /**
  * Structure and destinations are the original site's footer, restyled to the
@@ -9,20 +9,22 @@ import { Wordmark, Bullet } from '../../brand/marks.jsx'
  */
 
 const PLATFORM = [
-  { to: '/learn', label: 'Learn' },
-  { to: '/build', label: 'Build' },
-  { to: '/compete', label: 'Compete' },
-  { to: '/editorial', label: 'Editorial' },
+  { to: '/learn', key: 'nav.learn' },
+  { to: '/build', key: 'nav.build' },
+  { to: '/compete', key: 'nav.compete' },
+  { to: '/editorial', key: 'nav.editorial' },
 ]
 
 const EFG = [
-  { to: '/about', label: 'About' },
-  { to: '/partners', label: 'Partners' },
-  { href: 'https://www.efghldg.com', label: 'EFG Holding' },
-  { href: 'https://github.com/efg-hermes', label: 'GitHub' },
+  { to: '/about', key: 'nav.about' },
+  { to: '/partners', key: 'nav.partners' },
+  { href: 'https://www.efghldg.com', key: 'footer.efgHolding' },
+  { href: 'https://github.com/efg-hermes', key: 'footer.github' },
 ]
 
 function Column({ heading, items }) {
+  const { t } = useI18n()
+
   return (
     <nav aria-label={heading}>
       <div
@@ -39,17 +41,17 @@ function Column({ heading, items }) {
         {items.map((item) =>
           item.href ? (
             <a
-              key={item.label}
+              key={item.key}
               className="yn-navlink"
               href={item.href}
               target="_blank"
               rel="noreferrer noopener"
             >
-              {item.label}
+              {t(item.key)}
             </a>
           ) : (
-            <Link key={item.label} className="yn-navlink" to={item.to}>
-              {item.label}
+            <Link key={item.key} className="yn-navlink" to={item.to}>
+              {t(item.key)}
             </Link>
           ),
         )}
@@ -59,6 +61,7 @@ function Column({ heading, items }) {
 }
 
 export default function SiteFooter({ tone = 'blue' }) {
+  const { t } = useI18n()
   const dark = tone === 'dark'
 
   return (
@@ -88,7 +91,7 @@ export default function SiteFooter({ tone = 'blue' }) {
               marginBottom: 8,
             }}
           >
-            EFG Innovation Hub
+            {t('footer.hub')}
           </div>
           <p
             style={{
@@ -99,12 +102,12 @@ export default function SiteFooter({ tone = 'blue' }) {
               margin: 0,
             }}
           >
-            Egypt&apos;s open initiative for capital markets education and infrastructure.
+            {t('footer.mission')}
           </p>
         </div>
 
-        <Column heading="Platform" items={PLATFORM} />
-        <Column heading="EFG" items={EFG} />
+        <Column heading={t('footer.platform')} items={PLATFORM} />
+        <Column heading={t('footer.efg')} items={EFG} />
       </div>
 
       <hr
@@ -131,12 +134,11 @@ export default function SiteFooter({ tone = 'blue' }) {
         }}
       >
         <span>
-          One idea <Bullet /> One rule <Bullet /> One automated strategy
+          {t('footer.taglineIdea')} <Bullet /> {t('footer.taglineRule')} <Bullet />{' '}
+          {t('footer.taglineStrategy')}
         </span>
-        <span>
-          The Hub is an educational initiative. Nothing here is investment advice.
-        </span>
-        <span>© {new Date().getFullYear()} EFG Holding. All rights reserved.</span>
+        <span>{t('footer.legal')}</span>
+        <span>{t('footer.copyright', { year: new Date().getFullYear() })}</span>
       </div>
     </footer>
   )

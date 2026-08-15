@@ -101,9 +101,13 @@ export default function useMotion(mode = 'full') {
 
     /* --- hairlines draw from the leading edge ---------------------------- */
 
+    // Leading edge, not left edge: in Arabic the rule draws from the right.
+    const rtl = document.documentElement.dir === 'rtl'
+    const hidden = rtl ? 'inset(0 0 0 100%)' : 'inset(0 100% 0 0)'
+
     const rules = [...document.querySelectorAll('[data-rule]')]
     rules.forEach((r) => {
-      r.style.clipPath = 'inset(0 100% 0 0)'
+      r.style.clipPath = hidden
       r.style.transition = `clip-path ${dur + 200}ms ${ease}`
       restore.push(() => {
         r.style.clipPath = ''

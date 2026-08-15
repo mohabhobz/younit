@@ -12,7 +12,8 @@
     "check:routes": "node tools/verify.mjs",
     "check:controls": "node tools/check-interactive.mjs",
     "check:decks": "node tools/check-decks.mjs",
-    "check": "npm run audit:tokens && npm run check:decks && npm run check:controls && npm run check:routes"
+    "check": "npm run audit:tokens && npm run check:menu && npm run check:decks && npm run check:controls && npm run check:routes",
+    "check:menu": "node tools/check-menu.mjs"
   },
   "dependencies": {
     "@fontsource-variable/anybody": "^5.3.0",

@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom'
 import { Tag } from './Pieces.jsx'
 import { FILLS } from '../../styles/tokens.js'
+import { Link } from '../../lib/i18n.jsx'
 
 /**
  * The snapshot card — a coloured fill, ink outline, 20px radius, 22px padding.
@@ -47,7 +47,7 @@ export function Panel({ tone, children, seq, style }) {
  * The editorial card — white, 12px radius, purple outline, with a tag that
  * overlaps the top edge. Lifts and darkens its outline on hover.
  */
-export function EditorialCard({ to, href, tag, tagTone = 'purple', title, meta }) {
+export function EditorialCard({ to, tag, tagTone = 'purple', title, meta }) {
   const body = (
     <>
       <div
@@ -72,22 +72,16 @@ export function EditorialCard({ to, href, tag, tagTone = 'purple', title, meta }
   return (
     <div style={{ position: 'relative', paddingTop: 16 }}>
       {tag ? (
-        <span style={{ position: 'absolute', top: 0, left: 20, zIndex: 1 }}>
+        <span style={{ position: 'absolute', top: 0, insetInlineStart: 20, zIndex: 1 }}>
           <Tag tone={tagTone} size="sm">
             {tag}
           </Tag>
         </span>
       ) : null}
 
-      {href ? (
-        <a className="yn-card-hover" href={href} style={style}>
-          {body}
-        </a>
-      ) : (
-        <Link className="yn-card-hover" to={to} style={style}>
-          {body}
-        </Link>
-      )}
+      <Link className="yn-card-hover" to={to} style={style}>
+        {body}
+      </Link>
     </div>
   )
 }
