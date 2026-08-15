@@ -79,7 +79,7 @@ export default function Article() {
   const base = collection === 'editorial' ? '/editorial' : `/learn/${collection}`
 
   return (
-    <Page title={doc.title}>
+    <Page title={doc.title} width={1120}>
       <Section style={{ paddingBottom: 40 }}>
         <Breadcrumb
           trail={[

@@ -17,13 +17,13 @@ export default function Contents({ html }) {
   const [active, setActive] = useState(null)
 
   const sections = useMemo(() => {
-    const found = []
-    const pattern = /<h2 id="([^"]+)">([\s\S]*?)<\/h2>/g
-    let match
-    while ((match = pattern.exec(html))) {
-      found.push({ id: match[1], label: match[2].replace(/<[^>]+>/g, '').trim() })
-    }
-    return found
+    // The headings are HTML, so a quotation mark arrives as `&quot;`. Parsing
+    // them rather than stripping tags gives the words a reader would see.
+    const parsed = new DOMParser().parseFromString(html, 'text/html')
+    return [...parsed.querySelectorAll('h2[id]')].map((h) => ({
+      id: h.id,
+      label: h.textContent.trim(),
+    }))
   }, [html])
 
   // The section you are reading is the last one whose heading has passed the

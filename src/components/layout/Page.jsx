@@ -18,6 +18,11 @@ export default function Page({
   // A lesson deck draws its own full-bleed bands and its own sticky nav, so it
   // sits outside the 1440 frame and manages its own gutters.
   frame = true,
+  // An article is a column of text, not a layout. The 1440 frame is right for
+  // pages built of cards and grids; for one reading column plus its contents
+  // it leaves half the page empty, so those pages take a narrower frame and
+  // sit in the middle of the window with a margin either side.
+  width,
 }) {
   const { t } = useI18n()
 
@@ -26,11 +31,24 @@ export default function Page({
   }, [title, t])
 
   return (
-    <div style={{ background: 'var(--yn-grey)', minHeight: '100vh', overflowX: 'hidden', display: 'flex', flexDirection: 'column' }}>
+    <div
+      style={{
+        background: 'var(--yn-grey)',
+        minHeight: '100vh',
+        // `clip`, not `hidden`: both stop a sideways scroll, but `hidden` makes
+        // this element the scroll container and nothing inside it can stick.
+        overflowX: 'clip',
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+    >
       <BrandDefs />
       <SiteHeader tone={header} />
       {frame ? (
-        <Frame as="main" style={{ flex: '1 0 auto', width: '100%' }}>
+        <Frame
+          as="main"
+          style={{ flex: '1 0 auto', width: '100%', ...(width ? { maxWidth: width } : null) }}
+        >
           {children}
         </Frame>
       ) : (
