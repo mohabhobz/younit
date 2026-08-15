@@ -111,11 +111,10 @@ export default function Article() {
         <Section style={{ paddingTop: 0 }}>
           <SnapshotCard tone="blue">
             <Display size="h3" as="h2">
-              The full session
+              {t('learn.deckTitle')}
             </Display>
             <p style={{ margin: 0, fontSize: 'var(--yn-body-size)', lineHeight: 1.6 }}>
-              This session has a complete illustrated deck — the same one used to teach
-              it. It fills the screen, and closes back to this page.
+              {t('learn.deckBody')}
             </p>
             <div className="yn-cta-row">
               <Button tone="white" to={`/learn/${collection}/${doc.slug}/deck`}>
