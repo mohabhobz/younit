@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import Page from '../components/layout/Page.jsx'
 import NotFound from './NotFound.jsx'
 import Breadcrumb from '../components/ui/Breadcrumb.jsx'
+import { Button } from '../components/ui/Button.jsx'
 import { Frame } from '../components/ui/Pieces.jsx'
 import { findDoc, neighbours, sessionHtmlFor } from '../lib/content.js'
 import { mountDeck } from '../lib/deck.js'
@@ -88,6 +89,13 @@ export default function SessionDeck() {
             ...(index >= 0 && total ? [{ label: `Session ${index + 1} of ${total}` }] : []),
           ]}
         />
+
+        {/* The way out, under the breadcrumb and on the frame. Some decks
+            pinned their own copy of this to a corner, for want of anywhere
+            better to put it in a full-screen frame; that one is hidden. */}
+        <Button tone="blue" size="sm" to={track?.path ?? '/learn'}>
+          ← {track?.label ?? 'Learn'}
+        </Button>
       </Frame>
 
       {state === 'error' ? (
