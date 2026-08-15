@@ -22,6 +22,8 @@ const ROUTES = [
   ['/learn/foundation/01-market-basics', 'session'],
   ['/learn/algo-track/00-intro', 'algo-session'],
   ['/learn/deep-dives/efg-api-what-you-can-build', 'deep-dive'],
+  ['/learn/foundation/01-market-basics/deck', 'session-deck'],
+  ['/learn/algo-track/01-what-is-an-algorithm/deck', 'algo-session-deck'],
 
   ['/build', 'build'],
   ['/build/repositories', 'build-repositories'],

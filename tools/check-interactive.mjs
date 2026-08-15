@@ -22,6 +22,7 @@ const ROUTES = [
   '/learn/glossary',
   '/learn/glossary/bid-ask-spread',
   '/learn/foundation/01-market-basics',
+  '/learn/foundation/01-market-basics/deck',
   '/build',
   '/build/repositories',
   '/build/templates',

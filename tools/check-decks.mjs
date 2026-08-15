@@ -2,18 +2,28 @@
  * Lesson-deck check.
  *
  * The thirteen decks are the client's own teaching material, re-themed rather
- * than rewritten. This walks each one and fails on anything the re-theme could
- * plausibly have broken: unreadable text, a stray colour from the previous
- * brand, a request leaving the machine, or a chart that did not draw.
+ * than rewritten, and now rendered inside the site rather than framed in an
+ * iframe. This walks each deck at its real route and fails on anything either
+ * change could plausibly have broken:
+ *
+ *   - unreadable text, a stray colour from the previous brand, a chart that
+ *     did not draw, a page that scrolls sideways;
+ *   - a deck style leaking out — the header and footer around the deck are
+ *     compared, property by property, against the same chrome on a page with
+ *     no deck on it;
+ *   - a request leaving the machine, or a script throwing.
  */
-import { existsSync, readdirSync } from 'node:fs'
-import { join } from 'node:path'
+import { existsSync } from 'node:fs'
 import { chromium } from 'playwright'
+import { deckMaps } from '../src/lib/sessions.js'
 
 const BASE = process.env.BASE || 'http://localhost:4173'
 const EXECUTABLE =
   process.env.CHROMIUM_PATH || '/opt/pw-browsers/chromium-1194/chrome-linux/chrome'
 const MIN_CONTRAST = 4.4
+
+/** A route with the site chrome and no deck, to measure the chrome against. */
+const CONTROL = '/learn/foundation/01-market-basics'
 
 // Hues that belonged to the previous brand. None may survive anywhere.
 const RETIRED = [
@@ -21,14 +31,31 @@ const RETIRED = [
   'rgb(10, 14, 20)', 'rgb(17, 24, 39)', 'rgb(30, 45, 66)', 'rgb(226, 232, 240)',
 ]
 
-const decks = []
-for (const track of ['foundation', 'algo-track']) {
-  const dir = join('public/sessions', track)
-  if (!existsSync(dir)) continue
-  for (const f of readdirSync(dir).filter((n) => n.endsWith('.html'))) {
-    decks.push(`/sessions/${track}/${f}`)
+const decks = Object.entries(deckMaps).flatMap(([collection, { map }]) =>
+  Object.keys(map).map((slug) => ({
+    route: `/learn/${collection}/${slug}/deck`,
+    name: `${collection}/${slug}`,
+  })),
+)
+
+/** The site's own chrome, as the browser resolves it. */
+const CHROME = `(() => {
+  const pick = (el, props) => {
+    if (!el) return null
+    const cs = getComputedStyle(el)
+    return Object.fromEntries(props.map((p) => [p, cs[p]]))
   }
-}
+  const box = ['backgroundColor', 'padding', 'display', 'gap', 'fontSize', 'fontFamily']
+  const header = document.body.querySelector(':scope > div > header')
+  const footer = document.body.querySelector(':scope > div > footer')
+  const link = header?.querySelector('a')
+  return {
+    header: pick(header, box),
+    footer: pick(footer, box),
+    link: pick(link, ['color', 'fontSize', 'letterSpacing', 'textTransform']),
+    headerHeight: header ? Math.round(header.getBoundingClientRect().height) : 0,
+  }
+})()`
 
 const PROBE = `(() => {
   const parse = (c) => {
@@ -55,9 +82,12 @@ const PROBE = `(() => {
     return (x + 0.05) / (y + 0.05)
   }
 
+  const deck = document.querySelector('.yn-deck')
+  if (!deck) return { missing: true }
+
   const bad = []
   const seen = new Set()
-  document.querySelectorAll('*').forEach((el) => {
+  deck.querySelectorAll('*').forEach((el) => {
     const txt = (el.textContent || '').trim()
     if (!txt || el.childElementCount) return
     const cs = getComputedStyle(el)
@@ -71,20 +101,28 @@ const PROBE = `(() => {
   })
 
   const palette = new Set()
-  document.querySelectorAll('*').forEach((el) => {
+  deck.querySelectorAll('*').forEach((el) => {
     const cs = getComputedStyle(el)
     palette.add(cs.color)
     palette.add(cs.backgroundColor)
     palette.add(cs.borderTopColor)
   })
 
+  const heading = deck.querySelector('h1, h2, .section-title')
+  const rect = deck.getBoundingClientRect()
+
   return {
     bad,
     palette: [...palette],
-    bodyBg: getComputedStyle(document.body).backgroundColor,
-    displayFont: (getComputedStyle(document.querySelector('h1') || document.body).fontFamily || '').split(',')[0],
-    canvases: document.querySelectorAll('canvas').length,
+    ground: getComputedStyle(deck).backgroundColor,
+    displayFont: (getComputedStyle(heading || deck).fontFamily || '').split(',')[0],
+    canvases: deck.querySelectorAll('canvas').length,
+    blankCanvases: [...deck.querySelectorAll('canvas')].filter((c) => !c.width || !c.height).length,
     overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+    // The opening screen reads from the left gutter now, like every other page.
+    headingLeft: heading ? Math.round(heading.getBoundingClientRect().left) : null,
+    headingAlign: heading ? getComputedStyle(heading).textAlign : null,
+    left: Math.round(rect.left),
   }
 })()`
 
@@ -93,16 +131,28 @@ const browser = await chromium.launch(
 )
 const failures = []
 
-for (const deck of decks) {
-  for (const width of [390, 1440]) {
+for (const width of [390, 1440]) {
+  const context = await browser.newContext({ viewport: { width, height: 1000 } })
+  const page = await context.newPage()
+
+  // The chrome as it looks with no deck on the page.
+  await page.goto(`${BASE}${CONTROL}`, { waitUntil: 'networkidle' })
+  const control = await page.evaluate(CHROME)
+  await context.close()
+
+  for (const deck of decks) {
     const context = await browser.newContext({ viewport: { width, height: 1000 } })
     const page = await context.newPage()
     const external = []
+    const errors = []
     page.on('request', (r) => {
       const u = r.url()
       if (!u.startsWith(BASE) && !u.startsWith('data:')) external.push(u.slice(0, 60))
     })
-    await page.goto(`${BASE}${deck}`, { waitUntil: 'networkidle' })
+    page.on('console', (m) => m.type() === 'error' && errors.push(m.text().slice(0, 90)))
+    page.on('pageerror', (e) => errors.push(e.message.slice(0, 90)))
+
+    await page.goto(`${BASE}${deck.route}`, { waitUntil: 'networkidle' })
     await page.evaluate(async () => {
       const step = window.innerHeight * 0.9
       for (let y = 0; y < document.body.scrollHeight; y += step) {
@@ -114,17 +164,36 @@ for (const deck of decks) {
     await page.waitForTimeout(400)
 
     const r = await page.evaluate(PROBE)
-    const name = deck.split('/').pop().replace('.html', '').slice(0, 34)
+    const chrome = await page.evaluate(CHROME)
+    const name = `${deck.name} @${width}`
+
+    if (r.missing) {
+      failures.push(`${name}: the deck did not render`)
+      await context.close()
+      continue
+    }
 
     for (const b of r.bad.slice(0, 4)) {
-      failures.push(`${name} @${width}: "${b.txt}" ${b.color} contrast ${b.r}`)
+      failures.push(`${name}: "${b.txt}" ${b.color} contrast ${b.r}`)
     }
     const retired = r.palette.filter((c) => RETIRED.includes(c))
-    if (retired.length) failures.push(`${name} @${width}: retired colour still painted ${retired.join(', ')}`)
-    if (r.bodyBg !== 'rgb(215, 215, 215)') failures.push(`${name} @${width}: ground is ${r.bodyBg}, expected the grey`)
-    if (r.displayFont && !/Poppins/.test(r.displayFont)) failures.push(`${name} @${width}: headings set in ${r.displayFont}`)
-    if (r.overflow > 1) failures.push(`${name} @${width}: horizontal overflow ${r.overflow}px`)
-    if (external.length) failures.push(`${name} @${width}: reached ${[...new Set(external)].join(', ')}`)
+    if (retired.length) failures.push(`${name}: retired colour still painted ${retired.join(', ')}`)
+    if (r.ground !== 'rgb(215, 215, 215)') failures.push(`${name}: ground is ${r.ground}, expected the grey`)
+    if (r.displayFont && !/Poppins/.test(r.displayFont)) failures.push(`${name}: headings set in ${r.displayFont}`)
+    if (r.overflow > 1) failures.push(`${name}: horizontal overflow ${r.overflow}px`)
+    if (r.blankCanvases) failures.push(`${name}: ${r.blankCanvases} chart canvases never drew`)
+    if (r.headingAlign === 'center') failures.push(`${name}: the opening heading is still centred`)
+    if (external.length) failures.push(`${name}: reached ${[...new Set(external)].join(', ')}`)
+    if (errors.length) failures.push(`${name}: ${errors[0]}`)
+
+    // Nothing in the deck may reach the site's own header and footer.
+    for (const part of ['header', 'footer', 'link']) {
+      for (const [prop, value] of Object.entries(control[part] ?? {})) {
+        if (chrome[part]?.[prop] !== value) {
+          failures.push(`${name}: site ${part} ${prop} is ${chrome[part]?.[prop]}, not ${value}`)
+        }
+      }
+    }
 
     await context.close()
   }
@@ -132,12 +201,14 @@ for (const deck of decks) {
 
 await browser.close()
 
-console.log(`${decks.length} decks checked at 390 and 1440`)
+console.log(`${decks.length} decks checked in place at 390 and 1440`)
 if (failures.length) {
   const unique = [...new Set(failures)]
   console.log(`\n${unique.length} FAILURES:`)
   for (const f of unique.slice(0, 40)) console.log(`  ✗ ${f}`)
   process.exitCode = 1
 } else {
-  console.log('PASS — Younit ground and faces, no retired colour, all text readable, nothing external')
+  console.log(
+    'PASS — Younit ground and faces, left-aligned, charts drawn, chrome untouched, nothing external',
+  )
 }
