@@ -295,13 +295,21 @@
   color: var(--yn-grey-dark);
 }
 
+/* The session tag is a label, not a control. An outlined pill beside the track
+   name read as a second button, so it loses the outline and the fill and keeps
+   only a rule to divide it from the label it follows — the way the site marks
+   an eyebrow. */
 .yn-deck.yn-deck .session-tag {
   font-family: var(--yn-mono);
-  color: var(--yn-ink);
-  border: 1px solid var(--yn-purple);
-  border-radius: 999px;
-  padding: 5px 16px;
-  background: transparent;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--yn-grey-dark);
+  background: none;
+  border: 0;
+  border-inline-start: 1px solid var(--yn-purple);
+  border-radius: 0;
+  padding: 2px 0 2px 14px;
+  margin-inline-start: 14px;
 }
 
 /* --- Progress and pills --------------------------------------------------- */
