@@ -62,7 +62,11 @@ export default function useMotion(mode = 'full', resetKey) {
       el.style.minHeight = `${el.getBoundingClientRect().height}px`
       el.textContent = ''
       restore.push(() => {
-        el.textContent = text
+        // Put the sentence back only if what is there now is still a piece of
+        // it — that is this animation, caught mid-type. If the page has since
+        // changed language, the text belongs to the new copy and writing the
+        // captured one over it is how an Arabic page ends up reading English.
+        if (text.startsWith(el.textContent)) el.textContent = text
         el.style.minHeight = minHeight
       })
       return { el, text }
@@ -98,6 +102,9 @@ export default function useMotion(mode = 'full', resetKey) {
       const step = speeds[i] || 12
       let n = 0
       const tick = () => {
+        // The same guard as the restore: stop typing into a line that is no
+        // longer this line.
+        if (!text.startsWith(el.textContent)) return
         el.textContent = text.slice(0, ++n)
         if (n < text.length) wait(tick, step)
         else wait(() => typeLine(i + 1), 180)
