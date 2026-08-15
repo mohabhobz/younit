@@ -358,6 +358,63 @@ pre {
   color: var(--yn-ink);
 }
 
+/* --- An article and its contents -------------------------------------------
+   The reading column keeps its measure — a line longer than about 72 characters
+   is harder to read, not easier — so on a wide screen the rest of the frame
+   would sit empty. The contents go there: where you are in a fifty-minute
+   session, and one click to any part of it. Below the breakpoint the column is
+   the page and the list is not drawn; a phone has its own scroll. */
+
+.yn-article {
+  display: grid;
+  gap: 64px;
+}
+
+.yn-article__aside {
+  display: none;
+}
+
+@media (min-width: 1100px) {
+  .yn-article {
+    grid-template-columns: minmax(0, 1fr) 260px;
+    align-items: start;
+  }
+
+  .yn-article__aside {
+    display: block;
+    position: sticky;
+    top: 32px;
+  }
+}
+
+.yn-contents {
+  border-inline-start: 1px solid var(--yn-purple);
+  padding-inline-start: 20px;
+}
+
+.yn-contents__link {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 8px;
+  align-items: baseline;
+  padding: 7px 0;
+  font-size: var(--yn-small);
+  line-height: 1.4;
+  color: var(--yn-grey-dark);
+  transition: color 160ms var(--yn-ease);
+}
+
+.yn-contents__number {
+  font-family: var(--yn-mono);
+  font-size: var(--yn-micro);
+}
+
+.yn-contents__link:hover,
+.yn-contents__link:focus-visible,
+.yn-contents__link[data-current] {
+  color: var(--yn-ink);
+}
+
 /* --- Prose ---------------------------------------------------------------- */
 
 .yn-prose {
