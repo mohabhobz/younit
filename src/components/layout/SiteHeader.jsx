@@ -53,24 +53,54 @@ function MenuIcon({ open }) {
   )
 }
 
-/** The language switch — the same page in the other language. */
-function LocaleSwitch({ style, brandChrome }) {
+/**
+ * Both languages, side by side, as the design source draws them: the one you
+ * are reading is marked, the other is a link. A switch that shows only the
+ * other language makes the reader guess which one they are in.
+ */
+function LocaleSwitch({ style, className, brandChrome }) {
   const { locale } = useI18n()
   const { pathname, search, hash } = useLocation()
-  const other = Object.keys(LOCALES).find((code) => code !== locale) ?? DEFAULT_LOCALE
 
   return (
-    <RouterLink
-      // The router's own Link, not the localised one: this is the single link
-      // that must not be put back into the language it is leaving.
-      to={swapLocale(pathname, locale, other) + search + hash}
-      className="yn-navlink"
-      data-brand-chrome={brandChrome}
-      lang={LOCALES[other].htmlLang}
-      style={{ ...LINK_STYLE, ...style }}
-    >
-      {LOCALES[other].label}
-    </RouterLink>
+    <span className={className} style={{ display: 'inline-flex', alignItems: 'center', gap: 10, ...style }}>
+      {Object.entries(LOCALES).map(([code, meta], i) => {
+        const current = code === locale
+        return (
+          <span key={code} style={{ display: 'inline-flex', alignItems: 'center', gap: 10 }}>
+            {i > 0 ? <span aria-hidden="true" style={{ opacity: 0.4 }}>|</span> : null}
+            {current ? (
+              <span
+                data-brand-chrome={brandChrome}
+                aria-current="true"
+                lang={meta.htmlLang}
+                style={{
+                  ...LINK_STYLE,
+                  ...style,
+                  textDecoration: 'underline',
+                  textUnderlineOffset: 4,
+                }}
+              >
+                {meta.short}
+              </span>
+            ) : (
+              <RouterLink
+                // The router's own Link, not the localised one: this is the
+                // single link that must not be put back into the language it
+                // is leaving.
+                to={swapLocale(pathname, locale, code) + search + hash}
+                className="yn-navlink"
+                data-brand-chrome={brandChrome}
+                lang={meta.htmlLang}
+                style={{ ...LINK_STYLE, ...style, opacity: 0.62 }}
+              >
+                {meta.short}
+              </RouterLink>
+            )}
+          </span>
+        )
+      })}
+    </span>
   )
 }
 
@@ -127,7 +157,7 @@ export default function SiteHeader({ tone = 'blue' }) {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        gap: 40,
+        gap: 24,
         flexWrap: 'wrap',
         position: 'relative',
         zIndex: 50,
@@ -150,10 +180,18 @@ export default function SiteHeader({ tone = 'blue' }) {
       </Link>
 
       {/* Desktop: the sections in a row, the language last. */}
+      {/* The sections sit in the middle of the band and the languages at the
+          end, which is how the design source lays the header out. */}
       <nav
         className="yn-nav-desktop"
         aria-label={t('nav.primary')}
-        style={{ display: 'flex', gap: 'clamp(20px, 4vw, 56px)', alignItems: 'center' }}
+        style={{
+          display: 'flex',
+          gap: 'clamp(20px, 3.5vw, 56px)',
+          alignItems: 'center',
+          justifyContent: 'center',
+          flex: 1,
+        }}
       >
         {NAV.map((item) => (
           <NavLink
@@ -171,8 +209,9 @@ export default function SiteHeader({ tone = 'blue' }) {
             {t(item.key)}
           </NavLink>
         ))}
-        <LocaleSwitch style={{ opacity: 0.62 }} brandChrome={brandChrome} />
       </nav>
+
+      <LocaleSwitch className="yn-locale-desktop" brandChrome={brandChrome} />
 
       {/* Phone: one control, and the panel it opens. */}
       <button
