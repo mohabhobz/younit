@@ -760,7 +760,7 @@ export default function Home() {
       style={{
         background: "var(--yn-grey)",
         minHeight: "100vh",
-        overflowX: "hidden",
+        overflowX: "clip",
       }}
     >
       <BrandDefs />

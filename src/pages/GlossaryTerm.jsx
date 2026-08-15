@@ -24,7 +24,7 @@ export default function GlossaryTerm() {
   }))
 
   return (
-    <Page title={doc.term || doc.slug}>
+    <Page title={doc.term || doc.slug} width={1120}>
       <Section>
         <Breadcrumb
           trail={[
