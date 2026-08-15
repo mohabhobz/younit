@@ -1,63 +1,113 @@
-import { useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useEffect, useRef, useState } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
+import Page from '../components/layout/Page.jsx'
 import NotFound from './NotFound.jsx'
-import { findDoc, sessionHtmlFor } from '../lib/content.js'
+import Breadcrumb from '../components/ui/Breadcrumb.jsx'
+import { Frame } from '../components/ui/Pieces.jsx'
+import { findDoc, neighbours, sessionHtmlFor } from '../lib/content.js'
+import { mountDeck } from '../lib/deck.js'
 
-const TRACK_LABEL = { foundation: 'Foundation Series', 'algo-track': 'Algo Track' }
+const TRACK = {
+  foundation: { label: 'Foundation Series', path: '/learn/foundation' },
+  'algo-track': { label: 'Algo Track', path: '/learn/algo-track' },
+}
 
 /**
- * The full lesson deck, shown the way the original site showed it: the standalone
- * HTML file filling the viewport, with one back control over it. The decks carry
- * their own dark styling and their own scripts, so they are framed rather than
- * restyled — and the frame's own back button is hidden so only ours shows.
+ * The full lesson deck, rendered as a page of the site rather than framed in
+ * an iframe: same header, same footer, same navigation as everywhere else. The
+ * deck's own styles are scoped to `.yn-deck` so the two never collide — see
+ * `tools/scope-decks.mjs`.
  */
 export default function SessionDeck() {
   const { collection, slug } = useParams()
+  const navigate = useNavigate()
+  const host = useRef(null)
+  const [state, setState] = useState('loading')
+
   const doc = findDoc(collection, slug)
   const src = sessionHtmlFor(collection, slug)
+  const track = TRACK[collection]
+  const { index, total } = neighbours(collection, slug)
 
   useEffect(() => {
-    if (!src || !doc) return undefined
-    const previous = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
-    document.title = doc?.title ? `${doc.title} — Younit` : 'Session — Younit'
+    if (!src || !host.current) return undefined
+
+    const controller = new AbortController()
+    let teardown = null
+    let cancelled = false
+
+    setState('loading')
+    mountDeck(src, host.current, controller.signal)
+      .then((stop) => {
+        if (cancelled) return stop()
+        teardown = stop
+        setState('ready')
+        return undefined
+      })
+      .catch((error) => {
+        if (error.name !== 'AbortError') setState('error')
+      })
+
     return () => {
-      document.body.style.overflow = previous
+      cancelled = true
+      controller.abort()
+      if (teardown) teardown()
     }
-  }, [src, doc])
+  }, [src])
+
+  // The decks carry plain anchors — the "next part" links, and whatever a
+  // lesson links to inline. Internal ones are handed to the router so the page
+  // does not reload; external ones are left alone.
+  useEffect(() => {
+    const node = host.current
+    if (!node) return undefined
+
+    const onClick = (event) => {
+      const link = event.target.closest?.('a[href]')
+      if (!link || event.defaultPrevented || event.metaKey || event.ctrlKey) return
+      const href = link.getAttribute('href')
+      if (!href?.startsWith('/') || link.target) return
+      event.preventDefault()
+      navigate(href)
+    }
+
+    node.addEventListener('click', onClick)
+    return () => node.removeEventListener('click', onClick)
+  }, [navigate])
 
   if (!doc || !src) return <NotFound />
 
   return (
-    <div style={{ position: 'fixed', inset: 0, zIndex: 9999, background: 'var(--yn-ink-2)' }}>
-      <Link
-        to={`/learn/${collection}/${slug}`}
-        style={{
-          position: 'absolute',
-          insetBlockStart: 24,
-          insetInlineStart: 24,
-          zIndex: 1,
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: 8,
-          padding: '9px 22px',
-          background: 'var(--yn-blue)',
-          border: '1px solid #000',
-          borderRadius: 'var(--yn-r-pill)',
-          color: 'var(--yn-ink)',
-          fontSize: 11,
-          letterSpacing: '0.09em',
-          textTransform: 'uppercase',
-        }}
-      >
-        ← {TRACK_LABEL[collection] ?? 'Back'}
-      </Link>
+    <Page title={doc.title} frame={false}>
+      <Frame style={{ paddingBlock: '28px 0' }}>
+        <Breadcrumb
+          trail={[
+            { label: 'Learn', to: '/learn' },
+            ...(track ? [{ label: track.label, to: track.path }] : []),
+            { label: doc.title, to: `/learn/${collection}/${slug}` },
+            ...(index >= 0 && total ? [{ label: `Session ${index + 1} of ${total}` }] : []),
+          ]}
+        />
+      </Frame>
 
-      <iframe
-        src={src}
-        title={doc.title}
-        style={{ width: '100%', height: '100%', border: 'none', display: 'block' }}
+      {state === 'error' ? (
+        <Frame style={{ paddingBlock: 64 }}>
+          <p style={{ margin: 0 }}>
+            This session's deck could not be loaded. The written session is on the{' '}
+            <a className="yn-prose" href={`/learn/${collection}/${slug}`}>
+              lesson page
+            </a>
+            .
+          </p>
+        </Frame>
+      ) : null}
+
+      <div
+        ref={host}
+        // Reserve the fold while the deck arrives, so the footer does not flash
+        // up under the breadcrumb and then jump.
+        style={{ minHeight: state === 'ready' ? 0 : '60vh' }}
       />
-    </div>
+    </Page>
   )
 }

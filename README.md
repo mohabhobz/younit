@@ -93,10 +93,42 @@ The source content uses exactly two inline components, `<Term>` and `<Callout>`.
 Both are rewritten to semantic HTML by the plugin. If a third ever appears, the
 build logs a warning naming it rather than rendering literal angle brackets.
 
-`public/sessions/` holds all thirteen standalone lesson decks. The slug-to-file
-maps in `src/lib/sessions.js` are the original site's, carried over verbatim, so
-every Foundation and Algo Track session links to its own deck. A deck opens
-full-screen at `/learn/:track/:slug/deck`, the way the original site opened it.
+`public/sessions/` holds all thirteen lesson decks. The slug-to-file maps in
+`src/lib/sessions.js` are the original site's, carried over verbatim, so every
+Foundation and Algo Track session links to its own deck at
+`/learn/:track/:slug/deck`.
+
+### A deck is a page of the site
+
+The original site framed each deck in an iframe: full-screen, no header, no
+footer, one back button. That kept the deck's styles away from the site's, but
+it also cut the deck off — a reader in the middle of a lesson had no way to
+reach Learn or Build without leaving first. So a deck is rendered inline now,
+under the same header and footer as every other page, with a breadcrumb above
+it.
+
+That only works if the two stylesheets cannot see each other, and a deck was
+written as a whole document: `*{margin:0}`, `body{...}`, `header{...}`.
+`tools/scope-decks.mjs` rewrites every one of those selectors to sit under
+`.yn-deck` — 1448 rules through a real CSS parser, not a search and replace —
+and drops the document wrapper, leaving the markup, the copy and the scripts
+as they were. `public/vendor/deck.css` gets the scope twice (`.yn-deck.yn-deck`)
+because it used to win collisions by loading last, and inside the site the
+deck's own styles travel with its markup and land later; repeating the class
+buys back the same precedence without depending on insertion order.
+
+`src/lib/deck.js` does the loading. A `<script>` set through `innerHTML` never
+runs and a `<link>` wants to be in the head, so the fragment is parsed, its
+assets are loaded once and cached across decks, and its own scripts are
+re-created in order. The decks were written as standalone pages and set
+intervals and window listeners without ever expecting to be torn down, so
+anything registered while a deck's script runs is recorded and undone when the
+reader navigates away.
+
+Two things follow from being inside the site: the deck reads from the left
+gutter of the 1440 frame like every other page rather than from a 960 column
+centred in the window, and its "next part" buttons are real links the router
+handles.
 
 ### The decks are on the Younit brand
 
@@ -107,8 +139,7 @@ presentation changed:
 
 - `public/vendor/deck.css` rebinds the decks' own colour variables to Younit
   values and restyles the shared component vocabulary. One sheet governs all
-  thirteen, loaded after each deck's own `<style>`, so it overrides rather than
-  edits.
+  thirteen, and it overrides rather than edits.
 - 642 inline style attributes carried the old palette. Inline styles beat any
   stylesheet, so those were remapped in place — by property, because a hue that
   was text on navy has to become ink on grey while the same hue stays a fill.
@@ -120,8 +151,12 @@ presentation changed:
   deck sets in the same faces as the site.
 - Chart colours are remapped in the chart configs, where Chart.js reads them —
   a stylesheet cannot reach those.
-- The EFG lockup is the younit wordmark, with each deck naming its own track.
+- The EFG lockup is gone: the site header carries the wordmark and the
+  breadcrumb names the track, so the deck keeps only its own track label and
+  session tag.
 - Thirty fixed two-column grids never collapsed, so a phone scrolled sideways.
+- A 28px button and an 8px carousel dot were below the 32px anyone can reliably
+  hit on a phone. The boxes grew; the marks are the size they were drawn.
 
 Three defects were also fixed:
 
@@ -132,8 +167,11 @@ Three defects were also fixed:
 3. All thirteen loaded webfonts from Google; those woff2 files are local now.
 
 A deck makes zero external requests. `tools/check-decks.mjs` walks all thirteen
-at 390 and 1440 and fails on unreadable text, a surviving colour from the
-previous brand, a request leaving the machine, or horizontal overflow.
+at their real routes at 390 and 1440 and fails on unreadable text, a surviving
+colour from the previous brand, a chart that never drew, a script that threw, a
+request leaving the machine, or horizontal overflow. It also measures the site's
+own header and footer on every deck page against the same chrome on a page with
+no deck on it, property by property — which is what proves the scoping holds.
 
 The homepage's editorial cards and project tracks resolve against these real
 files — the template's titles were already the real ones. Their dates and
@@ -193,10 +231,10 @@ silently until it was looked for:
   exists — the real ones are `00-intro` … `07-what-ai-brings` — so every one
   landed on the 404 page. Corrected, including the six that navigate by script
   rather than by `href`.
-- A deck renders inside an iframe, and none of its internal links said where to
+- A deck rendered inside an iframe, and none of its internal links said where to
   open. Clicking one loaded the entire site — header, footer and all — *inside*
-  the deck. They now carry `target="_top"`, and the scripted ones use
-  `window.top.location`.
+  the deck. Now that a deck is a page rather than a frame, they are ordinary
+  links the router handles.
 
 **In the application**
 
