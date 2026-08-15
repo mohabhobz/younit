@@ -147,7 +147,6 @@
     "deckCta": "Open the session deck",
     "deckFailed": "This session's deck could not be loaded. The written session is on the {link}.",
     "deckFailedLink": "lesson page",
-    "deckEnglishOnly": "The illustrated deck for this session is in English.",
     "readingTimeOne": "1 min read"
   },
   "build": {

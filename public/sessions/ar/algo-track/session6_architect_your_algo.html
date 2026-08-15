@@ -1,0 +1,454 @@
+<!-- Younit lesson deck — a fragment, not a document.
+
+     Rendered into the site by src/pages/SessionDeck.jsx. Every style below is
+     scoped to .yn-deck, so nothing here reaches the page around it and nothing
+     out there reaches in. Generated from the original standalone deck by
+     tools/scope-decks.mjs; the markup and the copy are as they were written. -->
+<link href="/vendor/deck-fonts.css" rel="stylesheet">
+<link href="/vendor/deck.css" rel="stylesheet">
+<style>
+.yn-deck {
+  --bg:#D7D7D7;--bg2:#FFFFFF;--bg3:#FFFFFF;--card:#FFFFFF;--border:#AC91E1;
+  --gold:#FFD05A;--gold-light:#FFD05A;--teal:#A3C6D7;--teal-dim:#A3C6D7;
+  --red:#B3261E;--green:#1C7A3E;--text:#000000;--text-dim:#444444;--text-muted:#666666;
+}
+.yn-deck *{margin:0;padding:0;box-sizing:border-box;}
+.yn-deck{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-serif;font-size:15px;line-height:1.7;overflow-x:hidden;}
+
+/* BACK BUTTON */
+.yn-deck .back-btn{position:absolute;top:24px;left:24px;display:inline-flex;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--text-muted);text-decoration:none;text-transform:uppercase;border:1px solid var(--border);padding:6px 14px;border-radius:2px;transition:all .2s;z-index:10;}
+.yn-deck .back-btn:hover{border-color:var(--gold);color:var(--gold);}
+.yn-deck .back-btn::before{content:'←';margin-right:2px;}
+
+/* HEADER */
+.yn-deck header{position:relative;padding:60px 0 80px;text-align:center;overflow:hidden;border-bottom:1px solid var(--border);}
+.yn-deck header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(255,208,90,.12) 0%,transparent 70%),radial-gradient(ellipse 50% 40% at 80% 50%,rgba(163,198,215,.06) 0%,transparent 60%);}
+.yn-deck .efg-logo{display:inline-flex;align-items:center;gap:10px;margin-bottom:32px;position:relative;}
+.yn-deck .efg-logo-mark{width:36px;height:36px;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-weight:700;color:var(--gold);font-size:14px;letter-spacing:1px;}
+.yn-deck .efg-logo-text{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:3px;color:var(--text-dim);text-transform:uppercase;}
+.yn-deck .session-tag{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--teal);border:1px solid var(--teal-dim);padding:4px 14px;border-radius:2px;margin-bottom:20px;position:relative;}
+.yn-deck h1{font-family:'Poppins',sans-serif;font-size:clamp(36px,5vw,64px);font-weight:900;line-height:1.1;position:relative;background:linear-gradient(135deg,#fff 30%,var(--gold) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:16px;}
+.yn-deck .subtitle{color:var(--text-dim);font-size:16px;max-width:580px;margin:0 auto;position:relative;}
+.yn-deck .progress-bar-wrap{display:flex;justify-content:center;gap:6px;margin-top:40px;position:relative;}
+.yn-deck .prog-dot{width:32px;height:4px;border-radius:2px;background:var(--border);}
+.yn-deck .prog-dot.active{background:var(--gold);}
+.yn-deck .prog-dot.current{background:var(--teal);}
+
+/* LAYOUT */
+.yn-deck .container{max-width:960px;margin:0 auto;padding:0 24px;}
+.yn-deck .section{padding:64px 0;border-bottom:1px solid var(--border);}
+.yn-deck .section-num{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:3px;margin-bottom:8px;display:block;}
+.yn-deck .section-title{font-family:'Poppins',sans-serif;font-size:32px;font-weight:700;color:var(--yn-ink);margin-bottom:8px;}
+.yn-deck .section-lead{color:var(--text-dim);font-size:15px;max-width:600px;margin-bottom:40px;}
+
+/* PROSE */
+.yn-deck .prose{color:var(--text-dim);font-size:15px;line-height:1.8;margin-bottom:28px;max-width:720px;}
+.yn-deck .prose strong{color:var(--yn-ink);}
+.yn-deck .prose em{color:var(--gold);font-style:normal;}
+.yn-deck .prose + .prose{margin-top:-8px;}
+
+/* RULE / QUOTE BLOCK */
+.yn-deck .rule-block{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:4px;padding:28px 32px;margin-bottom:24px;}
+.yn-deck .rule-block blockquote{font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--yn-ink);line-height:1.8;font-style:normal;}
+.yn-deck .rule-block blockquote strong{color:var(--gold);}
+
+/* CALLOUT */
+.yn-deck .callout{background:rgba(255,208,90,.06);border:1px solid rgba(255,208,90,.2);border-radius:4px;padding:14px 20px;margin-bottom:24px;font-size:13px;color:var(--text-dim);font-family:'IBM Plex Mono',monospace;line-height:1.6;}
+.yn-deck .callout strong{color:var(--yn-ink);}
+
+/* COMPANY ORG */
+.yn-deck .org-wrap{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:30px;margin-bottom:32px;position:relative;overflow:hidden;}
+.yn-deck .org-wrap::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 70% at 50% 0%,rgba(163,198,215,.05) 0%,transparent 70%);pointer-events:none;}
+.yn-deck .org-title{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--text-muted);text-transform:uppercase;margin-bottom:24px;position:relative;}
+.yn-deck .org-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;position:relative;}
+.yn-deck .org-role{border:1px solid var(--border);background:rgba(215,215,215,.55);border-radius:4px;padding:18px 14px;text-align:center;min-height:150px;display:flex;flex-direction:column;justify-content:flex-start;}
+.yn-deck .org-role.risk{border-color:rgba(179,38,30,.35);background:rgba(179,38,30,.04);}
+.yn-deck .role-kicker{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:10px;}
+.yn-deck .org-role.risk .role-kicker{color:var(--red);}
+.yn-deck .role-name{font-family:'Poppins',sans-serif;font-size:18px;color:var(--yn-ink);line-height:1.15;margin-bottom:10px;}
+.yn-deck .role-desc{font-size:12px;color:var(--text-dim);line-height:1.45;}
+
+/* CARD GRID */
+.yn-deck .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-bottom:32px;}
+.yn-deck .card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:24px;position:relative;overflow:hidden;transition:border-color .2s,transform .2s;}
+.yn-deck .card:hover{border-color:var(--gold);transform:translateY(-2px);}
+.yn-deck .card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent);opacity:0;transition:opacity .2s;}
+.yn-deck .card:hover::before{opacity:1;}
+.yn-deck .card.risk:hover{border-color:var(--red);}
+.yn-deck .card.risk::before{background:linear-gradient(90deg,var(--red),transparent);}
+.yn-deck .card-label{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:10px;}
+.yn-deck .card.risk .card-label{color:var(--red);}
+.yn-deck .card-title{font-weight:600;color:var(--yn-ink);margin-bottom:8px;font-size:15px;}
+.yn-deck .card-body{color:var(--text-dim);font-size:13px;line-height:1.6;}
+.yn-deck .card-body strong{color:var(--yn-ink);}
+
+/* FLOW */
+.yn-deck .flow-row{display:flex;align-items:stretch;gap:0;flex-wrap:wrap;margin-bottom:32px;}
+.yn-deck .flow-item{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:18px 20px;flex:1;min-width:130px;text-align:center;position:relative;}
+.yn-deck .flow-item.risk{border-color:rgba(179,38,30,.35);}
+.yn-deck .flow-item-label{font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--gold);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
+.yn-deck .flow-item.risk .flow-item-label{color:var(--red);}
+.yn-deck .flow-item-val{font-size:14px;color:var(--yn-ink);font-weight:500;line-height:1.45;}
+.yn-deck .flow-arrow{color:var(--gold);font-size:20px;padding:18px 8px;flex-shrink:0;display:flex;align-items:center;}
+
+/* CODE TREE */
+.yn-deck .code-box{background:var(--card);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:32px;}
+.yn-deck .code-head{padding:14px 20px;border-bottom:1px solid var(--border);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--text-muted);text-transform:uppercase;}
+.yn-deck pre{margin:0;padding:24px 28px;overflow-x:auto;color:var(--text-dim);font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.8;background:var(--bg2);}
+.yn-deck pre strong{color:var(--gold);font-weight:500;}
+
+/* COMPARE */
+.yn-deck .compare-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:16px;margin-bottom:32px;}
+.yn-deck .compare-card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:24px 28px;}
+.yn-deck .compare-label{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;margin-bottom:12px;text-transform:uppercase;}
+.yn-deck .compare-label.bad{color:var(--red);}
+.yn-deck .compare-label.good{color:var(--teal);}
+.yn-deck .compare-body{font-size:13px;color:var(--text-dim);line-height:1.65;}
+.yn-deck .compare-body strong{color:var(--yn-ink);}
+
+/* TAKEAWAYS */
+.yn-deck .takeaway-wrap{background:linear-gradient(135deg,rgba(255,208,90,.06),rgba(163,198,215,.04));border:1px solid rgba(255,208,90,.25);border-radius:4px;padding:36px 40px;margin-top:16px;}
+.yn-deck .takeaway-heading{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:20px;}
+.yn-deck .takeaway-list{list-style:none;padding:0;}
+.yn-deck .takeaway-list li{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid var(--border);font-size:14px;color:var(--text-dim);line-height:1.6;}
+.yn-deck .takeaway-list li:last-child{border-bottom:none;}
+.yn-deck .takeaway-list li::before{content:'✓';color:var(--teal);font-family:'IBM Plex Mono',monospace;font-size:12px;flex-shrink:0;margin-top:2px;}
+.yn-deck .takeaway-list li strong{color:var(--yn-ink);}
+
+/* NEXT CARD */
+.yn-deck .next-card{background:linear-gradient(135deg,rgba(255,208,90,.08),rgba(163,198,215,.05));border:1px solid var(--gold);border-radius:4px;padding:32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;margin-top:40px;}
+.yn-deck .next-label{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:2px;margin-bottom:8px;}
+.yn-deck .next-title{font-family:'Poppins',sans-serif;font-size:22px;color:var(--yn-ink);}
+.yn-deck .next-btn{background:var(--gold);color:#000;border:none;padding:12px 28px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:1px;cursor:pointer;border-radius:2px;text-transform:uppercase;font-weight:500;transition:background .15s;}
+.yn-deck .next-btn:hover{background:var(--gold-light);}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.yn-deck .section{animation:fadeUp .5s ease both;}
+
+@media(max-width:850px){
+  .yn-deck .org-grid{grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));}
+  .yn-deck .org-role.risk{grid-column:1 / -1;}
+}
+@media(max-width:700px){
+  .yn-deck .compare-row{grid-template-columns:1fr;}
+  .yn-deck .flow-arrow{display:none;}
+}
+@media(max-width:520px){
+  .yn-deck .org-grid{grid-template-columns:1fr;}
+}
+</style>
+<div class="yn-deck">
+<!-- HEADER -->
+<header>
+  <a class="back-btn" href="/learn/algo-track" target="_top">مسار الخوارزميات</a>
+  <div class="container">
+    <div class="efg-logo">
+      <div class="efg-logo-mark">EFG</div>
+      <div class="efg-logo-text">مسار الخوارزميات</div>
+    </div>
+    <div class="session-tag">الجزء 06 / 07</div>
+    <h1>صمّم خوارزميتك<br>كشركة مصغّرة</h1>
+    <p class="subtitle">الخوارزمية الجادة ليست نصًا برمجيًا عملاقًا واحدًا. هي منظمة صغيرة بأدوار ومسؤوليات وصلاحيات واضحة.</p>
+    <div class="progress-bar-wrap">
+      <div class="prog-dot active"></div>
+      <div class="prog-dot active"></div>
+      <div class="prog-dot active"></div>
+      <div class="prog-dot active"></div>
+      <div class="prog-dot active"></div>
+      <div class="prog-dot current"></div>
+      <div class="prog-dot"></div>
+    </div>
+  </div>
+</header>
+
+<!-- INTRO -->
+<div class="section">
+  <div class="container">
+    <span class="section-num">01 — لماذا يهم هذا</span>
+    <h2 class="section-title">لا تبنِ نصًا برمجيًا عملاقًا واحدًا</h2>
+    <p class="section-lead">أظهر الجزء 5 أن التداول الحي يحتاج أكثر من استراتيجية. والجزء 6 عن كيفية تنظيم النظام ليكون قابلًا للاختبار والمراقبة والإصلاح.</p>
+
+    <p class="prose">نسخة المبتدئ من الخوارزمية غالبًا ملف واحد يفعل كل شيء: يقرأ الأسعار، ويحسب الإشارات، ويرسل الأوامر، ويتتبع المراكز، ويقرر المخاطر. هذا مقبول في مثال تعليمي. لكنه غير مقبول متى دخل مال حقيقي وبيانات حقيقية وتنفيذ حقيقي.</p>
+
+    <p class="prose">النموذج الذهني الأفضل هو شركة مصغّرة. لكل جزء من النظام وظيفة واحدة. ولكل وظيفة حدود واضحة. ولوظيفة المخاطر صلاحية. وإذا تعطل شيء، تعرف أين تبحث.</p>
+
+    <div class="rule-block">
+      <blockquote>الخوارزمية جيدة البناء ليست ذكية لأنها معقدة.<br><br>هي آمنة لأن كل مكوّن يعرف <strong>بالضبط عمّا هو مسؤول</strong>.</blockquote>
+    </div>
+  </div>
+</div>
+
+<!-- MINI COMPANY MAP -->
+<div class="section">
+  <div class="container">
+    <span class="section-num">02 — الشركة المصغّرة</span>
+    <h2 class="section-title">خمسة أدوار داخل خوارزمية جادة</h2>
+    <p class="section-lead">فكّر في النظام كمنظمة صغيرة. كل دور يتقن شيئًا واحدًا.</p>
+
+    <div class="org-wrap">
+      <div class="org-title">الهيكل التنظيمي لنظام الخوارزمية</div>
+      <div class="org-grid">
+        <div class="org-role">
+          <div class="role-kicker">01</div>
+          <div class="role-name">وكيل البيانات</div>
+          <div class="role-desc">يجمع بيانات السوق ويتحقق من كونها حديثة وكاملة وصالحة للاستخدام.</div>
+        </div>
+        <div class="org-role">
+          <div class="role-kicker">02</div>
+          <div class="role-name">وكيل البحث</div>
+          <div class="role-desc">يحوّل البيانات الخام إلى مؤشرات فنية وإشارات ومدخلات للاستراتيجية.</div>
+        </div>
+        <div class="org-role">
+          <div class="role-kicker">03</div>
+          <div class="role-name">وكيل التنفيذ</div>
+          <div class="role-desc">يرسل الأوامر ويلغيها ويتتبعها لدى الوسيط.</div>
+        </div>
+        <div class="org-role">
+          <div class="role-kicker">04</div>
+          <div class="role-name">مدير المحفظة</div>
+          <div class="role-desc">يقرر الأحجام والتعرض وإعادة التوازن وكيف تتلاءم المراكز معًا.</div>
+        </div>
+        <div class="org-role risk">
+          <div class="role-kicker">05</div>
+          <div class="role-name">مسؤول المخاطر</div>
+          <div class="role-desc">يراقب الحدود ويملك صلاحية إيقاف النظام مؤقتًا أو إغلاقه.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      ↳ مسؤول المخاطر ليس «ميزة إضافية». في أي نظام جاد، مسؤول المخاطر يعلو على الجميع.
+    </div>
+  </div>
+</div>
+
+<!-- ROLES DETAIL -->
+<div class="section">
+  <div class="container">
+    <span class="section-num">03 — الأدوار</span>
+    <h2 class="section-title">ما الذي يفعله كل دور فعلًا</h2>
+    <p class="section-lead">الهدف هو فصل المسؤولية. لا ينبغي لمكوّن أن يؤدي سرًا وظيفة مكوّن آخر.</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-label">وكيل البيانات</div>
+        <div class="card-title">مصدر الحقيقة</div>
+        <div class="card-body">يستوعب الأسعار وأحجام التداول وإجراءات الشركات وبيانات الحساب. ويفحص الشموع الناقصة، والتغذية المتقادمة، والقفزات الغريبة، وهل السوق مفتوح فعلًا.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">وكيل البحث</div>
+        <div class="card-title">مصنع الإشارات</div>
+        <div class="card-body">ينظّف البيانات ويحولها إلى إشارات: المتوسطات المتحركة، والتقلب، والزخم، والارتداد إلى المتوسط، والمرشحات، وأي شيء آخر تحتاجه الاستراتيجية لاتخاذ قرار.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">وكيل التنفيذ</div>
+        <div class="card-title">مكتب الأوامر</div>
+        <div class="card-body">لا يقرر إن كانت الفكرة جيدة. يتلقى تعليمة أمر معتمدة ويتولى الميكانيكا: الإرسال، والإلغاء، وإعادة المحاولة، والتأكيد، والتسوية.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">مدير المحفظة</div>
+        <div class="card-title">موزّع رأس المال</div>
+        <div class="card-body">يقرر كم يلتزم، وكم مركزًا يمكن أن تتعايش، وهل المحفظة مفرطة التعرض، وهل تتلاءم الصفقات الجديدة مع الدفتر القائم.</div>
+      </div>
+
+      <div class="card risk">
+        <div class="card-label">مسؤول المخاطر</div>
+        <div class="card-title">صلاحية الإيقاف</div>
+        <div class="card-body">يفحص حدود المراكز، والخسارة اليومية، والتراجع، والتنفيذ غير الطبيعي، والبيانات المتقادمة، وأخطاء الوسيط. وإذا قالت طبقة المخاطر توقف، توقف بقية النظام.</div>
+      </div>
+    </div>
+
+    <div class="rule-block">
+      <blockquote>لا ينبغي لوكيل التنفيذ أن يخترع صفقات.<br>ولا ينبغي لوكيل البحث أن يرسل أوامر.<br>ولا ينبغي لمدير المحفظة أن يتجاهل حدود المخاطر.<br><br>لكل دور وظيفة. هذا هو المعمار.</blockquote>
+    </div>
+  </div>
+</div>
+
+<!-- FLOW -->
+<div class="section">
+  <div class="container">
+    <span class="section-num">04 — مسار النظام</span>
+    <h2 class="section-title">كيف تتحرك الصفقة داخل الشركة</h2>
+    <p class="section-lead">ينبغي أن تمر الصفقة عبر تسلسل مضبوط قبل أن تصل إلى السوق.</p>
+
+    <div class="flow-row">
+      <div class="flow-item">
+        <div class="flow-item-label">البيانات</div>
+        <div class="flow-item-val">تحديث الأسعار</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item">
+        <div class="flow-item-label">البحث</div>
+        <div class="flow-item-val">إطلاق الإشارة</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item">
+        <div class="flow-item-label">المحفظة</div>
+        <div class="flow-item-val">فحص الحجم</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item risk">
+        <div class="flow-item-label">المخاطر</div>
+        <div class="flow-item-val">اعتماد الحدود</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item">
+        <div class="flow-item-label">التنفيذ</div>
+        <div class="flow-item-val">إرسال الأمر</div>
+      </div>
+    </div>
+
+    <p class="prose">هذا الترتيب يهم. لا ينبغي للنظام أن يرسل أمرًا أولًا ثم يفحص المخاطر بعده. ولا ينبغي أن يحدد حجم مركز دون معرفة التعرض الحالي. ولا ينبغي أن يتداول على بيانات متقادمة. المعمار هو الانضباط.</p>
+
+    <div class="callout">
+      ↳ النظام الجيد يجعل المسار الآمن هو المسار الافتراضي.
+    </div>
+  </div>
+</div>
+
+<!-- MONOLITH VS MODULAR -->
+<div class="section">
+  <div class="container">
+    <span class="section-num">05 — قرار التصميم</span>
+    <h2 class="section-title">النظام الموحّد مقابل النظام المُجزّأ</h2>
+    <p class="section-lead">النص البرمجي الواحد أسرع في البدء. والنظام المُجزّأ أسهل في الوثوق به.</p>
+
+    <div class="compare-row">
+      <div class="compare-card">
+        <div class="compare-label bad">نص برمجي عملاق واحد</div>
+        <div class="compare-body">
+          <p><strong>سريع البناء، صعب التصحيح.</strong> كل شيء متشابك. وإذا أرسل النظام صفقة سيئة، قد لا تعرف هل جاءت المشكلة من البيانات، أو منطق الإشارة، أو تحديد الحجم، أو التنفيذ، أو المخاطر.</p>
+          <br>
+          <p>جيد لمثال تعليمي. وخطر مع تنامي التعقيد.</p>
+        </div>
+      </div>
+
+      <div class="compare-card">
+        <div class="compare-label good">نظام مُجزّأ</div>
+        <div class="compare-body">
+          <p><strong>أبطأ في التصميم، أسهل في الصيانة.</strong> يمكن اختبار كل مكوّن على حدة. ويمكنك استبدال منطق الإشارة دون إعادة كتابة التنفيذ. ويمكنك تحسين المخاطر دون المساس باستيعاب البيانات.</p>
+          <br>
+          <p>جيد للأنظمة التي تتوقع إبقاءها حية.</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="prose">بالنسبة للمبتدئين، الدرس ليس «ابنِ برمجيات مؤسسية من اليوم الأول». الدرس أن تبقي الأدوار منفصلة في ذهنك، حتى حين تكون النسخة الأولى صغيرة. المستودع الصغير يمكن أن تكون له حدود نظيفة.</p>
+  </div>
+</div>
+
+<!-- REPO MAP -->
+<div class="section">
+  <div class="container">
+    <span class="section-num">06 — خريطة البنّاء</span>
+    <h2 class="section-title">كيف ينعكس هذا على المستودع</h2>
+    <p class="section-lead">استعارة الشركة المصغّرة يمكن أن تصير هيكل مجلدات. لا لأن المجلدات سحر — بل لأنها تفرض الوضوح.</p>
+
+    <div class="code-box">
+      <div class="code-head">مثال على هيكل البداية</div>
+      <pre><strong>/data</strong>
+  fetch_prices.py
+  validate_feed.py
+
+<strong>/research</strong>
+  indicators.py
+  signals.py
+
+<strong>/portfolio</strong>
+  sizing.py
+  exposure.py
+
+<strong>/risk</strong>
+  limits.py
+  kill_switch.py
+
+<strong>/execution</strong>
+  broker_client.py
+  orders.py
+  reconciliation.py
+
+<strong>/monitoring</strong>
+  logs.py
+  alerts.py
+
+<strong>/backtests</strong>
+  run_backtest.py
+  reports.py</pre>
+    </div>
+
+    <p class="prose">هذا ليس الهيكل الوحيد الممكن. المقصد هو الفصل. ينبغي أن يكون كود البيانات سهل الإيجاد. وأن ينفصل كود الإشارة عن إرسال الأوامر. وأن تكون فحوص المخاطر مرئية، لا مخبأة داخل دالة عشوائية. وأن تُعامَل السجلات والتقارير كجزء من النظام، لا كفكرة لاحقة.</p>
+
+    <div class="rule-block">
+      <blockquote>المعمار النظيف ليس عن أن تبدو محترفًا.<br><br>هو عن جعل الأخطاء أسهل في الاكتشاف قبل أن تصير مكلفة.</blockquote>
+    </div>
+  </div>
+</div>
+
+<!-- PROFESSIONAL MAPPING -->
+<div class="section">
+  <div class="container">
+    <span class="section-num">07 — لماذا يفعل المحترفون هذا</span>
+    <h2 class="section-title">هكذا تفكر المكاتب الجادة</h2>
+    <p class="section-lead">أنظمة الكم والتداول المحترفة منظّمة حول الأدوار لأن التخصص يقلل المخاطر الخفية.</p>
+
+    <p class="prose">قد يضم مكتب التداول باحثين ومتداولين ومتخصصي تنفيذ ومديري محافظ وفرق مخاطر والتزام وعمليات. خوارزميتك الشخصية لا تحتاج منظمة كاملة. لكن المنطق نفسه ينطبق: ينبغي أن يفصل النظام بين توليد الفكرة، وإرسال الأمر، وتوزيع رأس المال، وصلاحية المخاطر.</p>
+
+    <p class="prose">هذا الفصل يجعل النظام قابلًا للاختبار. يمكنك أن تسأل: هل البيانات نظيفة؟ هل تنطلق الإشارة على نحو صحيح؟ هل يتصرف تحديد الحجم كما هو متوقع؟ هل تلقى الوسيط الأمر فعلًا؟ هل اعتمدته طبقة المخاطر؟ لكل سؤال مكان يسكن فيه.</p>
+
+    <div class="callout">
+      ↳ المعمار هو ما يمنع جملة «الخوارزمية فعلت شيئًا غريبًا» من أن تصير لغزًا بلا حل.
+    </div>
+  </div>
+</div>
+
+<!-- WHERE TO GO -->
+<div class="section">
+  <div class="container">
+    <span class="section-num">08 — إلى أين من هنا</span>
+    <h2 class="section-title">الـ API يحوّل الخريطة إلى ساحة تجريب</h2>
+    <p class="section-lead">متى صار الهيكل واضحًا، تكون الخطوة التالية بناء أمثلة صغيرة تتصل ببيانات سوق حقيقية وبمسارات عمل الوسيط.</p>
+
+    <p class="prose">هنا تكمن أهمية EFG API. المقالات تشرح المفاهيم. والمستودعات ينبغي أن تعرض في النهاية أمثلة صغيرة عاملة: جلب البيانات، وتوليد إشارة، وتشغيل اختبار رجعي، وتداول ورقي لقاعدة بسيطة، وإرسال أوامر مضبوطة، وفرض حدود المخاطر.</p>
+
+    <p class="prose">طبقة المستودع تلك هي حيث يمكن للطلاب والبنّائين أن يجربوا. المقال يبقى نظيفًا ومفاهيميًا. والكود يصير كائنًا حيًا يمكن تحديثه وتصحيحه وتحسينه واشتقاقه.</p>
+
+    <div class="rule-block">
+      <blockquote>المقال يشرح المفهوم.<br>والمستودع يعرض المثال العامل.<br><br>ومعًا يحوّلان سوق الأسهم إلى ساحة تجريب للبنّائين.</blockquote>
+    </div>
+
+    <p class="prose">حدّ أخير يهم: بناء أدواتك الخاصة لفهم حسابك والتداول به شيء. وتقديم خدمات تداول آلي للآخرين حديث مختلف. فهذا يجلب أسئلة تنظيمية وتشغيلية ومسؤولية تقع خارج هذا المسار المبتدئ.</p>
+  </div>
+</div>
+
+<!-- SUMMARY / NEXT -->
+<div class="section" style="border-bottom:none;">
+  <div class="container">
+    <span class="section-num">09 — الخلاصة</span>
+    <h2 class="section-title">ما ينبغي أن تفهمه الآن</h2>
+    <p class="section-lead">ستة أشياء تحملها معك إلى الجزء الأخير.</p>
+
+    <div class="takeaway-wrap">
+      <div class="takeaway-heading">أهم النقاط — الجزء 06</div>
+      <ul class="takeaway-list">
+        <li>لا ينبغي أن تكون الخوارزمية الجادة نصًا برمجيًا عملاقًا واحدًا. ينبغي أن تكون لها أدوار وحدود واضحة.</li>
+        <li>الأدوار الخمسة الأساسية هي <strong>وكيل البيانات، ووكيل البحث، ووكيل التنفيذ، ومدير المحفظة، ومسؤول المخاطر.</strong></li>
+        <li>يجب أن يعلو مسؤول المخاطر على الاستراتيجية. إذا قالت المخاطر توقف، توقف النظام.</li>
+        <li>المعمار النظيف يجعل النظام أسهل في الاختبار والتصحيح والمراقبة والتحسين.</li>
+        <li>يمكن لهيكل المستودع أن يعكس المعمار: البيانات، والبحث، والمحفظة، والمخاطر، والتنفيذ، والمراقبة، والاختبارات الرجعية.</li>
+        <li>المقال يشرح المفهوم؛ والمستودع ينبغي أن يعرض في النهاية المثال العامل.</li>
+      </ul>
+    </div>
+
+    <div class="next-card">
+      <div>
+        <div class="next-label">التالي — الجزء 07 / 07</div>
+        <div class="next-title">ما الذي يضيفه الذكاء الاصطناعي للتداول الخوارزمي<br><span style="font-size:16px;color:var(--text-dim);font-family:'IBM Plex Sans',sans-serif;font-weight:400;">ما الذي يصير ممكنًا حين تستطيع الأنظمة القائمة على القواعد أن تقرأ وتتكيف وتُعاد تدريبها.</span></div>
+      </div>
+      <a class="next-btn" href="/learn/algo-track/07-what-ai-brings">الجزء 07 →</a>
+    </div>
+  </div>
+</div>
+</div>

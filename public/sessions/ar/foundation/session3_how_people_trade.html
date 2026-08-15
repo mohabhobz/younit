@@ -1,0 +1,508 @@
+<!-- Younit lesson deck — a fragment, not a document.
+
+     Rendered into the site by src/pages/SessionDeck.jsx. Every style below is
+     scoped to .yn-deck, so nothing here reaches the page around it and nothing
+     out there reaches in. Generated from the original standalone deck by
+     tools/scope-decks.mjs; the markup and the copy are as they were written. -->
+<link href="/vendor/deck-fonts.css" rel="stylesheet">
+<script src="/vendor/chart.umd.min.js"></script>
+<link href="/vendor/deck.css" rel="stylesheet">
+<style>
+.yn-deck {
+  --bg:#D7D7D7; --bg2:#FFFFFF; --bg3:#FFFFFF; --card:#FFFFFF;
+  --border:#AC91E1; --gold:#FFD05A; --gold-light:#FFD05A;
+  --teal:#A3C6D7; --teal-dim:#A3C6D7; --red:#B3261E; --green:#1C7A3E;
+  --indigo:#AC91E1; --orange:#FFD05A; --blue:#A3C6D7;
+  --text:#000000; --text-dim:#444444; --text-muted:#666666;
+}
+.yn-deck *{margin:0;padding:0;box-sizing:border-box;}
+.yn-deck{scroll-behavior:smooth;}
+.yn-deck{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-serif;font-size:15px;line-height:1.7;overflow-x:hidden;}
+
+/* HEADER */
+.yn-deck header{position:relative;padding:60px 0 80px;text-align:center;overflow:hidden;border-bottom:1px solid var(--border);}
+.yn-deck header::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 60% at 50% -10%,rgba(172,145,225,.1) 0%,transparent 65%),
+             radial-gradient(ellipse 40% 40% at 85% 60%,rgba(163,198,215,.07) 0%,transparent 55%);}
+.yn-deck .efg-logo{display:inline-flex;align-items:center;gap:10px;margin-bottom:28px;position:relative;}
+.yn-deck .efg-logo-mark{width:36px;height:36px;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-weight:700;color:var(--gold);font-size:14px;}
+.yn-deck .efg-logo-text{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:3px;color:var(--text-dim);text-transform:uppercase;}
+.yn-deck .session-tag{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--indigo);border:1px solid rgba(172,145,225,.4);padding:4px 14px;border-radius:2px;margin-bottom:20px;}
+.yn-deck h1{font-family:'Poppins',sans-serif;font-size:clamp(36px,5vw,60px);font-weight:900;line-height:1.1;background:linear-gradient(135deg,#fff 20%,var(--indigo) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:16px;}
+.yn-deck .subtitle{color:var(--text-dim);font-size:16px;max-width:520px;margin:0 auto;}
+.yn-deck .progress-wrap{display:flex;justify-content:center;gap:6px;margin-top:36px;}
+.yn-deck .prog-dot{width:28px;height:3px;border-radius:2px;background:var(--border);}
+.yn-deck .prog-dot.done{background:var(--gold);}
+.yn-deck .prog-dot.current{background:var(--indigo);}
+
+/* STICKY NAV */
+.yn-deck .sticky-nav{position:sticky;top:0;z-index:100;background:rgba(215,215,215,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+.yn-deck .nav-inner{max-width:960px;margin:0 auto;padding:0 24px;display:flex;overflow-x:auto;}
+.yn-deck .nav-item{padding:14px 18px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:1px;color:var(--text-muted);white-space:nowrap;border-bottom:2px solid transparent;transition:all .2s;text-transform:uppercase;cursor:pointer;background:none;border-top:none;border-left:none;border-right:none;}
+.yn-deck .nav-item:hover{color:var(--text);}
+.yn-deck .nav-item.active{color:var(--indigo);border-bottom-color:var(--indigo);}
+
+/* LAYOUT */
+.yn-deck .container{max-width:960px;margin:0 auto;padding:0 24px;}
+.yn-deck .section{padding:72px 0;border-bottom:1px solid var(--border);}
+.yn-deck .section-num{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--indigo);letter-spacing:3px;margin-bottom:8px;display:block;}
+.yn-deck .section-title{font-family:'Poppins',sans-serif;font-size:32px;font-weight:700;color:var(--yn-ink);margin-bottom:8px;}
+.yn-deck .section-lead{color:var(--text-dim);font-size:15px;max-width:600px;margin-bottom:40px;line-height:1.75;}
+
+/* ASSET CARDS */
+.yn-deck .asset-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:32px;}
+.yn-deck .asset-card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:24px;position:relative;overflow:hidden;transition:border-color .2s,transform .2s;}
+.yn-deck .asset-card:hover{transform:translateY(-2px);}
+.yn-deck .asset-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;opacity:0;transition:opacity .2s;}
+.yn-deck .asset-card:hover::after{opacity:1;}
+.yn-deck .ac-stocks:hover{border-color:rgba(28,122,62,.5);} .yn-deck .ac-stocks::after{background:var(--green);}
+.yn-deck .ac-bonds:hover{border-color:rgba(255,208,90,.5);} .yn-deck .ac-bonds::after{background:var(--gold);}
+.yn-deck .ac-forex:hover{border-color:rgba(163,198,215,.5);} .yn-deck .ac-forex::after{background:var(--teal);}
+.yn-deck .ac-futures:hover{border-color:rgba(255,208,90,.5);} .yn-deck .ac-futures::after{background:var(--orange);}
+.yn-deck .ac-options:hover{border-color:rgba(172,145,225,.5);} .yn-deck .ac-options::after{background:var(--indigo);}
+.yn-deck .ac-crypto:hover{border-color:rgba(179,38,30,.5);} .yn-deck .ac-crypto::after{background:var(--red);}
+.yn-deck .ac-tag{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;padding:3px 8px;border-radius:2px;margin-bottom:14px;text-transform:uppercase;}
+.yn-deck .ac-icon{font-size:24px;margin-bottom:12px;display:block;}
+.yn-deck .ac-title{font-weight:600;color:var(--yn-ink);margin-bottom:8px;font-size:15px;}
+.yn-deck .ac-body{color:var(--text-dim);font-size:13px;line-height:1.65;margin-bottom:14px;}
+.yn-deck .ac-pills{display:flex;gap:8px;flex-wrap:wrap;}
+.yn-deck .ac-pill{font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 8px;border-radius:2px;border:1px solid var(--border);color:var(--text-muted);}
+.yn-deck .sum-tag{font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 8px;border-radius:2px;}
+.yn-deck .sum-pos{background:rgba(28,122,62,.08);color:var(--green);border:1px solid rgba(28,122,62,.2);}
+.yn-deck .sum-zero{background:rgba(255,208,90,.08);color:var(--orange);border:1px solid rgba(255,208,90,.2);}
+.yn-deck .sum-neg{background:rgba(179,38,30,.08);color:var(--red);border:1px solid rgba(179,38,30,.2);}
+.yn-deck .sum-deb{background:rgba(255,208,90,.08);color:var(--gold);border:1px solid rgba(255,208,90,.2);}
+
+/* TABLE */
+.yn-deck .table-wrap{overflow-x:auto;margin-bottom:24px;}
+.yn-deck table{width:100%;border-collapse:collapse;font-size:14px;}
+.yn-deck th{text-align:left;padding:10px 16px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:1px;color:var(--text-muted);border-bottom:1px solid var(--border);text-transform:uppercase;}
+.yn-deck td{padding:12px 16px;border-bottom:1px solid var(--border);color:var(--text-dim);}
+.yn-deck tr:last-child td{border-bottom:none;}
+.yn-deck tr:hover td{background:rgba(0,0,0,.02);}
+.yn-deck td:first-child{color:var(--yn-ink);font-weight:500;}
+
+/* CHART WRAP */
+.yn-deck .chart-wrap{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:28px;margin-bottom:24px;}
+.yn-deck .chart-title{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:1px;color:var(--text-dim);margin-bottom:4px;text-transform:uppercase;}
+.yn-deck .chart-sub{color:var(--text-muted);font-size:12px;margin-bottom:20px;}
+
+/* INDEX */
+.yn-deck .index-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:20px;margin-bottom:24px;}
+.yn-deck .index-box{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:24px;}
+.yn-deck .index-label{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:4px;}
+.yn-deck .index-name{font-family:'Poppins',sans-serif;font-size:22px;color:var(--yn-ink);margin-bottom:8px;}
+.yn-deck .index-desc{font-size:13px;color:var(--text-dim);line-height:1.6;margin-bottom:16px;}
+.yn-deck .index-chips{display:flex;flex-wrap:wrap;gap:6px;}
+.yn-deck .index-chip{font-family:'IBM Plex Mono',monospace;font-size:10px;background:rgba(0,0,0,.04);border:1px solid var(--border);border-radius:2px;padding:3px 8px;color:var(--text-muted);}
+
+/* ETF FLOW */
+.yn-deck .etf-box{background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:28px;margin-bottom:24px;}
+.yn-deck .etf-flow{display:flex;align-items:center;flex-wrap:wrap;gap:0;margin-top:20px;}
+.yn-deck .etf-node{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:14px 18px;flex:1;min-width:120px;text-align:center;}
+.yn-deck .etf-node-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;}
+.yn-deck .etf-node-val{font-size:13px;color:var(--yn-ink);font-weight:500;}
+.yn-deck .etf-arrow{color:var(--indigo);font-size:18px;padding:0 8px;flex-shrink:0;}
+
+/* HOURS */
+.yn-deck .hours-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin-bottom:12px;}
+.yn-deck .hours-card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:18px;}
+.yn-deck .hours-flag{font-size:20px;margin-bottom:8px;}
+.yn-deck .hours-market{font-weight:600;color:var(--yn-ink);font-size:14px;margin-bottom:3px;}
+.yn-deck .hours-time{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--text-dim);margin-bottom:4px;}
+.yn-deck .hours-days{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-muted);margin-bottom:8px;}
+.yn-deck .htag{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 7px;border-radius:2px;}
+.yn-deck .ht-primary{background:rgba(28,122,62,.1);color:var(--green);border:1px solid rgba(28,122,62,.2);}
+.yn-deck .ht-overlap{background:rgba(255,208,90,.1);color:var(--gold);border:1px solid rgba(255,208,90,.2);}
+.yn-deck .ht-after{background:rgba(102,102,102,.1);color:#666666;border:1px solid rgba(102,102,102,.2);}
+.yn-deck .ht-always{background:rgba(172,145,225,.1);color:var(--indigo);border:1px solid rgba(172,145,225,.2);}
+
+/* INFO DECAY */
+.yn-deck .info-timeline{position:relative;padding:20px 0;}
+.yn-deck .info-type{display:flex;align-items:flex-start;gap:20px;margin-bottom:24px;position:relative;}
+.yn-deck .info-type::before{content:'';position:absolute;left:19px;top:40px;bottom:-24px;width:1px;background:var(--border);}
+.yn-deck .info-type:last-child::before{display:none;}
+.yn-deck .info-dot{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;border:2px solid;}
+.yn-deck .info-body{flex:1;}
+.yn-deck .info-label{font-weight:600;color:var(--yn-ink);font-size:14px;margin-bottom:4px;}
+.yn-deck .info-speed{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;}
+.yn-deck .info-desc{font-size:13px;color:var(--text-dim);line-height:1.65;}
+.yn-deck .info-bar-wrap{margin-top:8px;}
+.yn-deck .info-bar-bg{height:6px;background:var(--border);border-radius:3px;overflow:hidden;}
+.yn-deck .info-bar-fill{height:100%;border-radius:3px;transition:width .5s;}
+.yn-deck .info-bar-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-muted);margin-top:4px;}
+
+/* RESOURCES */
+.yn-deck .resource-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;}
+.yn-deck .rc{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:24px;text-decoration:none;display:block;transition:border-color .2s,transform .2s;position:relative;overflow:hidden;}
+.yn-deck .rc:hover{transform:translateY(-2px);}
+.yn-deck .rc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;opacity:0;transition:opacity .2s;}
+.yn-deck .rc:hover::before{opacity:1;}
+.yn-deck .rc-inv::before,.yn-deck .rc-inv:hover{border-color:rgba(28,122,62,.4);} .yn-deck .rc-inv::before{background:var(--green);}
+.yn-deck .rc-tv::before,.yn-deck .rc-tv:hover{border-color:rgba(163,198,215,.4);} .yn-deck .rc-tv::before{background:var(--teal);}
+.yn-deck .rc-yf::before,.yn-deck .rc-yf:hover{border-color:rgba(255,208,90,.4);} .yn-deck .rc-yf::before{background:var(--gold);}
+.yn-deck .rc-dam::before,.yn-deck .rc-dam:hover{border-color:rgba(255,208,90,.4);} .yn-deck .rc-dam::before{background:var(--orange);}
+.yn-deck .rc-icon{font-size:26px;margin-bottom:12px;display:block;}
+.yn-deck .rc-name{font-weight:600;color:var(--yn-ink);margin-bottom:3px;font-size:15px;}
+.yn-deck .rc-type{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;}
+.yn-deck .rc-body{font-size:13px;color:var(--text-dim);line-height:1.6;margin-bottom:12px;}
+.yn-deck .rc-url{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-muted);}
+.yn-deck .rc-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px;}
+.yn-deck .rc-tag{font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 7px;border-radius:2px;background:rgba(0,0,0,.04);border:1px solid var(--border);color:var(--text-muted);}
+
+/* NEXT */
+.yn-deck .next-card{background:linear-gradient(135deg,rgba(172,145,225,.08),rgba(163,198,215,.05));border:1px solid var(--indigo);border-radius:4px;padding:32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;margin-top:40px;}
+.yn-deck .next-label{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--indigo);letter-spacing:2px;margin-bottom:8px;}
+.yn-deck .next-title{font-family:'Poppins',sans-serif;font-size:22px;color:var(--yn-ink);}
+.yn-deck .next-btn{background:var(--indigo);color:var(--yn-ink);border:none;padding:12px 28px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:1px;cursor:pointer;border-radius:2px;text-transform:uppercase;transition:background .15s;}
+.yn-deck .next-btn:hover{background:#a5b4fc;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.yn-deck .section{animation:fadeUp .5s ease both;}
+@media(max-width:680px){.yn-deck .index-grid{grid-template-columns:1fr;}}
+</style>
+<div class="yn-deck">
+<!-- HEADER -->
+<header>
+  <div class="container">
+    <div class="efg-logo">
+      <div class="efg-logo-mark">EFG</div>
+      <div class="efg-logo-text">سلسلة الأساسيات</div>
+    </div>
+    <div class="session-tag">الجلسة 03 / 05</div>
+    <h1>كيف يتداول<br>الناس</h1>
+    <p class="subtitle">لماذا يتداول الناس، وأي آفاق زمنية يختارون، وكيف يديرون المخاطر، وما الانحيازات التي تكلّفهم المال بهدوء.</p>
+    <div class="progress-wrap">
+      <div class="prog-dot done"></div>
+      <div class="prog-dot done"></div>
+      <div class="prog-dot current"></div>
+      <div class="prog-dot"></div>
+      <div class="prog-dot"></div>
+    </div>
+  </div>
+</header>
+
+<!-- STICKY NAV -->
+<nav class="sticky-nav">
+  <div class="nav-inner">
+    <button class="nav-item" onclick="goTo('s1')">01 لماذا التداول</button>
+    <button class="nav-item" onclick="goTo('s2')">02 الآفاق الزمنية</button>
+    <button class="nav-item" onclick="goTo('s3')">03 إدارة المخاطر</button>
+    <button class="nav-item" onclick="goTo('s4')">04 الانحيازات</button>
+    <button class="nav-item" onclick="goTo('s5')">05 لعبة الخاسرين</button>
+  </div>
+</nav>
+
+<!-- ══ 01 WHY PEOPLE TRADE ══ -->
+<div class="section" id="s1">
+  <div class="container">
+    <span class="section-num">01 — لماذا يتداول الناس</span>
+    <h2 class="section-title">ثلاثة أسباب تضع الناس في السوق</h2>
+    <p class="section-lead">في أي يوم، يشتري السهم نفسه أناس أهدافهم مختلفة تمامًا. ومعرفة هدفك أنت تشكّل كل شيء — أفقك الزمني، وحجم المخاطرة التي تحتملها، بل وشكل النجاح نفسه. معظم الناس يخسرون لأنهم يخلطون بين هدف وآخر.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-bottom:32px;">
+
+      <div style="background:var(--card);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:4px;padding:24px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">الهدف 01</div>
+        <div style="font-family:'Poppins',sans-serif;font-size:22px;color:var(--yn-ink);margin-bottom:12px;">بناء الثروة</div>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.7;margin-bottom:14px;">تشتري شركات جيدة وتحتفظ بها سنوات — وأحيانًا عقودًا. والهدف أن تترك التراكم يقوم بالعمل. لا يعنيك سعر اليوم؛ يعنيك أين تكون الشركة بعد 10 سنوات.</div>
+        <div style="font-size:12px;color:var(--text-muted);line-height:1.6;"><strong style="color:var(--yn-ink);">الأفق الزمني:</strong> سنوات إلى عقود<br><strong style="color:var(--yn-ink);">الجهد:</strong> منخفض (بعد البحث)<br><strong style="color:var(--yn-ink);">نسبة النجاح:</strong> مرتفعة على المدى الطويل</div>
+      </div>
+
+      <div style="background:var(--card);border:1px solid var(--border);border-left:3px solid var(--teal);border-radius:4px;padding:24px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">الهدف 02</div>
+        <div style="font-family:'Poppins',sans-serif;font-size:22px;color:var(--yn-ink);margin-bottom:12px;">توليد دخل</div>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.7;margin-bottom:14px;">تشتري شركات توزّع أرباحًا دورية — بنوك ومرافق وأنشطة ناضجة. والهدف تدفق نقدي ثابت لا مكاسب رأسمالية. حركة السعر تهم أقل من شيك التوزيعات.</div>
+        <div style="font-size:12px;color:var(--text-muted);line-height:1.6;"><strong style="color:var(--yn-ink);">الأفق الزمني:</strong> سنوات<br><strong style="color:var(--yn-ink);">الجهد:</strong> منخفض إلى متوسط<br><strong style="color:var(--yn-ink);">نسبة النجاح:</strong> مستقرة ومتواضعة</div>
+      </div>
+
+      <div style="background:var(--card);border:1px solid var(--border);border-left:3px solid var(--red);border-radius:4px;padding:24px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--red);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">الهدف 03</div>
+        <div style="font-family:'Poppins',sans-serif;font-size:22px;color:var(--yn-ink);margin-bottom:12px;">المضاربة</div>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.7;margin-bottom:14px;">تحاول الربح من حركات السعر قصيرة الأجل — دقائق أو أيام أو أسابيع. لا تعنيك الشركة؛ يعنيك ما إذا كان الرسم البياني صاعدًا أو هابطًا الآن. وهذا ما يتخيله معظم الناس حين يسمعون كلمة "تداول".</div>
+        <div style="font-size:12px;color:var(--text-muted);line-height:1.6;"><strong style="color:var(--yn-ink);">الأفق الزمني:</strong> ثوانٍ إلى أسابيع<br><strong style="color:var(--yn-ink);">الجهد:</strong> مرتفع جدًا<br><strong style="color:var(--yn-ink);">نسبة النجاح:</strong> معظم الناس يخسرون</div>
+      </div>
+    </div>
+
+    <div style="background:rgba(255,208,90,.05);border:1px solid rgba(255,208,90,.2);border-radius:4px;padding:18px 22px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">↳ الخطأ الأكثر شيوعًا</div>
+      <div style="font-size:13px;color:var(--text-dim);line-height:1.7;">يفتح الناس حسابات من أجل <em>بناء الثروة</em> فينتهون إلى <em>المضاربة</em> بلا قصد. يشترون سهمًا للأجل الطويل، ثم يرونه يهبط 5% فيبيعون في ذعر، ثم يشترون شيئًا آخر أملًا في ارتداد سريع. هذا ليس استثمارًا — هذا تداول عاطفي باهظ. اختر هدفك قبل أن تختار الصفقة.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 02 TIME HORIZONS ══ -->
+<div class="section" id="s2">
+  <div class="container">
+    <span class="section-num">02 — الآفاق الزمنية</span>
+    <h2 class="section-title">الطيف: من العقود إلى الثواني</h2>
+    <p class="section-lead">"التداول" كلمة واحدة تغطي أنشطة شديدة الاختلاف. الاحتفاظ بسهم كوكاكولا 30 سنة تداول. وشراء سهم وبيعه في 4 ثوانٍ تداول أيضًا. ولا يكاد يجمع بينهما شيء آخر — تكاليف مختلفة ومهارات مختلفة وأدلة مختلفة على ما ينجح.</p>
+
+    <div style="margin-bottom:32px;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;">
+
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:16px;border-top:3px solid var(--gold);">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--yn-ink);letter-spacing:1px;margin-bottom:6px;">سنوات — عقود</div>
+          <div style="color:var(--yn-ink);font-weight:500;font-size:14px;margin-bottom:8px;">الاستثمار</div>
+          <div style="font-size:12px;color:var(--text-dim);line-height:1.55;">اشترِ واحتفظ. أقل تكلفة لكل قرار. التراكم يقوم بالعمل الثقيل. أفضل نسبة نجاح طويلة الأجل بين كل المقاربات.</div>
+        </div>
+
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:16px;border-top:3px solid var(--teal);">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--yn-ink);letter-spacing:1px;margin-bottom:6px;">أسابيع — شهور</div>
+          <div style="color:var(--yn-ink);font-weight:500;font-size:14px;margin-bottom:8px;">تداول المراكز</div>
+          <div style="font-size:12px;color:var(--text-dim);line-height:1.55;">ركوب اتجاهات السوق الأطول. مزيج من التحليل الأساسي والفني. صفقات قليلة في السنة لكن كلًّا منها ذو وزن.</div>
+        </div>
+
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:16px;border-top:3px solid var(--blue);">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--yn-ink);letter-spacing:1px;margin-bottom:6px;">أيام — أسابيع</div>
+          <div style="color:var(--yn-ink);font-weight:500;font-size:14px;margin-bottom:8px;">تداول التأرجح</div>
+          <div style="font-size:12px;color:var(--text-dim);line-height:1.55;">اقتناص التأرجحات قصيرة الأجل. تحليل فني خالص عادةً. تبيت ومراكزك مفتوحة، وتركبها بضعة أيام، وتخرج عند إشارة من الرسم البياني.</div>
+        </div>
+
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:16px;border-top:3px solid var(--orange);">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--yn-ink);letter-spacing:1px;margin-bottom:6px;">دقائق — ساعات</div>
+          <div style="color:var(--yn-ink);font-weight:500;font-size:14px;margin-bottom:8px;">التداول اليومي</div>
+          <div style="font-size:12px;color:var(--text-dim);line-height:1.55;">تفتح المراكز وتغلقها في اليوم نفسه. لا مبيت أبدًا. عمل بدوام كامل. عبء نفسي عالٍ وتكاليف تنفيذ عالية.</div>
+        </div>
+
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:16px;border-top:3px solid var(--red);">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--red);letter-spacing:1px;margin-bottom:6px;">ثوانٍ — دقائق</div>
+          <div style="color:var(--yn-ink);font-weight:500;font-size:14px;margin-bottom:8px;">المضاربة اللحظية</div>
+          <div style="font-size:12px;color:var(--text-dim);line-height:1.55;">مئات الصفقات في اليوم، كل واحدة تدوم ثوانٍ. ربح ضئيل للغاية في الصفقة الواحدة. وعند الأفراد، هذه لعبة خاسرة في الغالب دائمًا بمجرد احتساب التكاليف.</div>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Poppins',sans-serif;font-size:22px;color:var(--yn-ink);margin-bottom:14px;">النشط مقابل السلبي — المفترق الأكبر</h3>
+    <p style="color:var(--text-dim);font-size:14px;line-height:1.75;margin-bottom:24px;max-width:680px;">عبر الطيف كله أعلاه، هناك اختيار أشد جذريةً: أن تحاول <strong style="color:var(--yn-ink);">التفوق على السوق</strong> (نشط) أو أن تحاول <strong style="color:var(--yn-ink);">مجاراة السوق</strong> (سلبي). الجلسة 2 عرضت الخلاصة بالفعل — على مدى 20 سنة، نحو 95% من المديرين النشطين المحترفين يخسرون أمام المؤشر. ومع ذلك ما زال معظم مستثمري الأفراد يحاولون التفوق عليه. وإليك لماذا يظل الاختياران قابلين للدفاع عنهما:</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:20px;">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:22px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">سلبي</div>
+        <div style="color:var(--yn-ink);font-weight:500;font-size:15px;margin-bottom:10px;">اشترِ السوق كله. وانسه.</div>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.65;">تشتري صندوق مؤشرات متداولًا (مثل صندوق EGX30 أو صندوق S&P500) وتتركه يعمل. تقبل عائد السوق المتوسط — لكنك في المقابل لا تدفع رسومًا تُذكر، ولا تتخذ قرارات تقريبًا، ولست مضطرًا للتنبؤ بأي شيء. ممل عن قصد. يفوز بألا يخسر.</div>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:22px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">نشط</div>
+        <div style="color:var(--yn-ink);font-weight:500;font-size:15px;margin-bottom:10px;">اختر ما تشتريه. وحاول تجاوز المتوسط.</div>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.65;">تبحث وتقرر وتوقّت الدخول والخروج. المكافأة حين تصيب أكبر من المؤشر — لكن كلفة الخطأ قاسية. معظم من يجربون هذا يخسرون أمام المؤشر مع الوقت، لكن قلة قليلة تتفوق عليه فعلًا. ومن الصعب أن تعرف مسبقًا في أي المجموعتين أنت.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 03 RISK MANAGEMENT ══ -->
+<div class="section" id="s3">
+  <div class="container">
+    <span class="section-num">03 — إدارة المخاطر</span>
+    <h2 class="section-title">أهم قسم في هذه السلسلة كلها</h2>
+    <p class="section-lead">إن لم تتذكر شيئًا آخر من هذه الجلسات الخمس، فتذكّر هذا: <strong style="color:var(--yn-ink);">أن تبقى في اللعبة طويلًا بما يكفي لتتعلم هو اللعبة كلها.</strong> معظم من يخسرون في التداول لا يخسرون لأنهم اختاروا أسهمًا سيئة — بل لأن صفقة سيئة واحدة كانت كبيرة بما يكفي لتمحو عشرين صفقة جيدة. إدارة المخاطر هي ما يمنع حدوث ذلك.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-bottom:32px;">
+
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:22px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">القاعدة 01</div>
+        <div style="color:var(--yn-ink);font-weight:600;font-size:16px;margin-bottom:8px;">تحديد حجم المركز</div>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.7;">لا تضع في أي صفقة واحدة أكثر من جزء صغير من حسابك. ومعظم المحترفين يتبعون صيغة ما من <strong style="color:var(--yn-ink);">قاعدة الـ1%</strong> — لا تخاطر بأكثر من 1% من إجمالي حسابك في أي مركز واحد. إن كان لديك 100,000 EGP، فأقصى ما ينبغي أن تقبل خسارته في صفقة واحدة هو 1,000.</div>
+      </div>
+
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:22px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">القاعدة 02</div>
+        <div style="color:var(--yn-ink);font-weight:600;font-size:16px;margin-bottom:8px;">أوامر وقف الخسارة</div>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.7;">حدد سعر خروجك <em>قبل</em> أن تدخل الصفقة. ولحظة يبلغ السعر مستوى وقفك، تخرج — بلا مفاوضة مع نفسك. وأكبر خطأ يقع فيه مستثمرو الأفراد هو إبعاد مستوى الوقف حين يوشك أن يُفعَّل. هكذا تتحول خسارة صغيرة إلى كارثة.</div>
+      </div>
+
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:22px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">القاعدة 03</div>
+        <div style="color:var(--yn-ink);font-weight:600;font-size:16px;margin-bottom:8px;">التنويع</div>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.7;">لا تضع كل شيء في سهم واحد. ولا في قطاع واحد. ولا في بلد واحد. الغاية كلها تقليل احتمال أن يخرجك حدث سيئ واحد من اللعبة. التنويع لا يعظّم العوائد — بل يقلّص الكارثة.</div>
+      </div>
+
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:22px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">القاعدة 04</div>
+        <div style="color:var(--yn-ink);font-weight:600;font-size:16px;margin-bottom:8px;">نسبة المخاطرة إلى العائد</div>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.7;">قبل كل صفقة، اسأل: كم أخسر إن أخطأت، مقابل كم أربح إن أصبت؟ معظم المحترفين لا يدخلون صفقة إلا إذا كان المكسب المحتمل ضعفي الخسارة المحتملة على الأقل. يمكن أن تصيب في أقل من نصف المرات وتظل رابحًا — إن كانت مكاسبك أكبر من خسائرك.</div>
+      </div>
+    </div>
+
+    <div style="background:rgba(179,38,30,.05);border:1px solid rgba(179,38,30,.2);border-radius:4px;padding:24px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--red);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;">↳ الحساب الذي يفاجئ الجميع</div>
+      <div style="font-size:14px;color:var(--text-dim);line-height:1.75;margin-bottom:16px;">الخسائر تؤلم أكثر مما تنفع المكاسب. إن خسرت 50% في صفقة، فلا تحتاج 50% للعودة إلى نقطة التعادل — تحتاج <strong style="color:var(--yn-ink);">100%</strong>. وكلما عمقت الحفرة صعب الخروج منها:</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;">
+        <div style="background:var(--bg2);border-radius:3px;padding:14px;text-align:center;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--red);letter-spacing:1px;margin-bottom:6px;">خسارة</div>
+          <div style="color:var(--yn-ink);font-size:18px;font-weight:600;">-10%</div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">تحتاج <strong style="color:var(--green);">+11%</strong> للتعافي</div>
+        </div>
+        <div style="background:var(--bg2);border-radius:3px;padding:14px;text-align:center;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--red);letter-spacing:1px;margin-bottom:6px;">خسارة</div>
+          <div style="color:var(--yn-ink);font-size:18px;font-weight:600;">-25%</div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">تحتاج <strong style="color:var(--green);">+33%</strong> للتعافي</div>
+        </div>
+        <div style="background:var(--bg2);border-radius:3px;padding:14px;text-align:center;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--red);letter-spacing:1px;margin-bottom:6px;">خسارة</div>
+          <div style="color:var(--yn-ink);font-size:18px;font-weight:600;">-50%</div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">تحتاج <strong style="color:var(--green);">+100%</strong> للتعافي</div>
+        </div>
+        <div style="background:var(--bg2);border-radius:3px;padding:14px;text-align:center;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--red);letter-spacing:1px;margin-bottom:6px;">خسارة</div>
+          <div style="color:var(--yn-ink);font-size:18px;font-weight:600;">-75%</div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">تحتاج <strong style="color:var(--green);">+300%</strong> للتعافي</div>
+        </div>
+        <div style="background:var(--bg2);border-radius:3px;padding:14px;text-align:center;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--red);letter-spacing:1px;margin-bottom:6px;">خسارة</div>
+          <div style="color:var(--yn-ink);font-size:18px;font-weight:600;">-90%</div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">تحتاج <strong style="color:var(--green);">+900%</strong> للتعافي</div>
+        </div>
+      </div>
+      <div style="font-size:13px;color:var(--text-dim);line-height:1.65;margin-top:16px;">لهذا حماية رأس مالك أهم بكثير من مطاردة المكاسب الكبيرة. المتداول الذي لا يدع خسارة واحدة تتجاوز 5–10% من مركزه يستطيع النجاة من أي سوق تقريبًا. أما من يترك صفقة واحدة تصل إلى ‎-50% فقد لا يتعافى أبدًا.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 04 BIASES ══ -->
+<div class="section" id="s4">
+  <div class="container">
+    <span class="section-num">04 — الانحيازات السلوكية</span>
+    <h2 class="section-title">دماغك هو العدو</h2>
+    <p class="section-lead">الأسواق لا تهزمك — قراراتك أنت هي التي تهزمك. عقود من أبحاث التمويل السلوكي أظهرت أن للبشر اختصارات ذهنية متوقعة ومتكررة تضر بتداولهم. ومعرفة هذه الانحيازات لا تجعلك محصّنًا. لكنها تمنحك فرصة حقيقية لتضبط نفسك.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;">
+
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:22px;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;width:3px;height:100%;background:var(--red);"></div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--red);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">الانحياز 01</div>
+        <div style="color:var(--yn-ink);font-weight:600;font-size:15px;margin-bottom:8px;">النفور من الخسارة</div>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.7;">خسارة 1,000 EGP تؤلم نحو <strong style="color:var(--yn-ink);">ضعفي</strong> ما تُسعد به مكاسب 1,000 EGP. لذلك يحتفظ الناس بالخاسر أملًا في تعافيه (هربًا من ألم تحقيق الخسارة) ويبيعون الرابح مبكرًا (تثبيتًا للمتعة). وكلا السلوكين معكوس تمامًا.</div>
+      </div>
+
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:22px;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;width:3px;height:100%;background:var(--orange);"></div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">الانحياز 02</div>
+        <div style="color:var(--yn-ink);font-weight:600;font-size:15px;margin-bottom:8px;">انحياز التأكيد</div>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.7;">بمجرد أن تملك سهمًا، تبدأ في البحث عن الأخبار التي تدعم رأيك وتتجاهل ما يناقضه. متفائل بشأن CIB؟ ستقرأ كل تقرير محلل إيجابي وتصرف السلبي منها بوصفه منحازًا. صار دماغك مسؤول العلاقات العامة لسهمك، لا محلله.</div>
+      </div>
+
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:22px;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;width:3px;height:100%;background:var(--gold);"></div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">الانحياز 03</div>
+        <div style="color:var(--yn-ink);font-weight:600;font-size:15px;margin-bottom:8px;">انحياز الأحدث</div>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.7;">ما حدث للتو يبدو وكأنه الوضع الطبيعي الجديد. بعد ثلاثة أيام جيدة، تفترض أن الاتجاه صاعد إلى الأبد. وبعد ثلاثة أيام سيئة، تفترض أن العالم ينتهي. الأسواق لا تعبأ بأيامك الثلاثة الأخيرة — لكن دماغك يزنها كأنها كل شيء.</div>
+      </div>
+
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:22px;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;width:3px;height:100%;background:var(--teal);"></div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">الانحياز 04</div>
+        <div style="color:var(--yn-ink);font-weight:600;font-size:15px;margin-bottom:8px;">أثر التصرّف</div>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.7;">نتيجة محددة للنفور من الخسارة: المستثمرون يبيعون الرابحين بسرعة ويحتفظون بالخاسرين طويلًا. والنتيجة محفظة من أسهم متعثرة، بينما الأقوياء — الذين كان ينبغي أن يتراكموا — بيعوا قبل شهور. والسوق يكافئ السلوك المعاكس.</div>
+      </div>
+
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:22px;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;width:3px;height:100%;background:var(--indigo);"></div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">الانحياز 05</div>
+        <div style="color:var(--yn-ink);font-weight:600;font-size:15px;margin-bottom:8px;">الثقة المفرطة</div>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.7;">معظم المتداولين يصنّفون أنفسهم "فوق المتوسط" — وهو أمر مستحيل إحصائيًا. وبعد بضع صفقات جيدة، يفترض الناس أن لديهم مهارة. فيتداولون أكثر ويكبّرون مراكزهم ويتخطون إدارة المخاطر. والسوق يلقّنهم الدرس في النهاية، وبثمن باهظ غالبًا.</div>
+      </div>
+
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:22px;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;width:3px;height:100%;background:var(--blue);"></div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">الانحياز 06</div>
+        <div style="color:var(--yn-ink);font-weight:600;font-size:15px;margin-bottom:8px;">عقلية القطيع</div>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.7;">حين يشتري الجميع، تشعر بالغباء إن لم تشترِ. وحين يبيع الجميع، تشعر بالغباء إن لم تبع. الحشد على صواب في معظم الوقت — لكنه عند الأطراف (القمم والانهيارات) مخطئ بشكل كارثي. واتّباعه في تلك اللحظات هو ما توقع به الفقاعات الناس.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 05 LOSERS' GAME ══ -->
+<div class="section" id="s5">
+  <div class="container">
+    <span class="section-num">05 — لعبة الخاسرين</span>
+    <h2 class="section-title">صورة صادقة عن تداول الأفراد</h2>
+    <p class="section-lead">حان وقت الجزء الذي لا يريد أحد قوله بصوت عالٍ: معظم متداولي الأفراد يخسرون. ليس بعضهم. معظمهم. والأرقام متسقة بشكل لافت عبر الأسواق والعقود والمنهجيات. هذا ليس ترهيبًا — بل أنفع ما يمكن أن تعرفه قبل أن تبدأ.</p>
+
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:28px;margin-bottom:28px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:18px;">↳ ما تُظهره الأبحاث باستمرار</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;">
+        <div>
+          <div style="font-family:'Poppins',sans-serif;font-size:32px;color:var(--red);font-weight:700;line-height:1;">~70-80%</div>
+          <div style="font-size:13px;color:var(--text-dim);line-height:1.6;margin-top:8px;">من متداولي الأفراد اليوميين النشطين يخسرون المال في أي سنة. ومعظم الدراسات على البرازيل وتايوان وشركات الوساطة الأمريكية للأفراد تلتقي عند هذا النطاق.</div>
+        </div>
+        <div>
+          <div style="font-family:'Poppins',sans-serif;font-size:32px;color:var(--red);font-weight:700;line-height:1;">~95%</div>
+          <div style="font-size:13px;color:var(--text-dim);line-height:1.6;margin-top:8px;">من مديري الصناديق النشطة المحترفين يقصّرون عن مؤشرهم المرجعي على مدى 20 سنة (تقرير S&P SPIVA). إن كان المحترفون يتعثرون، فماذا يقول هذا عن بقيتنا؟</div>
+        </div>
+        <div>
+          <div style="font-family:'Poppins',sans-serif;font-size:32px;color:var(--yn-ink);font-weight:700;line-height:1;">~1%</div>
+          <div style="font-size:13px;color:var(--text-dim);line-height:1.6;margin-top:8px;">من المتداولين اليوميين يحققون ربحًا مستمرًا على مدى سنوات عدة (دراسة برازيلية، 2020). ممكن — لكنه نادر.</div>
+        </div>
+      </div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:18px;line-height:1.6;">المصادر: <a href="https://www.spglobal.com/spdji/en/research-insights/spiva/" target="_blank" style="color:var(--yn-ink);">تقرير S&P SPIVA</a> · <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3423101" target="_blank" style="color:var(--yn-ink);">Chague, De-Losso & Giovannetti (2020)</a> عن المتداولين اليوميين في البرازيل</div>
+    </div>
+
+    <h3 style="font-family:'Poppins',sans-serif;font-size:22px;color:var(--yn-ink);margin-bottom:14px;">لماذا يخسر معظمهم</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:28px;">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:18px;">
+        <div style="color:var(--yn-ink);font-weight:500;font-size:14px;margin-bottom:6px;">التكاليف تتراكم</div>
+        <div style="font-size:12px;color:var(--text-dim);line-height:1.55;">العمولات والفوارق السعرية والضرائب وتكلفة الفرصة البديلة. التداول النشط ينزف 1–3% سنويًا قبل أن تتخذ قرارًا أصلًا. أما صناديق المؤشرات فلا تكاد تنزف شيئًا.</div>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:18px;">
+        <div style="color:var(--yn-ink);font-weight:500;font-size:14px;margin-bottom:6px;">لا أفضلية</div>
+        <div style="font-size:12px;color:var(--text-dim);line-height:1.55;">إن لم تعرف <em>لماذا</em> ستفوز باستمرار على أناس يفعلون هذا بدوام كامل وبأدوات أفضل، فالأرجح أنك لن تفوز.</div>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:18px;">
+        <div style="color:var(--yn-ink);font-weight:500;font-size:14px;margin-bottom:6px;">تراكم الانحيازات</div>
+        <div style="font-size:12px;color:var(--text-dim);line-height:1.55;">كل انحياز من القسم السابق يتراكم. النفور من الخسارة + الثقة المفرطة + انحياز الأحدث = عاصفة مثالية من القرارات السيئة، مكررة.</div>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:18px;">
+        <div style="color:var(--yn-ink);font-weight:500;font-size:14px;margin-bottom:6px;">انحياز الناجين</div>
+        <div style="font-size:12px;color:var(--text-dim);line-height:1.55;">تسمع عمّن أثروا من التداول. ولا تسمع عن العدد الأكبر بكثير ممن أفلسوا بهدوء. الفائزون الظاهرون ليسوا عينة ممثِّلة.</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Poppins',sans-serif;font-size:22px;color:var(--yn-ink);margin-bottom:14px;">ما يفعله الناجون على نحو مختلف</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:28px;">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:18px;border-top:2px solid var(--green);">
+        <div style="color:var(--yn-ink);font-weight:500;font-size:14px;margin-bottom:6px;">الهوس بالمخاطر</div>
+        <div style="font-size:12px;color:var(--text-dim);line-height:1.55;">كل متداول ناجح ستقابله يتحدث عن الخسائر أكثر من المكاسب. لا لأنه يستمتع بذلك — بل لأن التحكم فيها هو ما أبقاه في اللعبة طويلًا بما يكفي ليفوز.</div>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:18px;border-top:2px solid var(--green);">
+        <div style="color:var(--yn-ink);font-weight:500;font-size:14px;margin-bottom:6px;">امتلك عملية لا آراء</div>
+        <div style="font-size:12px;color:var(--text-dim);line-height:1.55;">لكل دخول وخروج وحجم مركز سبب موثّق موجود قبل أن يضغطوا الزر. والتقدير الشخصي عدو الاتساق.</div>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:18px;border-top:2px solid var(--green);">
+        <div style="color:var(--yn-ink);font-weight:500;font-size:14px;margin-bottom:6px;">تداول أقل</div>
+        <div style="font-size:12px;color:var(--text-dim);line-height:1.55;">صفقات أكثر = تكاليف تنفيذ أكثر وفرص أكثر للخطأ. وحسابات الأفراد الأسوأ أداءً هي في الغالب دائمًا الأكثر نشاطًا.</div>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:18px;border-top:2px solid var(--green);">
+        <div style="color:var(--yn-ink);font-weight:500;font-size:14px;margin-bottom:6px;">ابقَ متواضعًا</div>
+        <div style="font-size:12px;color:var(--text-dim);line-height:1.55;">يفترضون أنهم سيخطئون كثيرًا. يحددون أحجام المراكز ويضعون أوامر الوقف كأن كل صفقة ستخسر. أما المكاسب فتعتني بنفسها.</div>
+      </div>
+    </div>
+
+    <div style="background:rgba(163,198,215,.05);border:1px solid rgba(163,198,215,.2);border-radius:4px;padding:24px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;">↳ الخلاصة الصادقة</div>
+      <div style="font-size:14px;color:var(--text-dim);line-height:1.75;">الغرض من هذه الجلسة ليس تنفيرك من السوق — بل التأكد من أنك تلعب اللعبة التي تريد لعبها فعلًا. إن أردت <strong style="color:var(--yn-ink);">بناء الثروة</strong>، فالأدلة ترجّح بقوة شراء صناديق مؤشرات واسعة والاحتفاظ بها عقودًا. وإن أردت <strong style="color:var(--yn-ink);">التداول النشط</strong>، فافعله بعينين مفتوحتين: أحجام مراكز صغيرة، وإدارة مخاطر صارمة، وعملية تثق بها أكثر من حدسك. الجلستان القادمتان ستعطيانك الأدوات — الفنية والأساسية — التي يستخدمها المتداولون النشطون لاتخاذ تلك القرارات.</div>
+    </div>
+  </div>
+</div>
+
+<!-- NEXT -->
+
+
+<script>
+// NAV
+function goTo(id){document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'});}
+const sids=['s1','s2','s3','s4','s5'];
+const nitems=document.querySelectorAll('.nav-item');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  sids.forEach(id=>{const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<140)cur=id;});
+  nitems.forEach((n,i)=>n.classList.toggle('active',sids[i]===cur));
+});
+
+Chart.defaults.color='#666666';
+Chart.defaults.borderColor='#AC91E1';
+
+</script>
+</div>

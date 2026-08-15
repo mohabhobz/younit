@@ -1,0 +1,464 @@
+<!-- Younit lesson deck — a fragment, not a document.
+
+     Rendered into the site by src/pages/SessionDeck.jsx. Every style below is
+     scoped to .yn-deck, so nothing here reaches the page around it and nothing
+     out there reaches in. Generated from the original standalone deck by
+     tools/scope-decks.mjs; the markup and the copy are as they were written. -->
+<link href="/vendor/deck-fonts.css" rel="stylesheet">
+<link href="/vendor/deck.css" rel="stylesheet">
+<style>
+.yn-deck {
+  --bg:#D7D7D7;--bg2:#FFFFFF;--bg3:#FFFFFF;--card:#FFFFFF;--border:#AC91E1;
+  --gold:#FFD05A;--gold-light:#FFD05A;--teal:#A3C6D7;--teal-dim:#A3C6D7;
+  --red:#B3261E;--green:#1C7A3E;--text:#000000;--text-dim:#444444;--text-muted:#666666;
+}
+.yn-deck *{margin:0;padding:0;box-sizing:border-box;}
+.yn-deck{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-serif;font-size:15px;line-height:1.7;overflow-x:hidden;}
+
+/* BACK BUTTON */
+.yn-deck .back-btn{position:absolute;top:24px;left:24px;display:inline-flex;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--text-muted);text-decoration:none;text-transform:uppercase;border:1px solid var(--border);padding:6px 14px;border-radius:2px;transition:all .2s;z-index:10;}
+.yn-deck .back-btn:hover{border-color:var(--gold);color:var(--gold);}
+.yn-deck .back-btn::before{content:'←';margin-right:2px;}
+
+/* HEADER */
+.yn-deck header{position:relative;padding:60px 0 80px;text-align:center;overflow:hidden;border-bottom:1px solid var(--border);}
+.yn-deck header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(255,208,90,.12) 0%,transparent 70%),radial-gradient(ellipse 50% 40% at 80% 50%,rgba(163,198,215,.06) 0%,transparent 60%);}
+.yn-deck .efg-logo{display:inline-flex;align-items:center;gap:10px;margin-bottom:32px;position:relative;}
+.yn-deck .efg-logo-mark{width:36px;height:36px;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-weight:700;color:var(--gold);font-size:14px;letter-spacing:1px;}
+.yn-deck .efg-logo-text{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:3px;color:var(--text-dim);text-transform:uppercase;}
+.yn-deck .session-tag{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--teal);border:1px solid var(--teal-dim);padding:4px 14px;border-radius:2px;margin-bottom:20px;position:relative;}
+.yn-deck h1{font-family:'Poppins',sans-serif;font-size:clamp(36px,5vw,64px);font-weight:900;line-height:1.1;position:relative;background:linear-gradient(135deg,#fff 30%,var(--gold) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:16px;}
+.yn-deck .subtitle{color:var(--text-dim);font-size:16px;max-width:540px;margin:0 auto;position:relative;}
+.yn-deck .progress-bar-wrap{display:flex;justify-content:center;gap:6px;margin-top:40px;position:relative;}
+.yn-deck .prog-dot{width:32px;height:4px;border-radius:2px;background:var(--border);}
+.yn-deck .prog-dot.active{background:var(--gold);}
+.yn-deck .prog-dot.current{background:var(--teal);}
+
+/* LAYOUT */
+.yn-deck .container{max-width:960px;margin:0 auto;padding:0 24px;}
+.yn-deck .section{padding:64px 0;border-bottom:1px solid var(--border);}
+.yn-deck .section-num{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:3px;margin-bottom:8px;display:block;}
+.yn-deck .section-title{font-family:'Poppins',sans-serif;font-size:32px;font-weight:700;color:var(--yn-ink);margin-bottom:8px;}
+.yn-deck .section-lead{color:var(--text-dim);font-size:15px;max-width:580px;margin-bottom:40px;}
+
+/* PROSE */
+.yn-deck .prose{color:var(--text-dim);font-size:15px;line-height:1.8;margin-bottom:28px;max-width:720px;}
+.yn-deck .prose strong{color:var(--yn-ink);}
+.yn-deck .prose em{color:var(--gold);font-style:normal;}
+.yn-deck .prose + .prose{margin-top:-8px;}
+
+/* RULE / QUOTE BLOCK */
+.yn-deck .rule-block{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:4px;padding:28px 32px;margin-bottom:24px;}
+.yn-deck .rule-block blockquote{font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--yn-ink);line-height:1.8;font-style:normal;}
+.yn-deck .rule-block blockquote strong{color:var(--gold);}
+
+/* CALLOUT */
+.yn-deck .callout{background:rgba(255,208,90,.06);border:1px solid rgba(255,208,90,.2);border-radius:4px;padding:14px 20px;margin-bottom:24px;font-size:13px;color:var(--text-dim);font-family:'IBM Plex Mono',monospace;line-height:1.6;}
+.yn-deck .callout strong{color:var(--yn-ink);}
+
+/* FLOW */
+.yn-deck .flow-row{display:flex;align-items:stretch;gap:0;flex-wrap:wrap;margin-bottom:32px;}
+.yn-deck .flow-item{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:18px 20px;flex:1;min-width:130px;text-align:center;position:relative;}
+.yn-deck .flow-item-label{font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--gold);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
+.yn-deck .flow-item-val{font-size:14px;color:var(--yn-ink);font-weight:500;line-height:1.45;}
+.yn-deck .flow-arrow{color:var(--gold);font-size:20px;padding:18px 8px;flex-shrink:0;display:flex;align-items:center;}
+
+/* CARDS */
+.yn-deck .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-bottom:32px;}
+.yn-deck .card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:24px;position:relative;overflow:hidden;transition:border-color .2s,transform .2s;}
+.yn-deck .card:hover{border-color:var(--gold);transform:translateY(-2px);}
+.yn-deck .card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent);opacity:0;transition:opacity .2s;}
+.yn-deck .card:hover::before{opacity:1;}
+.yn-deck .card-label{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:10px;}
+.yn-deck .card-title{font-weight:600;color:var(--yn-ink);margin-bottom:8px;font-size:15px;}
+.yn-deck .card-body{color:var(--text-dim);font-size:13px;line-height:1.6;}
+.yn-deck .card-body strong{color:var(--yn-ink);}
+
+/* SPLIT / COMPARE */
+.yn-deck .compare-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:16px;margin-bottom:32px;}
+.yn-deck .compare-card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:24px 28px;}
+.yn-deck .compare-label{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;margin-bottom:12px;text-transform:uppercase;}
+.yn-deck .compare-label.known{color:var(--teal);}
+.yn-deck .compare-label.unknown{color:var(--gold);}
+.yn-deck .compare-label.bad{color:var(--red);}
+.yn-deck .compare-body{font-size:13px;color:var(--text-dim);line-height:1.65;}
+.yn-deck .compare-body strong{color:var(--yn-ink);}
+
+/* DATA SPLIT */
+.yn-deck .split-wrap{background:var(--card);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:32px;}
+.yn-deck .split-header{padding:16px 24px;border-bottom:1px solid var(--border);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--text-muted);text-transform:uppercase;}
+.yn-deck .split-bar{display:grid;grid-template-columns:3fr 1fr 1fr;min-height:88px;}
+.yn-deck .split-cell{padding:24px;border-right:1px solid var(--border);position:relative;overflow:hidden;}
+.yn-deck .split-cell:last-child{border-right:none;}
+.yn-deck .split-cell.train::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 120% 120% at 50% 110%,rgba(163,198,215,.06) 0%,transparent 70%);pointer-events:none;}
+.yn-deck .split-cell.optimize::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 120% 120% at 50% 110%,rgba(255,208,90,.06) 0%,transparent 70%);pointer-events:none;}
+.yn-deck .split-cell.holdout::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 120% 120% at 50% 110%,rgba(179,38,30,.06) 0%,transparent 70%);pointer-events:none;}
+.yn-deck .split-kicker{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--text-muted);text-transform:uppercase;margin-bottom:8px;position:relative;}
+.yn-deck .split-title{font-family:'Poppins',sans-serif;font-size:24px;color:var(--yn-ink);line-height:1.1;margin-bottom:8px;position:relative;}
+.yn-deck .split-desc{font-size:13px;color:var(--text-dim);line-height:1.55;position:relative;}
+
+/* ITEM LIST */
+.yn-deck .item-list{display:flex;flex-direction:column;gap:0;margin-bottom:32px;}
+.yn-deck .item-entry{padding:28px 0;border-bottom:1px solid var(--border);}
+.yn-deck .item-entry:last-child{border-bottom:none;}
+.yn-deck .item-head{display:flex;align-items:baseline;gap:16px;margin-bottom:12px;}
+.yn-deck .item-num{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;flex-shrink:0;min-width:44px;color:var(--red);}
+.yn-deck .item-title{font-family:'Poppins',sans-serif;font-size:22px;font-weight:700;color:var(--yn-ink);}
+.yn-deck .item-body{color:var(--text-dim);font-size:15px;line-height:1.8;max-width:720px;padding-left:60px;}
+.yn-deck .item-body strong{color:var(--yn-ink);}
+.yn-deck .item-body em{color:var(--gold);font-style:normal;}
+
+/* TAKEAWAYS */
+.yn-deck .takeaway-wrap{background:linear-gradient(135deg,rgba(255,208,90,.06),rgba(163,198,215,.04));border:1px solid rgba(255,208,90,.25);border-radius:4px;padding:36px 40px;margin-top:16px;}
+.yn-deck .takeaway-heading{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:20px;}
+.yn-deck .takeaway-list{list-style:none;padding:0;}
+.yn-deck .takeaway-list li{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid var(--border);font-size:14px;color:var(--text-dim);line-height:1.6;}
+.yn-deck .takeaway-list li:last-child{border-bottom:none;}
+.yn-deck .takeaway-list li::before{content:'✓';color:var(--teal);font-family:'IBM Plex Mono',monospace;font-size:12px;flex-shrink:0;margin-top:2px;}
+.yn-deck .takeaway-list li strong{color:var(--yn-ink);}
+
+/* NEXT CARD */
+.yn-deck .next-card{background:linear-gradient(135deg,rgba(255,208,90,.08),rgba(163,198,215,.05));border:1px solid var(--gold);border-radius:4px;padding:32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;margin-top:40px;}
+.yn-deck .next-label{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:2px;margin-bottom:8px;}
+.yn-deck .next-title{font-family:'Poppins',sans-serif;font-size:22px;color:var(--yn-ink);}
+.yn-deck .next-btn{background:var(--gold);color:#000;border:none;padding:12px 28px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:1px;cursor:pointer;border-radius:2px;text-transform:uppercase;font-weight:500;transition:background .15s;}
+.yn-deck .next-btn:hover{background:var(--gold-light);}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.yn-deck .section{animation:fadeUp .5s ease both;}
+
+@media(max-width:700px){
+  .yn-deck .compare-row{grid-template-columns:1fr;}
+  .yn-deck .split-bar{grid-template-columns:1fr;}
+  .yn-deck .split-cell{border-right:none;border-bottom:1px solid var(--border);}
+  .yn-deck .split-cell:last-child{border-bottom:none;}
+  .yn-deck .item-body{padding-left:0;}
+  .yn-deck .flow-arrow{display:none;}
+}
+</style>
+<div class="yn-deck">
+<!-- HEADER -->
+<header>
+  <a class="back-btn" href="/learn/algo-track" target="_top">مسار الخوارزميات</a>
+  <div class="container">
+    <div class="efg-logo">
+      <div class="efg-logo-mark">EFG</div>
+      <div class="efg-logo-text">مسار الخوارزميات</div>
+    </div>
+    <div class="session-tag">الجزء 04 / 07</div>
+    <h1>الاختبار الرجعي:<br>اختبار الأفكار على الماضي</h1>
+    <p class="subtitle">كيف تستخدم التاريخ كمحاكٍ — وكيف تقرأ النتائج دون أن تخدع نفسك.</p>
+    <div class="progress-bar-wrap">
+      <div class="prog-dot active"></div>
+      <div class="prog-dot active"></div>
+      <div class="prog-dot active"></div>
+      <div class="prog-dot current"></div>
+      <div class="prog-dot"></div>
+      <div class="prog-dot"></div>
+      <div class="prog-dot"></div>
+    </div>
+  </div>
+</header>
+
+<!-- INTRO -->
+<div class="section">
+  <div class="container">
+    <span class="section-num">01 — لماذا يهم هذا</span>
+    <h2 class="section-title">من استراتيجية محددة إلى فكرة قابلة للاختبار</h2>
+    <p class="section-lead">أظهر الجزء 3 كيف تحدد الصفقة والاستراتيجية. والآن يأتي السؤال التالي: هل كانت هذه الفكرة لتنجح من قبل؟</p>
+
+    <p class="prose">هذا السؤال هو سبب وجود الاختبار الرجعي. بدل المخاطرة بمال حقيقي على استراتيجية لأنها تبدو ذكية، تمرر القواعد على بيانات السوق التاريخية وتراقب ما كان ليحدث. كل دخول، وكل خروج، وكل وقف خسارة، وكل تكلفة — يُحاكى قبل إرسال أمر حقيقي واحد.</p>
+
+    <div class="rule-block">
+      <blockquote>الاختبار الرجعي ليس وعدًا بأن الاستراتيجية ستحقق ربحًا. هو طريقة لطرح سؤال أفضل: <strong>هل هذه الفكرة متماسكة بما يكفي لاختبارها بجدية أكبر؟</strong></blockquote>
+    </div>
+
+    <p class="prose">فكّر فيه كمحاكي طيران. هو لا يثبت أنك قادر على الطيران خلال كل عاصفة. لكنه يتيح لك التمرن على أدوات التحكم، وإجهاد النظام، واكتشاف الأخطاء الواضحة قبل أن تغادر الطائرة الحقيقية الأرض.</p>
+  </div>
+</div>
+
+<!-- WHAT IT DOES -->
+<div class="section">
+  <div class="container">
+    <span class="section-num">02 — المحاكي</span>
+    <h2 class="section-title">ما الذي يفعله الاختبار الرجعي فعلًا</h2>
+    <p class="section-lead">يشغّل الاختبار الرجعي تاريخ السوق إلى الأمام، خطوة بخطوة، بينما تتفاعل استراتيجيتك وفق قواعدها.</p>
+
+    <div class="flow-row">
+      <div class="flow-item">
+        <div class="flow-item-label">01</div>
+        <div class="flow-item-val">فكرة</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item">
+        <div class="flow-item-label">02</div>
+        <div class="flow-item-val">قواعد</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item">
+        <div class="flow-item-label">03</div>
+        <div class="flow-item-val">بيانات تاريخية</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item">
+        <div class="flow-item-label">04</div>
+        <div class="flow-item-val">صفقات محاكاة</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item">
+        <div class="flow-item-label">05</div>
+        <div class="flow-item-val">نتائج</div>
+      </div>
+    </div>
+
+    <p class="prose">قد يسأل اختبار رجعي بسيط: كلما تجاوز المتوسط المتحرك لـ 20 يومًا المتوسط المتحرك لـ 50 يومًا صعودًا، اشترِ السهم. ثم بِع عند حدوث التقاطع العكسي، أو عند بلوغ وقف الخسارة، أو عند انتهاء المدة القصوى.</p>
+
+    <p class="prose">يمشي برنامج الاختبار الرجعي عبر الشموع التاريخية ويسجل ما كانت الاستراتيجية لتفعله في كل نقطة زمنية. المخرَج ليس رقم ربح نهائيًا واحدًا فقط. هو السلوك الكامل للاستراتيجية: متى دخلت، ومتى خرجت، وكم استمرت الصفقات، وإلى أي عمق وصلت الخسائر، وكم مرة تداولت، وهل صمدت الفكرة أمام تكاليف واقعية.</p>
+  </div>
+</div>
+
+<!-- WHAT YOU MEASURE -->
+<div class="section">
+  <div class="container">
+    <span class="section-num">03 — القياس</span>
+    <h2 class="section-title">ما الذي تقيسه</h2>
+    <p class="section-lead">المبتدئ ينظر إلى العائد فقط. البنّاء ينظر إلى شكل العائد.</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-label">العائد</div>
+        <div class="card-title">هل حققت الاستراتيجية ربحًا؟</div>
+        <div class="card-body">مفيد، لكنه غير كافٍ وحده. عائد مرتفع مصحوب بخسائر مرعبة قد لا يكون قابلًا للتداول.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">نسبة الصفقات الرابحة</div>
+        <div class="card-title">كم مرة ربحت؟</div>
+        <div class="card-body">قد تنجح نسبة ربح منخفضة إذا كانت الصفقات الرابحة أكبر بكثير من الخاسرة. وقد تفشل نسبة ربح مرتفعة إذا كانت الخسائر ضخمة.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">المردود</div>
+        <div class="card-title">متوسط الربح مقابل متوسط الخسارة</div>
+        <div class="card-body">يخبرك هذا إن كانت الاستراتيجية تحقق مكاسب صغيرة متكررة، أو مكاسب كبيرة نادرة، أو شيئًا بينهما.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">أقصى تراجع</div>
+        <div class="card-title">إلى أي مدى ساءت الأمور؟</div>
+        <div class="card-body">أعمق خسارة من القمة إلى القاع. غالبًا ما يكون هذا الرقم هو ما يقرر إن كان الإنسان قادرًا فعلًا على الالتزام بالاستراتيجية.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">عدد الصفقات</div>
+        <div class="card-title">كم صفقة حدثت؟</div>
+        <div class="card-body">استراتيجية اختُبرت على 12 صفقة تخبرك أقل بكثير من استراتيجية اختُبرت على مئات الصفقات.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">التعرض</div>
+        <div class="card-title">كم من الوقت كان رأس المال عاملًا؟</div>
+        <div class="card-body">استراتيجيتان بالعائد نفسه قد تكون مخاطرهما مختلفة تمامًا إذا كانت إحداهما مستثمرة باستمرار والأخرى نادرًا ما تتعرض.</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      ↳ الاختبار الرجعي ليس بحثًا عن أكبر رقم. هو فهم لسلوك الاستراتيجية.
+    </div>
+  </div>
+</div>
+
+<!-- ML MENTALITY -->
+<div class="section">
+  <div class="container">
+    <span class="section-num">04 — انضباط البيانات</span>
+    <h2 class="section-title">تعامل مع البيانات التاريخية كبيانات تعلّم الآلة</h2>
+    <p class="section-lead">لا تحكم على استراتيجية بالبيانات نفسها التي استخدمتها لابتكارها أو ضبطها.</p>
+
+    <p class="prose">هذا أسهل موضع تخدع فيه نفسك. تختبر فكرة، وتعدّلها، وتختبر مجددًا، وتعدّل مجددًا، وفي النهاية تبدو الاستراتيجية ممتازة على الفترة التاريخية نفسها التي ظللت تحدق فيها. لكن هذا لا يعني أنك وجدت أفضلية حقيقية. قد يعني فقط أنك حفظت الماضي.</p>
+
+    <div class="split-wrap">
+      <div class="split-header">مثال على تقسيم البيانات · 8 سنوات من التاريخ</div>
+      <div class="split-bar">
+        <div class="split-cell train">
+          <div class="split-kicker">تدريب</div>
+          <div class="split-title">6 سنوات</div>
+          <div class="split-desc">استخدم هذا لتطوير الفكرة وفهم كيف تتصرف القواعد.</div>
+        </div>
+        <div class="split-cell optimize">
+          <div class="split-kicker">تحسين / اختبار</div>
+          <div class="split-title">سنة واحدة</div>
+          <div class="split-desc">استخدم هذا لمقارنة النسخ دون المساس باختبار الواقع النهائي.</div>
+        </div>
+        <div class="split-cell holdout">
+          <div class="split-kicker">احتياطي غير ممسوس</div>
+          <div class="split-title">سنة واحدة</div>
+          <div class="split-desc">أبقِ هذا غير مرئي تمامًا حتى النهاية. هنا تموت الأعذار.</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="prose">يستخدم بعض الممارسين تقسيمًا ثنائيًا بسيطًا: تدريب على ست سنوات واختبار على سنتين. ويستخدم آخرون ثلاث مجموعات: تدريب، وتحسين، وتحقق نهائي. التقسيم الدقيق قد يختلف. أما المبدأ فلا: <strong>أبقِ جزءًا من البيانات دون مساس حتى النهاية.</strong></p>
+
+    <p class="prose">في التداول، ينبغي عادة أن يكون الجزء غير الممسوس حديثًا. الأسواق تتطور. الاستراتيجية التي تعمل في الظروف القديمة فقط قد تبدو جميلة في الماضي وبلا صلة اليوم. البيانات الحديثة أقرب إلى السوق الذي أنت على وشك التداول فيه فعلًا.</p>
+  </div>
+</div>
+
+<!-- COSTS -->
+<div class="section">
+  <div class="container">
+    <span class="section-num">05 — التكاليف</span>
+    <h2 class="section-title">التكاليف: معلومة ومجهولة</h2>
+    <p class="section-lead">الاختبار الرجعي الذي يتجاهل تكاليف التداول ليس متفائلًا. هو ناقص.</p>
+
+    <div class="compare-row">
+      <div class="compare-card">
+        <div class="compare-label known">العمولة معلومة</div>
+        <div class="compare-body">
+          <p><strong>أدرجها بدقة.</strong> إذا كان للصفقة عمولة وسيط، أو رسوم بورصة، أو ضريبة، أو أي تكلفة معلومة أخرى، فعلى الاختبار الرجعي أن يطرحها في كل مرة تحدث فيها الصفقة المحاكاة.</p>
+          <br>
+          <p>لا حاجة للتخمين هنا. العمولة جزء من الصفقة. وتجاهلها يجعل النتيجة خاطئة بالتصميم.</p>
+        </div>
+      </div>
+      <div class="compare-card">
+        <div class="compare-label unknown">الانزلاق السعري غير مؤكد</div>
+        <div class="compare-body">
+          <p><strong>نمذجه بتحفظ.</strong> الانزلاق السعري هو الفجوة بين السعر الذي يفترضه اختبارك الرجعي والسعر الذي تحصل عليه فعلًا في السوق.</p>
+          <br>
+          <p>قد يفترض اختبارك الرجعي أنك اشتريت عند EGP 10.00. وفي التداول الحي قد يُنفَّذ الأمر عند EGP 10.03، أو EGP 10.05، أو لا يُنفَّذ إطلاقًا. الرقم الدقيق غير معلوم مسبقًا، لذا تستخدم هامشًا واقعيًا.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="rule-block">
+      <blockquote>الاختبار الرجعي الجاد لا يسأل: <strong>«ماذا لو نُفِّذ كل أمر تنفيذًا مثاليًا؟»</strong><br><br>بل يسأل: <strong>«هل تظل هذه الفكرة تعمل بعد تكاليف واقعية وتنفيذ غير مثالي؟»</strong></blockquote>
+    </div>
+
+    <p class="prose">يهم هذا خاصة في الأسواق التي تختلف فيها السيولة اختلافًا حادًا من سهم لآخر. السهم عالي السيولة والسهم قليل التداول قد يكون لهما واقعا تنفيذ مختلفان تمامًا. الاستراتيجية نفسها. الرسم البياني نفسه. تنفيذ مختلف جدًا.</p>
+  </div>
+</div>
+
+<!-- DISTORTIONS -->
+<div class="section">
+  <div class="container">
+    <span class="section-num">06 — التشوهات</span>
+    <h2 class="section-title">أين تتشوّه الاختبارات الرجعية</h2>
+    <p class="section-lead">المقصد ليس الخوف من الاختبارات الرجعية. المقصد أن تعرف أين تنحني المرآة.</p>
+
+    <div class="item-list">
+      <div class="item-entry">
+        <div class="item-head">
+          <span class="item-num">D1</span>
+          <h3 class="item-title">انحياز النظر إلى الأمام</h3>
+        </div>
+        <div class="item-body">
+          <p>استخدام معلومات في الاختبار الرجعي لم تكن لتتوفر لديك وقت الصفقة. مثال: الدخول في صفقة الساعة 10:00 صباحًا باستخدام سعر إغلاق لم يُعرف إلا في نهاية اليوم.</p>
+        </div>
+      </div>
+
+      <div class="item-entry">
+        <div class="item-head">
+          <span class="item-num">D2</span>
+          <h3 class="item-title">انحياز الناجين</h3>
+        </div>
+        <div class="item-body">
+          <p>الاختبار على الأسهم التي ما زالت موجودة اليوم فقط. هذا يزيل بهدوء الشركات التي شُطبت من القيد، أو أُوقفت، أو فشلت — ما يجعل السوق التاريخي يبدو أنظف مما كان عليه حقًا.</p>
+        </div>
+      </div>
+
+      <div class="item-entry">
+        <div class="item-head">
+          <span class="item-num">D3</span>
+          <h3 class="item-title">الإفراط في المواءمة</h3>
+        </div>
+        <div class="item-body">
+          <p>ضبط استراتيجية حتى تلائم فترة تاريخية بعينها ملاءمة جميلة. يتحسن الاختبار الرجعي، لكن الفكرة تصبح أقل واقعية. لم تعد تكتشف سلوكًا للسوق. أنت تنحت الاستراتيجية حول الضجيج.</p>
+        </div>
+      </div>
+
+      <div class="item-entry">
+        <div class="item-head">
+          <span class="item-num">D4</span>
+          <h3 class="item-title">تجاهل التكاليف والانزلاق السعري</h3>
+        </div>
+        <div class="item-body">
+          <p>الاستراتيجية التي تربح فقط قبل العمولة والرسوم والفوارق السعرية والتنفيذ غير المثالي ليست استراتيجية بعد. هي رسم بياني نظيف أُزيل منه الواقع الفوضوي.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LIMIT ORDERS -->
+<div class="section">
+  <div class="container">
+    <span class="section-num">07 — افتراضات التنفيذ</span>
+    <h2 class="section-title">الأوامر محددة السعر والتنفيذ الفائت</h2>
+    <p class="section-lead">ينبغي أن يطابق الاختبار الرجعي الطريقة التي تتوقع أن تنفذ بها في السوق الحي.</p>
+
+    <p class="prose">في التداول الخوارزمي الحي، كثيرًا ما تُفضَّل الأوامر محددة السعر لأنها تمنح يقينًا في السعر. أنت تحدد أعلى سعر مستعد لدفعه، أو أدنى سعر مستعد للبيع عنده. هذا يجعل التنفيذ الحي أقرب إلى افتراضات اختبارك الرجعي.</p>
+
+    <div class="compare-row">
+      <div class="compare-card">
+        <div class="compare-label known">الفائدة</div>
+        <div class="compare-body">
+          <p><strong>التحكم في السعر.</strong> الأمر محدد السعر يحميك من التنفيذ بعيدًا عن السعر الذي توقعته استراتيجيتك.</p>
+        </div>
+      </div>
+      <div class="compare-card">
+        <div class="compare-label bad">المقابل</div>
+        <div class="compare-body">
+          <p><strong>تنفيذ فائت.</strong> إذا لم يصل السوق إلى سعرك المحدد، لا تحدث الصفقة. والاختبار الرجعي الذي يفترض تنفيذ كل أمر محدد السعر يتظاهر بأن المقابل الأساسي غير موجود.</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="prose">الحل العملي ليس التظاهر بأن التنفيذ مثالي. بل توسيع افتراضات الانزلاق السعري، ونمذجة الصفقات الفائتة حيث يناسب، وإبقاء الاختبار الرجعي متحفظًا بما يكفي ليكون للتنفيذ الحي متسع لأن يكون غير مثالي.</p>
+
+    <div class="callout">
+      ↳ كلما كان افتراض التنفيذ أنظف، وجب أن تكون أكثر ارتيابًا. الأسواق الحقيقية ليست بهذا الأدب أبدًا.
+    </div>
+  </div>
+</div>
+
+<!-- CONCLUSION -->
+<div class="section">
+  <div class="container">
+    <span class="section-num">08 — الاستنتاج الصحيح</span>
+    <h2 class="section-title">الاختبار الرجعي فرضية، لا وعد</h2>
+    <p class="section-lead">الهدف ليس اليقين. الهدف مرشّح أفضل.</p>
+
+    <p class="prose">الاختبار الرجعي السيئ يقول: «هذا ربح في الماضي، فسيربح في السوق الحي.» هذا استنتاج خاطئ.</p>
+
+    <p class="prose">الاختبار الرجعي الجيد يقول: «تصرفت هذه الفكرة بتماسك في ظروف تاريخية، وصمدت أمام تكاليف واقعية، وتجنبت التشوهات الواضحة، وتستحق اختبارًا أكثر جدية.» هذه طريقة تفكير أقوى بكثير.</p>
+
+    <div class="rule-block">
+      <blockquote>الاختبار الرجعي هو كيف يحوّل البنّاؤون أفكار التداول إلى نماذج أولية قابلة للاختبار. هو لا يزيل عدم اليقين. بل يجعله مرئيًا.</blockquote>
+    </div>
+  </div>
+</div>
+
+<!-- SUMMARY / NEXT -->
+<div class="section" style="border-bottom:none;">
+  <div class="container">
+    <span class="section-num">09 — الخلاصة</span>
+    <h2 class="section-title">ما ينبغي أن تفهمه الآن</h2>
+    <p class="section-lead">ستة أشياء تحملها معك إلى التنفيذ الحي.</p>
+
+    <div class="takeaway-wrap">
+      <div class="takeaway-heading">أهم النقاط — الجزء 04</div>
+      <ul class="takeaway-list">
+        <li>الاختبار الرجعي يمرر استراتيجية محددة على بيانات تاريخية لمحاكاة كيف كانت لتتصرف.</li>
+        <li>النتيجة ليست العائد فقط. عليك أن تقرأ السلوك الكامل: التراجع، ونسبة الصفقات الرابحة، والمردود، وعدد الصفقات، والتعرض، والتكاليف.</li>
+        <li>تعامل مع البيانات التاريخية كبيانات تعلّم الآلة: درّب على جزء، واختبر على آخر، وأبقِ البيانات الحديثة دون مساس كاختبار للواقع.</li>
+        <li>العمولة معلومة وينبغي إدراجها بدقة. الانزلاق السعري غير مؤكد وينبغي نمذجته بتحفظ.</li>
+        <li>تتشوّه الاختبارات الرجعية بانحياز النظر إلى الأمام، وانحياز الناجين، والإفراط في المواءمة، وافتراضات التنفيذ غير الواقعية.</li>
+        <li>الاختبار الرجعي فرضية لا وعد. يخبرك إن كانت الفكرة تستحق اختبارًا أكثر جدية.</li>
+      </ul>
+    </div>
+
+    <div class="next-card">
+      <div>
+        <div class="next-label">التالي — الجزء 05 / 07</div>
+        <div class="next-title">من الاختبار الرجعي إلى السوق الحي<br><span style="font-size:16px;color:var(--text-dim);font-family:'IBM Plex Sans',sans-serif;font-weight:400;">التنفيذ والمراقبة وضوابط المخاطر التي تمنع الخوارزمية من أن تصبح خطرة.</span></div>
+      </div>
+      <a class="next-btn" href="/learn/algo-track/05-from-backtest-to-live">الجزء 05 →</a>
+    </div>
+  </div>
+</div>
+</div>

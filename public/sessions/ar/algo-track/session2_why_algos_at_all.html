@@ -1,0 +1,430 @@
+<!-- Younit lesson deck — a fragment, not a document.
+
+     Rendered into the site by src/pages/SessionDeck.jsx. Every style below is
+     scoped to .yn-deck, so nothing here reaches the page around it and nothing
+     out there reaches in. Generated from the original standalone deck by
+     tools/scope-decks.mjs; the markup and the copy are as they were written. -->
+<link href="/vendor/deck-fonts.css" rel="stylesheet">
+<link href="/vendor/deck.css" rel="stylesheet">
+<style>
+.yn-deck {
+  --bg:#D7D7D7;--bg2:#FFFFFF;--bg3:#FFFFFF;--card:#FFFFFF;--border:#AC91E1;
+  --gold:#FFD05A;--gold-light:#FFD05A;--teal:#A3C6D7;--teal-dim:#A3C6D7;
+  --red:#B3261E;--green:#1C7A3E;--text:#000000;--text-dim:#444444;--text-muted:#666666;
+}
+.yn-deck *{margin:0;padding:0;box-sizing:border-box;}
+.yn-deck{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-serif;font-size:15px;line-height:1.7;overflow-x:hidden;}
+
+/* BACK BUTTON */
+.yn-deck .back-btn{position:absolute;top:24px;left:24px;display:inline-flex;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--text-muted);text-decoration:none;text-transform:uppercase;border:1px solid var(--border);padding:6px 14px;border-radius:2px;transition:all .2s;z-index:10;}
+.yn-deck .back-btn:hover{border-color:var(--gold);color:var(--gold);}
+.yn-deck .back-btn::before{content:'←';margin-right:2px;}
+
+/* HEADER */
+.yn-deck header{position:relative;padding:60px 0 80px;text-align:center;overflow:hidden;border-bottom:1px solid var(--border);}
+.yn-deck header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(255,208,90,.12) 0%,transparent 70%),radial-gradient(ellipse 50% 40% at 80% 50%,rgba(163,198,215,.06) 0%,transparent 60%);}
+.yn-deck .efg-logo{display:inline-flex;align-items:center;gap:10px;margin-bottom:32px;position:relative;}
+.yn-deck .efg-logo-mark{width:36px;height:36px;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-weight:700;color:var(--gold);font-size:14px;letter-spacing:1px;}
+.yn-deck .efg-logo-text{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:3px;color:var(--text-dim);text-transform:uppercase;}
+.yn-deck .session-tag{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--teal);border:1px solid var(--teal-dim);padding:4px 14px;border-radius:2px;margin-bottom:20px;position:relative;}
+.yn-deck h1{font-family:'Poppins',sans-serif;font-size:clamp(36px,5vw,64px);font-weight:900;line-height:1.1;position:relative;background:linear-gradient(135deg,#fff 30%,var(--gold) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:16px;}
+.yn-deck .subtitle{color:var(--text-dim);font-size:16px;max-width:520px;margin:0 auto;position:relative;}
+.yn-deck .progress-bar-wrap{display:flex;justify-content:center;gap:6px;margin-top:40px;position:relative;}
+.yn-deck .prog-dot{width:32px;height:4px;border-radius:2px;background:var(--border);}
+.yn-deck .prog-dot.active{background:var(--gold);}
+.yn-deck .prog-dot.current{background:var(--teal);}
+
+/* LAYOUT */
+.yn-deck .container{max-width:960px;margin:0 auto;padding:0 24px;}
+.yn-deck .section{padding:64px 0;border-bottom:1px solid var(--border);}
+.yn-deck .section-num{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:3px;margin-bottom:8px;display:block;}
+.yn-deck .section-title{font-family:'Poppins',sans-serif;font-size:32px;font-weight:700;color:var(--yn-ink);margin-bottom:8px;}
+.yn-deck .section-lead{color:var(--text-dim);font-size:15px;max-width:580px;margin-bottom:40px;}
+
+/* PROSE */
+.yn-deck .prose{color:var(--text-dim);font-size:15px;line-height:1.8;margin-bottom:28px;max-width:720px;}
+.yn-deck .prose strong{color:var(--yn-ink);}
+.yn-deck .prose em{color:var(--gold);font-style:normal;}
+.yn-deck .prose + .prose{margin-top:-8px;}
+
+/* RULE / QUOTE BLOCK */
+.yn-deck .rule-block{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:4px;padding:28px 32px;margin-bottom:24px;}
+.yn-deck .rule-block blockquote{font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--yn-ink);line-height:1.8;font-style:normal;}
+.yn-deck .rule-block blockquote strong{color:var(--gold);}
+
+/* CALLOUT */
+.yn-deck .callout{background:rgba(255,208,90,.06);border:1px solid rgba(255,208,90,.2);border-radius:4px;padding:14px 20px;margin-bottom:24px;font-size:13px;color:var(--text-dim);font-family:'IBM Plex Mono',monospace;line-height:1.6;}
+.yn-deck .callout strong{color:var(--yn-ink);}
+
+/* ── COMPOUND MATH HERO ── */
+.yn-deck .compound-hero{background:var(--card);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:32px;}
+.yn-deck .compound-hero-header{padding:16px 28px;border-bottom:1px solid var(--border);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--text-muted);text-transform:uppercase;}
+.yn-deck .compound-rows{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));border-bottom:1px solid var(--border);}
+.yn-deck .compound-col{padding:32px 28px;position:relative;overflow:hidden;}
+.yn-deck .compound-col:first-child{border-right:1px solid var(--border);}
+.yn-deck .compound-col::before{content:'';position:absolute;inset:0;pointer-events:none;}
+.yn-deck .compound-col.low::before{background:radial-gradient(ellipse 120% 120% at 50% 110%,rgba(163,198,215,.06) 0%,transparent 70%);}
+.yn-deck .compound-col.high::before{background:radial-gradient(ellipse 120% 120% at 50% 110%,rgba(255,208,90,.08) 0%,transparent 70%);}
+.yn-deck .compound-rate{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--text-muted);text-transform:uppercase;margin-bottom:12px;}
+.yn-deck .compound-formula{font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--text-dim);margin-bottom:20px;padding:10px 14px;background:var(--bg3);border-radius:3px;border:1px solid var(--border);}
+.yn-deck .compound-result-num{font-family:'Poppins',sans-serif;font-size:clamp(48px,6vw,72px);font-weight:900;line-height:1;margin-bottom:8px;}
+.yn-deck .compound-col.low .compound-result-num{color:var(--teal);}
+.yn-deck .compound-col.high .compound-result-num{color:var(--gold);}
+.yn-deck .compound-result-label{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:1px;color:var(--text-muted);text-transform:uppercase;margin-bottom:6px;}
+.yn-deck .compound-result-desc{font-size:13px;color:var(--text-dim);line-height:1.5;}
+.yn-deck .compound-footnote{padding:16px 28px;font-size:13px;color:var(--text-muted);font-family:'IBM Plex Mono',monospace;line-height:1.6;}
+
+/* ── PART DIVIDER ── */
+.yn-deck .part-divider{padding:48px 0;border-bottom:1px solid var(--border);border-top:1px solid var(--border);background:var(--bg3);position:relative;overflow:hidden;}
+.yn-deck .part-divider::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 100% at 50% 50%,rgba(179,38,30,.05) 0%,transparent 70%);}
+.yn-deck .part-divider-inner{max-width:960px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:32px;}
+.yn-deck .part-divider-line{flex:1;height:1px;background:var(--border);}
+.yn-deck .part-divider-badge{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:3px;color:var(--red);text-transform:uppercase;border:1px solid rgba(179,38,30,.3);padding:8px 20px;border-radius:2px;flex-shrink:0;background:rgba(179,38,30,.05);}
+.yn-deck .part-divider-label{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-muted);letter-spacing:1px;margin-top:12px;text-align:center;}
+
+/* ── ADVANTAGES / LIMITS ITEMS ── */
+.yn-deck .item-list{display:flex;flex-direction:column;gap:0;margin-bottom:32px;}
+.yn-deck .item-entry{padding:28px 0;border-bottom:1px solid var(--border);}
+.yn-deck .item-entry:last-child{border-bottom:none;}
+.yn-deck .item-head{display:flex;align-items:baseline;gap:16px;margin-bottom:12px;}
+.yn-deck .item-num{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;flex-shrink:0;min-width:32px;}
+.yn-deck .case .item-num{color:var(--teal);}
+.yn-deck .limits .item-num{color:var(--red);}
+.yn-deck .item-title{font-family:'Poppins',sans-serif;font-size:22px;font-weight:700;color:var(--yn-ink);}
+.yn-deck .item-body{color:var(--text-dim);font-size:15px;line-height:1.8;max-width:680px;padding-left:48px;}
+.yn-deck .item-body strong{color:var(--yn-ink);}
+.yn-deck .item-body em{color:var(--gold);font-style:normal;}
+
+/* WHEN GRID */
+.yn-deck .when-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:16px;margin-bottom:32px;}
+.yn-deck .when-card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:24px 28px;}
+.yn-deck .when-label{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;}
+.yn-deck .when-label.yes{color:var(--teal);}
+.yn-deck .when-label.no{color:var(--red);}
+.yn-deck .when-list{list-style:none;padding:0;display:flex;flex-direction:column;gap:10px;}
+.yn-deck .when-list li{font-size:13px;color:var(--text-dim);line-height:1.6;padding-left:20px;position:relative;}
+.yn-deck .when-list li::before{position:absolute;left:0;font-family:'IBM Plex Mono',monospace;font-size:11px;}
+.yn-deck .when-card.yes .when-list li::before{content:'✓';color:var(--teal);}
+.yn-deck .when-card.no .when-list li::before{content:'✗';color:var(--red);}
+
+/* TAKEAWAYS */
+.yn-deck .takeaway-wrap{background:linear-gradient(135deg,rgba(255,208,90,.06),rgba(163,198,215,.04));border:1px solid rgba(255,208,90,.25);border-radius:4px;padding:36px 40px;margin-top:16px;}
+.yn-deck .takeaway-heading{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:20px;}
+.yn-deck .takeaway-list{list-style:none;padding:0;}
+.yn-deck .takeaway-list li{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid var(--border);font-size:14px;color:var(--text-dim);line-height:1.6;}
+.yn-deck .takeaway-list li:last-child{border-bottom:none;}
+.yn-deck .takeaway-list li::before{content:'✓';color:var(--teal);font-family:'IBM Plex Mono',monospace;font-size:12px;flex-shrink:0;margin-top:2px;}
+.yn-deck .takeaway-list li strong{color:var(--yn-ink);}
+
+/* NEXT CARD */
+.yn-deck .next-card{background:linear-gradient(135deg,rgba(255,208,90,.08),rgba(163,198,215,.05));border:1px solid var(--gold);border-radius:4px;padding:32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;margin-top:40px;}
+.yn-deck .next-label{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:2px;margin-bottom:8px;}
+.yn-deck .next-title{font-family:'Poppins',sans-serif;font-size:22px;color:var(--yn-ink);}
+.yn-deck .next-btn{background:var(--gold);color:#000;border:none;padding:12px 28px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:1px;cursor:pointer;border-radius:2px;text-transform:uppercase;font-weight:500;transition:background .15s;}
+.yn-deck .next-btn:hover{background:var(--gold-light);}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.yn-deck .section{animation:fadeUp .5s ease both;}
+
+@media(max-width:700px){
+  .yn-deck .compound-rows{grid-template-columns:1fr;}
+  .yn-deck .compound-col:first-child{border-right:none;border-bottom:1px solid var(--border);}
+  .yn-deck .when-grid{grid-template-columns:1fr;}
+  .yn-deck .item-body{padding-left:0;}
+}
+</style>
+<div class="yn-deck">
+<!-- HEADER -->
+<header>
+  <a class="back-btn" href="/learn/algo-track" target="_top">مسار الخوارزميات</a>
+  <div class="container">
+    <div class="efg-logo">
+      <div class="efg-logo-mark">EFG</div>
+      <div class="efg-logo-text">مسار الخوارزميات</div>
+    </div>
+    <div class="session-tag">الجزء 02 / 07</div>
+    <h1>لماذا الخوارزميات<br>أصلًا؟</h1>
+    <p class="subtitle">ما تمنحه لك الخوارزميات فعلًا — وما لا تمنحه. الحجة والحدود، بالصدق نفسه.</p>
+    <div class="progress-bar-wrap">
+      <div class="prog-dot active"></div>
+      <div class="prog-dot current"></div>
+      <div class="prog-dot"></div>
+      <div class="prog-dot"></div>
+      <div class="prog-dot"></div>
+      <div class="prog-dot"></div>
+      <div class="prog-dot"></div>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════════════════════════════════════
+     INTRO
+════════════════════════════════════════════ -->
+<div class="section">
+  <div class="container">
+    <span class="section-num">00 — التأطير</span>
+    <h2 class="section-title">لماذا يهم هذا الجزء</h2>
+    <p class="section-lead">معظم الناس يقاربون التداول الخوارزمي بالطريقة الخاطئة — «كيف أبني واحدة» قبل «هل ينبغي أن أستخدمها أصلًا».</p>
+    <p class="prose">هكذا ينتهي بك الأمر إلى نظام نصف مبني لا تعرف ما تفعل به. الجواب الصادق هو: الخوارزميات تمنحك <strong>مزايا محددة</strong> على التداول اليدوي، وتأتي معها <strong>حدود محددة</strong>. ومعرفة الاثنين هي الفارق بين استخدام الخوارزميات كأداة واستخدامها كعقيدة.</p>
+    <p class="prose">يمر هذا الجزء على خمس مزايا حقيقية — ثم أربعة حدود، بالصدق نفسه.</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     THE CASE — 5 ADVANTAGES
+════════════════════════════════════════════ -->
+<div class="section">
+  <div class="container">
+    <span class="section-num">01 — الحجة</span>
+    <h2 class="section-title">خمس مزايا حقيقية</h2>
+    <p class="section-lead">ليست مزايا نظرية. بل بنيوية — أشياء يفعلها الحاسوب ولا يستطيع الإنسان تكرارها مهما بلغ انضباطه أو خبرته.</p>
+
+    <div class="item-list case">
+
+      <!-- 1. No emotion -->
+      <div class="item-entry">
+        <div class="item-head">
+          <span class="item-num">01</span>
+          <h3 class="item-title">بلا انفعال</h3>
+        </div>
+        <div class="item-body">
+          <p>هذه هي الميزة الأهم. الإنسان الذي ينظر إلى مركز خاسر <em>يشعر بشيء</em> — خوف من استمرار الهبوط، وندم على الدخول، وأمل في التعافي. وهذه المشاعر تغيّر السلوك: تخرج مبكرًا جدًا، وتحتفظ طويلًا جدًا، وتتجاهل الإشارة التالية لأن السابقة أحرقتك.</p>
+          <br>
+          <p>الحاسوب لا يشعر بأي من ذلك. يطبق القاعدة كما كُتبت، على الصفقة التي تخيفك وعلى التي تليها وعلى التي بعدها. قد تكون القاعدة نفسها خاطئة. لكن القاعدة <strong>تُطبَّق باتساق</strong> — وهذا شرط مسبق حتى لمعرفة ما إذا كانت القاعدة خاطئة.</p>
+          <br>
+          <p>معظم متداولي التجزئة لا يخسرون المال لأنهم يجهلون القواعد. يخسرونه لأنهم لا يستطيعون اتباع قواعدهم حين يهم الأمر. والخوارزمية تزيل هذه الفجوة.</p>
+        </div>
+      </div>
+
+      <!-- 2. Consistency compounds -->
+      <div class="item-entry">
+        <div class="item-head">
+          <span class="item-num">02</span>
+          <h3 class="item-title">الأفضليات الصغيرة لا تهم إلا إذا استطعت تكرارها</h3>
+        </div>
+        <div class="item-body">
+          <p>الأفضليات الصغيرة ليست مفيدة لأنها تبدو مثيرة. هي مفيدة لأنها، <em>إن كانت حقيقية</em>، يتيح لها التكرار أن تتراكم. الجزء الصعب ليس فهم الرياضيات. الجزء الصعب هو تطبيق القاعدة نفسها مرة بعد مرة وأنت متعب، أو خائف، أو ضجر، أو مُغرى بالتدخل.</p>
+          <br>
+          <p>لترى لماذا يهم الاتساق، بالغ في المثال للحظة. الاستراتيجية التي تحقق 0.5% كل يوم تداول نادرة للغاية. هذا ليس هدفًا. إنه تجربة ذهنية تُظهر لماذا يدمر خرقُ قواعدك الشيءَ الوحيد الذي تملكه الأفضليات الصغيرة: التكرار.</p>
+        </div>
+
+        <!-- MATH HERO -->
+        <div class="compound-hero" style="margin-top:24px;">
+          <div class="compound-hero-header">250 يوم تداول · أثر الاتساق</div>
+          <div class="compound-rows">
+            <div class="compound-col low">
+              <div class="compound-rate">تنفيذ متسق</div>
+              <div class="compound-formula">(1.005)²⁵⁰ ≈ 3.47</div>
+              <div class="compound-result-num">+247%</div>
+              <div class="compound-result-label">سلسلة كاملة</div>
+              <div class="compound-result-desc">نصف بالمئة في اليوم، مكررًا عبر سنة تداول كاملة دون انقطاع، يصبح أكبر بكثير مما يتوقعه الحدس.</div>
+            </div>
+            <div class="compound-col high">
+              <div class="compound-rate">تنفيذ مكسور</div>
+              <div class="compound-formula">(1.005)¹²⁰ ≈ 1.82</div>
+              <div class="compound-result-num">+82%</div>
+              <div class="compound-result-label">سلسلة منقطعة</div>
+              <div class="compound-result-desc">الأفضلية اليومية نفسها، لكن 120 يومًا فعالًا فقط لأن إشارات تُخطّيت، أو خروجًا جرى تجاوزه، أو لأن الخوف أبقاك خارج السوق بعد الخسائر.</div>
+            </div>
+          </div>
+          <div class="compound-footnote">
+            ↳ الدرس ليس أن الأرباح اليومية سهلة. ليست كذلك. الدرس هو أن <strong>الاتساق هو المضاعِف</strong>. الإنسان يكسر السلسلة: يتخطى الإشارات، ويتجاوز القواعد، ويتردد بعد الخسائر، ويجشع بعد المكاسب. الخوارزمية لا تجعل الأفضلية أفضل — بل تحمي التكرار.
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Emotionally flat at scale -->
+      <div class="item-entry">
+        <div class="item-head">
+          <span class="item-num">03</span>
+          <h3 class="item-title">ثبات انفعالي مع اتساع الحجم</h3>
+        </div>
+        <div class="item-body">
+          <p>المتداول الذي يدير EGP 10,000 قد يكون منضبطًا تمامًا. المتداول نفسه، بالقواعد نفسها، وهو يدير EGP 1,000,000: سلوك مختلف كليًا. التراجع بنسبة 5% على الحساب الصغير هو EGP 500. وعلى الحساب الكبير هو EGP 50,000. <em>النسب متطابقة</em>. الثقل الانفعالي ليس كذلك.</p>
+          <br>
+          <p>هذا من أكثر أسباب فشل المتداولين المحترفين إغفالًا. كان لديهم نظام رابح عند الحجم الصغير ثم رأوه ينهار عند الحجم الكبير — ليس لأن النظام توقف عن العمل، بل لأنهم <em>هم</em> توقفوا.</p>
+          <br>
+          <p>الخوارزمية لا تكترث. الشيفرة نفسها التي أرسلت أمرًا بـ100 سهم ترسل أمرًا بـ10,000 سهم — بلا تردد، وبلا مراجعة، وبلا قبض على لوحة المفاتيح. هذه أفضلية بنيوية حقيقية كلما نما رأس مالك. وهي أيضًا سبب استخدام شركات التداول الخاص للخوارزميات في الأحجام الكبيرة — ليس لأن الخوارزميات أذكى من أفضل متداوليها، بل لأنها <strong>غير متأثرة انفعاليًا بالحجم</strong> بصورة لا يبلغها البشر تمامًا.</p>
+        </div>
+      </div>
+
+      <!-- 4. Coverage -->
+      <div class="item-entry">
+        <div class="item-head">
+          <span class="item-num">04</span>
+          <h3 class="item-title">تغطية 24/7 للسوق بأكمله</h3>
+        </div>
+        <div class="item-body">
+          <p>الإنسان يراقب حفنة أسهم خلال ساعات التداول. الخوارزمية تراقب كل اسم مقيد في وقت واحد، كل دقيقة. في EGX وحدها أكثر من 200 شركة مقيدة. المتداول التقديري سيتابع عشرة منها عن قرب ربما. أما الـ190+ الأخرى فغير مرئية له — فرص لن يراها أبدًا، حتى لو كانت واضحة بالأرقام.</p>
+          <br>
+          <p>الأمر لا يتعلق بأن تكون أسرع من ردود فعل الإنسان. إنه يتعلق بـ<strong>التغطية</strong>. أفضلية الخوارزمية ليست دائمًا السرعة؛ أحيانًا هي أنك حرفيًا لا تستطيع أن تراقب ما تراقبه، حين تراقبه، بالاتساع الذي تراقبه به.</p>
+        </div>
+      </div>
+
+      <!-- 5. Backtestability -->
+      <div class="item-entry">
+        <div class="item-head">
+          <span class="item-num">05</span>
+          <h3 class="item-title">قابلية الاختبار الرجعي — اختبار الأفكار دون خسارة المال</h3>
+        </div>
+        <div class="item-body">
+          <p>التداول اليدوي يمنحك خطًا زمنيًا واحدًا فقط — الذي تعيشه. كل درس يكلفك مالًا حقيقيًا. وكل تكرار يستغرق أسابيع أو شهورًا حتى ينكشف.</p>
+          <br>
+          <p>الخوارزميات تمنحك <strong>محاكي طيران</strong>. تستطيع اختبار 100 نسخة من الاستراتيجية في عصر واحد. وتستطيع أن ترى كيف كانت الاستراتيجية ستتصرف في 2008، وفي 2020، وفي 2022. وتستطيع استبعاد الأفكار السيئة دون أن تدفع ثمنها. هذا لا يضمن شيئًا — الاختبارات الرجعية تكذب بطرق محددة ومعروفة، وهو موضوع الجزء 4 بأكمله. لكن القدرة على دحض فكرة <em>قبل</em> أن تخاطر برأس المال شيء لا يستطيع التداول اليدوي تقديمه ببساطة.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     DIVIDER
+════════════════════════════════════════════ -->
+<div class="part-divider">
+  <div class="part-divider-inner">
+    <div class="part-divider-line"></div>
+    <div class="part-divider-badge">والآن الحدود</div>
+    <div class="part-divider-line"></div>
+  </div>
+  <div style="text-align:center;margin-top:16px;position:relative;">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;">خمس مزايا أعلاه · أربعة حدود أدناه · كلاهما يهم بالقدر نفسه</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     THE LIMITS — 4
+════════════════════════════════════════════ -->
+<div class="section">
+  <div class="container">
+    <span class="section-num">02 — الحدود</span>
+    <h2 class="section-title">أربعة حدود صادقة</h2>
+    <p class="section-lead">لكل ميزة أعلاه ظل. وهذه ليست حالات نادرة — إنها أسباب فشل معظم المتداولين بالخوارزميات رغم امتلاكهم أنظمة تعمل.</p>
+
+    <div class="item-list limits">
+
+      <!-- L1 -->
+      <div class="item-entry">
+        <div class="item-head">
+          <span class="item-num">L1</span>
+          <h3 class="item-title">الخوارزمية بجودة منطقها لا أكثر</h3>
+        </div>
+        <div class="item-body">
+          <p>الحاسوب الذي يتبع قواعد سيئة باتساق سيخسر المال باتساق. انضباط الخوارزمية <em>محايد قيميًا</em> — إنه يضخّم ما تضعه فيه. إن كان لمنطقك أفضلية، فأنت توسّع تلك الأفضلية. وإن لم يكن، فأنت توسّع خسائرك.</p>
+          <br>
+          <p>لهذا فإن بناء الخوارزمية <strong>مسألة تفكير في معظمها، لا مسألة برمجة</strong>. الشيفرة هي الجزء السهل. أما تحديد ما ينبغي أن تكون عليه القواعد فعلًا — وأي أفضلية تحاول استغلالها — فهو الجزء الصعب، ولا تعوّضه أي براعة هندسية.</p>
+          <br>
+          <p>نمط فشل شائع: نظام مهندس ببراعة، بلا أفضلية حقيقية. النظام يعمل بإتقان. والاستراتيجية تنزف ببطء. والتميز الهندسي بلا معنى.</p>
+        </div>
+      </div>
+
+      <!-- L2 -->
+      <div class="item-entry">
+        <div class="item-head">
+          <span class="item-num">L2</span>
+          <h3 class="item-title">الأسواق تتغير — والاستراتيجيات تتآكل</h3>
+        </div>
+        <div class="item-body">
+          <p>كل استراتيجية ناجحة تستغل سلوكًا ما في السوق. وكلما اكتشف متداولون آخرون السلوك نفسه — وكلما تبدلت الظروف التي أنشأته — تتآكل الأفضلية. يسمى هذا <strong>تآكل الألفا</strong>، وهو أمر عام.</p>
+          <br>
+          <p>الاستراتيجية التي حققت 30% سنويًا من 2018–2022 قد تحقق 8% في 2023–2025، ثم تتعادل، ثم تخسر. ليس لأن شيئًا تعطل — بل لأن عدم الكفاءة التي استغلتها ازدحمت وزالت.</p>
+          <br>
+          <div class="callout">↳ بناء استراتيجية ثم الانصراف عنها ليس خطة قابلة للحياة. سنغطي كيف تكتشف أن خوارزميتك توقفت عن العمل في الجزء 5.</div>
+        </div>
+      </div>
+
+      <!-- L3 -->
+      <div class="item-entry">
+        <div class="item-head">
+          <span class="item-num">L3</span>
+          <h3 class="item-title">الإفراط في المواءمة حقيقي ومغرٍ</h3>
+        </div>
+        <div class="item-body">
+          <p>هكذا يحدث. تبني استراتيجية. تختبرها رجعيًا. تخسر مالًا. فتعدّل — تغيّر معاملًا، وتضيف مرشحًا. ما زالت سيئة. تعدّل مجددًا. وبعد 50 تكرارًا، تصبح لديك استراتيجية حققت 200% خلال السنوات الخمس الماضية في الاختبار الرجعي. تشغّلها. فتخسر <em>المال فورًا</em>.</p>
+          <br>
+          <p>ما حدث: أنت لم تبنِ استراتيجية تعمل. بنيت استراتيجية <strong>فُصّلت على الماضي</strong>. التكرارات الخمسون لم تكن تكتشف حقيقة عن السوق — كانت تحفظ الخصوصيات الدقيقة للبيانات التاريخية. شغّلها على بيانات جديدة لم يرها النموذج قط، ولن تجد شيئًا.</p>
+          <br>
+          <p>هذا هو الخطأ الأكثر شيوعًا والأكثر كلفة في التداول الخوارزمي. والجزء 4 يدور في معظمه حول كيفية تجنبه.</p>
+        </div>
+      </div>
+
+      <!-- L4 -->
+      <div class="item-entry">
+        <div class="item-head">
+          <span class="item-num">L4</span>
+          <h3 class="item-title">«مؤتمت» لا تعني «مربح»</h3>
+        </div>
+        <div class="item-body">
+          <p>هناك جذب نفسي قوي للتعامل مع الخوارزمية كأن <em>وجودها</em> هو المقصد. «لدي نظام تداول خوارزمي» يبدو إنجازًا. لكن الخوارزمية لا تكترث. والسوق لا يكترث. الشيء الوحيد المهم هو ما إذا كانت الاستراتيجية تربح بعد التكاليف، وبعد الانزلاق السعري، وبعد كل شيء.</p>
+          <br>
+          <p>كثيرون يبنون خوارزمية ثم يرفضون إيقافها وهي تخسر، لأن إيقافها يبدو اعترافًا بالفشل. <strong>الخوارزمية أداة.</strong> والأدوات تُستعمل حين تعمل وتُترك حين لا تعمل. وانضباط إيقاف خوارزمية خاسرة هو المهارة نفسها التي توقف بها صفقة يدوية خاسرة — وهو بالصعوبة نفسها، رغم أنه يبدو كأنه لا ينبغي أن يكون كذلك.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     WHEN DOES IT MAKE SENSE
+════════════════════════════════════════════ -->
+<div class="section">
+  <div class="container">
+    <span class="section-num">03 — التركيب</span>
+    <h2 class="section-title">إذًا متى يكون التداول الخوارزمي منطقيًا؟</h2>
+    <p class="section-lead">اجمع الخيوط معًا. الأداة المناسبة للعمل المناسب.</p>
+
+    <div class="when-grid">
+      <div class="when-card yes">
+        <div class="when-label yes">الأداة الصحيحة حين</div>
+        <ul class="when-list">
+          <li>تكون لديك أفضلية محددة — فرضية عن سلوك السوق تستطيع صياغتها كقواعد.</li>
+          <li>تريد تطبيق تلك الأفضلية باتساق عبر الزمن، وعبر أدوات متعددة، دون تدخل الانفعال.</li>
+          <li>تكون مستعدًا للعمل غير البراق: الاختبار والمتابعة وتطوير الاستراتيجية مع تغير الظروف.</li>
+        </ul>
+      </div>
+      <div class="when-card no">
+        <div class="when-label no">الأداة الخاطئة حين</div>
+        <ul class="when-list">
+          <li>لا تكون لديك أفضلية واضحة وتأمل أن تصنعها التقنية.</li>
+          <li>تظن أن الأتمتة ستحل محل انضباط فهم ما تفعله.</li>
+          <li>تريد أن «تضبطها وتنساها». لا شيء في التداول يعمل بهذه الطريقة.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="rule-block">
+      <blockquote>الخوارزميات أداة. تصبح منطقية حين تملك أفضلية حقيقية والانضباط للحفاظ عليها.<br>وهي لا تحل محل التفكير.</blockquote>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     TAKEAWAYS + NEXT
+════════════════════════════════════════════ -->
+<div class="section" style="border-bottom:none;">
+  <div class="container">
+    <span class="section-num">04 — الخلاصة</span>
+    <h2 class="section-title">ما ينبغي أن تفهمه الآن</h2>
+    <p class="section-lead">أربعة أشياء تحملها إلى الجزء 3.</p>
+
+    <div class="takeaway-wrap">
+      <div class="takeaway-heading">أهم النقاط — الجزء 02</div>
+      <ul class="takeaway-list">
+        <li><strong>المزايا الخمس الحقيقية</strong>: بلا انفعال، وتراكم الاتساق، والثبات الانفعالي مع اتساع الحجم، وتغطية السوق بالكامل، وقابلية الاختبار الرجعي.</li>
+        <li><strong>الاتساق هو المضاعِف.</strong> الأفضليات الصغيرة لا تهم إلا حين تكون حقيقية وقابلة للتكرار ومطبقة دون انقطاع. الإنسان يكسر السلسلة؛ والخوارزمية تحميها.</li>
+        <li><strong>الحدود الأربعة</strong>: الخوارزميات تضخّم أي منطق تعطيه لها، والاستراتيجيات تتآكل مع الوقت، والإفراط في المواءمة هو نمط الفشل الأشيع، و«مؤتمت» لا تساوي «مربح».</li>
+        <li>الخوارزميات أداة — تصبح منطقية حين تملك <strong>أفضلية حقيقية والانضباط للحفاظ عليها</strong>. وهي لا تحل محل التفكير.</li>
+      </ul>
+    </div>
+
+    <div class="next-card">
+      <div>
+        <div class="next-label">التالي — الجزء 03 / 07</div>
+        <div class="next-title">تشريح الصفقة<br><span style="font-size:16px;color:var(--text-dim);font-family:'IBM Plex Sans',sans-serif;font-weight:400;">الأشياء الأربعة التي يجب أن تحددها كل صفقة، وما الذي يصنع منها استراتيجية.</span></div>
+      </div>
+      <a class="next-btn" href="/learn/algo-track/03-anatomy-of-a-trade">الجزء 03 →</a>
+    </div>
+  </div>
+</div>
+</div>

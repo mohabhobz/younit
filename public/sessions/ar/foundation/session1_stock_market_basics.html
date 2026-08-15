@@ -1,0 +1,1033 @@
+<!-- Younit lesson deck — a fragment, not a document.
+
+     Rendered into the site by src/pages/SessionDeck.jsx. Every style below is
+     scoped to .yn-deck, so nothing here reaches the page around it and nothing
+     out there reaches in. Generated from the original standalone deck by
+     tools/scope-decks.mjs; the markup and the copy are as they were written. -->
+<link href="/vendor/deck-fonts.css" rel="stylesheet">
+<script src="/vendor/chart.umd.min.js"></script>
+<script src="/vendor/chartjs-plugin-annotation.min.js"></script>
+<link href="/vendor/deck.css" rel="stylesheet">
+<style>
+.yn-deck {
+  --bg:#D7D7D7;--bg2:#FFFFFF;--bg3:#FFFFFF;--card:#FFFFFF;--border:#AC91E1;
+  --gold:#FFD05A;--gold-light:#FFD05A;--teal:#A3C6D7;--teal-dim:#A3C6D7;
+  --red:#B3261E;--green:#1C7A3E;--text:#000000;--text-dim:#444444;--text-muted:#666666;
+}
+.yn-deck *{margin:0;padding:0;box-sizing:border-box;}
+.yn-deck{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-serif;font-size:15px;line-height:1.7;overflow-x:hidden;}
+
+/* HEADER */
+.yn-deck header{position:relative;padding:60px 0 80px;text-align:center;overflow:hidden;border-bottom:1px solid var(--border);}
+.yn-deck header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(255,208,90,.12) 0%,transparent 70%),radial-gradient(ellipse 50% 40% at 80% 50%,rgba(163,198,215,.06) 0%,transparent 60%);}
+.yn-deck .efg-logo{display:inline-flex;align-items:center;gap:10px;margin-bottom:32px;position:relative;}
+.yn-deck .efg-logo-mark{width:36px;height:36px;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-weight:700;color:var(--gold);font-size:14px;letter-spacing:1px;}
+.yn-deck .efg-logo-text{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:3px;color:var(--text-dim);text-transform:uppercase;}
+.yn-deck .session-tag{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--teal);border:1px solid var(--teal-dim);padding:4px 14px;border-radius:2px;margin-bottom:20px;position:relative;}
+.yn-deck h1{font-family:'Poppins',sans-serif;font-size:clamp(36px,5vw,64px);font-weight:900;line-height:1.1;position:relative;background:linear-gradient(135deg,#fff 30%,var(--gold) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:16px;}
+.yn-deck .subtitle{color:var(--text-dim);font-size:16px;max-width:500px;margin:0 auto;position:relative;}
+.yn-deck .progress-bar-wrap{display:flex;justify-content:center;gap:6px;margin-top:40px;position:relative;}
+.yn-deck .prog-dot{width:32px;height:4px;border-radius:2px;background:var(--border);}
+.yn-deck .prog-dot.active{background:var(--gold);}
+.yn-deck .prog-dot.current{background:var(--teal);}
+
+/* LAYOUT */
+.yn-deck .container{max-width:960px;margin:0 auto;padding:0 24px;}
+.yn-deck .section{padding:64px 0;border-bottom:1px solid var(--border);}
+.yn-deck .section-num{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:3px;margin-bottom:8px;display:block;}
+.yn-deck .section-title{font-family:'Poppins',sans-serif;font-size:32px;font-weight:700;color:var(--yn-ink);margin-bottom:8px;}
+.yn-deck .section-lead{color:var(--text-dim);font-size:15px;max-width:560px;margin-bottom:40px;}
+
+/* CARDS */
+.yn-deck .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-bottom:32px;}
+.yn-deck .card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:24px;position:relative;overflow:hidden;transition:border-color .2s,transform .2s;cursor:default;}
+.yn-deck .card:hover{border-color:var(--gold);transform:translateY(-2px);}
+.yn-deck .card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent);opacity:0;transition:opacity .2s;}
+.yn-deck .card:hover::before{opacity:1;}
+.yn-deck .card-icon{font-size:28px;margin-bottom:14px;display:block;}
+.yn-deck .card-title{font-weight:600;color:var(--yn-ink);margin-bottom:8px;font-size:15px;}
+.yn-deck .card-body{color:var(--text-dim);font-size:14px;line-height:1.6;}
+
+/* CHART WRAP */
+.yn-deck .chart-wrap{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:28px;margin-bottom:24px;}
+.yn-deck .chart-title{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:1px;color:var(--text-dim);margin-bottom:4px;text-transform:uppercase;}
+.yn-deck .chart-subtitle{color:var(--text-muted);font-size:12px;margin-bottom:20px;}
+.yn-deck canvas{max-height:300px;}
+
+/* FLOW */
+.yn-deck .flow-row{display:flex;align-items:center;gap:0;flex-wrap:wrap;margin-bottom:32px;}
+.yn-deck .flow-item{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:18px 20px;flex:1;min-width:140px;text-align:center;}
+.yn-deck .flow-arrow{color:var(--gold);font-size:20px;padding:0 8px;flex-shrink:0;}
+.yn-deck .flow-item-label{font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;}
+.yn-deck .flow-item-val{font-size:14px;color:var(--yn-ink);font-weight:500;}
+
+/* TABLE */
+.yn-deck .table-wrap{overflow-x:auto;margin-bottom:24px;}
+.yn-deck table{width:100%;border-collapse:collapse;font-size:14px;}
+.yn-deck th{text-align:left;padding:10px 16px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:1px;color:var(--text-muted);border-bottom:1px solid var(--border);text-transform:uppercase;}
+.yn-deck td{padding:12px 16px;border-bottom:1px solid var(--border);color:var(--text-dim);}
+.yn-deck tr:last-child td{border-bottom:none;}
+.yn-deck tr:hover td{background:rgba(0,0,0,.02);}
+.yn-deck td:first-child{color:var(--yn-ink);font-weight:500;}
+.yn-deck .tag{display:inline-block;padding:2px 8px;border-radius:2px;font-size:11px;font-family:'IBM Plex Mono',monospace;}
+.yn-deck .tag-buy{background:rgba(28,122,62,.1);color:var(--green);border:1px solid rgba(28,122,62,.2);}
+.yn-deck .tag-sell{background:rgba(179,38,30,.1);color:var(--red);border:1px solid rgba(179,38,30,.2);}
+.yn-deck .tag-neutral{background:rgba(255,208,90,.1);color:var(--gold);border:1px solid rgba(255,208,90,.2);}
+
+/* TICKER */
+.yn-deck .ticker-bar{background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:14px 20px;display:flex;gap:32px;overflow-x:auto;margin-bottom:24px;align-items:center;}
+.yn-deck .ticker-item{flex-shrink:0;}
+.yn-deck .ticker-sym{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--yn-ink);font-weight:500;}
+.yn-deck .ticker-price{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--text-dim);}
+.yn-deck .up{color:var(--green);}
+.yn-deck .down{color:var(--red);}
+
+/* GLOSSARY */
+.yn-deck .glossary-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;}
+.yn-deck .term-card{border:1px solid var(--border);border-radius:4px;padding:16px;background:var(--card);}
+.yn-deck .term{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--gold);letter-spacing:1px;margin-bottom:6px;text-transform:uppercase;}
+.yn-deck .term-def{font-size:13px;color:var(--text-dim);line-height:1.5;}
+
+/* NEXT */
+.yn-deck .next-card{background:linear-gradient(135deg,rgba(255,208,90,.08),rgba(163,198,215,.05));border:1px solid var(--gold);border-radius:4px;padding:32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;margin-top:40px;}
+.yn-deck .next-label{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:2px;margin-bottom:8px;}
+.yn-deck .next-title{font-family:'Poppins',sans-serif;font-size:22px;color:var(--yn-ink);}
+.yn-deck .next-btn{background:var(--gold);color:#000;border:none;padding:12px 28px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:1px;cursor:pointer;border-radius:2px;text-transform:uppercase;font-weight:500;transition:background .15s;}
+.yn-deck .next-btn:hover{background:var(--gold-light);}
+
+/* ── PHILOSOPHY SLIDER ── */
+.yn-deck .slider-section{position:relative;overflow:hidden;background:var(--bg);border-bottom:1px solid var(--border);}
+.yn-deck .slider-track{display:flex;transition:transform .7s cubic-bezier(.77,0,.18,1);}
+.yn-deck .slide{min-width:100%;padding:80px 0;position:relative;overflow:hidden;}
+.yn-deck .slide-bg{position:absolute;inset:0;pointer-events:none;}
+
+/* slide 1 — fear/greed */
+.yn-deck .slide-1 .slide-bg{background:radial-gradient(ellipse 60% 80% at 20% 50%,rgba(179,38,30,.08) 0%,transparent 60%),radial-gradient(ellipse 60% 80% at 80% 50%,rgba(28,122,62,.07) 0%,transparent 60%);}
+/* slide 2 — math */
+.yn-deck .slide-2 .slide-bg{background:radial-gradient(ellipse 70% 70% at 50% 50%,rgba(255,208,90,.06) 0%,transparent 70%);}
+/* slide 3 — chaos */
+.yn-deck .slide-3 .slide-bg{background:radial-gradient(ellipse 80% 60% at 30% 40%,rgba(163,198,215,.07) 0%,transparent 60%);}
+/* slide 4 — game */
+.yn-deck .slide-4 .slide-bg{background:radial-gradient(ellipse 70% 70% at 70% 60%,rgba(99,102,241,.08) 0%,transparent 60%);}
+/* slide 5 — signal/noise */
+.yn-deck .slide-5 .slide-bg{background:radial-gradient(ellipse 80% 50% at 50% 50%,rgba(255,208,90,.05) 0%,transparent 70%);}
+
+.yn-deck .slide-inner{max-width:960px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:60px;align-items:center;}
+.yn-deck .slide-text{}
+.yn-deck .slide-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--teal);text-transform:uppercase;margin-bottom:16px;}
+.yn-deck .slide-headline{font-family:'Poppins',sans-serif;font-size:clamp(28px,4vw,48px);font-weight:900;line-height:1.15;color:var(--yn-ink);margin-bottom:20px;}
+.yn-deck .slide-headline em{font-style:normal;color:var(--gold);}
+.yn-deck .slide-body{color:var(--text-dim);font-size:15px;line-height:1.75;max-width:420px;}
+.yn-deck .slide-visual{display:flex;align-items:center;justify-content:center;}
+
+/* nav */
+.yn-deck .slider-nav{display:flex;justify-content:center;align-items:center;gap:16px;padding:24px 0 40px;}
+.yn-deck .s-dot{width:8px;height:8px;border-radius:50%;background:var(--border);cursor:pointer;transition:all .2s;border:none;}
+.yn-deck .s-dot.on{background:var(--gold);transform:scale(1.3);}
+.yn-deck .s-prev,.yn-deck .s-next{background:none;border:1px solid var(--border);color:var(--text-dim);width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.yn-deck .s-prev:hover,.yn-deck .s-next:hover{border-color:var(--gold);color:var(--gold);}
+.yn-deck .slide-num{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-muted);min-width:40px;text-align:center;}
+
+/* FEAR/GREED METER */
+.yn-deck .fg-meter{width:100%;max-width:340px;}
+.yn-deck .fg-arc-wrap{position:relative;width:100%;}
+.yn-deck .fg-labels{display:flex;justify-content:space-between;margin-top:8px;}
+.yn-deck .fg-label{font-family:'IBM Plex Mono',monospace;font-size:11px;}
+.yn-deck .fg-reading{text-align:center;margin-top:4px;}
+.yn-deck .fg-val{font-family:'Poppins',sans-serif;font-size:40px;color:var(--gold);}
+.yn-deck .fg-caption{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--text-muted);letter-spacing:1px;}
+.yn-deck .fg-moments{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:8px;margin-top:18px;}
+.yn-deck .fg-btn{background:transparent;border:1px solid var(--border);color:var(--text-dim);padding:9px 8px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;cursor:pointer;border-radius:3px;text-transform:uppercase;transition:all .2s;}
+.yn-deck .fg-btn:hover{border-color:var(--gold);color:var(--gold);}
+.yn-deck .fg-btn.active{border-color:var(--gold);color:var(--gold);background:rgba(255,208,90,.06);}
+.yn-deck .fg-context{margin-top:14px;padding:12px 14px;background:var(--card);border:1px solid var(--border);border-radius:3px;font-size:12px;color:var(--text-dim);line-height:1.55;min-height:54px;}
+
+/* EQUATION VISUAL */
+.yn-deck .eq-wrap{font-family:'IBM Plex Mono',monospace;width:100%;}
+.yn-deck .eq-line{display:flex;align-items:center;gap:12px;margin-bottom:14px;padding:12px 16px;background:var(--card);border:1px solid var(--border);border-radius:4px;font-size:13px;color:var(--text-dim);}
+.yn-deck .eq-icon{font-size:20px;flex-shrink:0;width:32px;text-align:center;}
+.yn-deck .eq-text{flex:1;}
+.yn-deck .eq-plus{color:var(--gold);font-size:18px;text-align:center;margin:2px 0;}
+.yn-deck .eq-result{background:rgba(255,208,90,.08);border-color:var(--gold);color:var(--gold);}
+
+/* CHAOS VISUAL - animated price line */
+.yn-deck .chaos-canvas-wrap{width:100%;max-width:340px;}
+.yn-deck #chaosCanvas{width:100%;border-radius:4px;display:block;}
+
+/* GAME BOARD */
+.yn-deck .game-wrap{width:100%;max-width:320px;}
+.yn-deck .game-row{display:flex;gap:8px;margin-bottom:8px;justify-content:center;}
+.yn-deck .game-cell{width:44px;height:44px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;border:1px solid var(--border);transition:all .3s;}
+.yn-deck .gc-up{background:rgba(28,122,62,.12);color:var(--green);border-color:rgba(28,122,62,.3);}
+.yn-deck .gc-dn{background:rgba(179,38,30,.12);color:var(--red);border-color:rgba(179,38,30,.3);}
+.yn-deck .gc-flat{background:rgba(255,208,90,.08);color:var(--gold);border-color:rgba(255,208,90,.2);}
+.yn-deck .game-caption{text-align:center;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-muted);margin-top:10px;}
+
+/* SIGNAL/NOISE */
+.yn-deck .signal-wrap{width:100%;max-width:340px;}
+.yn-deck #signalCanvas{width:100%;display:block;border-radius:4px;}
+
+/* ── CHART TYPES SECTION ── */
+.yn-deck .chart-tab-wrap{margin-bottom:32px;}
+.yn-deck .chart-tabs{display:flex;gap:0;border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:0;}
+.yn-deck .chart-tab{flex:1;padding:12px 20px;background:var(--card);border:none;color:var(--text-dim);font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:1px;cursor:pointer;text-transform:uppercase;transition:all .2s;border-right:1px solid var(--border);}
+.yn-deck .chart-tab:last-child{border-right:none;}
+.yn-deck .chart-tab.on{background:rgba(255,208,90,.1);color:var(--gold);}
+.yn-deck .chart-panel{display:none;background:var(--card);border:1px solid var(--border);border-top:none;border-radius:0 0 4px 4px;padding:28px;}
+.yn-deck .chart-panel.on{display:block;}
+.yn-deck .chart-explainer{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:32px;align-items:start;margin-bottom:24px;}
+.yn-deck .chart-explain-text h3{font-family:'Poppins',sans-serif;font-size:20px;color:var(--yn-ink);margin-bottom:8px;}
+.yn-deck .chart-explain-text p{color:var(--text-dim);font-size:14px;line-height:1.7;margin-bottom:12px;}
+.yn-deck .chart-pros{list-style:none;padding:0;}
+.yn-deck .chart-pros li{font-size:13px;color:var(--text-dim);padding:4px 0;font-family:'IBM Plex Mono',monospace;}
+.yn-deck .chart-pros li::before{content:'+ ';color:var(--teal);}
+.yn-deck .chart-cons li::before{content:'− ';color:var(--red);}
+
+/* CANDLE SVG EXPLANATION */
+.yn-deck .candle-explainer{display:flex;gap:40px;align-items:flex-start;flex-wrap:wrap;margin-top:20px;}
+.yn-deck .candle-svg-wrap{flex-shrink:0;}
+.yn-deck .candle-legend{flex:1;min-width:200px;}
+.yn-deck .candle-legend-item{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.yn-deck .legend-dot{width:12px;height:12px;border-radius:2px;flex-shrink:0;}
+.yn-deck .legend-text{font-size:13px;color:var(--text-dim);}
+.yn-deck .legend-text strong{color:var(--yn-ink);}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.yn-deck .section{animation:fadeUp .5s ease both;}
+
+@media(max-width:700px){
+  .yn-deck .slide-inner{grid-template-columns:1fr;}
+  .yn-deck .chart-explainer{grid-template-columns:1fr;}
+}
+</style>
+<div class="yn-deck">
+<!-- HEADER -->
+<header>
+  <div class="container">
+    <div class="efg-logo">
+      <div class="efg-logo-mark">EFG</div>
+      <div class="efg-logo-text">سلسلة الأساسيات</div>
+    </div>
+    <div class="session-tag">الجلسة 01 / 05</div>
+    <h1>أساسيات<br>سوق الأسهم</h1>
+    <p class="subtitle">مقدمة بصرية لكيفية عمل الأسواق — لا تحتاج خلفية في المال.</p>
+    <div class="progress-bar-wrap">
+      <div class="prog-dot current"></div>
+      <div class="prog-dot"></div>
+      <div class="prog-dot"></div>
+      <div class="prog-dot"></div>
+      <div class="prog-dot"></div>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════════════════════════════════════
+     PHILOSOPHY SLIDER
+════════════════════════════════════════════ -->
+<div class="slider-section">
+  <div class="slider-track" id="sliderTrack">
+
+    <!-- SLIDE 1: Fear & Greed -->
+    <div class="slide slide-1">
+      <div class="slide-bg"></div>
+      <div class="slide-inner">
+        <div class="slide-text">
+          <div class="slide-eyebrow">منظور 01 من 05</div>
+          <h2 class="slide-headline">السوق آلة<br>تعمل بـ<em>الخوف</em> و<em>الطمع</em>.</h2>
+          <p class="slide-body">كل حركة سعر تحكي قصة عن النفس البشرية. حين يسود الطمع، يطارد الناس الأسعار الصاعدة ويشترون بتهور. وحين يسود الخوف، يبيعون في ذعر في أسوأ لحظة. السوق لا يستجيب للحقائق — بل يستجيب لما <em>يشعر</em> به الناس تجاه الحقائق. قاعدة وارن بافيت: "كن طامعًا حين يخاف الآخرون. وكن خائفًا حين يطمع الآخرون." <span style="display:block;margin-top:14px;font-size:12px;color:var(--text-muted);font-family:'IBM Plex Mono',monospace;">↳ قراءات توضيحية من مؤشرات المشاعر الكبرى للخوف والطمع.</span></p>
+        </div>
+        <div class="slide-visual">
+          <div class="fg-meter">
+            <div class="fg-arc-wrap">
+              <svg viewBox="0 0 280 160" style="width:100%;overflow:visible;">
+                <defs>
+                  <linearGradient id="fg-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color:#B3261E"/>
+                    <stop offset="50%" style="stop-color:#FFD05A"/>
+                    <stop offset="100%" style="stop-color:#1C7A3E"/>
+                  </linearGradient>
+                </defs>
+                <!-- track -->
+                <path d="M20 140 A120 120 0 0 1 260 140" fill="none" stroke="#AC91E1" stroke-width="18" stroke-linecap="round"/>
+                <!-- colored arc -->
+                <path id="fgArc" d="M20 140 A120 120 0 0 1 260 140" fill="none" stroke="url(#fg-grad)" stroke-width="18" stroke-linecap="round" stroke-dasharray="377" stroke-dashoffset="150"/>
+                <!-- needle -->
+                <line id="fgNeedle" x1="140" y1="140" x2="140" y2="30" stroke="var(--gold)" stroke-width="3" stroke-linecap="round" transform="rotate(-40,140,140)" style="transition:transform .6s"/>
+                <circle cx="140" cy="140" r="8" fill="var(--gold)"/>
+                <!-- labels -->
+                <text x="14" y="158" fill="#B3261E" font-size="11" font-family="IBM Plex Mono">خوف</text>
+                <text x="218" y="158" fill="#1C7A3E" font-size="11" font-family="IBM Plex Mono">طمع</text>
+                <text x="118" y="20" fill="var(--gold)" font-size="11" font-family="IBM Plex Mono">محايد</text>
+              </svg>
+            </div>
+            <div class="fg-reading">
+              <div class="fg-val" id="fgVal">50</div>
+              <div class="fg-caption" id="fgCaption">محايد</div>
+            </div>
+            <div class="fg-moments">
+              <button class="fg-btn" data-val="2"  data-label="خوف شديد" data-cap="مارس 2020، انهيار كوفيد" data-desc="الأسواق في سقوط حر مع إغلاق العالم. مؤشر الخوف والطمع من CNN بلغ 2، من أدنى القراءات المسجلة على الإطلاق.">كوفيد 2020</button>
+              <button class="fg-btn" data-val="6"  data-label="خوف شديد" data-cap="يونيو 2022، انهيار العملات المشفرة" data-desc="لونا وسيلسيوس انهارا. المستثمرون كانوا في رعب. هبط المؤشر إلى 6 في منتصف يونيو 2022.">الكريبتو 2022</button>
+              <button class="fg-btn" data-val="84" data-label="طمع شديد" data-cap="نوفمبر 2021، قمة البيتكوين" data-desc="اليوم السابق لبلوغ البيتكوين أعلى مستوى في تاريخه عند نحو 69 ألف دولار. الجميع كان يشتري. قراءة المؤشر 84.">قمة البيتكوين 2021</button>
+              <button class="fg-btn active" data-val="69" data-label="طمع" data-cap="مايو 2026، اليوم" data-desc="القراءة الحالية: 69. المستثمرون يميلون إلى الطمع.">اليوم</button>
+            </div>
+            <div class="fg-context" id="fgContext">القراءة الحالية: 69. المستثمرون يميلون إلى الطمع.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 2: Pure Math -->
+    <div class="slide slide-2">
+      <div class="slide-bg"></div>
+      <div class="slide-inner">
+        <div class="slide-text">
+          <div class="slide-eyebrow">منظور 02 من 05</div>
+          <h2 class="slide-headline">البعض لا يرى سوى <em>معادلات</em>.<br>لا مشاعر. لا قصص.</h2>
+          <p class="slide-body">المتداولون الكمّيون يجرّدون السرد كله. السهم عندهم مجرد سلسلة زمنية — أنماط وارتباطات ذاتية وعودة إلى المتوسط وإشارات زخم. يصبح السوق نظامًا رياضيًا فيه أوجه قصور قابلة للاستغلال. اعثر على الإشارة داخل الضجيج قبل غيرك، تربح.</p>
+        </div>
+        <div class="slide-visual">
+          <div class="eq-wrap">
+            <div class="eq-line"><span class="eq-icon">📈</span><span class="eq-text">السعر(t) = f(الزخم، التقلب)</span></div>
+            <div class="eq-plus">+</div>
+            <div class="eq-line"><span class="eq-icon">📊</span><span class="eq-text">الإشارة = المتوسط المتحرك(t) − المتوسط المتحرك(t−n)</span></div>
+            <div class="eq-plus">+</div>
+            <div class="eq-line"><span class="eq-icon">🔁</span><span class="eq-text">العودة إلى المتوسط: P(العودة إلى μ) → مرتفعة</span></div>
+            <div class="eq-plus">+</div>
+            <div class="eq-line"><span class="eq-icon">⚙️</span><span class="eq-text">المخاطر = σ × √(الزمن) × حجم_المركز</span></div>
+            <div class="eq-plus">=</div>
+            <div class="eq-line eq-result"><span class="eq-icon">🎯</span><span class="eq-text">الأفضلية: القيمة المتوقعة > 0</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 3: Chaos -->
+    <div class="slide slide-3">
+      <div class="slide-bg"></div>
+      <div class="slide-inner">
+        <div class="slide-text">
+          <div class="slide-eyebrow">منظور 03 من 05</div>
+          <h2 class="slide-headline">أو ربما هو مجرد <em>فوضى جميلة</em> — يستحيل التنبؤ بها.</h2>
+          <p class="slide-body">تقول فرضية كفاءة السوق إن كل المعلومات المعروفة مسعّرة بالفعل. لا تحليل يتفوق على السوق باستمرار، لأن الأسعار تتحرك عشوائيًا استجابةً لمعلومات جديدة لا يمكن التنبؤ بها. إن صحّ هذا، فأفضل استراتيجية ببساطة: امتلك كل شيء، ولا تدفع رسومًا، وانتظر. معظم الصناديق النشطة تخسر أمام المؤشر على مدى 10 سنوات.</p>
+        </div>
+        <div class="slide-visual">
+          <div class="chaos-canvas-wrap">
+            <canvas id="chaosCanvas" height="200"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 4: Information Game -->
+    <div class="slide slide-4">
+      <div class="slide-bg"></div>
+      <div class="slide-inner">
+        <div class="slide-text">
+          <div class="slide-eyebrow">منظور 04 من 05</div>
+          <h2 class="slide-headline">إنها <em>لعبة معلومات</em>.<br>من يعرف ماذا، أولًا.</h2>
+          <p class="slide-body">الأسواق منافسة بين مشاركين تتفاوت معلوماتهم. المطّلعون يعرفون الأرباح قبلك. المؤسسات الكبيرة تدفع مقابل صور الأقمار الصناعية وتدفقات معاملات بطاقات الائتمان وبيانات المشاعر. المتداولون السريعون يرون أمرك قبل أن يُنفَّذ بالكامل. الأفضلية دائمًا في المعلومة — جودتها وسرعتها وتفسيرها.</p>
+        </div>
+        <div class="slide-visual">
+          <div class="game-wrap">
+            <div class="game-row" id="gameRow1"></div>
+            <div class="game-row" id="gameRow2"></div>
+            <div class="game-row" id="gameRow3"></div>
+            <div class="game-row" id="gameRow4"></div>
+            <div class="game-caption">عوائد محاكاة على خمسة أيام — خمسة أسهم<br>أعد التوليد لتغيير السوق</div>
+            <button onclick="rollGame()" style="display:block;margin:12px auto 0;background:transparent;border:1px solid var(--border);color:var(--text-dim);padding:6px 16px;border-radius:3px;font-family:'IBM Plex Mono',monospace;font-size:11px;cursor:pointer;letter-spacing:1px;">↺ إعادة توليد السوق</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 5: Signal vs Noise -->
+    <div class="slide slide-5">
+      <div class="slide-bg"></div>
+      <div class="slide-inner">
+        <div class="slide-text">
+          <div class="slide-eyebrow">منظور 05 من 05</div>
+          <h2 class="slide-headline">مهمتك: أن تجد <em>الإشارة</em><br>داخل الضجيج.</h2>
+          <p class="slide-body">أيًّا كانت فلسفتك — سلوكية أو كمية أو بينهما — فالتداول في النهاية فصلٌ للأنماط الحقيقية القابلة للاستغلال عن التقلبات العشوائية. الجلسات القادمة تعطيك الأساس الذي تبدأ منه.</p>
+        </div>
+        <div class="slide-visual">
+          <div class="signal-wrap">
+            <canvas id="signalCanvas" height="200"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /slider-track -->
+
+  <div class="slider-nav">
+    <button class="s-prev" onclick="slideBy(-1)">‹</button>
+    <div id="dotWrap" style="display:flex;gap:8px;align-items:center;"></div>
+    <div class="slide-num" id="slideNum">1 / 5</div>
+    <button class="s-next" onclick="slideBy(1)">›</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 1: WHAT IS THE STOCK MARKET
+════════════════════════════════════════════ -->
+<div class="section">
+  <div class="container">
+    <span class="section-num">01 — الأساسيات</span>
+    <h2 class="section-title">ما هو سوق الأسهم؟</h2>
+    <p class="section-lead">في جوهره، سوق الأسهم مكان يتبادل فيه المشترون والبائعون حصص ملكية في الشركات.</p>
+    <div class="card-grid">
+      <div class="card"><span class="card-icon">🏢</span><div class="card-title">شركة تحتاج رأس مال</div><div class="card-body">تحتاج الشركة إلى مال لتنمو. وبدل الاقتراض من بنك، يمكنها أن تبيع للجمهور أجزاءً صغيرة من نفسها — تُسمى <strong>أسهمًا</strong>.</div></div>
+      <div class="card"><span class="card-icon">🎟️</span><div class="card-title">أنت تشتري سهمًا</div><div class="card-body">حين تشتري سهمًا، تملك جزءًا ضئيلًا من تلك الشركة. إن نجحت الشركة، ارتفعت قيمة سهمك. وإن تعثّرت، انخفضت.</div></div>
+      <div class="card"><span class="card-icon">⚖️</span><div class="card-title">البورصة (EGX)</div><div class="card-body">البورصة المصرية هي السوق المنظّم الذي يجري فيه كل هذا البيع والشراء لحظة بلحظة، تحت إشراف الهيئة العامة للرقابة المالية.</div></div>
+      <div class="card"><span class="card-icon">🤝</span><div class="card-title">الوسيط (EFG)</div><div class="card-body">لا يمكنك دخول EGX والتداول مباشرة. تحتاج وسيطًا مرخّصًا — EFG هيرميس — ليضع الأوامر نيابة عنك.</div></div>
+    </div>
+    <div class="chart-wrap">
+      <div class="chart-title">مسار التداول</div>
+      <div class="chart-subtitle">من نية المستثمر إلى صفقة منفّذة</div>
+      <div class="flow-row">
+        <div class="flow-item"><div class="flow-item-label">مستثمر</div><div class="flow-item-val">يريد شراء أسهم</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-item"><div class="flow-item-label">الوسيط (EFG)</div><div class="flow-item-val">يضع الأمر</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-item"><div class="flow-item-label">البورصة (EGX)</div><div class="flow-item-val">تطابق المشتري والبائع</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-item"><div class="flow-item-label">التسوية</div><div class="flow-item-val">نقل الأسهم والنقد (T+2 في EGX)</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2: PRICE FORMATION -->
+<div class="section">
+  <div class="container">
+    <span class="section-num">02 — اكتشاف السعر</span>
+    <h2 class="section-title">كيف يتكوّن سعر السهم؟</h2>
+    <p class="section-lead">السعر ببساطة هو ما وافق آخر مشترٍ على دفعه لآخر بائع. عرض مقابل طلب، لحظة بلحظة.</p>
+    <div class="ticker-bar">
+      <div class="ticker-item"><div class="ticker-sym">COMI.CA</div><div class="ticker-price">EGP 68.40 &nbsp;<span class="up">▲ +1.2%</span></div></div>
+      <div class="ticker-item"><div class="ticker-sym">TMGH.CA</div><div class="ticker-price">EGP 41.15 &nbsp;<span class="down">▼ −0.8%</span></div></div>
+      <div class="ticker-item"><div class="ticker-sym">EFGD.CA</div><div class="ticker-price">EGP 19.50 &nbsp;<span class="up">▲ +2.4%</span></div></div>
+      <div class="ticker-item"><div class="ticker-sym">HRHO.CA</div><div class="ticker-price">EGP 12.80 &nbsp;<span class="down">▼ −0.3%</span></div></div>
+      <div class="ticker-item"><div class="ticker-sym">SWDY.CA</div><div class="ticker-price">EGP 7.22 &nbsp;<span class="up">▲ +0.6%</span></div></div>
+    </div>
+    <div class="chart-wrap">
+      <div class="chart-title">العرض مقابل الطلب — تكوين السعر</div>
+      <div class="chart-subtitle">حين يزيد الراغبون في الشراء عن الراغبين في البيع، يرتفع السعر. وحين يزيد الراغبون في البيع، ينخفض.</div>
+      <canvas id="supplyDemandChart"></canvas>
+    </div>
+    <div class="table-wrap">
+      <div class="chart-title" style="margin-bottom:16px;">ما الذي يحرّك سعر السهم؟</div>
+      <table>
+        <thead><tr><th>العامل</th><th>مثال</th><th>الأثر المعتاد</th></tr></thead>
+        <tbody>
+          <tr><td>تقرير الأرباح</td><td>أرباح الشركة تفوق التوقعات</td><td><span class="tag tag-buy">↑ السعر يرتفع</span></td></tr>
+          <tr><td>أسعار الفائدة</td><td>البنك المركزي يرفع الفائدة</td><td><span class="tag tag-sell">↓ الأسهم تهبط</span></td></tr>
+          <tr><td>أخبار الاقتصاد الكلي</td><td>نمو الناتج المحلي أقوى من المتوقع</td><td><span class="tag tag-buy">↑ السوق يصعد</span></td></tr>
+          <tr><td>حركة العملة</td><td>الجنيه ينخفض بحدة</td><td><span class="tag tag-sell">↓ أثر متباين</span></td></tr>
+          <tr><td>أخبار القطاع</td><td>إقرار قانون عقاري جديد</td><td><span class="tag tag-neutral">~ دوران قطاعي</span></td></tr>
+          <tr><td>فضيحة في شركة</td><td>استقالة مفاجئة للرئيس التنفيذي</td><td><span class="tag tag-sell">↓ السعر يهبط</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 3: ORDER TYPES -->
+<div class="section">
+  <div class="container">
+    <span class="section-num">03 — أنواع الأوامر</span>
+    <h2 class="section-title">كيف تشتري أو تبيع؟</h2>
+    <p class="section-lead">حين تتداول، تضع "أمرًا" — تعليمة بالشراء أو البيع. أنواع الأوامر المختلفة تمنحك درجات تحكم مختلفة.</p>
+    <div class="card-grid">
+      <div class="card"><span class="card-icon">🎯</span><div class="card-title">أمر بسعر السوق</div><div class="card-body">اشترِ الآن بأي سعر يعرضه السوق. يضمن التنفيذ لا السعر. يُستخدم حين تهمّ السرعة.</div></div>
+      <div class="card"><span class="card-icon">📍</span><div class="card-title">أمر محدد السعر</div><div class="card-body">اشترِ فقط عند EGP 65 أو أقل. يضمن السعر لا التنفيذ. لا تقع الصفقة إلا إذا بلغ السوق هدفك.</div></div>
+      <div class="card"><span class="card-icon">🛑</span><div class="card-title">أمر وقف الخسارة</div><div class="card-body">إذا هبط السعر إلى EGP 55، يبيع تلقائيًا لوقف الخسارة. أساسي لإدارة المخاطر — يجعلك تنام ليلًا.</div></div>
+      <div class="card"><span class="card-icon">📈</span><div class="card-title">أمر وقف محدد السعر</div><div class="card-body">يُفعَّل عند سعر الوقف، لكنه لا يُنفَّذ إلا داخل نطاق الحد الذي وضعته. تحكم أكبر، لكنه قد يفوتك في الأسواق السريعة.</div></div>
+    </div>
+    <div style="background:rgba(255,208,90,.06);border:1px solid rgba(255,208,90,.2);border-radius:4px;padding:14px 20px;margin-bottom:24px;font-size:13px;color:var(--text-dim);font-family:'IBM Plex Mono',monospace;">
+      ↳ سجل الأوامر أدناه هو النسخة الواقعية من <strong>منحنيات العرض والطلب أعلاه</strong> — ملتقطة في لحظة واحدة، عند مستويات سعرية فعلية، بكميات حقيقية تنتظر التنفيذ.
+    </div>
+    <div class="chart-wrap">
+      <div class="chart-title">سجل الأوامر — عرض الشراء مقابل عرض البيع</div>
+      <div class="chart-subtitle">يعرض سجل الأوامر أوامر الشراء (عرض الشراء) والبيع (عرض البيع) المعلّقة مرتّبة حسب السعر. الفارق السعري هو ما يكسبه صنّاع السوق.</div>
+      <canvas id="orderBookChart"></canvas>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 4: CHART TYPES -->
+<div class="section">
+  <div class="container">
+    <span class="section-num">04 — قراءة الرسوم البيانية</span>
+    <h2 class="section-title">ما هو الرسم البياني للسعر؟</h2>
+    <p class="section-lead">الرسم البياني للسعر سجل بصري لسعر السهم عبر الزمن. وهو الأداة الأساسية التي يفهم بها المتداولون سلوك السوق. له أنواع عدة — كل نوع يُظهر قدرًا مختلفًا من المعلومات.</p>
+
+    <div class="chart-tab-wrap">
+      <div class="chart-tabs">
+        <button class="chart-tab on" onclick="showTab('line')">📈 الرسم الخطي</button>
+        <button class="chart-tab" onclick="showTab('candle')">🕯 الشمعة اليابانية</button>
+      </div>
+
+      <!-- LINE CHART PANEL -->
+      <div class="chart-panel on" id="tab-line">
+        <div class="chart-explainer">
+          <div class="chart-explain-text">
+            <h3>الرسم الخطي</h3>
+            <p>أبسط رسم بياني للسعر. يصل فقط بين <strong>أسعار الإغلاق</strong> لكل فترة — نقطة لكل يوم (أو ساعة، أو دقيقة)، يربطها خط.</p>
+            <p>جيد لرؤية الاتجاه العام. لكنه يهدر كثيرًا من المعلومات — لا ترى ما حدث <em>خلال</em> كل فترة.</p>
+            <ul class="chart-pros">
+              <li>نظيف وسهل القراءة</li>
+              <li>ممتاز لتحليل الاتجاه طويل المدى</li>
+              <li>ضجيج أقل واتجاه أوضح</li>
+            </ul>
+            <ul class="chart-pros chart-cons" style="margin-top:8px;">
+              <li>يُظهر الإغلاق فقط — يتجاهل الافتتاح والأعلى والأدنى</li>
+              <li>يفوّت التقلب داخل اليوم</li>
+            </ul>
+            <p style="margin-top:12px;font-size:13px;color:var(--text-muted);font-family:'IBM Plex Mono',monospace;">ملاحظة: حجم التداول مستقل عن نوع الرسم — يُعرض دائمًا كرسم أعمدة منفصل أسفل أي رسم للسعر.</p>
+          </div>
+          <div>
+            <canvas id="lineChartDemo" style="max-height:220px;"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- CANDLESTICK PANEL -->
+      <div class="chart-panel" id="tab-candle">
+        <div class="chart-explainer">
+          <div class="chart-explain-text">
+            <h3>الشمعة اليابانية</h3>
+            <p>ابتكرها في اليابان في القرن الثامن عشر تاجر الأرز مونيهيسا هوما. كل شمعة تحزم 4 بيانات في شكل واحد: <strong>الافتتاح والأعلى والأدنى والإغلاق</strong>.</p>
+            <p>يُظهر الجسم المسافة من الافتتاح إلى الإغلاق. أما <strong>الفتائل</strong> (الخطوط الرفيعة أعلى وأسفل) فتُظهر أعلى وأدنى سعر بلغه السهم خلال تلك الفترة. هنا تكمن القصة.</p>
+            <ul class="chart-pros">
+              <li>4 قيم لكل شمعة: O, H, L, C</li>
+              <li>الفتائل تكشف مناطق الرفض — أساسية في التحليل الفني</li>
+              <li>أشكال الشموع تختزن نفسية السوق</li>
+            </ul>
+            <ul class="chart-pros chart-cons" style="margin-top:8px;">
+              <li>أصعب في القراءة في البداية</li>
+              <li>يحتاج معرفة بالأنماط لتفسيره</li>
+            </ul>
+          </div>
+          <div>
+            <!-- SVG Candlestick anatomy -->
+            <svg id="candleSVG" viewBox="0 0 340 220" style="width:100%;max-height:220px;" xmlns="http://www.w3.org/2000/svg">
+              <!-- Grid lines -->
+              <line x1="0" y1="40" x2="340" y2="40" stroke="#AC91E1" stroke-width="1"/>
+              <line x1="0" y1="80" x2="340" y2="80" stroke="#AC91E1" stroke-width="1"/>
+              <line x1="0" y1="120" x2="340" y2="120" stroke="#AC91E1" stroke-width="1"/>
+              <line x1="0" y1="160" x2="340" y2="160" stroke="#AC91E1" stroke-width="1"/>
+              <line x1="0" y1="200" x2="340" y2="200" stroke="#AC91E1" stroke-width="1"/>
+
+              <!-- ── BULLISH CANDLE (green) ── x=60 -->
+              <!-- Wick top -->
+              <line x1="80" y1="20" x2="80" y2="60" stroke="#1C7A3E" stroke-width="2"/>
+              <!-- Body -->
+              <rect x="60" y="60" width="40" height="80" fill="rgba(28,122,62,0.25)" stroke="#1C7A3E" stroke-width="2" rx="1"/>
+              <!-- Wick bottom -->
+              <line x1="80" y1="140" x2="80" y2="185" stroke="#1C7A3E" stroke-width="2"/>
+              <!-- Labels -->
+              <text x="108" y="24" fill="#1C7A3E" font-size="10" font-family="IBM Plex Mono">الأعلى</text>
+              <line x1="82" y1="20" x2="104" y2="20" stroke="#1C7A3E" stroke-width="1" stroke-dasharray="3"/>
+              <text x="108" y="64" fill="#1C7A3E" font-size="10" font-family="IBM Plex Mono">الإغلاق</text>
+              <line x1="100" y1="60" x2="106" y2="60" stroke="#1C7A3E" stroke-width="1" stroke-dasharray="3"/>
+              <text x="108" y="144" fill="#1C7A3E" font-size="10" font-family="IBM Plex Mono">الافتتاح</text>
+              <line x1="100" y1="140" x2="106" y2="140" stroke="#1C7A3E" stroke-width="1" stroke-dasharray="3"/>
+              <text x="108" y="189" fill="#1C7A3E" font-size="10" font-family="IBM Plex Mono">الأدنى</text>
+              <line x1="82" y1="185" x2="104" y2="185" stroke="#1C7A3E" stroke-width="1" stroke-dasharray="3"/>
+              <!-- Label below -->
+              <text x="55" y="212" fill="#1C7A3E" font-size="11" font-family="IBM Plex Mono">صاعدة</text>
+              <text x="52" y="224" fill="#666666" font-size="9" font-family="IBM Plex Mono">الإغلاق > الافتتاح</text>
+
+              <!-- ── BEARISH CANDLE (red) ── x=230 -->
+              <!-- Wick top -->
+              <line x1="250" y1="15" x2="250" y2="55" stroke="#B3261E" stroke-width="2"/>
+              <!-- Body -->
+              <rect x="230" y="55" width="40" height="90" fill="rgba(179,38,30,0.25)" stroke="#B3261E" stroke-width="2" rx="1"/>
+              <!-- Wick bottom -->
+              <line x1="250" y1="145" x2="250" y2="190" stroke="#B3261E" stroke-width="2"/>
+              <!-- Labels RIGHT side -->
+              <text x="278" y="19" fill="#B3261E" font-size="10" font-family="IBM Plex Mono">الأعلى</text>
+              <line x1="252" y1="15" x2="276" y2="15" stroke="#B3261E" stroke-width="1" stroke-dasharray="3"/>
+              <text x="278" y="59" fill="#B3261E" font-size="10" font-family="IBM Plex Mono">الافتتاح</text>
+              <line x1="270" y1="55" x2="276" y2="55" stroke="#B3261E" stroke-width="1" stroke-dasharray="3"/>
+              <text x="278" y="149" fill="#B3261E" font-size="10" font-family="IBM Plex Mono">الإغلاق</text>
+              <line x1="270" y1="145" x2="276" y2="145" stroke="#B3261E" stroke-width="1" stroke-dasharray="3"/>
+              <text x="278" y="194" fill="#B3261E" font-size="10" font-family="IBM Plex Mono">الأدنى</text>
+              <line x1="252" y1="190" x2="276" y2="190" stroke="#B3261E" stroke-width="1" stroke-dasharray="3"/>
+              <!-- Label below -->
+              <text x="225" y="212" fill="#B3261E" font-size="11" font-family="IBM Plex Mono">هابطة</text>
+              <text x="222" y="224" fill="#666666" font-size="9" font-family="IBM Plex Mono">الإغلاق &lt; الافتتاح</text>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Live candlestick chart -->
+        <div style="margin-top:8px;">
+          <div class="chart-title">سهم محاكاة من EGX — 30 شمعة بفتائلها</div>
+          <div class="chart-subtitle">كل شمعة = يوم واحد. الأخضر = يوم صاعد. الأحمر = يوم هابط. الفتائل تُظهر النطاق داخل اليوم.</div>
+          <canvas id="ohlcCanvas" height="220" style="max-height:220px;width:100%;"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Line chart with volume -->
+    <div class="chart-wrap" style="margin-top:24px;">
+      <div class="chart-title">السهم نفسه — رسم خطي + حجم التداول (60 يومًا)</div>
+      <div class="chart-subtitle">السعر وحجم التداول بُعدان منفصلان من المعلومات. لا يروي أيٌّ منهما القصة كاملة وحده.</div>
+      <div style="margin-bottom:16px;font-size:14px;color:var(--text-dim);line-height:1.7;">
+        <strong style="color:var(--yn-ink);">حجم التداول</strong> يقيس كم سهمًا تغيّرت ملكيته في فترة ما. وهو يجيب: <em>كم من القناعة كان وراء حركة السعر هذه؟</em><br>
+        <span style="color:var(--green);">● عمود حجم أخضر</span> = أُغلق السعر أعلى من اليوم السابق — المشترون في السيطرة.<br>
+        <span style="color:var(--red);">● عمود حجم أحمر</span> = أُغلق السعر أدنى من اليوم السابق — البائعون في السيطرة.<br>
+        حركة سعرية كبيرة على <strong>حجم تداول مرتفع</strong> إشارة قوية. والحركة نفسها على <strong>حجم منخفض</strong> ضعيفة ومرشحة للانعكاس.
+      </div>
+      <canvas id="priceChart" style="max-height:200px;"></canvas>
+      <div style="height:16px;"></div>
+      <canvas id="volumeChart" style="max-height:100px;"></canvas>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5: MARKET PARTICIPANTS -->
+<div class="section">
+  <div class="container">
+    <span class="section-num">05 — المنظومة</span>
+    <h2 class="section-title">من يتداول في السوق؟</h2>
+    <p class="section-lead">في السوق أنواع كثيرة من المشاركين — لكل منهم أهداف وآفاق زمنية واستراتيجيات مختلفة.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>المشارك</th><th>من هم</th><th>الأفق الزمني</th><th>الاستراتيجية</th></tr></thead>
+        <tbody>
+          <tr><td>مستثمر أفراد</td><td>فرد يتداول بأمواله الخاصة</td><td>أيام → سنوات</td><td>متنوعة — القيمة والنمو والزخم</td></tr>
+          <tr><td>مستثمر مؤسسي</td><td>صناديق استثمار وصناديق معاشات</td><td>أشهر → سنوات</td><td>التحليل الأساسي وبناء المحفظة</td></tr>
+          <tr><td>صانع سوق</td><td>شركات مستعدة دائمًا للشراء والبيع — توفّر الأوامر التي تتداول مقابلها</td><td>ثوانٍ → دقائق</td><td>تكسب الفارق السعري بين عرضي الشراء والبيع؛ وتخسر حين تحرّك الأخبار السعر أسرع من قدرتها على التحديث</td></tr>
+          <tr><td>متداول خوارزمي / كمّي</td><td>يستخدم الكود لتنفيذ الاستراتيجيات تلقائيًا</td><td>أجزاء من الثانية → أيام</td><td>إشارات رياضية وتنفيذ سريع وأفضليات إحصائية</td></tr>
+          <tr><td>الجهة الرقابية (FRA / EGX)</td><td>تضمن العدالة والشفافية</td><td>مستمر</td><td>القواعد ومصدّات التداول ومتطلبات الإفصاح</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:24px;padding:18px 22px;background:var(--card);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:4px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">↳ صنّاع السوق في EGX</div>
+      <div style="font-size:14px;color:var(--text-dim);line-height:1.7;">أطلقت EGX برنامج صنّاع السوق الرسمي في يناير 2019. واليوم <strong style="color:var(--yn-ink);">شركة واحدة فقط مسجّلة</strong> — بلتون لصناعة السوق (كود 5095). في الأسواق الناضجة مثل الولايات المتحدة، تتنافس عشرات من صنّاع السوق على كل سهم عالي السيولة، وهذا جزء من سبب بقاء فوارقها السعرية ضيقة وسيولتها عميقة. في EGX، تأتي معظم السيولة من مشترين وبائعين طبيعيين يلتقون في سجل الأوامر — وهو أحد أسباب اتساع الفوارق وجفاف السيولة أسرع عند الأخبار.</div>
+    </div>
+    <div class="chart-wrap">
+      <div class="chart-title">EGX — التداول حسب نوع المستثمر (المصدر: EGX / زاوية، 2025)</div>
+      <div class="chart-subtitle">مستثمرو الأفراد المصريون يهيمنون بنحو 82% من كل المعاملات — ومشاركة المؤسسات والأجانب تبقى منخفضة.</div>
+      <canvas id="pieChart" style="max-height:280px;"></canvas>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 6: GLOSSARY -->
+<div class="section">
+  <div class="container">
+    <span class="section-num">06 — المسرد</span>
+    <h2 class="section-title">مصطلحات أساسية</h2>
+    <p class="section-lead">مفردات أساسية ستقابلها باستمرار. اعرفها قبل الجلسة 2.</p>
+    <div class="glossary-grid">
+      <div class="term-card"><div class="term">السوق الصاعد</div><div class="term-def">سوق يتجه صعودًا — أسعار ترتفع 20% أو أكثر من قيعان قريبة. يسود التفاؤل.</div></div>
+      <div class="term-card"><div class="term">السوق الهابط</div><div class="term-def">سوق يتجه هبوطًا — أسعار تنخفض 20% أو أكثر من قمم قريبة. يسود التشاؤم.</div></div>
+      <div class="term-card"><div class="term">السيولة</div><div class="term-def">سهولة الشراء أو البيع دون تحريك السعر. سيولة عالية = تداول سهل.</div></div>
+      <div class="term-card"><div class="term">التقلب</div><div class="term-def">مقدار تذبذب السعر. تقلب عالٍ = تأرجح أكبر = مخاطر وفرص أكثر.</div></div>
+      <div class="term-card"><div class="term">الفارق بين عرض الشراء وعرض البيع</div><div class="term-def">عرض الشراء = أعلى ما يعرضه المشترون. عرض البيع = أدنى ما يقبله البائعون. الفارق بينهما ربح صانع السوق.</div></div>
+      <div class="term-card"><div class="term">القيمة السوقية</div><div class="term-def">إجمالي قيمة الشركة = سعر السهم × عدد الأسهم القائمة.</div></div>
+      <div class="term-card"><div class="term">التوزيعات</div><div class="term-def">جزء من أرباح الشركة يُدفع للمساهمين. ليست كل الشركات توزّع أرباحًا.</div></div>
+      <div class="term-card"><div class="term">البيع على المكشوف</div><div class="term-def">اقتراض أسهم لبيعها الآن أملًا في شرائها أرخص لاحقًا. رهان على هبوط السعر.</div></div>
+      <div class="term-card"><div class="term">IPO</div><div class="term-def">الطرح العام الأولي — حين تبيع شركة خاصة أسهمًا للجمهور لأول مرة.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- NEXT SESSION -->
+
+
+<script>
+// ═══════════════════════════════
+//  SLIDER
+// ═══════════════════════════════
+let cur = 0;
+const total = 5;
+const track = document.getElementById('sliderTrack');
+const dotWrap = document.getElementById('dotWrap');
+
+for(let i=0;i<total;i++){
+  const d = document.createElement('button');
+  d.className='s-dot'+(i===0?' on':'');
+  d.onclick=()=>goSlide(i);
+  dotWrap.appendChild(d);
+}
+
+function goSlide(n){
+  cur=Math.max(0,Math.min(total-1,n));
+  track.style.transform=`translateX(-${cur*100}%)`;
+  document.querySelectorAll('.s-dot').forEach((d,i)=>d.classList.toggle('on',i===cur));
+  document.getElementById('slideNum').textContent=`${cur+1} / ${total}`;
+}
+function slideBy(d){goSlide(cur+d);}
+
+// auto-advance
+let autoTimer = setInterval(()=>goSlide((cur+1)%total),6000);
+document.querySelector('.slider-section').addEventListener('mouseenter',()=>clearInterval(autoTimer));
+
+// ── FEAR/GREED METER ──
+const fgNeedle = document.getElementById('fgNeedle');
+const fgVal = document.getElementById('fgVal');
+const fgCap = document.getElementById('fgCaption');
+const fgArc = document.getElementById('fgArc');
+const fgContext = document.getElementById('fgContext');
+const fgBtns = document.querySelectorAll('.fg-btn');
+
+function updateFG(v, label, desc){
+  const pct = v/100;
+  const angle = -90 + pct*180;
+  fgNeedle.setAttribute('transform',`rotate(${angle},140,140)`);
+  fgVal.textContent = v;
+  // color tier by value
+  const colors=['#B3261E','#FFD05A','#FFD05A','#1C7A3E','#1C7A3E'];
+  const idx = Math.min(4,Math.floor(pct*5));
+  const color = colors[idx];
+  fgCap.textContent = label;
+  fgCap.style.color = color;
+  fgVal.style.color = color;
+  fgArc.setAttribute('stroke-dashoffset', 377 - pct*377);
+  if(desc) fgContext.textContent = desc;
+}
+
+fgBtns.forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    fgBtns.forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    updateFG(
+      +btn.dataset.val,
+      btn.dataset.cap + ' · ' + btn.dataset.label,
+      btn.dataset.desc
+    );
+  });
+});
+
+// initial state — TODAY
+updateFG(69, 'مايو 2026 — اليوم · طمع', 'القراءة الحالية: 69. المستثمرون يميلون إلى الطمع.');
+
+// ── CHAOS CANVAS ──
+(function(){
+  const canvas = document.getElementById('chaosCanvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = canvas.offsetWidth * window.devicePixelRatio || 340;
+  canvas.height = 200;
+  let pts = [];
+  let animFrame;
+
+  function genPts(){
+    pts=[];
+    let y=100, n=120;
+    for(let i=0;i<n;i++){
+      y += (Math.random()-0.5)*14;
+      y = Math.max(20,Math.min(180,y));
+      pts.push(y);
+    }
+  }
+  function draw(){
+    const w=canvas.width/window.devicePixelRatio||340;
+    const h=200;
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.save();
+    ctx.scale(window.devicePixelRatio||1,1);
+    // background
+    ctx.fillStyle='#FFFFFF';
+    ctx.fillRect(0,0,w,h);
+    // grid
+    ctx.strokeStyle='#AC91E1';ctx.lineWidth=1;
+    for(let y=20;y<200;y+=40){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke();}
+    // path
+    ctx.beginPath();
+    const step=w/(pts.length-1);
+    pts.forEach((p,i)=>{
+      if(i===0)ctx.moveTo(0,p);
+      else ctx.lineTo(i*step,p);
+    });
+    ctx.strokeStyle='#A3C6D7';ctx.lineWidth=2;ctx.stroke();
+    // fill
+    ctx.lineTo((pts.length-1)*step,h);ctx.lineTo(0,h);
+    ctx.fillStyle='rgba(163,198,215,0.06)';ctx.fill();
+    // label
+    ctx.fillStyle='#666666';ctx.font='10px IBM Plex Mono';
+    ctx.fillText('مسار عشوائي — يستحيل التنبؤ بالخطوة التالية',8,h-8);
+    ctx.restore();
+  }
+  genPts();draw();
+  setInterval(()=>{genPts();draw();},3000);
+})();
+
+// ── GAME BOARD ──
+function rollGame(){
+  const rows=['gameRow1','gameRow2','gameRow3','gameRow4'];
+  const stocks=['COMI','TMGH','EFGD','HRHO','SWDY'];
+  rows.forEach((rid,ri)=>{
+    const row=document.getElementById(rid);
+    row.innerHTML='';
+    // stock label
+    const lbl=document.createElement('div');
+    lbl.className='game-cell';
+    lbl.style.cssText='background:transparent;border-color:#AC91E1;color:#666666;font-size:10px;width:52px;';
+    lbl.textContent=stocks[ri]||'STK'+(ri+1);
+    row.appendChild(lbl);
+    for(let d=0;d<5;d++){
+      const r=(Math.random()-0.45)*6;
+      const cell=document.createElement('div');
+      const cls=r>0.3?'gc-up':r<-0.3?'gc-dn':'gc-flat';
+      cell.className='game-cell '+cls;
+      cell.textContent=(r>0?'+':'')+r.toFixed(1)+'%';
+      row.appendChild(cell);
+    }
+  });
+}
+rollGame();
+
+// ── SIGNAL CANVAS ──
+(function(){
+  const canvas=document.getElementById('signalCanvas');
+  const ctx=canvas.getContext('2d');
+  const W=340,H=200;
+  canvas.width=W*(window.devicePixelRatio||1);
+  canvas.height=H;
+  ctx.scale(window.devicePixelRatio||1,1);
+  ctx.fillStyle='#FFFFFF';ctx.fillRect(0,0,W,H);
+  const n=120;
+  const noise=[],signal=[];
+  let sy=100;
+  for(let i=0;i<n;i++){
+    const s=Math.sin(i*0.18)*30+Math.sin(i*0.05)*20+100;
+    signal.push(s);
+    noise.push(s+(Math.random()-0.5)*30);
+  }
+  function drawLine(pts,color,lw){
+    ctx.beginPath();
+    const step=W/(pts.length-1);
+    pts.forEach((p,i)=>i===0?ctx.moveTo(0,p):ctx.lineTo(i*step,p));
+    ctx.strokeStyle=color;ctx.lineWidth=lw;ctx.stroke();
+  }
+  // grid
+  ctx.strokeStyle='#AC91E1';ctx.lineWidth=1;
+  for(let y=20;y<H;y+=40){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+  drawLine(noise,'rgba(179,38,30,0.4)',1.5);
+  drawLine(signal,'#FFD05A',2.5);
+  // legend
+  ctx.font='10px IBM Plex Mono';
+  ctx.fillStyle='rgba(179,38,30,0.8)';ctx.fillRect(10,10,12,3);
+  ctx.fillStyle='#444444';ctx.fillText('الضجيج (السعر الخام)',28,16);
+  ctx.fillStyle='#FFD05A';ctx.fillRect(10,22,12,3);
+  ctx.fillStyle='#444444';ctx.fillText('الإشارة (الاتجاه الكامن)',28,28);
+})();
+
+// ═══════════════════════════════
+//  CHART TABS
+// ═══════════════════════════════
+function showTab(id){
+  document.querySelectorAll('.chart-tab').forEach((t,i)=>t.classList.toggle('on',['line','candle'][i]===id));
+  document.querySelectorAll('.chart-panel').forEach(p=>p.classList.remove('on'));
+  document.getElementById('tab-'+id).classList.add('on');
+  if(id==='candle'&&!window._ohlcDrawn){drawOHLC();window._ohlcDrawn=true;}
+}
+
+// ═══════════════════════════════
+//  CHARTS (Chart.js)
+// ═══════════════════════════════
+Chart.defaults.color='#666666';
+Chart.defaults.borderColor='#AC91E1';
+
+// Supply & Demand
+new Chart(document.getElementById('supplyDemandChart'),{
+  type:'line',
+  data:{
+    labels:['55','60','65','70','75','80','85','90','95','100'],
+    datasets:[
+      {label:'الطلب (المشترون)',data:[95,82,68,55,42,30,20,12,6,2],borderColor:'#1C7A3E',tension:.4,fill:false,pointRadius:4,pointBackgroundColor:'#1C7A3E'},
+      {label:'العرض (البائعون)',data:[2,8,18,30,42,55,68,80,90,96],borderColor:'#B3261E',tension:.4,fill:false,pointRadius:4,pointBackgroundColor:'#B3261E'}
+    ]
+  },
+  options:{responsive:true,
+    plugins:{
+      legend:{labels:{color:'#444444',font:{family:'IBM Plex Mono',size:11}}},
+      tooltip:{backgroundColor:'#FFFFFF',titleColor:'#fff',bodyColor:'#444444'},
+      annotation:{
+        annotations:{
+          equilLine:{
+            type:'line', xMin:4, xMax:4,
+            borderColor:'#FFD05A', borderWidth:2, borderDash:[6,4],
+            label:{content:['نقطة التوازن','سعر السوق: EGP 75','↳ هنا تُنفَّذ الصفقة'],display:true,position:'start',backgroundColor:'rgba(255,208,90,0.15)',color:'#FFD05A',font:{family:'IBM Plex Mono',size:10},padding:8}
+          }
+        }
+      }
+    },
+    scales:{x:{title:{display:true,text:'السعر (EGP)',color:'#666666',font:{family:'IBM Plex Mono',size:11}},grid:{color:'#AC91E1'},ticks:{color:'#666666'}},y:{title:{display:true,text:'عدد الأوامر',color:'#666666',font:{family:'IBM Plex Mono',size:11}},grid:{color:'#AC91E1'},ticks:{color:'#666666'}}}}
+});
+
+// Order Book
+new Chart(document.getElementById('orderBookChart'),{
+  type:'bar',
+  data:{
+    labels:['62','63','64','65 ← الفارق →','66','67','68'],
+    datasets:[
+      {label:'عروض الشراء',data:[2400,3100,4500,6200,0,0,0],backgroundColor:'rgba(28,122,62,.6)',borderColor:'#1C7A3E',borderWidth:1},
+      {label:'عروض البيع',data:[0,0,0,5800,4200,2900,1800],backgroundColor:'rgba(179,38,30,.6)',borderColor:'#B3261E',borderWidth:1}
+    ]
+  },
+  options:{responsive:true,plugins:{legend:{labels:{color:'#444444',font:{family:'IBM Plex Mono',size:11}}},tooltip:{backgroundColor:'#FFFFFF',titleColor:'#fff',bodyColor:'#444444'}},
+    scales:{x:{grid:{color:'#AC91E1'},ticks:{color:'#666666',font:{family:'IBM Plex Mono',size:11}}},y:{title:{display:true,text:'حجم التداول (أسهم)',color:'#666666',font:{family:'IBM Plex Mono',size:11}},grid:{color:'#AC91E1'},ticks:{color:'#666666'}}}}
+});
+
+// Line chart demo (tab)
+(function(){
+  const n=40;
+  let p=60; const prices=[];
+  for(let i=0;i<n;i++){p+=(Math.random()-.47)*2;prices.push(parseFloat(p.toFixed(2)));}
+  new Chart(document.getElementById('lineChartDemo'),{
+    type:'line',
+    data:{labels:Array.from({length:n},(_,i)=>`ي${i+1}`),datasets:[{label:'سعر الإغلاق',data:prices,borderColor:'#FFD05A',backgroundColor:'rgba(255,208,90,.07)',fill:true,tension:.35,pointRadius:0,borderWidth:2}]},
+    options:{responsive:true,plugins:{legend:{display:false},tooltip:{backgroundColor:'#FFFFFF',titleColor:'#fff',bodyColor:'#444444'}},
+      scales:{x:{grid:{display:false},ticks:{maxTicksLimit:8,color:'#666666',font:{family:'IBM Plex Mono',size:10}}},y:{grid:{color:'#AC91E1'},ticks:{color:'#666666'}}}}
+  });
+})();
+
+// ── OHLC CANDLESTICK on canvas ──
+function drawOHLC(){
+  const canvas=document.getElementById('ohlcCanvas');
+  const ctx=canvas.getContext('2d');
+  const dpr=window.devicePixelRatio||1;
+  const W=canvas.parentElement.offsetWidth||820;
+  const H=220;
+  canvas.width=W*dpr; canvas.height=H*dpr;
+  canvas.style.width=W+'px'; canvas.style.height=H+'px';
+  ctx.scale(dpr,dpr);
+
+  const N=30;
+  // Generate OHLC data
+  const data=[];
+  let close=50;
+  for(let i=0;i<N;i++){
+    const open=close;
+    const move=(Math.random()-.47)*4;
+    close=Math.max(25,open+move);
+    const high=Math.max(open,close)+(Math.random()*3);
+    const low=Math.min(open,close)-(Math.random()*3);
+    data.push({o:open,h:high,l:low,c:close});
+  }
+
+  const pad={l:10,r:10,t:20,b:30};
+  const chartW=W-pad.l-pad.r;
+  const chartH=H-pad.t-pad.b;
+  const allPrices=data.flatMap(d=>[d.h,d.l]);
+  const minP=Math.min(...allPrices)-2;
+  const maxP=Math.max(...allPrices)+2;
+  const pxPerUnit=chartH/(maxP-minP);
+  const toY=p=>pad.t+chartH-(p-minP)*pxPerUnit;
+
+  // background
+  ctx.fillStyle='#FFFFFF'; ctx.fillRect(0,0,W,H);
+
+  // grid lines
+  ctx.strokeStyle='#AC91E1'; ctx.lineWidth=1;
+  for(let i=0;i<=4;i++){
+    const y=pad.t+i*(chartH/4);
+    ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(W-pad.r,y);ctx.stroke();
+    const price=(maxP-(i/4)*(maxP-minP)).toFixed(1);
+    ctx.fillStyle='#666666';ctx.font=`9px IBM Plex Mono`;
+    ctx.fillText(price,W-pad.r+2,y+3);
+  }
+
+  const cw=chartW/N;
+  const bodyW=Math.max(4,cw*0.55);
+
+  data.forEach((d,i)=>{
+    const x=pad.l+i*cw+cw/2;
+    const isUp=d.c>=d.o;
+    const color=isUp?'#1C7A3E':'#B3261E';
+    const fillColor=isUp?'rgba(28,122,62,0.25)':'rgba(179,38,30,0.25)';
+
+    // wick top (high to top of body)
+    const bodyTop=toY(Math.max(d.o,d.c));
+    const bodyBot=toY(Math.min(d.o,d.c));
+    const wickTop=toY(d.h);
+    const wickBot=toY(d.l);
+
+    // top wick
+    ctx.beginPath();ctx.moveTo(x,wickTop);ctx.lineTo(x,bodyTop);
+    ctx.strokeStyle=color;ctx.lineWidth=1.5;ctx.stroke();
+
+    // body
+    const bh=Math.max(2,bodyBot-bodyTop);
+    ctx.fillStyle=fillColor;
+    ctx.fillRect(x-bodyW/2,bodyTop,bodyW,bh);
+    ctx.strokeStyle=color;ctx.lineWidth=1.5;
+    ctx.strokeRect(x-bodyW/2,bodyTop,bodyW,bh);
+
+    // bottom wick
+    ctx.beginPath();ctx.moveTo(x,bodyBot);ctx.lineTo(x,wickBot);
+    ctx.strokeStyle=color;ctx.lineWidth=1.5;ctx.stroke();
+
+    // x axis label
+    if(i%5===0){
+      ctx.fillStyle='#666666';ctx.font='9px IBM Plex Mono';
+      ctx.fillText(`ي${i+1}`,x-8,H-8);
+    }
+  });
+
+  // axis label
+  ctx.fillStyle='#666666';ctx.font='10px IBM Plex Mono';
+  ctx.fillText('السعر (EGP)',pad.l,12);
+}
+
+// Price line + volume (two separate subplots)
+(function(){
+  const days=60;
+  const labels=Array.from({length:days},(_,i)=>`يوم ${i+1}`);
+  let p=50; const prices=[],volumes=[],volColors=[];
+  for(let i=0;i<days;i++){
+    p+=(Math.random()-.47)*2.5; p=Math.max(30,p);
+    prices.push(parseFloat(p.toFixed(2)));
+    volumes.push(Math.floor(Math.random()*900000+100000));
+  }
+  // color volume bars: green if close > prev close, red if close < prev close
+  for(let i=0;i<days;i++){
+    const up = i===0 ? true : prices[i] >= prices[i-1];
+    volColors.push(up ? 'rgba(28,122,62,0.5)' : 'rgba(179,38,30,0.5)');
+  }
+
+  new Chart(document.getElementById('priceChart'),{
+    type:'line',
+    data:{labels,datasets:[
+      {label:'سعر الإغلاق (EGP)',data:prices,borderColor:'#FFD05A',backgroundColor:'rgba(255,208,90,.08)',fill:true,tension:.3,pointRadius:0,borderWidth:2}
+    ]},
+    options:{responsive:true,animation:false,
+      plugins:{legend:{labels:{color:'#444444',font:{family:'IBM Plex Mono',size:11}}},tooltip:{backgroundColor:'#FFFFFF',titleColor:'#fff',bodyColor:'#444444'}},
+      scales:{
+        x:{grid:{display:false},ticks:{maxTicksLimit:10,color:'#666666',font:{family:'IBM Plex Mono',size:10}}},
+        y:{position:'left',grid:{color:'#AC91E1'},ticks:{color:'#666666'},title:{display:true,text:'السعر (EGP)',color:'#666666',font:{family:'IBM Plex Mono',size:11}}}
+      }}
+  });
+
+  new Chart(document.getElementById('volumeChart'),{
+    type:'bar',
+    data:{labels,datasets:[
+      {label:'حجم التداول',data:volumes,backgroundColor:volColors,borderWidth:0}
+    ]},
+    options:{responsive:true,animation:false,
+      plugins:{legend:{display:false},tooltip:{backgroundColor:'#FFFFFF',titleColor:'#fff',bodyColor:'#444444',callbacks:{label:ctx=>`حجم التداول: ${(ctx.raw/1e6).toFixed(2)} مليون سهم`}}},
+      scales:{
+        x:{grid:{display:false},ticks:{maxTicksLimit:10,color:'#666666',font:{family:'IBM Plex Mono',size:10}}},
+        y:{position:'left',grid:{color:'#AC91E1'},ticks:{color:'#666666',callback:v=>(v/1e6).toFixed(1)+'M'},title:{display:true,text:'حجم التداول (أسهم)',color:'#666666',font:{family:'IBM Plex Mono',size:11}}}
+      }}
+  });
+})();
+
+// Pie — REAL EGX data sourced from EGX/Zawya reports
+new Chart(document.getElementById('pieChart'),{
+  type:'doughnut',
+  data:{
+    labels:['أفراد مصريون (~82%)', 'مؤسسات مصرية (~13%)', 'مستثمرون عرب (~3.6%)', 'مستثمرون أجانب (~1.7%)'],
+    datasets:[{data:[82,13,3.6,1.7],backgroundColor:['rgba(255,208,90,.8)','rgba(163,198,215,.7)','rgba(99,179,237,.7)','rgba(179,38,30,.7)'],borderColor:['#FFD05A','#A3C6D7','#63b3ed','#B3261E'],borderWidth:2,hoverOffset:8}]
+  },
+  options:{responsive:true,plugins:{legend:{position:'right',labels:{color:'#444444',font:{family:'IBM Plex Mono',size:12},padding:16}},tooltip:{backgroundColor:'#FFFFFF',titleColor:'#fff',bodyColor:'#444444',callbacks:{label:ctx=>` ${ctx.label}`}}},cutout:'60%'}
+});
+</script>
+</div>
