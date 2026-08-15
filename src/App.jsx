@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route, Outlet, useLocation } from 'react-router-dom'
+import { I18nProvider, LOCALES, DEFAULT_LOCALE } from './lib/i18n.jsx'
 
 import Home from './pages/Home.jsx'
 import Learn from './pages/Learn.jsx'
@@ -29,6 +30,55 @@ function ScrollToTop() {
   return null
 }
 
+/** Everything under a locale renders inside that locale's provider. */
+function Locale({ locale }) {
+  return (
+    <I18nProvider locale={locale}>
+      <Outlet />
+    </I18nProvider>
+  )
+}
+
+/**
+ * The pages of one language. The same tree is mounted once per locale — at the
+ * root for English and under `/ar` for Arabic — so a path is the path, and the
+ * only difference between the two is the prefix.
+ */
+function pages() {
+  return (
+    <>
+      <Route index element={<Home />} />
+
+      <Route path="learn" element={<Learn />} />
+      <Route path="learn/glossary" element={<Glossary />} />
+      <Route path="learn/glossary/:term" element={<GlossaryTerm />} />
+      <Route path="learn/:collection" element={<TrackIndex />} />
+      <Route path="learn/:collection/:slug" element={<Article />} />
+      <Route path="learn/:collection/:slug/deck" element={<SessionDeck />} />
+
+      <Route path="build" element={<Build />} />
+      <Route path="build/repositories" element={<BuildSection section="repositories" />} />
+      <Route path="build/templates" element={<BuildSection section="templates" />} />
+      <Route path="build/:collection" element={<Projects />} />
+      <Route path="build/:collection/:slug" element={<ProjectDetail />} />
+
+      <Route path="compete" element={<Compete />} />
+      <Route path="compete/:section" element={<CompeteSection />} />
+
+      <Route path="editorial" element={<Editorial />} />
+      <Route path="editorial/:slug" element={<Article />} />
+
+      <Route path="about" element={<About />} />
+      <Route path="partners" element={<Partners />} />
+
+      <Route path="*" element={<NotFound />} />
+    </>
+  )
+}
+
+/** Every locale except the default one is reachable at a prefix of its name. */
+const PREFIXED = Object.keys(LOCALES).filter((code) => code !== DEFAULT_LOCALE)
+
 /**
  * The route tree mirrors the original site's, one for one. `:collection` and
  * `:section` stand in where the original had a page per entry that differed only
@@ -39,31 +89,14 @@ export default function App() {
     <>
       <ScrollToTop />
       <Routes>
-        <Route path="/" element={<Home />} />
-
-        <Route path="/learn" element={<Learn />} />
-        <Route path="/learn/glossary" element={<Glossary />} />
-        <Route path="/learn/glossary/:term" element={<GlossaryTerm />} />
-        <Route path="/learn/:collection" element={<TrackIndex />} />
-        <Route path="/learn/:collection/:slug" element={<Article />} />
-        <Route path="/learn/:collection/:slug/deck" element={<SessionDeck />} />
-
-        <Route path="/build" element={<Build />} />
-        <Route path="/build/repositories" element={<BuildSection section="repositories" />} />
-        <Route path="/build/templates" element={<BuildSection section="templates" />} />
-        <Route path="/build/:collection" element={<Projects />} />
-        <Route path="/build/:collection/:slug" element={<ProjectDetail />} />
-
-        <Route path="/compete" element={<Compete />} />
-        <Route path="/compete/:section" element={<CompeteSection />} />
-
-        <Route path="/editorial" element={<Editorial />} />
-        <Route path="/editorial/:slug" element={<Article />} />
-
-        <Route path="/about" element={<About />} />
-        <Route path="/partners" element={<Partners />} />
-
-        <Route path="*" element={<NotFound />} />
+        {PREFIXED.map((code) => (
+          <Route key={code} path={`/${code}`} element={<Locale locale={code} />}>
+            {pages()}
+          </Route>
+        ))}
+        <Route path="/" element={<Locale locale={DEFAULT_LOCALE} />}>
+          {pages()}
+        </Route>
       </Routes>
     </>
   )

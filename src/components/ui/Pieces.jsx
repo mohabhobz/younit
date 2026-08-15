@@ -1,4 +1,5 @@
 import { FILLS } from '../../styles/tokens.js'
+import { useI18n } from '../../lib/i18n.jsx'
 
 /** Filled pill tag — the category marker. Poppins 400, per the style guide. */
 export function Tag({ children, tone = 'purple', size = 'lg' }) {
@@ -167,10 +168,12 @@ export function PageHeading({ children, sub, size = 'h1' }) {
  * needs no change to the layout.
  */
 export function PhotoPlaceholder({ ratio = '3 / 1', label, radius = 'band' }) {
+  const { t } = useI18n()
+
   return (
     <div
       role="img"
-      aria-label={`Placeholder: ${label}`}
+      aria-label={t('common.photoPlaceholderLabel', { label })}
       style={{
         aspectRatio: ratio,
         width: '100%',
@@ -183,7 +186,7 @@ export function PhotoPlaceholder({ ratio = '3 / 1', label, radius = 'band' }) {
       }}
     >
       <span className="yn-micro" style={{ color: 'var(--yn-white)', opacity: 0.85 }}>
-        Photo — {label}
+        {t('common.photoPlaceholder', { label })}
       </span>
     </div>
   )

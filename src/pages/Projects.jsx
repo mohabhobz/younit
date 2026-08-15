@@ -1,50 +1,36 @@
-import { useParams, Link } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import Page from '../components/layout/Page.jsx'
 import NotFound from './NotFound.jsx'
 import Breadcrumb from '../components/ui/Breadcrumb.jsx'
 import { Button } from '../components/ui/Button.jsx'
 import { Card, EditorialCard, Grid } from '../components/ui/Card.jsx'
-import { Display, Micro, PageHeading, Section } from '../components/ui/Pieces.jsx'
+import { Display, PageHeading, Section } from '../components/ui/Pieces.jsx'
 import { byCollection } from '../lib/content.js'
+import { useI18n } from '../lib/i18n.jsx'
 
-/** Sublines and empty states are the original site's. */
+/** Sublines and empty states are the original site's, now in the dictionary. */
 const COLLECTIONS = {
-  showcase: {
-    title: 'Showcase',
-    sub: 'Things people are building on EFG infrastructure. Real names, real code.',
-    empty: {
-      title: 'The first projects are landing soon. Want to be among them?',
-      cta: 'Explore the repositories',
-      to: '/build/repositories',
-    },
-  },
-  capstones: {
-    title: 'Capstones',
-    sub: 'University capstone projects built on EFG infrastructure. Real students, real research.',
-    empty: { title: 'Capstone projects loading soon.' },
-  },
-  apps: {
-    title: 'Apps',
-    sub: 'Independent applications built on the EFG API.',
-    empty: { title: 'Apps loading soon.' },
-  },
+  showcase: { key: 'showcase', emptyCta: '/build/repositories' },
+  capstones: { key: 'capstones' },
+  apps: { key: 'apps' },
 }
 
-const STATUS = { live: 'Live', 'in-development': 'In development', archived: 'Archived' }
 const TONES = { live: 'blue', 'in-development': 'amber', archived: 'purple' }
 
 export default function Projects() {
   const { collection } = useParams()
+  const { t, locale } = useI18n()
   const meta = COLLECTIONS[collection]
   if (!meta) return <NotFound />
 
-  const docs = byCollection(collection)
+  const docs = byCollection(collection, locale)
+  const title = t(`build.${meta.key}Title`)
 
   return (
-    <Page title={meta.title}>
+    <Page title={title}>
       <Section>
-        <Breadcrumb trail={[{ label: 'Build', to: '/build' }, { label: meta.title }]} />
-        <PageHeading sub={meta.sub}>{meta.title}</PageHeading>
+        <Breadcrumb trail={[{ label: t('build.title'), to: '/build' }, { label: title }]} />
+        <PageHeading sub={t(`build.${meta.key}Sub`)}>{title}</PageHeading>
 
         {docs.length ? (
           <Grid>
@@ -52,7 +38,7 @@ export default function Projects() {
               <div key={doc.slug}>
                 <EditorialCard
                   to={`/build/${collection}/${doc.slug}`}
-                  tag={STATUS[doc.status] ?? doc.status ?? 'In development'}
+                  tag={t(`build.status.${doc.status ?? 'in-development'}`)}
                   tagTone={TONES[doc.status] ?? 'purple'}
                   title={doc.title}
                   meta={
@@ -77,11 +63,11 @@ export default function Projects() {
         ) : (
           <Card style={{ textAlign: 'center', padding: 48 }}>
             <Display size="track-title" as="p" style={{ marginBottom: 16 }}>
-              {meta.empty.title}
+              {t(meta.emptyCta ? 'build.showcaseEmptyTitle' : `build.${meta.key}Empty`)}
             </Display>
-            {meta.empty.cta ? (
-              <Button tone="blue" to={meta.empty.to}>
-                {meta.empty.cta} →
+            {meta.emptyCta ? (
+              <Button tone="blue" to={meta.emptyCta}>
+                {t('build.showcaseEmptyCta')} {t('common.forwardArrow')}
               </Button>
             ) : null}
           </Card>

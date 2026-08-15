@@ -33,7 +33,9 @@ function preprocess(body, id) {
         /<Callout(?:\s+type="([^"]*)")?\s*>\s*([\s\S]*?)\s*<\/Callout>/g,
         (_, type, inner) =>
           `\n<aside class="yn-callout" data-kind="${type || 'note'}">` +
-          `<p class="yn-callout__label">${(type || 'note').toUpperCase()}</p>` +
+          // The label is left to the page to name: it is one of a handful of
+          // fixed kinds, and it has to read in the reader's language.
+          `<p class="yn-callout__label" data-callout-label="${type || 'note'}"></p>` +
           `<p>${inner.trim()}</p></aside>\n`,
       )
       // <Term>Bull Market</Term> — inline.

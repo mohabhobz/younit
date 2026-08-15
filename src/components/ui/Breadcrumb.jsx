@@ -1,10 +1,13 @@
-import { Link } from 'react-router-dom'
 import { Micro } from './Pieces.jsx'
+import { useI18n } from '../../lib/i18n.jsx'
+import { Link } from '../../lib/i18n.jsx'
 
 /** `Learn › Foundation Series › Session 1 of 5`, as the original site sets it. */
 export default function Breadcrumb({ trail }) {
+  const { t } = useI18n()
+
   return (
-    <nav aria-label="Breadcrumb" style={{ marginBottom: 24 }}>
+    <nav aria-label={t('common.breadcrumb')} style={{ marginBottom: 24 }}>
       <Micro>
         {trail.map((step, i) => (
           <span key={`${step.label}-${i}`}>

@@ -1,5 +1,5 @@
 /**
- * Design-system audit.
+ * Design-system and source audit.
  *
  * Asks one question of the source: is a value that the design system already
  * names being written out by hand somewhere instead?
@@ -13,7 +13,9 @@
  * mess.
  *
  * It also counts inline style objects per file, so the balance between
- * components and hand-written style stays visible rather than assumed.
+ * components and hand-written style stays visible rather than assumed, and it
+ * fails on a comment written in Arabic: the site is bilingual, the source is
+ * not — every comment in it is English, so anyone can maintain it.
  *
  *   node tools/audit-tokens.mjs
  */
@@ -77,6 +79,17 @@ const files = []
   }
 })(SRC)
 
+/**
+ * Arabic in the source is a string for a reader, not a note for a developer.
+ * The dictionary and the translated content are where it belongs; a comment or
+ * an identifier is not.
+ */
+const ARABIC = /[\u0600-\u06FF\u0750-\u077F]/
+const SPEAKS_ARABIC = new Set([
+  'src/lib/i18n.jsx', // the language's own name, in its own script
+  'tools/check-menu.mjs', // asserts on that name
+])
+
 const failures = []
 const inline = []
 let unnamedColours = 0
@@ -87,6 +100,15 @@ for (const path of files) {
   if (ALLOWED.has(rel)) continue
   const source = readFileSync(path, 'utf8')
   const artwork = ARTWORK.test(rel)
+
+  if (!SPEAKS_ARABIC.has(rel)) {
+    source.split('\n').forEach((line, i) => {
+      const comment = line.match(/\/\/(.*)$|\/\*(.*)$|^\s*\*(.*)$/)
+      if (comment && ARABIC.test(comment[0])) {
+        failures.push(`${rel}:${i + 1}  comment is not in English`)
+      }
+    })
+  }
 
   const styleBlocks = source.match(/style={{/g)?.length ?? 0
   if (styleBlocks) inline.push([rel, styleBlocks])
@@ -137,9 +159,11 @@ for (const [file, count] of inline.sort((a, b) => b[1] - a[1]).slice(0, 8)) {
 }
 
 if (failures.length) {
-  console.log(`\n${failures.length} VALUES WRITTEN BY HAND THAT A TOKEN ALREADY CARRIES:`)
+  console.log(`\n${failures.length} FAILURES:`)
   for (const f of failures.slice(0, 40)) console.log(`  ✗ ${f}`)
   process.exitCode = 1
 } else {
-  console.log('\nPASS — no value is written by hand where a token already carries it')
+  console.log(
+    '\nPASS — every value reads its token, and every comment is in English',
+  )
 }

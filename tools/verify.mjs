@@ -50,6 +50,13 @@ const ROUTES = [
   ['/nope-does-not-exist', 'notfound'],
 ]
 
+// Every route exists in both languages: English at the root, Arabic under
+// /ar. A page that only holds together in one of them is a broken page.
+const LOCALISED = ROUTES.flatMap(([route, name]) => [
+  [route, name],
+  [route === '/' ? '/ar' : `/ar${route}`, `ar-${name}`],
+])
+
 mkdirSync(new URL('./shots/', import.meta.url), { recursive: true })
 
 // The sandbox ships a chromium build; point at it rather than downloading one.
@@ -67,7 +74,7 @@ const browser = await chromium.launch(
 const failures = []
 let checks = 0
 
-for (const [route, name] of ROUTES) {
+for (const [route, name] of LOCALISED) {
   for (const width of WIDTHS) {
     const context = await browser.newContext({
       viewport: { width, height: 900 },
@@ -135,7 +142,10 @@ for (const [route, name] of ROUTES) {
 await browser.close()
 stopServer()
 
-console.log(`${checks} checks across ${ROUTES.length} routes x ${WIDTHS.length} widths`)
+console.log(
+  `${checks} checks across ${LOCALISED.length} routes ` +
+    `(${ROUTES.length} in each language) x ${WIDTHS.length} widths`,
+)
 if (failures.length) {
   console.log(`\n${failures.length} FAILURES:`)
   for (const f of failures) console.log(`  ✗ ${f}`)

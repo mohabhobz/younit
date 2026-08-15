@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom'
 import { FILLS } from '../../styles/tokens.js'
+import { Link, useI18n } from '../../lib/i18n.jsx'
 
 /**
  * Every actionable thing is a full pill with a 1px ink outline. The fill
@@ -72,6 +72,8 @@ export function Button({ children, tone = 'white', size = 'lg', to, href, style,
 
 /** The 44px circular arrow. Inverts to ink like every other control. */
 export function ArrowButton({ size = 44 }) {
+  const { t } = useI18n()
+
   return (
     <span
       aria-hidden="true"
@@ -89,7 +91,7 @@ export function ArrowButton({ size = 44 }) {
         '--yn-btn-bg': 'var(--yn-white)',
       }}
     >
-      →
+      {t('common.forwardArrow')}
     </span>
   )
 }
@@ -120,7 +122,9 @@ export function PillRow({ children, to, href, meta }) {
     alignItems: 'center',
     gap: 20,
     width: '100%',
-    padding: '10px 10px 10px 28px',
+    paddingBlock: 10,
+    // Roomy at the label end, tight at the arrow end — whichever end that is.
+    paddingInline: '28px 10px',
     border: '1px solid var(--yn-purple)',
     borderRadius: 'var(--yn-r-pill)',
   }

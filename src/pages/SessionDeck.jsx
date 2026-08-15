@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { useParams, useNavigate, Link } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import Page from '../components/layout/Page.jsx'
 import NotFound from './NotFound.jsx'
 import Breadcrumb from '../components/ui/Breadcrumb.jsx'
@@ -7,10 +7,11 @@ import { Button } from '../components/ui/Button.jsx'
 import { Frame } from '../components/ui/Pieces.jsx'
 import { findDoc, neighbours, sessionHtmlFor } from '../lib/content.js'
 import { mountDeck } from '../lib/deck.js'
+import { DEFAULT_LOCALE, Link, useI18n, useNavigate } from '../lib/i18n.jsx'
 
 const TRACK = {
-  foundation: { label: 'Foundation Series', path: '/learn/foundation' },
-  'algo-track': { label: 'Algo Track', path: '/learn/algo-track' },
+  foundation: { key: 'learn.foundationTitle', path: '/learn/foundation' },
+  'algo-track': { key: 'learn.algoTrackTitle', path: '/learn/algo-track' },
 }
 
 /**
@@ -21,14 +22,15 @@ const TRACK = {
  */
 export default function SessionDeck() {
   const { collection, slug } = useParams()
+  const { t, locale } = useI18n()
   const navigate = useNavigate()
   const host = useRef(null)
   const [state, setState] = useState('loading')
 
-  const doc = findDoc(collection, slug)
+  const doc = findDoc(collection, slug, locale)
   const src = sessionHtmlFor(collection, slug)
   const track = TRACK[collection]
-  const { index, total } = neighbours(collection, slug)
+  const { index, total } = neighbours(collection, slug, locale)
 
   useEffect(() => {
     if (!src || !host.current) return undefined
@@ -83,10 +85,12 @@ export default function SessionDeck() {
       <Frame style={{ paddingBlock: '28px 0' }}>
         <Breadcrumb
           trail={[
-            { label: 'Learn', to: '/learn' },
-            ...(track ? [{ label: track.label, to: track.path }] : []),
+            { label: t('learn.title'), to: '/learn' },
+            ...(track ? [{ label: t(track.key), to: track.path }] : []),
             { label: doc.title, to: `/learn/${collection}/${slug}` },
-            ...(index >= 0 && total ? [{ label: `Session ${index + 1} of ${total}` }] : []),
+            ...(index >= 0 && total
+              ? [{ label: t('learn.sessionOf', { session: index + 1, total }) }]
+              : []),
           ]}
         />
 
@@ -94,21 +98,49 @@ export default function SessionDeck() {
             pinned their own copy of this to a corner, for want of anywhere
             better to put it in a full-screen frame; that one is hidden. */}
         <Button tone="blue" size="sm" to={track?.path ?? '/learn'}>
-          ← {track?.label ?? 'Learn'}
+          {t('common.backArrow')} {t(track?.key ?? 'learn.title')}
         </Button>
+
+        {/* The decks are the client's own illustrated material and exist in
+            English only. An Arabic reader is told so rather than left to
+            wonder why the page changed language. */}
+        {locale !== DEFAULT_LOCALE ? (
+          <p
+            style={{
+              margin: '20px 0 0',
+              fontSize: 'var(--yn-small)',
+              color: 'var(--yn-grey-dark)',
+            }}
+          >
+            {t('learn.deckEnglishOnly')}
+          </p>
+        ) : null}
       </Frame>
 
       {state === 'error' ? (
         <Frame className="yn-prose" style={{ paddingBlock: 64 }}>
+          {/* The sentence has the link inside it, and the link sits in a
+              different place in each language — so the string is split on its
+              own placeholder rather than assembled from fragments. */}
           <p style={{ margin: 0 }}>
-            This session's deck could not be loaded. The written session is on the{' '}
-            <Link to={`/learn/${collection}/${slug}`}>lesson page</Link>.
+            {t('learn.deckFailed').split('{link}').map((part, i) => (
+              <span key={part || i}>
+                {i > 0 ? (
+                  <Link to={`/learn/${collection}/${slug}`}>{t('learn.deckFailedLink')}</Link>
+                ) : null}
+                {part}
+              </span>
+            ))}
           </p>
         </Frame>
       ) : null}
 
       <div
         ref={host}
+        // The deck is English and laid out for it, so it keeps its own
+        // direction inside an Arabic page rather than being mirrored.
+        dir="ltr"
+        lang="en"
         // Reserve the fold while the deck arrives, so the footer does not flash
         // up under the breadcrumb and then jump.
         style={{ minHeight: state === 'ready' ? 0 : '60vh' }}

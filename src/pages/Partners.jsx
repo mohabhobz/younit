@@ -1,35 +1,26 @@
 import Page from '../components/layout/Page.jsx'
 import { Card } from '../components/ui/Card.jsx'
 import { Badge, Display, PageHeading, Rule, Section } from '../components/ui/Pieces.jsx'
+import { useI18n } from '../lib/i18n.jsx'
 
-/** Both lists are the original site's, unchanged. */
-const UNIVERSITIES = [
-  { name: 'American University in Cairo (AUC)', status: 'Partner' },
-  { name: 'German University in Cairo (GUC)', status: 'Partner' },
-  { name: 'Cairo University — Faculty of Computers & AI', status: 'Partner' },
-  { name: 'Ain Shams University — Faculty of Engineering', status: 'Partner' },
-  { name: 'Nile University', status: 'Partner' },
-]
-
-const DIVISIONS = [
-  'Research Division — content and editorial',
-  'Corporate Data Science — platform and infrastructure',
-  'Technology — API and data feeds',
-]
-
+/** Both lists are the original site's, unchanged, and now in the dictionary. */
 export default function Partners() {
+  const { t } = useI18n()
+  const universities = t('partners.universities')
+  const divisions = t('partners.divisions')
+
   return (
-    <Page title="Partners">
+    <Page title={t('partners.title')}>
       <Section>
-        <PageHeading>Partners</PageHeading>
+        <PageHeading>{t('partners.title')}</PageHeading>
 
         <Display size="h3" as="h2" style={{ marginBottom: 24 }}>
-          University Partners
+          {t('partners.universitiesTitle')}
         </Display>
         <div style={{ display: 'grid', gap: 12, marginBottom: 64 }}>
-          {UNIVERSITIES.map((uni) => (
+          {universities.map((name) => (
             <Card
-              key={uni.name}
+              key={name}
               radius="pill"
               style={{
                 padding: '16px 28px',
@@ -40,8 +31,8 @@ export default function Partners() {
                 flexWrap: 'wrap',
               }}
             >
-              <span style={{ fontSize: 'var(--yn-body-size)' }}>{uni.name}</span>
-              <Badge tone="blue">{uni.status}</Badge>
+              <span style={{ fontSize: 'var(--yn-body-size)' }}>{name}</span>
+              <Badge tone="blue">{t('partners.partnerStatus')}</Badge>
             </Card>
           ))}
         </div>
@@ -50,10 +41,10 @@ export default function Partners() {
 
         <div style={{ paddingTop: 64 }}>
           <Display size="h3" as="h2" style={{ marginBottom: 24 }}>
-            EFG Hermes
+            {t('partners.efgTitle')}
           </Display>
           <div className="yn-prose" style={{ marginBottom: 64 }}>
-            {DIVISIONS.map((line) => (
+            {divisions.map((line) => (
               <p key={line}>{line}</p>
             ))}
           </div>
@@ -62,14 +53,10 @@ export default function Partners() {
 
           <div style={{ paddingTop: 64 }}>
             <Display size="h3" as="h2" style={{ marginBottom: 24 }}>
-              Acknowledgments
+              {t('partners.acknowledgmentsTitle')}
             </Display>
             <div className="yn-prose">
-              <p>
-                The Hub exists because of the students, researchers, and practitioners who
-                took the Foundation Series in its earliest form and asked what came next.
-                Their feedback shaped this platform.
-              </p>
+              <p>{t('partners.acknowledgments')}</p>
             </div>
           </div>
         </div>

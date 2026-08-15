@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Button } from '../ui/Button.jsx'
+import { useI18n } from '../../lib/i18n.jsx'
 
 /**
  * Session progress, carried over from the original site: a per-slug flag in
@@ -9,6 +10,7 @@ import { Button } from '../ui/Button.jsx'
 const storageKey = (slug) => `younit:complete:${slug}`
 
 export default function MarkComplete({ slug }) {
+  const { t } = useI18n()
   const [done, setDone] = useState(false)
   const [mounted, setMounted] = useState(false)
 
@@ -58,7 +60,7 @@ export default function MarkComplete({ slug }) {
       >
         {done ? '✓' : ''}
       </span>
-      {done ? 'Completed' : 'Mark complete'}
+      {done ? t('learn.markedComplete') : t('learn.markComplete')}
     </Button>
   )
 }

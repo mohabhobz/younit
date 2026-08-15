@@ -252,6 +252,73 @@ pre {
   }
 }
 
+/* --- The header on a phone -------------------------------------------------
+   Above the breakpoint the sections sit in a row and the panel does not exist.
+   Below it, one control opens a panel that comes down from under the header,
+   full width, with the sections and then the language. */
+
+.yn-menu-button {
+  display: none;
+}
+
+.yn-nav-mobile {
+  display: none;
+}
+
+@media (max-width: 860px) {
+  .yn-nav-desktop {
+    display: none !important;
+  }
+
+  .yn-menu-button {
+    display: inline-flex !important;
+  }
+
+  .yn-nav-mobile {
+    display: grid;
+    position: absolute;
+    inset-inline: 0;
+    top: 100%;
+    padding: 0 var(--yn-gutter);
+    gap: 0;
+    border-block-end: 1px solid var(--yn-ink);
+
+    /* Closed, the panel is above its own top edge and clipped away by it. */
+    max-height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition:
+      max-height 260ms var(--yn-ease),
+      transform 260ms var(--yn-ease),
+      visibility 0s linear 260ms;
+  }
+
+  .yn-nav-mobile[data-open] {
+    max-height: 70vh;
+    overflow-y: auto;
+    visibility: visible;
+    transform: translateY(0);
+    padding-block: 8px 20px;
+    transition:
+      max-height 260ms var(--yn-ease),
+      transform 260ms var(--yn-ease),
+      visibility 0s;
+  }
+
+  .yn-nav-mobile > a {
+    min-height: 48px;
+  }
+
+  .yn-nav-mobile__rule {
+    border: 0;
+    border-block-start: 1px solid currentColor;
+    opacity: 0.3;
+    width: 100%;
+    margin: 8px 0;
+  }
+}
+
 .yn-card-hover {
   transition:
     border-color 200ms linear,
@@ -383,11 +450,17 @@ pre {
   padding: 20px 24px;
 }
 
+/* The label's wording comes from the page, which knows the language: the
+   markup only says which kind of callout this is. */
 .yn-callout__label {
   font-size: var(--yn-micro);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   margin: 0 0 6px;
+}
+
+.yn-callout__label::before {
+  content: attr(data-label);
 }
 
 .yn-callout p:last-child {

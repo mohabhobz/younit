@@ -1,3 +1,5 @@
+import { useI18n } from '../lib/i18n.jsx'
+
 /**
  * Brand marks, transcribed verbatim from the Claude Design source.
  *
@@ -156,13 +158,14 @@ const UNITS = [
 ]
 
 export function ArchPyramid({ tone = 'blue', animate = true, style }) {
+  const { t } = useI18n()
   const href = tone === 'purple' ? '#archunit-p' : '#archunit'
 
   return (
     <svg
       viewBox="0 0 626 476"
       role="img"
-      aria-label="Stacked units — the Younit motif"
+      aria-label={t('common.artwork')}
       style={{ width: '100%', height: 'auto', display: 'block', ...style }}
     >
       <g>

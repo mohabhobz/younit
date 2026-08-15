@@ -2,26 +2,18 @@ import Page from '../components/layout/Page.jsx'
 import { EditorialCard, Grid } from '../components/ui/Card.jsx'
 import { PageHeading, Section } from '../components/ui/Pieces.jsx'
 import { byCollection, formatDate, peopleById } from '../lib/content.js'
+import { useI18n } from '../lib/i18n.jsx'
 
 const TONES = ['purple', 'amber', 'blue']
 
-/** Kind → label, from the original site's dictionary. */
-const KINDS = {
-  newsletter: 'Newsletter',
-  commentary: 'Commentary',
-  profile: 'Profile',
-  explainer: 'Explainer',
-}
-
 export default function Editorial() {
-  const posts = byCollection('editorial')
+  const { t, locale } = useI18n()
+  const posts = byCollection('editorial', locale)
 
   return (
-    <Page title="From the Hub">
+    <Page title={t('editorial.title')}>
       <Section>
-        <PageHeading sub="Market commentary, builder profiles, and the weekly EGX recap.">
-          Editorial
-        </PageHeading>
+        <PageHeading sub={t('editorial.sub')}>{t('nav.editorial')}</PageHeading>
 
         {posts.length ? (
           <Grid>
@@ -33,16 +25,16 @@ export default function Editorial() {
                 <EditorialCard
                   key={doc.slug}
                   to={`/editorial/${doc.slug}`}
-                  tag={KINDS[doc.kind] ?? KINDS.newsletter}
+                  tag={t(`editorial.kinds.${doc.kind ?? 'newsletter'}`)}
                   tagTone={TONES[i % TONES.length]}
                   title={doc.title}
-                  meta={[formatDate(doc.publishedAt), author].filter(Boolean).join(' • ')}
+                  meta={[formatDate(doc.publishedAt, locale), author].filter(Boolean).join(' • ')}
                 />
               )
             })}
           </Grid>
         ) : (
-          <p style={{ color: 'var(--yn-grey-dark)' }}>Nothing published yet.</p>
+          <p style={{ color: 'var(--yn-grey-dark)' }}>{t('editorial.empty')}</p>
         )}
       </Section>
     </Page>

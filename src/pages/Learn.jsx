@@ -3,6 +3,7 @@ import { Button } from '../components/ui/Button.jsx'
 import { Grid, SnapshotCard } from '../components/ui/Card.jsx'
 import { Display, Micro, PageHeading, Section } from '../components/ui/Pieces.jsx'
 import { counts } from '../lib/content.js'
+import { useI18n } from '../lib/i18n.jsx'
 
 /**
  * The four Learn sections, each linking to its own index — the same structure
@@ -11,58 +12,59 @@ import { counts } from '../lib/content.js'
 const TRACKS = [
   {
     tone: 'blue',
-    title: 'Foundation Series',
-    meta: `${counts.foundation} sessions`,
-    description: 'Everything you need to understand how markets actually work.',
+    title: 'learn.foundationTitle',
+    meta: ['learn.sessions', { count: counts.foundation }],
+    description: 'learn.foundationShort',
     to: '/learn/foundation',
     cta: 'amber',
   },
   {
     tone: 'purple',
-    title: 'Algo Track',
-    meta: `${counts.algoTrack} sessions`,
-    description:
-      'From first principles to deploying a live algorithmic trading strategy.',
+    title: 'learn.algoTrackTitle',
+    meta: ['learn.sessions', { count: counts.algoTrack }],
+    description: 'learn.algoTrackShort',
     to: '/learn/algo-track',
     cta: 'white',
   },
   {
     tone: 'white',
-    title: 'Deep Dives',
-    meta: `${counts.deepDives} articles`,
-    description: 'Longer-form analysis on specific sectors, instruments, and ideas.',
+    title: 'learn.deepDivesTitle',
+    meta: ['learn.articles', { count: counts.deepDives }],
+    description: 'learn.deepDivesSub',
     to: '/learn/deep-dives',
     cta: 'blue',
   },
   {
     tone: 'white',
-    title: 'Glossary',
-    meta: `${counts.glossary} terms`,
-    description: 'Every term, linkable and searchable.',
+    title: 'learn.glossaryTitle',
+    meta: ['learn.terms', { count: counts.glossary }],
+    description: 'learn.glossarySub',
     to: '/learn/glossary',
     cta: 'blue',
   },
 ]
 
 export default function Learn() {
+  const { t } = useI18n()
+
   return (
-    <Page title="Learn">
+    <Page title={t('learn.title')}>
       <Section>
-        <PageHeading sub="Capital markets education, from first principles to deep analysis.">
-          Learn
-        </PageHeading>
+        <PageHeading sub={t('learn.sub')}>{t('learn.title')}</PageHeading>
 
         <Grid cols={2} gap={36}>
           {TRACKS.map((track) => (
             <SnapshotCard key={track.title} tone={track.tone} style={{ height: '100%' }}>
-              <Micro style={{ color: 'var(--yn-ink-2)' }}>{track.meta}</Micro>
+              <Micro style={{ color: 'var(--yn-ink-2)' }}>{t(...track.meta)}</Micro>
               <Display size="h2-journey" as="h2">
-                {track.title}
+                {t(track.title)}
               </Display>
-              <p style={{ margin: 0, fontSize: 'var(--yn-body-size)', lineHeight: 1.6 }}>{track.description}</p>
+              <p style={{ margin: 0, fontSize: 'var(--yn-body-size)', lineHeight: 1.6 }}>
+                {t(track.description)}
+              </p>
               <div style={{ marginTop: 'auto', paddingTop: 6 }}>
                 <Button tone={track.cta} size="sm" to={track.to}>
-                  View all →
+                  {t('common.viewAll')}
                 </Button>
               </div>
             </SnapshotCard>

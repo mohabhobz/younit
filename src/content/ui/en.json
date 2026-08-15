@@ -1,0 +1,270 @@
+{
+  "meta": {
+    "siteTitle": "Younit — Egypt's open initiative for capital markets",
+    "titleSuffix": "Younit"
+  },
+  "nav": {
+    "learn": "Learn",
+    "build": "Build",
+    "compete": "Compete",
+    "editorial": "Editorial",
+    "about": "About",
+    "partners": "Partners",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "primary": "Primary",
+    "language": "Language"
+  },
+  "locale": {
+    "en": "English",
+    "ar": "عربي",
+    "switch": "عربي"
+  },
+  "common": {
+    "viewAll": "View all →",
+    "previous": "Previous",
+    "next": "Next",
+    "home": "Home",
+    "breadcrumb": "Breadcrumb",
+    "callout": {
+      "note": "Note",
+      "warning": "Warning",
+      "tip": "Tip"
+    },
+    "photoPlaceholder": "Photo — {label}",
+    "photoPlaceholderLabel": "Placeholder: {label}",
+    "artwork": "Stacked units — the Younit motif",
+    "backArrow": "←",
+    "forwardArrow": "→"
+  },
+  "home": {
+    "eyebrow": "Egypt's open initiative for Capital Markets",
+    "headline": "Learn, Build, Compete.",
+    "subline": "Not a sandbox. not a toy, the actual api, open to anyone willing to learn.",
+    "ctaFoundation": "Start the foundation series",
+    "ctaApi": "Explore the api",
+    "journey": {
+      "learn": "01. Learn",
+      "build": "02. Build",
+      "compete": "03. Compete",
+      "learnCaption": "from what a stock is to writing your first trading algorithm - through the foundation series and the algo track.",
+      "buildCaption": "run a strategy on live egx data - or build the tool, dashboard or agent you wish existed.",
+      "competeCaption": "strategies go head to head on a public leaderboard -through seasons, competitions, and hackathons.",
+      "learningSnapshot": "Learning Snapshot",
+      "builderSnapshot": "Builder Snapshot",
+      "competitionSnapshot": "Competition Snapshot",
+      "lessonsCompleted": "Lessons completed",
+      "learningProgress": "Learning progress",
+      "progressRate": "Progress rate",
+      "steadyProgress": "steady progress",
+      "continueLesson": "Continue lesson",
+      "activeStrategy": "Active strategy",
+      "backtestReturn": "Backtest return",
+      "runStrategy": "Run strategy",
+      "currentRank": "Current rank",
+      "rankChange": "Rank change",
+      "seeAllRanks": "See all ranks"
+    },
+    "api": {
+      "titleLine1": "Build on this,",
+      "titleLine2": "The API, Two Ways",
+      "sublineLine1": "real prices, place orders, manage positions",
+      "sublineLine2": "in code, or in plain language",
+      "badge": "The Api",
+      "codeLead": "reading a price and placing an order on egx - the whole thing, in a few lines.",
+      "agentLead": "or connect the efg mcp server to an ai agent and just ask."
+    },
+    "editorial": {
+      "title": "Editorial",
+      "subtitle": "Latest from the Hub"
+    },
+    "tracks": {
+      "titleLine1": "Project tracks",
+      "titleLine2": "opening for builders"
+    },
+    "flow": {
+      "price": "PRICE",
+      "priceRule": ">MA50",
+      "volume": "VOLUME",
+      "volumeRule": "+20%",
+      "buy": "BUY",
+      "buyRule": "POSITION"
+    },
+    "transcript": [
+      {
+        "who": "YOU",
+        "line": "WHAT IS THE PRICE OF CIB?"
+      },
+      {
+        "who": "AI",
+        "line": "CIB (COMI) IS TRADING AT EGP 134.50."
+      },
+      {
+        "who": "YOU",
+        "line": "PLACE A LIMIT BUY FOR 100 SHARES AT 135."
+      },
+      {
+        "who": "AI",
+        "line": "DONE - LIMIT BUY FOR 100 SHARES OF CIB AT EGP 135.00 (ORDER ORD_8F3A, OPEN) I'LL FLAG IT IF IT FILLS."
+      }
+    ],
+    "trackMeta": {
+      "capstone": "Capstone track",
+      "seeking": "Seeking university teams",
+      "builtOn": "Built on efg api"
+    }
+  },
+  "learn": {
+    "title": "Learn",
+    "sub": "Capital markets education, from first principles to deep analysis.",
+    "sessions": "{count} sessions",
+    "articles": "{count} articles",
+    "terms": "{count} terms",
+    "foundationTitle": "Foundation Series",
+    "foundationShort": "Everything you need to understand how markets actually work.",
+    "foundationSub": "Five sessions. Everything you need to understand how markets actually work.",
+    "foundationEmpty": "Foundation sessions are being prepared.",
+    "algoTrackTitle": "Algo Track",
+    "algoTrackShort": "From first principles to deploying a live algorithmic trading strategy.",
+    "algoTrackSub": "Eight sessions. From first principles to deploying a live algorithmic trading strategy.",
+    "algoTrackEmpty": "Algo Track sessions are being prepared.",
+    "deepDivesTitle": "Deep Dives",
+    "deepDivesSub": "Longer-form analysis on specific sectors, instruments, and ideas.",
+    "deepDivesEmpty": "Deep dives are being prepared.",
+    "deepDiveTag": "Deep Dive",
+    "glossaryTitle": "Glossary",
+    "glossarySub": "Every term, linkable and searchable.",
+    "glossaryEmpty": "Glossary terms are being prepared.",
+    "sessionOf": "Session {session} of {total}",
+    "readingTime": "{minutes} min read",
+    "markComplete": "Mark complete",
+    "markedComplete": "Completed",
+    "nextSession": "Next session",
+    "prevSession": "Previous session",
+    "relatedTerms": "Related terms",
+    "deckTitle": "The full session",
+    "deckBody": "This session has a complete illustrated deck — the same one used to teach it. It fills the screen, and closes back to this page.",
+    "deckCta": "Open the session deck",
+    "deckFailed": "This session's deck could not be loaded. The written session is on the {link}.",
+    "deckFailedLink": "lesson page",
+    "deckEnglishOnly": "The illustrated deck for this session is in English.",
+    "readingTimeOne": "1 min read"
+  },
+  "build": {
+    "title": "Build",
+    "sub": "This is where building happens, in the open.",
+    "repositoriesTitle": "Repositories",
+    "repositoriesSub": "Curated public repositories from EFG Hermes. Clone, fork, build.",
+    "repositoriesEmpty": "Repository listings loading soon.",
+    "templatesTitle": "Templates",
+    "templatesSub": "Starter templates for building on the EFG API. Each links to GitHub.",
+    "templatesEmpty": "Templates loading soon.",
+    "templateCategories": [
+      "Strategies",
+      "Screeners",
+      "Portfolio Tools",
+      "Educational Notebooks"
+    ],
+    "showcaseTitle": "Showcase",
+    "showcaseSub": "Things people are building on EFG infrastructure. Real names, real code.",
+    "showcaseEmptyTitle": "The first projects are landing soon. Want to be among them?",
+    "showcaseEmptyCta": "Explore the repositories",
+    "capstonesTitle": "Capstones",
+    "capstonesSub": "University capstone projects built on EFG infrastructure. Real students, real research.",
+    "capstonesEmpty": "Capstone projects loading soon.",
+    "appsTitle": "Apps",
+    "appsSub": "Independent applications built on the EFG API.",
+    "appsEmpty": "Apps loading soon.",
+    "kindShowcase": "Showcase",
+    "kindCapstone": "Capstone",
+    "kindApp": "App",
+    "builders": "Builders",
+    "techStack": "Tech stack",
+    "related": "Related",
+    "repository": "Repository →",
+    "liveDemo": "Live demo →",
+    "linkedIn": "LinkedIn →",
+    "status": {
+      "live": "Live",
+      "in-development": "In development",
+      "archived": "Archived"
+    },
+    "lead": "Start by exploring EFG's public repositories.",
+    "githubCta": "github.com/efg-hermes →"
+  },
+  "compete": {
+    "title": "Compete",
+    "sub": "Opening in Phase 2. Here is what each section will be.",
+    "comingSoon": "Opening in Phase 2",
+    "leaderboardTitle": "Leaderboard",
+    "leaderboardSub": "Transparent, algorithmic rankings across all active participants.",
+    "seasonsTitle": "Seasons",
+    "seasonsSub": "Structured competition windows with defined rules and prizes.",
+    "hackathonsTitle": "Hackathons",
+    "hackathonsSub": "Time-boxed building challenges open to all.",
+    "wallOfFameTitle": "Wall of Fame",
+    "wallOfFameSub": "A permanent record of exceptional builders and performances.",
+    "photoAlt": "Two builders at a desk, one screen showing code",
+    "phaseNote": "This section opens in Phase 2. The description above is accurate — not a placeholder."
+  },
+  "editorial": {
+    "title": "From the Hub",
+    "sub": "Market commentary, builder profiles, and the weekly EGX recap.",
+    "kinds": {
+      "newsletter": "Newsletter",
+      "commentary": "Commentary",
+      "profile": "Profile",
+      "explainer": "Explainer"
+    },
+    "empty": "Nothing published yet."
+  },
+  "about": {
+    "title": "About",
+    "p1": "EFG Innovation Hub is Egypt's open initiative for capital markets education, infrastructure, and community. It is built and maintained by EFG Holding, and it is free, permanently.",
+    "p2": "The Hub is not a trading platform. It does not execute trades, hold positions, or provide investment advice. It is an educational initiative built on EFG's open market data API — the same infrastructure that powers EFG's own research and technology operations.",
+    "p3": "The three pillars — Learn, Build, Compete — reflect the three things the Hub enables. Content in the Learn pillar is written by the EFG research and data science team. The Build pillar points to real code in real repositories. The Compete pillar, opening in Phase 2, provides transparent, algorithmic rankings of participant-built strategies running on live EGX data.",
+    "p4": "Users own their work. Everything built on EFG infrastructure belongs to the builders. EFG does not claim ownership of student projects, capstone papers, or community applications.",
+    "whyTitle": "Why this exists",
+    "whyBody": "Egypt has no shortage of brilliant people. It has had a shortage of access. The Innovation Hub exists to remove one specific barrier: the infrastructure to build real things on real markets. Not a sandbox. Not a toy. The actual API, open to anyone willing to learn."
+  },
+  "partners": {
+    "title": "Partners",
+    "universitiesTitle": "University Partners",
+    "partnerStatus": "Partner",
+    "efgTitle": "EFG Hermes",
+    "divisions": [
+      "Research Division — content and editorial",
+      "Corporate Data Science — platform and infrastructure",
+      "Technology — API and data feeds"
+    ],
+    "acknowledgmentsTitle": "Acknowledgments",
+    "acknowledgments": "The Hub exists because of the students, researchers, and practitioners who took the Foundation Series in its earliest form and asked what came next. Their feedback shaped this platform.",
+    "universities": [
+      "American University in Cairo (AUC)",
+      "German University in Cairo (GUC)",
+      "Cairo University — Faculty of Computers & AI",
+      "Ain Shams University — Faculty of Engineering",
+      "Nile University"
+    ]
+  },
+  "footer": {
+    "hub": "EFG Innovation Hub",
+    "mission": "Egypt's open initiative for capital markets education and infrastructure.",
+    "platform": "Platform",
+    "efg": "EFG",
+    "efgHolding": "EFG Holding",
+    "github": "GitHub",
+    "legal": "The Hub is an educational initiative. Nothing here is investment advice.",
+    "copyright": "© {year} EFG Holding. All rights reserved.",
+    "poweredBy": "Powered by ⊕ EFG Hermes",
+    "taglineIdea": "One idea",
+    "taglineRule": "One rule",
+    "taglineStrategy": "One automated strategy"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "sub": "That page does not exist — or has not been built yet.",
+    "cta": "Back to the homepage",
+    "heading": "Not found"
+  }
+}

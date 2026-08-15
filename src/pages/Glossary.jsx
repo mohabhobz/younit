@@ -1,11 +1,12 @@
-import { Link } from 'react-router-dom'
 import Page from '../components/layout/Page.jsx'
 import Breadcrumb from '../components/ui/Breadcrumb.jsx'
 import { Display, PageHeading, Rule, Section } from '../components/ui/Pieces.jsx'
 import { byCollection } from '../lib/content.js'
+import { Link, useI18n } from '../lib/i18n.jsx'
 
 export default function Glossary() {
-  const terms = byCollection('glossary')
+  const { t, locale } = useI18n()
+  const terms = byCollection('glossary', locale)
     .slice()
     .sort((a, b) => (a.term || a.slug).localeCompare(b.term || b.slug))
 
@@ -18,10 +19,15 @@ export default function Glossary() {
   const letters = Object.keys(grouped).sort()
 
   return (
-    <Page title="Glossary">
+    <Page title={t('learn.glossaryTitle')}>
       <Section>
-        <Breadcrumb trail={[{ label: 'Learn', to: '/learn' }, { label: 'Glossary' }]} />
-        <PageHeading sub="Every term, linkable and searchable.">Glossary</PageHeading>
+        <Breadcrumb
+          trail={[
+            { label: t('learn.title'), to: '/learn' },
+            { label: t('learn.glossaryTitle') },
+          ]}
+        />
+        <PageHeading sub={t('learn.glossarySub')}>{t('learn.glossaryTitle')}</PageHeading>
 
         {/* Jump bar — every letter that has terms. */}
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginBottom: 56 }}>
@@ -46,7 +52,7 @@ export default function Glossary() {
         </div>
 
         {terms.length === 0 ? (
-          <p style={{ color: 'var(--yn-grey-dark)' }}>Glossary terms are being prepared.</p>
+          <p style={{ color: 'var(--yn-grey-dark)' }}>{t('learn.glossaryEmpty')}</p>
         ) : (
           letters.map((letter) => (
             <div key={letter} id={letter} style={{ marginBottom: 56, scrollMarginTop: 24 }}>
