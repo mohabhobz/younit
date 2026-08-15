@@ -154,12 +154,17 @@ export function Card({ tone = 'white', outline = 'purple', radius = 'tile', chil
 }
 
 /** Three-up grid at desktop, collapsing on the way down. */
-export function Grid({ cols = 3, gap = 36, children, style, ...rest }) {
+/**
+ * `fill` keeps the empty tracks. Without it a grid of one item stretches that
+ * item across the whole frame — which is how a single builder's portrait ended
+ * up 1300px wide.
+ */
+export function Grid({ cols = 3, gap = 36, fill = false, children, style, ...rest }) {
   return (
     <div
       style={{
         display: 'grid',
-        gridTemplateColumns: `repeat(auto-fit, minmax(min(${Math.round(1100 / cols)}px, 100%), 1fr))`,
+        gridTemplateColumns: `repeat(auto-${fill ? 'fill' : 'fit'}, minmax(min(${Math.round(1100 / cols)}px, 100%), 1fr))`,
         gap,
         ...style,
       }}

@@ -22,7 +22,7 @@ import ar from '../content/ui/ar.json'
 
 export const LOCALES = {
   en: { dir: 'ltr', label: 'English', short: 'EN', htmlLang: 'en' },
-  ar: { dir: 'rtl', label: 'عربي', short: 'ع', htmlLang: 'ar' },
+  ar: { dir: 'rtl', label: 'عربي', short: 'عربي', htmlLang: 'ar' },
 }
 
 export const DEFAULT_LOCALE = 'en'

@@ -101,9 +101,11 @@ for (const [locale, home] of [
   if (open.links.length !== 5) {
     fail(`${locale}: the panel has ${open.links.length} links, expected 5`)
   }
+  // The pair shows both languages; the one you are reading is not a link, so
+  // the last link is always the other one.
   const last = open.links.at(-1)
   if (locale === 'en' && last !== 'عربي') fail(`en: the last item is "${last}", not the language`)
-  if (locale === 'ar' && last !== 'English') fail(`ar: the last item is "${last}", not the language`)
+  if (locale === 'ar' && last !== 'EN') fail(`ar: the last item is "${last}", not the language`)
 
   // Escape closes it.
   await page.keyboard.press('Escape')

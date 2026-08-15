@@ -266,7 +266,8 @@ pre {
 }
 
 @media (max-width: 860px) {
-  .yn-nav-desktop {
+  .yn-nav-desktop,
+  .yn-locale-desktop {
     display: none !important;
   }
 

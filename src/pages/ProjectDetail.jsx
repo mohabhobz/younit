@@ -32,7 +32,7 @@ function Builders({ builders }) {
         {t('build.builders')}
       </Display>
 
-      <Grid cols={4} gap={28}>
+      <Grid cols={4} gap={28} fill>
         {builders.map((person) => {
           const supervisor = /supervis/i.test(person.role || '')
           return supervisor ? (
