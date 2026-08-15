@@ -61,6 +61,10 @@
   /* The template's hero split: copy 1.15, artwork 1. */
   --yn-hero-cols: minmax(0, 1.15fr) minmax(0, 1fr);
 
+  /* The Latin display faces sit tight. */
+  --yn-lh-hero: 1.02;
+  --yn-lh-eyebrow: 1.15;
+
   --yn-ease: cubic-bezier(0.2, 0.75, 0.3, 1);
 }
 
@@ -168,6 +172,17 @@ pre {
 [dir='rtl'] body {
   font-family: var(--yn-arabic);
   font-variation-settings: normal;
+}
+
+/* Arabic carries marks above and below the line, so a leading set for Latin
+   makes two lines touch. Every heading gets the room back. */
+[dir='rtl'] {
+  --yn-lh-hero: 1.35;
+  --yn-lh-eyebrow: 1.45;
+}
+
+[dir='rtl'] .yn-display {
+  line-height: 1.4;
 }
 
 /* --- Motion -------------------------------------------------------------- */

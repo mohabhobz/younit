@@ -86,7 +86,7 @@ function Hero() {
           className="yn-display"
           style={{
             fontSize: "var(--yn-eyebrow)",
-            lineHeight: 1.15,
+            lineHeight: "var(--yn-lh-eyebrow)",
             margin: "0 0 4px",
           }}
         >
@@ -98,7 +98,7 @@ function Hero() {
           className="yn-display"
           style={{
             fontSize: "var(--yn-hero)",
-            lineHeight: 1.02,
+            lineHeight: "var(--yn-lh-hero)",
             letterSpacing: "-0.02em",
             margin: "0 0 28px",
           }}
@@ -532,13 +532,14 @@ function ApiTwoWays() {
           gridTemplateColumns:
             "repeat(auto-fit, minmax(min(420px, 100%), 1fr))",
           gap: 56,
+          alignItems: "stretch",
         }}
       >
-        <div>
+        <div style={{ display: "flex", flexDirection: "column" }}>
           <PanelHead tone="purple">
             {t("home.api.codeLead")}
           </PanelHead>
-          <Panel tone="purple">
+          <Panel tone="purple" style={{ flex: 1 }}>
             <pre
               style={{
                 fontFamily: "var(--yn-mono)",
@@ -552,14 +553,14 @@ function ApiTwoWays() {
           </Panel>
         </div>
 
-        <div>
+        <div style={{ display: "flex", flexDirection: "column" }}>
           <PanelHead tone="blue">
             {t("home.api.agentLead")}
           </PanelHead>
           <Panel
             tone="blue"
             seq
-            style={{ display: "flex", flexDirection: "column", gap: 14 }}
+            style={{ display: "flex", flexDirection: "column", gap: 14, flex: 1 }}
           >
             {transcript.map((turn, i) => (
               <div key={turn.line}>
