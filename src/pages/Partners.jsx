@@ -40,7 +40,7 @@ export default function Partners() {
                 flexWrap: 'wrap',
               }}
             >
-              <span style={{ fontSize: 15 }}>{uni.name}</span>
+              <span style={{ fontSize: 'var(--yn-body-size)' }}>{uni.name}</span>
               <Badge tone="blue">{uni.status}</Badge>
             </Card>
           ))}

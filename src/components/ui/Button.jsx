@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { FILLS } from '../../styles/tokens.js'
 
 /**
  * Every actionable thing is a full pill with a 1px ink outline. The fill
@@ -6,16 +7,9 @@ import { Link } from 'react-router-dom'
  * the label colour. Sizes and colours are the template's, not invented.
  */
 
-const FILLS = {
-  amber: '#FFD05A',
-  blue: '#A3C6D7',
-  purple: '#AC91E1',
-  white: '#FFFFFF',
-}
-
 const SIZES = {
-  lg: { padding: '14px 30px', fontSize: 13 },
-  sm: { padding: '9px 22px', fontSize: 11 },
+  lg: { padding: '14px 30px', fontSize: 'var(--yn-small)' },
+  sm: { padding: '9px 22px', fontSize: 'var(--yn-micro)' },
 }
 
 /**
@@ -29,7 +23,7 @@ function baseStyle(tone, size) {
 
   return {
     display: 'inline-block',
-    border: `1px solid ${filled ? '#000' : 'var(--yn-purple)'}`,
+    border: `1px solid ${filled ? 'var(--yn-ink)' : 'var(--yn-purple)'}`,
     borderRadius: 'var(--yn-r-pill)',
     letterSpacing: '0.09em',
     textTransform: 'uppercase',
@@ -86,13 +80,13 @@ export function ArrowButton({ size = 44 }) {
         width: size,
         height: size,
         flex: `0 0 ${size}px`,
-        border: '1px solid #000',
+        border: '1px solid var(--yn-ink)',
         borderRadius: 'var(--yn-r-pill)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         fontSize: 16,
-        '--yn-btn-bg': '#FFFFFF',
+        '--yn-btn-bg': 'var(--yn-white)',
       }}
     >
       →

@@ -37,7 +37,7 @@ export default function Glossary() {
                 justifyContent: 'center',
                 border: '1px solid var(--yn-purple)',
                 borderRadius: 'var(--yn-r-pill)',
-                fontSize: 13,
+                fontSize: 'var(--yn-small)',
               }}
             >
               {letter}
@@ -75,7 +75,7 @@ export default function Glossary() {
                         {term.term || term.slug}
                       </Link>
                     </dt>
-                    <dd style={{ margin: 0, fontSize: 15, color: 'var(--yn-grey-dark)', lineHeight: 1.6 }}>
+                    <dd style={{ margin: 0, fontSize: 'var(--yn-body-size)', color: 'var(--yn-grey-dark)', lineHeight: 1.6 }}>
                       {term.shortDefinition}
                     </dd>
                   </div>

@@ -34,10 +34,10 @@ const WORDMARK = (
 function archUnit(fill) {
   return (
     <>
-      <polygon points="0,26 26,0 146,0 120,26" fill="#000" />
-      <polygon points="120,26 146,0 146,150 120,176" fill="#000" />
-      <rect x="0" y="26" width="120" height="150" fill={fill} stroke="#000" strokeWidth="3" />
-      <path d="M37 176 V101 a23 23 0 0 1 46 0 V176 Z" fill="#D7D7D7" stroke="#000" strokeWidth="3" />
+      <polygon points="0,26 26,0 146,0 120,26" fill="var(--yn-ink)" />
+      <polygon points="120,26 146,0 146,150 120,176" fill="var(--yn-ink)" />
+      <rect x="0" y="26" width="120" height="150" fill={fill} stroke="var(--yn-ink)" strokeWidth="3" />
+      <path d="M37 176 V101 a23 23 0 0 1 46 0 V176 Z" fill="var(--yn-grey)" stroke="var(--yn-ink)" strokeWidth="3" />
     </>
   )
 }
@@ -47,10 +47,10 @@ export function BrandDefs() {
     <svg width="0" height="0" style={{ position: 'absolute' }} aria-hidden="true">
       <defs>
         <symbol id="wm" viewBox="0 0 340 80">
-          <g fill="#000">{WORDMARK}</g>
+          <g fill="var(--yn-ink)">{WORDMARK}</g>
         </symbol>
         <symbol id="wm-w" viewBox="0 0 340 80">
-          <g fill="#fff">{WORDMARK}</g>
+          <g fill="var(--yn-white)">{WORDMARK}</g>
         </symbol>
         <symbol id="dot" viewBox="0 0 24 24">
           <path
@@ -60,10 +60,10 @@ export function BrandDefs() {
           />
         </symbol>
         <symbol id="archunit" viewBox="0 0 146 176">
-          {archUnit('#A3C6D7')}
+          {archUnit('var(--yn-blue)')}
         </symbol>
         <symbol id="archunit-p" viewBox="0 0 146 176">
-          {archUnit('#AC91E1')}
+          {archUnit('var(--yn-purple)')}
         </symbol>
       </defs>
     </svg>
@@ -117,7 +117,7 @@ export function Glyph({ kind = 'step', width = 52, height = 38, ...rest }) {
   return (
     <svg viewBox="0 0 48 36" style={{ width, height }} aria-hidden="true" {...rest}>
       {kind === 'bar' ? (
-        <g fill="none" stroke="#000" strokeWidth="2">
+        <g fill="none" stroke="var(--yn-ink)" strokeWidth="2">
           <rect x="10" y="20" width="7" height="12" />
           <rect x="21" y="12" width="7" height="20" />
           <rect x="32" y="6" width="7" height="26" />
@@ -127,10 +127,10 @@ export function Glyph({ kind = 'step', width = 52, height = 38, ...rest }) {
           <path
             d="M2 32 L10 32 L10 24 L18 24 L18 27 L26 27 L26 14 L34 14 L34 8 L42 8"
             fill="none"
-            stroke="#000"
+            stroke="var(--yn-ink)"
             strokeWidth="2"
           />
-          <path d="M36 4 L44 4 L44 12" fill="none" stroke="#000" strokeWidth="2" />
+          <path d="M36 4 L44 4 L44 12" fill="none" stroke="var(--yn-ink)" strokeWidth="2" />
         </>
       )}
     </svg>

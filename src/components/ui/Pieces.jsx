@@ -1,9 +1,4 @@
-const FILLS = {
-  amber: '#FFD05A',
-  blue: '#A3C6D7',
-  purple: '#AC91E1',
-  white: '#FFFFFF',
-}
+import { FILLS } from '../../styles/tokens.js'
 
 /** Filled pill tag — the category marker. Poppins 400, per the style guide. */
 export function Tag({ children, tone = 'purple', size = 'lg' }) {
@@ -12,7 +7,7 @@ export function Tag({ children, tone = 'purple', size = 'lg' }) {
       style={{
         display: 'inline-block',
         background: FILLS[tone] ?? FILLS.purple,
-        border: '1px solid #000',
+        border: '1px solid var(--yn-ink)',
         borderRadius: 'var(--yn-r-pill)',
         padding: size === 'sm' ? '5px 16px' : '6px 20px',
         fontFamily: 'var(--yn-display)',
@@ -33,10 +28,10 @@ export function Badge({ children, tone = 'ink' }) {
     <span
       style={{
         display: 'inline-block',
-        border: `1px solid ${tone === 'ink' ? '#000' : FILLS[tone]}`,
+        border: `1px solid ${tone === 'ink' ? 'var(--yn-ink)' : FILLS[tone]}`,
         borderRadius: 'var(--yn-r-pill)',
         padding: '5px 18px',
-        fontSize: 13,
+        fontSize: 'var(--yn-small)',
         lineHeight: 1.3,
       }}
     >
@@ -72,7 +67,7 @@ export function MonoChip({ children }) {
     <span
       style={{
         display: 'inline-block',
-        background: '#fff',
+        background: 'var(--yn-white)',
         borderRadius: 4,
         padding: '2px 8px',
         fontFamily: 'var(--yn-mono)',
@@ -187,7 +182,7 @@ export function PhotoPlaceholder({ ratio = '3 / 1', label, radius = 'band' }) {
         textAlign: 'center',
       }}
     >
-      <span className="yn-micro" style={{ color: '#fff', opacity: 0.85 }}>
+      <span className="yn-micro" style={{ color: 'var(--yn-white)', opacity: 0.85 }}>
         Photo — {label}
       </span>
     </div>

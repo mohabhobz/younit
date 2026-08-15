@@ -136,7 +136,7 @@ export default function useMotion(mode = 'full') {
     const cells = [...document.querySelectorAll('[data-cell]')]
     const cellFill = cells.map((c) => c.style.background)
     cells.forEach((c) => {
-      c.style.background = '#FFFFFF'
+      c.style.background = 'var(--yn-white)'
       c.style.transition = 'background 260ms steps(1, end)'
     })
     restore.push(() =>
@@ -261,7 +261,7 @@ export default function useMotion(mode = 'full') {
         k.style.transform = 'translateY(0)'
       })
       if (el === cellHost) {
-        cells.forEach((c, i) => wait(() => (c.style.background = '#FFD05A'), 260 + i * 130))
+        cells.forEach((c, i) => wait(() => (c.style.background = 'var(--yn-amber)'), 260 + i * 130))
       }
       beats(el)
     }

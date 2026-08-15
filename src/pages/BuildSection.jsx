@@ -41,7 +41,7 @@ export default function BuildSection({ section }) {
                 <Display size="track-title" as="h2">
                   {category}
                 </Display>
-                <p style={{ margin: '12px 0 0', fontSize: 15, color: 'var(--yn-grey-dark)' }}>
+                <p style={{ margin: '12px 0 0', fontSize: 'var(--yn-body-size)', color: 'var(--yn-grey-dark)' }}>
                   {meta.empty}
                 </p>
               </Card>
@@ -49,7 +49,7 @@ export default function BuildSection({ section }) {
           </Grid>
         ) : (
           <Card>
-            <p style={{ margin: 0, fontSize: 15, color: 'var(--yn-grey-dark)' }}>{meta.empty}</p>
+            <p style={{ margin: 0, fontSize: 'var(--yn-body-size)', color: 'var(--yn-grey-dark)' }}>{meta.empty}</p>
             {meta.cta ? (
               <div style={{ marginTop: 24 }}>
                 <Button tone="purple" href={meta.cta.href}>

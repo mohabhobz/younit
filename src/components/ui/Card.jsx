@@ -1,13 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Tag } from './Pieces.jsx'
-
-const FILLS = {
-  amber: '#FFD05A',
-  blue: '#A3C6D7',
-  purple: '#AC91E1',
-  white: '#FFFFFF',
-  none: 'transparent',
-}
+import { FILLS } from '../../styles/tokens.js'
 
 /**
  * The snapshot card — a coloured fill, ink outline, 20px radius, 22px padding.
@@ -18,7 +11,7 @@ export function SnapshotCard({ tone, children, style }) {
     <div
       style={{
         background: FILLS[tone] ?? FILLS.white,
-        border: '1px solid #000',
+        border: '1px solid var(--yn-ink)',
         borderRadius: 'var(--yn-r-card)',
         padding: 22,
         display: 'flex',
@@ -39,7 +32,7 @@ export function Panel({ tone, children, seq, style }) {
       data-seq={seq ? '' : undefined}
       style={{
         background: FILLS[tone] ?? FILLS.white,
-        border: '1px solid #000',
+        border: '1px solid var(--yn-ink)',
         borderRadius: 'var(--yn-r-card)',
         padding: '26px 24px',
         ...style,
@@ -70,7 +63,7 @@ export function EditorialCard({ to, href, tag, tagTone = 'purple', title, meta }
   const style = {
     display: 'block',
     height: '100%',
-    background: '#fff',
+    background: 'var(--yn-white)',
     border: '1px solid var(--yn-purple)',
     borderRadius: 'var(--yn-r-editorial)',
     padding: '32px 26px 22px',
@@ -111,7 +104,7 @@ export function TrackCard({ to, metaStart, metaEnd, title, shape }) {
       style={{
         display: 'block',
         height: '100%',
-        background: '#fff',
+        background: 'var(--yn-white)',
         border: '1px solid var(--yn-purple)',
         borderRadius: 'var(--yn-r-editorial)',
         padding: '22px 24px 26px',
@@ -142,7 +135,7 @@ export function TrackCard({ to, metaStart, metaEnd, title, shape }) {
         {title}
       </div>
 
-      <div style={{ fontFamily: 'var(--yn-mono)', fontSize: 11, color: 'var(--yn-grey-dark)' }}>
+      <div style={{ fontFamily: 'var(--yn-mono)', fontSize: 'var(--yn-micro)', color: 'var(--yn-grey-dark)' }}>
         {shape}
       </div>
     </Link>
@@ -155,7 +148,7 @@ export function Card({ tone = 'white', outline = 'purple', radius = 'tile', chil
     <div
       style={{
         background: FILLS[tone] ?? FILLS.white,
-        border: `1px solid ${outline === 'ink' ? '#000' : FILLS[outline]}`,
+        border: `1px solid ${outline === 'ink' ? 'var(--yn-ink)' : FILLS[outline]}`,
         borderRadius: `var(--yn-r-${radius})`,
         padding: 32,
         ...style,

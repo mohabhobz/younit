@@ -31,7 +31,7 @@ export default function SiteHeader({ tone = 'blue' }) {
             fontSize: 6,
             letterSpacing: '0.18em',
             textTransform: 'uppercase',
-            color: '#fff',
+            color: 'var(--yn-white)',
             marginBottom: 3,
           }}
         >
@@ -50,7 +50,7 @@ export default function SiteHeader({ tone = 'blue' }) {
               fontSize: 14,
               letterSpacing: '0.12em',
               textTransform: 'uppercase',
-              color: '#fff',
+              color: 'var(--yn-white)',
               opacity: isActive ? 1 : 0.62,
               textDecoration: isActive ? 'underline' : 'none',
               textUnderlineOffset: 4,
