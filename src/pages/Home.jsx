@@ -748,8 +748,8 @@ function ProjectTracks() {
 /* -------------------------------------------------------------------------- */
 
 export default function Home() {
-  const { t } = useI18n();
-  useMotion("full");
+  const { t, locale } = useI18n();
+  useMotion("full", locale);
 
   useEffect(() => {
     document.title = t("meta.siteTitle");

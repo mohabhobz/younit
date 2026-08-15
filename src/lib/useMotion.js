@@ -20,7 +20,14 @@ import { useEffect } from 'react'
  * Cleanup restores every element it touched, so React's double-invoked effects
  * in development do not leave half-typed text or stuck opacity behind.
  */
-export default function useMotion(mode = 'full') {
+/**
+ * `resetKey` replays the whole thing when it changes. The hook reads the text
+ * out of the DOM once and types it back in character by character, so if the
+ * page changes language mid-flight the loop keeps writing the old sentence and
+ * the restore puts the old sentence back. Passing the locale tears the motion
+ * down and starts it again on the new copy.
+ */
+export default function useMotion(mode = 'full', resetKey) {
   useEffect(() => {
     const reduced =
       window.matchMedia &&
@@ -313,5 +320,5 @@ export default function useMotion(mode = 'full') {
       if (raf) cancelAnimationFrame(raf)
       restore.forEach((fn) => fn())
     }
-  }, [mode])
+  }, [mode, resetKey])
 }

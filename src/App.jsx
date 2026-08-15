@@ -30,10 +30,19 @@ function ScrollToTop() {
   return null
 }
 
-/** Everything under a locale renders inside that locale's provider. */
+/**
+ * Everything under a locale renders inside that locale's provider, keyed by it.
+ *
+ * The key matters: switching language keeps the same route element, so React
+ * would reuse the same DOM nodes and only swap their text. The motion hook
+ * reads that text out once and types it back in, and its cleanup writes the old
+ * sentence back over the new one — so the page ended up in Arabic with the
+ * English hero typing itself in. A fresh key mounts a fresh subtree, and the
+ * old one is torn down where nothing can see it.
+ */
 function Locale({ locale }) {
   return (
-    <I18nProvider locale={locale}>
+    <I18nProvider key={locale} locale={locale}>
       <Outlet />
     </I18nProvider>
   )
