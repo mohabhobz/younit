@@ -911,6 +911,34 @@ async function buildText(node) {
   return text
 }
 
+/**
+ * Where a line that sizes itself has to sit.
+ *
+ * A text node left to size itself is exactly as wide as its words, so it can no
+ * longer be centred by its own box — and the arrow inside every round button
+ * ended up in a corner of it. The box is still known, so the words are placed
+ * in it the way the browser placed them.
+ */
+function offsetIn(node, text) {
+  if (node.lines !== 1) return [0, 0]
+
+  const [, , width, height] = node.r
+  const align = node.tx.a
+  const rtl = node.tx.dir === 'rtl'
+  const toEnd =
+    align === 'right' ||
+    align === 'end' ||
+    (rtl && (align === 'start' || align === 'left' || align === 'justify' || align === 'normal'))
+
+  let dx = 0
+  if (align === 'center') dx = (width - text.width) / 2
+  else if (toEnd) dx = width - text.width
+
+  // A line of body copy is as tall as its leading, so this is nothing most of
+  // the time. It is the glyph in a 44px circle that needs it.
+  return [dx, (height - text.height) / 2]
+}
+
 async function buildImage(node) {
   const rect = figma.createRectangle()
   rect.name = node.n || 'image'
@@ -990,8 +1018,9 @@ async function buildNode(node, parentX, parentY) {
 
   if (node.t === 'T') {
     const text = await buildText(node)
-    text.x = node.r[0] - parentX
-    text.y = node.r[1] - parentY
+    const offset = offsetIn(node, text)
+    text.x = node.r[0] - parentX + offset[0]
+    text.y = node.r[1] - parentY + offset[1]
     return text
   }
 

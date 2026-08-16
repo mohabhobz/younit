@@ -277,19 +277,6 @@ export const WALK = () => {
     if (isLeafText(el) || before || after) {
       const words = tidy(before + readText(el) + after)
       if (words && (isLeafText(el) || !el.children.length)) {
-        // How many lines the words actually took. Figma cannot be trusted to
-        // wrap them the same way — its faces differ from the browser's by a
-        // fraction — so a line that did not wrap here is marked, and the plugin
-        // lets it size itself rather than holding it in a box it might not fit.
-        let lines = 0
-        try {
-          const range = document.createRange()
-          range.selectNodeContents(el)
-          lines = range.getClientRects().length
-        } catch (e) {
-          lines = 0
-        }
-
         const pad = [
           px(parseFloat(s.paddingTop)),
           px(parseFloat(s.paddingRight)),
@@ -297,15 +284,39 @@ export const WALK = () => {
           px(parseFloat(s.paddingLeft)),
         ]
 
+        // How many lines the words actually took, measured rather than
+        // counted: a range reports one rectangle per fragment, so one line
+        // split across two spans reads as two. The height against the leading
+        // is what a reader would say.
+        const leading = parseFloat(s.lineHeight) || parseFloat(s.fontSize) * 1.2
+        const lines = Math.max(1, Math.round((box.height - pad[0] - pad[2]) / leading))
+
+        // Where the words are, not where their box is. A pill centres its
+        // label with the layout rather than with `text-align`, so taking the
+        // padding box put the arrow in every round button at the edge of its
+        // circle instead of the middle. A range round the contents is the
+        // rectangle the browser actually drew the type in.
+        let line = null
+        try {
+          const range = document.createRange()
+          range.selectNodeContents(el)
+          const rect = range.getBoundingClientRect()
+          if (rect.width > 0.5 && rect.height > 0.5) line = rect
+        } catch (e) {
+          line = null
+        }
+
         const text = {
           t: 'T',
           n: words.slice(0, 40),
-          r: [
-            px(box.x + pad[3]),
-            px(box.y + scrollY + pad[0]),
-            px(Math.max(1, box.width - pad[1] - pad[3])),
-            px(Math.max(1, box.height - pad[0] - pad[2])),
-          ],
+          r: line
+            ? [px(line.x), px(line.y + scrollY), px(line.width), px(line.height)]
+            : [
+                px(box.x + pad[3]),
+                px(box.y + scrollY + pad[0]),
+                px(Math.max(1, box.width - pad[1] - pad[3])),
+                px(Math.max(1, box.height - pad[0] - pad[2])),
+              ],
           str: words,
           lines: lines,
           tx: textOf(el, s),
@@ -331,9 +342,33 @@ export const WALK = () => {
     if (depth > 24) return node
 
     const kids = []
-    for (const child of el.children) {
-      const built = walk(child, depth + 1)
-      if (built) kids.push(built)
+    for (const child of el.childNodes) {
+      if (child.nodeType === 1) {
+        const built = walk(child, depth + 1)
+        if (built) kids.push(built)
+        continue
+      }
+
+      // Words sitting directly in a box that also holds elements. A grid or a
+      // flex container blockifies its element children, so this is not a leaf
+      // and the loop over `el.children` never saw them — which is how every
+      // label in the contents list went missing and left its number behind.
+      if (child.nodeType !== 3 || !child.nodeValue.trim()) continue
+
+      const range = document.createRange()
+      range.selectNode(child)
+      const rect = range.getBoundingClientRect()
+      if (rect.width < 0.5 || rect.height < 0.5) continue
+
+      const leading = parseFloat(s.lineHeight) || parseFloat(s.fontSize) * 1.2
+      kids.push({
+        t: 'T',
+        n: child.nodeValue.trim().slice(0, 40),
+        r: [px(rect.x), px(rect.y + scrollY), px(rect.width), px(rect.height)],
+        str: tidy(child.nodeValue),
+        lines: Math.max(1, Math.round(rect.height / leading)),
+        tx: textOf(el, s),
+      })
     }
     if (kids.length) node.ch = kids
 
