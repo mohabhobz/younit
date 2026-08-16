@@ -10,7 +10,7 @@
  *
  *   node tools/figma/check-plugin.mjs
  */
-import { readFileSync, readdirSync } from 'node:fs'
+import { readFileSync, readdirSync, statSync } from 'node:fs'
 import { runInNewContext } from 'node:vm'
 
 const ROOT = new URL('../../', import.meta.url)
@@ -93,6 +93,31 @@ function node(type) {
       return instance
     },
   }
+
+  // A frame hugs its children the moment it is given auto layout, before it
+  // has been told its padding or its gaps. The editor does this and the
+  // stand-in has to as well: the header came out as wide as its contents and
+  // nothing here noticed, because a div with a width does not shrink.
+  let mode = 'NONE'
+  Object.defineProperty(self, 'layoutMode', {
+    set(value) {
+      mode = value
+      if (value === 'HORIZONTAL' || value === 'VERTICAL') {
+        self.primaryAxisSizingMode = 'AUTO'
+        let along = 0
+        let across = 0
+        for (const child of self.children) {
+          along += value === 'HORIZONTAL' ? child.width : child.height
+          across = Math.max(across, value === 'HORIZONTAL' ? child.height : child.width)
+        }
+        self.width = value === 'HORIZONTAL' ? along : across
+        self.height = value === 'HORIZONTAL' ? across : along
+      }
+    },
+    get() {
+      return mode
+    },
+  })
 
   // The editor refuses these unless the node is laid out by its parent, and a
   // stand-in that shrugs at them is worse than no stand-in: it passes the run
@@ -265,17 +290,72 @@ if (!everyVariableHasEveryMode) {
 /* Then a real page, the biggest and the most awkward one. */
 const dir = new URL('public/figma/pages/', ROOT)
 const files = readdirSync(dir).filter((f) => f.endsWith('.json'))
-const sample = ['home-desktop.json', 'article-ar-desktop.json', 'deck-desktop.json', 'home-mobile.json']
-  .filter((f) => files.includes(f))
+
+// A spread rather than a list of names: the export is run at two scopes and
+// the files are named after whichever routes it covered. The biggest page is
+// the one most likely to break, so it is always in.
+const biggest = files
+  .map((f) => [f, statSync(new URL(f, dir)).size])
+  .sort((a, b) => b[1] - a[1])[0][0]
+
+const pick = (match) => files.find((f) => match(f) && f !== biggest)
+const sample = [
+  biggest,
+  pick((f) => f.startsWith('home') && f.endsWith('desktop.json')),
+  pick((f) => f.includes('-ar-') && f.endsWith('desktop.json')),
+  pick((f) => f.endsWith('mobile.json')),
+].filter(Boolean)
+
+let drift = 0
+
+/**
+ * Every frame has to come out the size the browser measured it at. This is the
+ * check that would have caught the header: it was given auto layout, hugged
+ * its three children, and kept that width — so the band stopped short and the
+ * language switch sat outside it on the grey.
+ */
+function compare(built, node, file, path) {
+  if (!built || !node) return
+  const wanted = node.r
+  if (built.type === 'FRAME' || built.type === 'COMPONENT') {
+    const off = Math.abs(built.width - wanted[2]) + Math.abs(built.height - wanted[3])
+    if (off > 1.5) {
+      drift++
+      if (drift < 6) {
+        console.error(
+          `  ✗ ${file} ${path}<${node.n}> is ${Math.round(built.width)}x${Math.round(built.height)}, ` +
+            `measured ${Math.round(wanted[2])}x${Math.round(wanted[3])}`,
+        )
+      }
+    }
+  }
+  const kids = node.ch || []
+  for (let i = 0; i < kids.length && i < built.children.length; i++) {
+    compare(built.children[i], kids[i], file, path + node.n + ' › ')
+  }
+}
 
 for (const file of sample) {
   const before = made.nodes
+  const pageCount = figma.currentPage.children.length
   const snapshot = JSON.parse(readFileSync(new URL(file, dir), 'utf8'))
   await figma.ui.onmessage({
     kind: 'pages',
     pages: [{ route: snapshot.route, device: snapshot.device, snapshot }],
   })
+
+  const built = figma.currentPage.children[pageCount]
+  const kids = snapshot.tree.ch || []
+  for (let i = 0; i < kids.length && i < built.children.length; i++) {
+    compare(built.children[i], kids[i], file, '')
+  }
+
   console.log(`${file}: ${made.nodes - before} nodes built`)
+}
+
+if (drift) {
+  console.error(`\n✗ ${drift} frames came out a different size than the page they came from`)
+  process.exit(1)
 }
 
 console.log(

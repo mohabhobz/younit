@@ -70,6 +70,30 @@ export const WALK = () => {
     return m ? m[1] : ''
   }
 
+  /**
+   * The words, with the line breaks the author put in them. `textContent`
+   * drops `<br>`, which runs two lines of a headline into one — "Build on
+   * this,The API, Two Ways" — so the child nodes are read rather than the
+   * shorthand.
+   */
+  const readText = (el) => {
+    let out = ''
+    for (const child of el.childNodes) {
+      if (child.nodeType === 3) out += child.nodeValue
+      else if (child.tagName === 'BR') out += '\n'
+      else if (child.nodeType === 1) out += readText(child)
+    }
+    return out
+  }
+
+  const tidy = (words) =>
+    words
+      .replace(/[ \t\r\f]+/g, ' ')
+      .split('\n')
+      .map((line) => line.trim())
+      .join('\n')
+      .trim()
+
   const inline = (el) => {
     const d = getComputedStyle(el).display
     return d === 'inline' || d === 'ruby' || d === 'contents'
@@ -177,21 +201,53 @@ export const WALK = () => {
     const after = pseudo(el, '::after')
 
     if (isLeafText(el) || before || after) {
-      const words = (before + el.textContent + after).replace(/\s+/g, ' ').trim()
+      const words = tidy(before + readText(el) + after)
       if (words && (isLeafText(el) || !el.children.length)) {
-        return {
-          ...node,
+        // How many lines the words actually took. Figma cannot be trusted to
+        // wrap them the same way — its faces differ from the browser's by a
+        // fraction — so a line that did not wrap here is marked, and the plugin
+        // lets it size itself rather than holding it in a box it might not fit.
+        let lines = 0
+        try {
+          const range = document.createRange()
+          range.selectNodeContents(el)
+          lines = range.getClientRects().length
+        } catch (e) {
+          lines = 0
+        }
+
+        const pad = [
+          px(parseFloat(s.paddingTop)),
+          px(parseFloat(s.paddingRight)),
+          px(parseFloat(s.paddingBottom)),
+          px(parseFloat(s.paddingLeft)),
+        ]
+
+        const text = {
           t: 'T',
           n: words.slice(0, 40),
-          str: words,
-          tx: textOf(el, s),
-          pad: [
-            px(parseFloat(s.paddingTop)),
-            px(parseFloat(s.paddingRight)),
-            px(parseFloat(s.paddingBottom)),
-            px(parseFloat(s.paddingLeft)),
+          r: [
+            px(box.x + pad[3]),
+            px(box.y + scrollY + pad[0]),
+            px(Math.max(1, box.width - pad[1] - pad[3])),
+            px(Math.max(1, box.height - pad[0] - pad[2])),
           ],
+          str: words,
+          lines: lines,
+          tx: textOf(el, s),
         }
+
+        // A pill is a word inside a shape. Returning only the word would drop
+        // the outline and the fill that make it a button — which is what
+        // happened to every button, tag and outlined label on the first pass.
+        // Where a leaf carries paint of its own it stays a box, with the words
+        // inside it.
+        if (node.bg || node.bd || node.br) {
+          node.ch = [text]
+          return node
+        }
+
+        return { ...node, ...text }
       }
     }
 

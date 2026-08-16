@@ -77,6 +77,13 @@ async function buildText(node) {
     }
   }
 
+  // The stylesheet shouts a lot of its small labels. The words are stored as
+  // they were authored, so the shouting is a property here rather than a second
+  // copy of the string in capitals.
+  if (tx.tt === 'uppercase') text.textCase = 'UPPER'
+  else if (tx.tt === 'lowercase') text.textCase = 'LOWER'
+  else if (tx.tt === 'capitalize') text.textCase = 'TITLE'
+
   if (tx.lh) text.lineHeight = { unit: 'PIXELS', value: tx.lh }
   if (tx.ls) text.letterSpacing = { unit: 'PIXELS', value: tx.ls }
   if (tx.c) text.fills = [paintFor(tx.c)]
@@ -85,10 +92,17 @@ async function buildText(node) {
   else if (tx.a === 'right' || tx.a === 'end') text.textAlignHorizontal = 'RIGHT'
   else if (tx.a === 'justify') text.textAlignHorizontal = 'JUSTIFIED'
 
-  // The box is the one the browser drew. Left to size itself the text would
-  // rewrap, and every line below it in the page would move.
-  text.textAutoResize = 'NONE'
-  text.resize(Math.max(1, node.r[2]), Math.max(1, node.r[3]))
+  // A line that did not wrap in the browser must not wrap here. Figma draws
+  // the same words a hair wider or narrower than the browser did — the faces
+  // are not identical to the pixel — so a box measured to fit exactly can push
+  // the last word onto a second line, and "03/08" arrives as "03/0" over "8".
+  // A single line is left to size itself; only wrapped copy keeps its box.
+  if (node.lines === 1) {
+    text.textAutoResize = 'WIDTH_AND_HEIGHT'
+  } else {
+    text.textAutoResize = 'HEIGHT'
+    text.resize(Math.max(1, node.r[2]), Math.max(1, node.r[3]))
+  }
   return text
 }
 
@@ -145,6 +159,30 @@ function instanceFor(node) {
 }
 
 async function buildNode(node, parentX, parentY) {
+  // A button is a button, whatever shape the snapshot recorded it in. This is
+  // checked before the type, because a pill with nothing inside it but a word
+  // arrives as a box holding one line of text.
+  if (node.cmp === 'Button' || node.cmp === 'ArrowButton') {
+    const instance = instanceFor(node)
+    if (instance) {
+      const words = firstText(node)
+      if (words) {
+        try {
+          const target = instance.findOne((n) => n.type === 'TEXT')
+          if (target) {
+            await figma.loadFontAsync(target.fontName)
+            target.characters = words
+          }
+        } catch (e) {
+          /* the default label stays */
+        }
+      }
+      instance.x = node.r[0] - parentX
+      instance.y = node.r[1] - parentY
+      return instance
+    }
+  }
+
   if (node.t === 'T') {
     const text = await buildText(node)
     text.x = node.r[0] - parentX
@@ -165,29 +203,6 @@ async function buildNode(node, parentX, parentY) {
     vector.x = node.r[0] - parentX
     vector.y = node.r[1] - parentY
     return vector
-  }
-
-  // A button is a button. Its words are inside it, so the children are not
-  // rebuilt — the instance carries them.
-  if (node.cmp === 'Button' || node.cmp === 'ArrowButton') {
-    const instance = instanceFor(node)
-    if (instance) {
-      const words = firstText(node)
-      if (words) {
-        try {
-          const target = instance.findOne((n) => n.type === 'TEXT')
-          if (target) {
-            await figma.loadFontAsync(target.fontName)
-            target.characters = words
-          }
-        } catch (e) {
-          /* the default label stays */
-        }
-      }
-      instance.x = node.r[0] - parentX
-      instance.y = node.r[1] - parentY
-      return instance
-    }
   }
 
   const frame = figma.createFrame()
@@ -234,6 +249,13 @@ async function buildNode(node, parentX, parentY) {
     frame.layoutMode = node.al.dir === 'V' ? 'VERTICAL' : 'HORIZONTAL'
     frame.primaryAxisSizingMode = 'FIXED'
     frame.counterAxisSizingMode = 'FIXED'
+    // A frame given auto layout hugs its children the moment it gets it —
+    // before it has been told the padding and the gaps that make up the rest of
+    // its width. Freezing it there leaves it as wide as its contents and the
+    // last child hanging outside, which is what happened to the header. So it
+    // is put back to the size the browser drew it at, now that the sizing is
+    // fixed and the number will hold.
+    frame.resize(Math.max(1, node.r[2]), Math.max(1, node.r[3]))
     frame.itemSpacing = Math.max(0, node.al.gap)
     frame.paddingTop = node.al.pad[0]
     frame.paddingRight = node.al.pad[1]
