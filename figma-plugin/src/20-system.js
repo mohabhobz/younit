@@ -386,6 +386,10 @@ async function buildComponents() {
 
   for (const node of made) board.appendChild(node)
 
+  // The page builder adds to this: the header and the footer become components
+  // the first time a page brings one in, and land here beside the rest.
+  BOARD = board
+
   say(made.length + ' components')
   return board
 }

@@ -111,6 +111,80 @@ export const WALK = () => {
 
   const SKIP = new Set(['SCRIPT', 'STYLE', 'NOSCRIPT', 'BR', 'HEAD', 'META', 'LINK', 'TITLE'])
 
+  const SVG_NS = 'http://www.w3.org/2000/svg'
+
+  /**
+   * An `<svg>` with everything it needs inside it.
+   *
+   * The brand marks are drawn once as `<symbol>`s at the top of the page and
+   * pointed at with `<use href="#wm-w">` — which is the right way to write
+   * them and useless to anything reading a single `<svg>` on its own. Sent as
+   * they are, the wordmark arrives as an empty box, which is why the logo was
+   * missing from every header.
+   *
+   * So each `<use>` is replaced by the thing it points at, with the transform
+   * the browser would have applied: a symbol's own viewBox is fitted into the
+   * box the `<use>` gives it, centred, the same way an image fits a frame.
+   */
+  const standalone = (svg) => {
+    const copy = svg.cloneNode(true)
+
+    for (let pass = 0; pass < 4; pass++) {
+      const uses = copy.querySelectorAll('use')
+      if (!uses.length) break
+
+      for (const use of uses) {
+        const href = use.getAttribute('href') || use.getAttribute('xlink:href') || ''
+        const source = href.charAt(0) === '#' ? document.getElementById(href.slice(1)) : null
+        if (!source) {
+          use.remove()
+          continue
+        }
+
+        const group = document.createElementNS(SVG_NS, 'g')
+        for (const attr of use.attributes) {
+          if (attr.name !== 'href' && attr.name !== 'xlink:href') {
+            if (!['x', 'y', 'width', 'height'].includes(attr.name)) {
+              group.setAttribute(attr.name, attr.value)
+            }
+          }
+        }
+
+        const vb = (source.getAttribute('viewBox') || '').split(/[\s,]+/).map(Number)
+        const x = parseFloat(use.getAttribute('x')) || 0
+        const y = parseFloat(use.getAttribute('y')) || 0
+
+        if (vb.length === 4 && vb[2] && vb[3]) {
+          // Default `preserveAspectRatio`: fit inside, centred on both axes.
+          const w = parseFloat(use.getAttribute('width')) || vb[2]
+          const h = parseFloat(use.getAttribute('height')) || vb[3]
+          const scale = Math.min(w / vb[2], h / vb[3])
+          const tx = x + (w - vb[2] * scale) / 2 - vb[0] * scale
+          const ty = y + (h - vb[3] * scale) / 2 - vb[1] * scale
+          group.setAttribute('transform', `translate(${tx} ${ty}) scale(${scale})`)
+        } else if (x || y) {
+          group.setAttribute('transform', `translate(${x} ${y})`)
+        }
+
+        for (const child of source.children) group.appendChild(child.cloneNode(true))
+        use.replaceWith(group)
+      }
+    }
+
+    // The marks are painted with the same custom properties as the rest of the
+    // site — `fill="var(--yn-white)"`. A stylesheet resolves that; a lone SVG
+    // handed to Figma does not, and the wordmark comes out black on the dark
+    // band. So the colours are resolved here, where the values are known.
+    const root = getComputedStyle(document.documentElement)
+    return copy.outerHTML
+      .replace(/var\(\s*(--[a-z0-9-]+)\s*(?:,[^)]*)?\)/g, (whole, name) => {
+        const value = root.getPropertyValue(name).trim()
+        return value || whole
+      })
+      .split('currentColor')
+      .join(getComputedStyle(svg).color)
+  }
+
   const textOf = (el, s) => {
     const weight = Number(s.fontWeight) || 400
     // Anybody is variable and the site sets its axes explicitly; without them
@@ -152,7 +226,7 @@ export const WALK = () => {
         t: 'V',
         n: el.getAttribute('aria-label') || 'vector',
         r: [px(box.x), px(box.y + scrollY), px(box.width), px(box.height)],
-        svg: el.outerHTML,
+        svg: standalone(el),
       }
     }
 

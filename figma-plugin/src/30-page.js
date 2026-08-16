@@ -10,6 +10,40 @@
 
 let COMPONENTS = {}
 
+/**
+ * The header and the footer are the same design on every page, so they are
+ * made once and used everywhere after that — a component built from the real
+ * thing rather than a redrawing of it. Change the header in the file and all
+ * hundred and fifty pages change with it.
+ *
+ * The key carries the width and the tone because those are the versions that
+ * genuinely differ: a header on a phone is not a narrower desktop header, and
+ * the blue one is not the dark one.
+ */
+const SHARED = ['Header', 'Footer']
+let BUILT = {}
+let BOARD = null
+
+let LOCALE = 'en'
+
+function sharedKey(node) {
+  const tone = node.bg ? tokenFor(node.bg) || 'plain' : 'plain'
+  // The language belongs in the key: the Arabic header is not the English one
+  // reversed. It carries its own wordmark from the brand PDF, its own words,
+  // and it reads the other way.
+  return node.cmp + ' · ' + LOCALE + ' · ' + Math.round(node.r[2]) + ' · ' + tone
+}
+
+/** Turns the frame just built into a component, and hands back an instance. */
+function componentise(node, frame, key) {
+  figma.currentPage.appendChild(frame)
+  const component = figma.createComponentFromNode(frame)
+  component.name = key
+  if (BOARD) BOARD.appendChild(component)
+  BUILT[key] = component
+  return component.createInstance()
+}
+
 /** The nearest type size token to a measured size, if it is close enough. */
 function sizeTokenFor(size) {
   for (const name of Object.keys(TOKENS.sizes)) {
@@ -205,6 +239,16 @@ async function buildNode(node, parentX, parentY) {
     return vector
   }
 
+  // A header already made is not rebuilt: the instance is placed and the two
+  // hundred nodes inside it are never walked again.
+  const shared = SHARED.indexOf(node.cmp) !== -1 ? sharedKey(node) : null
+  if (shared && BUILT[shared]) {
+    const instance = BUILT[shared].createInstance()
+    instance.x = node.r[0] - parentX
+    instance.y = node.r[1] - parentY
+    return instance
+  }
+
   const frame = figma.createFrame()
   frame.name = node.n || 'frame'
   frame.resize(Math.max(1, node.r[2]), Math.max(1, node.r[3]))
@@ -277,6 +321,13 @@ async function buildNode(node, parentX, parentY) {
     }
   }
 
+  if (shared) {
+    const instance = componentise(node, frame, shared)
+    instance.x = node.r[0] - parentX
+    instance.y = node.r[1] - parentY
+    return instance
+  }
+
   return frame
 }
 
@@ -291,6 +342,8 @@ function firstText(node) {
 }
 
 async function buildPage(snapshot, x, y) {
+  LOCALE = snapshot.locale || 'en'
+
   const page = figma.createFrame()
   page.name = snapshot.route + '  ·  ' + snapshot.device + '  ·  ' + snapshot.locale
   page.resize(Math.max(1, snapshot.w), Math.max(1, Math.round(snapshot.h)))
