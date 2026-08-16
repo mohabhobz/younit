@@ -3,17 +3,9 @@ import Page from '../components/layout/Page.jsx'
 import NotFound from './NotFound.jsx'
 import Breadcrumb from '../components/ui/Breadcrumb.jsx'
 import MarkComplete from '../components/learn/MarkComplete.jsx'
-import { Button, PillRow } from '../components/ui/Button.jsx'
-import { SnapshotCard } from '../components/ui/Card.jsx'
-import { Display, Micro, PageHeading, Rule, Section } from '../components/ui/Pieces.jsx'
-import {
-  authorsOf,
-  findDoc,
-  formatDate,
-  neighbours,
-  readingTime,
-  sessionHtmlFor,
-} from '../lib/content.js'
+import { PillRow } from '../components/ui/Button.jsx'
+import { Micro, PageHeading, Rule, Section } from '../components/ui/Pieces.jsx'
+import { authorsOf, findDoc, formatDate, neighbours, readingTime } from '../lib/content.js'
 import { useI18n } from '../lib/i18n.jsx'
 import Prose from '../components/ui/Prose.jsx'
 import Contents from '../components/ui/Contents.jsx'
@@ -71,7 +63,6 @@ export default function Article() {
   const crumb = CRUMBS[collection]
   const { index, total, prev, next } = neighbours(collection, doc.slug, locale)
   const authors = authorsOf(doc)
-  const deck = sessionHtmlFor(collection, doc.slug)
   const isTrack = collection === 'foundation' || collection === 'algo-track'
 
   // Reading order, not list order.
@@ -117,23 +108,6 @@ export default function Article() {
         </aside>
       </Section>
 
-      {deck ? (
-        <Section style={{ paddingTop: 0 }}>
-          <SnapshotCard tone="blue">
-            <Display size="h3" as="h2">
-              {t('learn.deckTitle')}
-            </Display>
-            <p style={{ margin: 0, fontSize: 'var(--yn-body-size)', lineHeight: 1.6 }}>
-              {t('learn.deckBody')}
-            </p>
-            <div className="yn-cta-row">
-              <Button tone="white" to={`/learn/${collection}/${doc.slug}/deck`}>
-                {t('learn.deckCta')}
-              </Button>
-            </div>
-          </SnapshotCard>
-        </Section>
-      ) : null}
 
       {isTrack ? (
         <Section style={{ paddingTop: 0 }}>

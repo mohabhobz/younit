@@ -23,9 +23,10 @@ const EXECUTABLE =
   process.env.CHROMIUM_PATH || '/opt/pw-browsers/chromium-1194/chrome-linux/chrome'
 const MIN_CONTRAST = 4.4
 
-/** A route with the site chrome and no deck, to measure the chrome against. */
-const CONTROL = '/learn/foundation/01-market-basics'
-const CONTROL_AR = '/ar/learn/foundation/01-market-basics'
+/** A route with the site chrome and no deck, to measure the chrome against.
+    A session is its deck now, so the control has to be a lesson that has none. */
+const CONTROL = '/learn/deep-dives/egx-real-estate-primer'
+const CONTROL_AR = '/ar/learn/deep-dives/egx-real-estate-primer'
 
 // Hues that belonged to the previous brand. None may survive anywhere.
 const RETIRED = [
@@ -38,7 +39,7 @@ const RETIRED = [
 const decks = Object.entries(deckMaps).flatMap(([collection, { map }]) =>
   Object.keys(map).flatMap((slug) =>
     ['', '/ar'].map((prefix) => ({
-      route: `${prefix}/learn/${collection}/${slug}/deck`,
+      route: `${prefix}/learn/${collection}/${slug}`,
       name: `${prefix ? 'ar ' : ''}${collection}/${slug}`,
     })),
   ),

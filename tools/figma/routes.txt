@@ -62,16 +62,3 @@
 /build/apps/egx-daily-snapshot
 /editorial/2026-04-week-2
 /editorial/why-we-built-this
-/learn/foundation/01-market-basics/deck
-/learn/foundation/02-market-landscape/deck
-/learn/foundation/03-how-people-trade/deck
-/learn/foundation/04-reading-charts/deck
-/learn/foundation/05-reading-companies/deck
-/learn/algo-track/00-intro/deck
-/learn/algo-track/01-what-is-an-algorithm/deck
-/learn/algo-track/02-why-algos-at-all/deck
-/learn/algo-track/03-anatomy-of-a-trade/deck
-/learn/algo-track/04-backtesting/deck
-/learn/algo-track/05-from-backtest-to-live/deck
-/learn/algo-track/06-architect-your-algo/deck
-/learn/algo-track/07-what-ai-brings/deck
