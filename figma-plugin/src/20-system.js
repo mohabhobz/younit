@@ -263,9 +263,11 @@ async function buildCard() {
 
     const title = await label('Card title', 'display', 400, 'card-title', 'ink')
     const body = await label('One line of supporting copy.', 'body', 400, 'body-size', 'ink')
-    body.layoutSizingHorizontal = 'FILL'
     frame.appendChild(title)
     frame.appendChild(body)
+    // Only once it is inside the frame: a node has no layout sizing until it
+    // has a parent that lays it out.
+    body.layoutSizingHorizontal = 'FILL'
     variants.push(frame)
   }
 

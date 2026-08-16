@@ -93,6 +93,30 @@ function node(type) {
       return instance
     },
   }
+
+  // The editor refuses these unless the node is laid out by its parent, and a
+  // stand-in that shrugs at them is worse than no stand-in: it passes the run
+  // that Figma is about to stop. This is the check that caught setting the
+  // sizing on a card's body before the card had taken it in.
+  for (const axis of ['layoutSizingHorizontal', 'layoutSizingVertical']) {
+    Object.defineProperty(self, axis, {
+      set(value) {
+        const laidOut = self.layoutMode && self.layoutMode !== 'NONE'
+        const parentLaysOut = self.parent && self.parent.layoutMode && self.parent.layoutMode !== 'NONE'
+        if (!laidOut && !parentLaysOut) {
+          throw new Error(
+            `${axis} = ${value} on <${type} ${self.name || 'unnamed'}> — ` +
+              'node must be an auto-layout frame or a child of one',
+          )
+        }
+        self['_' + axis] = value
+      },
+      get() {
+        return self['_' + axis]
+      },
+    })
+  }
+
   return self
 }
 

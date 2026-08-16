@@ -636,9 +636,11 @@ async function buildCard() {
 
     const title = await label('Card title', 'display', 400, 'card-title', 'ink')
     const body = await label('One line of supporting copy.', 'body', 400, 'body-size', 'ink')
-    body.layoutSizingHorizontal = 'FILL'
     frame.appendChild(title)
     frame.appendChild(body)
+    // Only once it is inside the frame: a node has no layout sizing until it
+    // has a parent that lays it out.
+    body.layoutSizingHorizontal = 'FILL'
     variants.push(frame)
   }
 
@@ -893,6 +895,15 @@ function instanceFor(node) {
   try {
     const component = set.type === 'COMPONENT_SET' ? set.defaultVariant : set
     const instance = component.createInstance()
+    // The component hugs its label; this one has to be the size the browser
+    // drew, and a frame that hugs refuses to be resized until it is told to
+    // stop.
+    try {
+      instance.primaryAxisSizingMode = 'FIXED'
+      instance.counterAxisSizingMode = 'FIXED'
+    } catch (e) {
+      /* not an auto-layout component; it resizes freely */
+    }
     instance.resize(Math.max(1, node.r[2]), Math.max(1, node.r[3]))
     return instance
   } catch (e) {
