@@ -175,12 +175,28 @@
 
       const busy = (state) => buttons.forEach((b) => (b.disabled = state))
 
+      /**
+       * The site answers every unknown address with its own HTML, so a missing
+       * snapshot arrives as a page rather than a 404. Read it as JSON and the
+       * error is about a `<` — which says nothing about what to do next.
+       */
+      async function json(url) {
+        const response = await fetch(url, { cache: 'no-store' })
+        const body = await response.text()
+        if (body.slice(0, 200).toLowerCase().indexOf('<!doctype') !== -1) {
+          throw new Error(
+            'the site answered with a page, not a snapshot — run `npm run figma` ' +
+              'and push, so ' + url.replace(BASE, '') + ' is deployed',
+          )
+        }
+        if (!response.ok) throw new Error(url.replace(BASE, '') + ' — HTTP ' + response.status)
+        return JSON.parse(body)
+      }
+
       async function loadIndex() {
         if (index) return index
         write('Reading ' + BASE + '/figma/index.json')
-        const response = await fetch(BASE + '/figma/index.json', { cache: 'no-store' })
-        if (!response.ok) throw new Error('index.json — HTTP ' + response.status)
-        index = await response.json()
+        index = await json(BASE + '/figma/index.json')
         write(index.pages.length + ' snapshots available')
 
         single.innerHTML = ''
@@ -217,17 +233,17 @@
         write('Fetching ' + list.length + ' snapshot' + (list.length === 1 ? '' : 's') + '…')
         const loaded = []
         for (const page of list) {
-          const response = await fetch(BASE + '/figma/pages/' + page.file, { cache: 'no-store' })
-          if (!response.ok) {
-            write('  skipped ' + page.file + ' — HTTP ' + response.status)
-            continue
+          try {
+            loaded.push({
+              route: page.route,
+              device: page.device,
+              snapshot: await json(BASE + '/figma/pages/' + page.file),
+            })
+          } catch (e) {
+            write('  skipped ' + page.file + ' — ' + e.message)
           }
-          loaded.push({
-            route: page.route,
-            device: page.device,
-            snapshot: await response.json(),
-          })
         }
+        if (!loaded.length) throw new Error('no snapshots could be read')
 
         write('Building…')
         parent.postMessage({ pluginMessage: { kind: 'pages', pages: loaded } }, '*')
