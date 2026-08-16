@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      :root {
+        color-scheme: light dark;
+        font-family: Inter, -apple-system, system-ui, sans-serif;
+        font-size: 12px;
+      }
+
+      body {
+        margin: 0;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        height: calc(100vh - 32px);
+        box-sizing: border-box;
+        color: var(--figma-color-text);
+        background: var(--figma-color-bg);
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      p.note {
+        margin: 0;
+        color: var(--figma-color-text-secondary);
+        line-height: 1.5;
+      }
+
+      fieldset {
+        border: 1px solid var(--figma-color-border);
+        border-radius: 6px;
+        padding: 10px 12px;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      legend {
+        padding: 0 4px;
+        color: var(--figma-color-text-secondary);
+      }
+
+      label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      select,
+      input[type='text'] {
+        width: 100%;
+        padding: 6px 8px;
+        border: 1px solid var(--figma-color-border);
+        border-radius: 4px;
+        background: var(--figma-color-bg);
+        color: var(--figma-color-text);
+        box-sizing: border-box;
+        font: inherit;
+      }
+
+      button {
+        padding: 10px 14px;
+        border: 0;
+        border-radius: 6px;
+        background: var(--figma-color-bg-brand);
+        color: var(--figma-color-text-onbrand);
+        font: inherit;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      button.secondary {
+        background: var(--figma-color-bg-secondary);
+        color: var(--figma-color-text);
+      }
+
+      button[disabled] {
+        opacity: 0.5;
+        cursor: default;
+      }
+
+      #bar {
+        height: 4px;
+        border-radius: 2px;
+        background: var(--figma-color-bg-secondary);
+        overflow: hidden;
+      }
+
+      #bar span {
+        display: block;
+        height: 100%;
+        width: 0;
+        background: var(--figma-color-bg-brand);
+        transition: width 200ms ease;
+      }
+
+      #log {
+        flex: 1;
+        overflow: auto;
+        font-family: ui-monospace, monospace;
+        font-size: 10px;
+        line-height: 1.6;
+        color: var(--figma-color-text-secondary);
+        white-space: pre-wrap;
+      }
+
+      .row {
+        display: flex;
+        gap: 8px;
+      }
+
+      .row button {
+        flex: 1;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Younit — site to Figma</h1>
+    <p class="note">
+      Builds the design system from the site's own tokens, then imports the pages as frames bound
+      to it.
+    </p>
+
+    <fieldset>
+      <legend>Pages</legend>
+      <select id="scope">
+        <option value="templates">The 13 templates — both languages</option>
+        <option value="en">English only</option>
+        <option value="ar">Arabic only</option>
+        <option value="one">One page…</option>
+      </select>
+      <select id="device">
+        <option value="desktop">Desktop — 1440</option>
+        <option value="mobile">Mobile — 390</option>
+        <option value="both">Both</option>
+      </select>
+      <select id="single" style="display: none"></select>
+    </fieldset>
+
+    <div class="row">
+      <button id="all">Import everything</button>
+    </div>
+    <div class="row">
+      <button id="system" class="secondary">Design system only</button>
+      <button id="pages" class="secondary">Pages only</button>
+    </div>
+
+    <div id="bar"><span></span></div>
+    <div id="log"></div>
+
+    <script>
+      const BASE = 'https://younit-gray.vercel.app'
+      const log = document.getElementById('log')
+      const fill = document.querySelector('#bar span')
+      const buttons = [...document.querySelectorAll('button')]
+      const scope = document.getElementById('scope')
+      const device = document.getElementById('device')
+      const single = document.getElementById('single')
+
+      let index = null
+
+      const write = (line) => {
+        log.textContent += line + '\n'
+        log.scrollTop = log.scrollHeight
+      }
+
+      const busy = (state) => buttons.forEach((b) => (b.disabled = state))
+
+      /**
+       * The site answers every unknown address with its own HTML, so a missing
+       * snapshot arrives as a page rather than a 404. Read it as JSON and the
+       * error is about a `<` — which says nothing about what to do next.
+       */
+      async function json(url) {
+        const response = await fetch(url, { cache: 'no-store' })
+        const body = await response.text()
+        if (body.slice(0, 200).toLowerCase().indexOf('<!doctype') !== -1) {
+          throw new Error(
+            'the site answered with a page, not a snapshot — run `npm run figma` ' +
+              'and push, so ' + url.replace(BASE, '') + ' is deployed',
+          )
+        }
+        if (!response.ok) throw new Error(url.replace(BASE, '') + ' — HTTP ' + response.status)
+        return JSON.parse(body)
+      }
+
+      async function loadIndex() {
+        if (index) return index
+        write('Reading ' + BASE + '/figma/index.json')
+        index = await json(BASE + '/figma/index.json')
+        write(index.pages.length + ' snapshots available')
+
+        single.innerHTML = ''
+        for (const page of index.pages) {
+          const option = document.createElement('option')
+          option.value = page.file
+          option.textContent = page.route + ' · ' + page.device
+          single.appendChild(option)
+        }
+        return index
+      }
+
+      function chosen() {
+        const wanted = index.pages.filter((page) => {
+          if (device.value !== 'both' && page.device !== device.value) return false
+          if (scope.value === 'en') return page.locale === 'en'
+          if (scope.value === 'ar') return page.locale === 'ar'
+          return true
+        })
+        if (scope.value === 'one') {
+          return index.pages.filter((page) => page.file === single.value)
+        }
+        return wanted
+      }
+
+      async function sendPages() {
+        await loadIndex()
+        const list = chosen()
+        if (!list.length) {
+          write('Nothing matches that selection.')
+          return
+        }
+
+        write('Fetching ' + list.length + ' snapshot' + (list.length === 1 ? '' : 's') + '…')
+        const loaded = []
+        for (const page of list) {
+          try {
+            loaded.push({
+              route: page.route,
+              device: page.device,
+              snapshot: await json(BASE + '/figma/pages/' + page.file),
+            })
+          } catch (e) {
+            write('  skipped ' + page.file + ' — ' + e.message)
+          }
+        }
+        if (!loaded.length) throw new Error('no snapshots could be read')
+
+        write('Building…')
+        parent.postMessage({ pluginMessage: { kind: 'pages', pages: loaded } }, '*')
+      }
+
+      scope.addEventListener('change', () => {
+        single.style.display = scope.value === 'one' ? 'block' : 'none'
+        if (scope.value === 'one') loadIndex().catch((e) => write('Error: ' + e.message))
+      })
+
+      document.getElementById('system').addEventListener('click', () => {
+        busy(true)
+        write('Building the design system…')
+        parent.postMessage({ pluginMessage: { kind: 'system' } }, '*')
+      })
+
+      document.getElementById('pages').addEventListener('click', async () => {
+        busy(true)
+        try {
+          await sendPages()
+        } catch (e) {
+          write('Error: ' + e.message)
+          busy(false)
+        }
+      })
+
+      document.getElementById('all').addEventListener('click', async () => {
+        busy(true)
+        write('Building the design system…')
+        parent.postMessage({ pluginMessage: { kind: 'system' } }, '*')
+        window.afterSystem = sendPages
+      })
+
+      onmessage = async (event) => {
+        const message = event.data.pluginMessage
+        if (!message) return
+
+        if (message.kind === 'log') write(message.message)
+
+        if (message.kind === 'progress') {
+          fill.style.width = Math.round((message.done / message.total) * 100) + '%'
+          if (message.label) write('  ' + message.label)
+        }
+
+        if (message.kind === 'done') {
+          write(message.message)
+          if (window.afterSystem) {
+            const next = window.afterSystem
+            window.afterSystem = null
+            try {
+              await next()
+            } catch (e) {
+              write('Error: ' + e.message)
+              busy(false)
+            }
+            return
+          }
+          fill.style.width = '100%'
+          busy(false)
+        }
+
+        if (message.kind === 'error') {
+          write('Error: ' + message.message)
+          busy(false)
+        }
+      }
+    </script>
+  </body>
+</html>

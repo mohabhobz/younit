@@ -1,0 +1,526 @@
+{
+  "base": "http://localhost:4173",
+  "generated": 52,
+  "pages": [
+    {
+      "file": "home-desktop.json",
+      "name": "home",
+      "route": "/",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Younit — Egypt's open initiative for capital markets",
+      "width": 1440,
+      "height": 4193
+    },
+    {
+      "file": "home-mobile.json",
+      "name": "home",
+      "route": "/",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Younit — Egypt's open initiative for capital markets",
+      "width": 390,
+      "height": 6632
+    },
+    {
+      "file": "home-ar-desktop.json",
+      "name": "home-ar",
+      "route": "/ar",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "يونِت، المبادرة المفتوحة لأسواق رأس المال في مصر",
+      "width": 1440,
+      "height": 4232
+    },
+    {
+      "file": "home-ar-mobile.json",
+      "name": "home-ar",
+      "route": "/ar",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "يونِت، المبادرة المفتوحة لأسواق رأس المال في مصر",
+      "width": 390,
+      "height": 6520
+    },
+    {
+      "file": "section-learn-desktop.json",
+      "name": "section-learn",
+      "route": "/learn",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Learn — Younit",
+      "width": 1440,
+      "height": 1246
+    },
+    {
+      "file": "section-learn-mobile.json",
+      "name": "section-learn",
+      "route": "/learn",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Learn — Younit",
+      "width": 390,
+      "height": 2190
+    },
+    {
+      "file": "section-learn-ar-desktop.json",
+      "name": "section-learn-ar",
+      "route": "/ar/learn",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "تعلّم — يونِت",
+      "width": 1440,
+      "height": 1255
+    },
+    {
+      "file": "section-learn-ar-mobile.json",
+      "name": "section-learn-ar",
+      "route": "/ar/learn",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "تعلّم — يونِت",
+      "width": 390,
+      "height": 2121
+    },
+    {
+      "file": "track-index-desktop.json",
+      "name": "track-index",
+      "route": "/learn/foundation",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Foundation Series — Younit",
+      "width": 1440,
+      "height": 1169
+    },
+    {
+      "file": "track-index-mobile.json",
+      "name": "track-index",
+      "route": "/learn/foundation",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Foundation Series — Younit",
+      "width": 390,
+      "height": 1574
+    },
+    {
+      "file": "track-index-ar-desktop.json",
+      "name": "track-index-ar",
+      "route": "/ar/learn/foundation",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "سلسلة الأساسيات — يونِت",
+      "width": 1440,
+      "height": 1197
+    },
+    {
+      "file": "track-index-ar-mobile.json",
+      "name": "track-index-ar",
+      "route": "/ar/learn/foundation",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "سلسلة الأساسيات — يونِت",
+      "width": 390,
+      "height": 1585
+    },
+    {
+      "file": "glossary-index-desktop.json",
+      "name": "glossary-index",
+      "route": "/learn/glossary",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Glossary — Younit",
+      "width": 1440,
+      "height": 4063
+    },
+    {
+      "file": "glossary-index-mobile.json",
+      "name": "glossary-index",
+      "route": "/learn/glossary",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Glossary — Younit",
+      "width": 390,
+      "height": 6886
+    },
+    {
+      "file": "glossary-index-ar-desktop.json",
+      "name": "glossary-index-ar",
+      "route": "/ar/learn/glossary",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "المسرد — يونِت",
+      "width": 1440,
+      "height": 3283
+    },
+    {
+      "file": "glossary-index-ar-mobile.json",
+      "name": "glossary-index-ar",
+      "route": "/ar/learn/glossary",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "المسرد — يونِت",
+      "width": 390,
+      "height": 4980
+    },
+    {
+      "file": "glossary-term-desktop.json",
+      "name": "glossary-term",
+      "route": "/learn/glossary/bid-ask-spread",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Bid-Ask Spread — Younit",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "glossary-term-mobile.json",
+      "name": "glossary-term",
+      "route": "/learn/glossary/bid-ask-spread",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Bid-Ask Spread — Younit",
+      "width": 390,
+      "height": 1350
+    },
+    {
+      "file": "glossary-term-ar-desktop.json",
+      "name": "glossary-term-ar",
+      "route": "/ar/learn/glossary/bid-ask-spread",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "الفارق السعري (Bid-Ask Spread) — يونِت",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "glossary-term-ar-mobile.json",
+      "name": "glossary-term-ar",
+      "route": "/ar/learn/glossary/bid-ask-spread",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "الفارق السعري (Bid-Ask Spread) — يونِت",
+      "width": 390,
+      "height": 1401
+    },
+    {
+      "file": "article-desktop.json",
+      "name": "article",
+      "route": "/learn/foundation/01-market-basics",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Stock Market Basics — Younit",
+      "width": 1440,
+      "height": 9121
+    },
+    {
+      "file": "article-mobile.json",
+      "name": "article",
+      "route": "/learn/foundation/01-market-basics",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Stock Market Basics — Younit",
+      "width": 390,
+      "height": 12220
+    },
+    {
+      "file": "article-ar-desktop.json",
+      "name": "article-ar",
+      "route": "/ar/learn/foundation/01-market-basics",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "أساسيات سوق الأسهم — يونِت",
+      "width": 1440,
+      "height": 7772
+    },
+    {
+      "file": "article-ar-mobile.json",
+      "name": "article-ar",
+      "route": "/ar/learn/foundation/01-market-basics",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "أساسيات سوق الأسهم — يونِت",
+      "width": 390,
+      "height": 9618
+    },
+    {
+      "file": "deck-desktop.json",
+      "name": "deck",
+      "route": "/learn/foundation/01-market-basics/deck",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Stock Market Basics — Younit",
+      "width": 1440,
+      "height": 8309
+    },
+    {
+      "file": "deck-mobile.json",
+      "name": "deck",
+      "route": "/learn/foundation/01-market-basics/deck",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Stock Market Basics — Younit",
+      "width": 390,
+      "height": 13109
+    },
+    {
+      "file": "deck-ar-desktop.json",
+      "name": "deck-ar",
+      "route": "/ar/learn/foundation/01-market-basics/deck",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "أساسيات سوق الأسهم — يونِت",
+      "width": 1440,
+      "height": 7954
+    },
+    {
+      "file": "deck-ar-mobile.json",
+      "name": "deck-ar",
+      "route": "/ar/learn/foundation/01-market-basics/deck",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "أساسيات سوق الأسهم — يونِت",
+      "width": 390,
+      "height": 11838
+    },
+    {
+      "file": "project-index-desktop.json",
+      "name": "project-index",
+      "route": "/build/showcase",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Showcase — Younit",
+      "width": 1440,
+      "height": 1043
+    },
+    {
+      "file": "project-index-mobile.json",
+      "name": "project-index",
+      "route": "/build/showcase",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Showcase — Younit",
+      "width": 390,
+      "height": 2003
+    },
+    {
+      "file": "project-index-ar-desktop.json",
+      "name": "project-index-ar",
+      "route": "/ar/build/showcase",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "العرض — يونِت",
+      "width": 1440,
+      "height": 1056
+    },
+    {
+      "file": "project-index-ar-mobile.json",
+      "name": "project-index-ar",
+      "route": "/ar/build/showcase",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "العرض — يونِت",
+      "width": 390,
+      "height": 1952
+    },
+    {
+      "file": "project-detail-desktop.json",
+      "name": "project-detail",
+      "route": "/build/showcase/arabic-sentiment-egx",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Arabic Sentiment Engine for EGX News — Younit",
+      "width": 1440,
+      "height": 3009
+    },
+    {
+      "file": "project-detail-mobile.json",
+      "name": "project-detail",
+      "route": "/build/showcase/arabic-sentiment-egx",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Arabic Sentiment Engine for EGX News — Younit",
+      "width": 390,
+      "height": 4171
+    },
+    {
+      "file": "project-detail-ar-desktop.json",
+      "name": "project-detail-ar",
+      "route": "/ar/build/showcase/arabic-sentiment-egx",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "محرك تحليل المشاعر العربي لأخبار البورصة المصرية — يونِت",
+      "width": 1440,
+      "height": 2947
+    },
+    {
+      "file": "project-detail-ar-mobile.json",
+      "name": "project-detail-ar",
+      "route": "/ar/build/showcase/arabic-sentiment-egx",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "محرك تحليل المشاعر العربي لأخبار البورصة المصرية — يونِت",
+      "width": 390,
+      "height": 3910
+    },
+    {
+      "file": "editorial-index-desktop.json",
+      "name": "editorial-index",
+      "route": "/editorial",
+      "device": "desktop",
+      "locale": "en",
+      "title": "From the Hub — Younit",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "editorial-index-mobile.json",
+      "name": "editorial-index",
+      "route": "/editorial",
+      "device": "mobile",
+      "locale": "en",
+      "title": "From the Hub — Younit",
+      "width": 390,
+      "height": 1407
+    },
+    {
+      "file": "editorial-index-ar-desktop.json",
+      "name": "editorial-index-ar",
+      "route": "/ar/editorial",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "من المركز — يونِت",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "editorial-index-ar-mobile.json",
+      "name": "editorial-index-ar",
+      "route": "/ar/editorial",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "من المركز — يونِت",
+      "width": 390,
+      "height": 1474
+    },
+    {
+      "file": "about-desktop.json",
+      "name": "about",
+      "route": "/about",
+      "device": "desktop",
+      "locale": "en",
+      "title": "About — Younit",
+      "width": 1440,
+      "height": 1547
+    },
+    {
+      "file": "about-mobile.json",
+      "name": "about",
+      "route": "/about",
+      "device": "mobile",
+      "locale": "en",
+      "title": "About — Younit",
+      "width": 390,
+      "height": 2278
+    },
+    {
+      "file": "about-ar-desktop.json",
+      "name": "about-ar",
+      "route": "/ar/about",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "من نحن — يونِت",
+      "width": 1440,
+      "height": 1387
+    },
+    {
+      "file": "about-ar-mobile.json",
+      "name": "about-ar",
+      "route": "/ar/about",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "من نحن — يونِت",
+      "width": 390,
+      "height": 1916
+    },
+    {
+      "file": "partners-desktop.json",
+      "name": "partners",
+      "route": "/partners",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Partners — Younit",
+      "width": 1440,
+      "height": 1709
+    },
+    {
+      "file": "partners-mobile.json",
+      "name": "partners",
+      "route": "/partners",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Partners — Younit",
+      "width": 390,
+      "height": 2360
+    },
+    {
+      "file": "partners-ar-desktop.json",
+      "name": "partners-ar",
+      "route": "/ar/partners",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "الشركاء — يونِت",
+      "width": 1440,
+      "height": 1706
+    },
+    {
+      "file": "partners-ar-mobile.json",
+      "name": "partners-ar",
+      "route": "/ar/partners",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "الشركاء — يونِت",
+      "width": 390,
+      "height": 2110
+    },
+    {
+      "file": "not-found-desktop.json",
+      "name": "not-found",
+      "route": "/nope",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Page not found — Younit",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "not-found-mobile.json",
+      "name": "not-found",
+      "route": "/nope",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Page not found — Younit",
+      "width": 390,
+      "height": 1172
+    },
+    {
+      "file": "not-found-ar-desktop.json",
+      "name": "not-found-ar",
+      "route": "/ar/nope",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "الصفحة غير موجودة — يونِت",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "not-found-ar-mobile.json",
+      "name": "not-found-ar",
+      "route": "/ar/nope",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "الصفحة غير موجودة — يونِت",
+      "width": 390,
+      "height": 1179
+    }
+  ]
+}
