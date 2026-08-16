@@ -94,6 +94,12 @@ for (const [route, name, locale] of pages) {
     const context = await browser.newContext({
       viewport: { width, height: 1000 },
       deviceScaleFactor: 1,
+      // The hero types itself out and the sections fade in as you reach them.
+      // A snapshot taken mid-animation records a page half written — the first
+      // export caught the headline at "Egypt's". The site honours the reader
+      // who has asked for less movement by drawing everything in its finished
+      // state, which is exactly the state a design file wants.
+      reducedMotion: 'reduce',
     })
     const page = await context.newPage()
     await page.goto(`${BASE}${route}`, { waitUntil: 'networkidle' })
@@ -140,7 +146,13 @@ stopServer()
 
 writeFileSync(
   new URL('./index.json', OUT),
-  JSON.stringify({ base: BASE, generated: pages.length * VIEWPORTS.length, pages: index }, null, 2),
+  // The published address, not the one that was measured: this file is read
+  // from the web, and saying `localhost` there names a machine nobody else has.
+  JSON.stringify(
+    { base: PUBLIC, measured: BASE, generated: index.length, pages: index },
+    null,
+    2,
+  ),
 )
 
 console.log(`\n${index.length} snapshots → public/figma/`)

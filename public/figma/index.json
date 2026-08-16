@@ -1,6 +1,7 @@
 {
-  "base": "http://localhost:4173",
-  "generated": 52,
+  "base": "https://younit-gray.vercel.app",
+  "measured": "http://localhost:4173",
+  "generated": 308,
   "pages": [
     {
       "file": "home-desktop.json",
@@ -20,7 +21,7 @@
       "locale": "en",
       "title": "Younit — Egypt's open initiative for capital markets",
       "width": 390,
-      "height": 6632
+      "height": 6628
     },
     {
       "file": "home-ar-desktop.json",
@@ -40,11 +41,11 @@
       "locale": "ar",
       "title": "يونِت، المبادرة المفتوحة لأسواق رأس المال في مصر",
       "width": 390,
-      "height": 6520
+      "height": 6555
     },
     {
-      "file": "section-learn-desktop.json",
-      "name": "section-learn",
+      "file": "learn-desktop.json",
+      "name": "learn",
       "route": "/learn",
       "device": "desktop",
       "locale": "en",
@@ -53,8 +54,8 @@
       "height": 1246
     },
     {
-      "file": "section-learn-mobile.json",
-      "name": "section-learn",
+      "file": "learn-mobile.json",
+      "name": "learn",
       "route": "/learn",
       "device": "mobile",
       "locale": "en",
@@ -63,8 +64,8 @@
       "height": 2190
     },
     {
-      "file": "section-learn-ar-desktop.json",
-      "name": "section-learn-ar",
+      "file": "learn-ar-desktop.json",
+      "name": "learn-ar",
       "route": "/ar/learn",
       "device": "desktop",
       "locale": "ar",
@@ -73,8 +74,8 @@
       "height": 1255
     },
     {
-      "file": "section-learn-ar-mobile.json",
-      "name": "section-learn-ar",
+      "file": "learn-ar-mobile.json",
+      "name": "learn-ar",
       "route": "/ar/learn",
       "device": "mobile",
       "locale": "ar",
@@ -83,8 +84,8 @@
       "height": 2121
     },
     {
-      "file": "track-index-desktop.json",
-      "name": "track-index",
+      "file": "learn-foundation-desktop.json",
+      "name": "learn-foundation",
       "route": "/learn/foundation",
       "device": "desktop",
       "locale": "en",
@@ -93,8 +94,8 @@
       "height": 1169
     },
     {
-      "file": "track-index-mobile.json",
-      "name": "track-index",
+      "file": "learn-foundation-mobile.json",
+      "name": "learn-foundation",
       "route": "/learn/foundation",
       "device": "mobile",
       "locale": "en",
@@ -103,8 +104,8 @@
       "height": 1574
     },
     {
-      "file": "track-index-ar-desktop.json",
-      "name": "track-index-ar",
+      "file": "learn-foundation-ar-desktop.json",
+      "name": "learn-foundation-ar",
       "route": "/ar/learn/foundation",
       "device": "desktop",
       "locale": "ar",
@@ -113,8 +114,8 @@
       "height": 1197
     },
     {
-      "file": "track-index-ar-mobile.json",
-      "name": "track-index-ar",
+      "file": "learn-foundation-ar-mobile.json",
+      "name": "learn-foundation-ar",
       "route": "/ar/learn/foundation",
       "device": "mobile",
       "locale": "ar",
@@ -123,8 +124,88 @@
       "height": 1585
     },
     {
-      "file": "glossary-index-desktop.json",
-      "name": "glossary-index",
+      "file": "learn-algo-track-desktop.json",
+      "name": "learn-algo-track",
+      "route": "/learn/algo-track",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Algo Track — Younit",
+      "width": 1440,
+      "height": 1403
+    },
+    {
+      "file": "learn-algo-track-mobile.json",
+      "name": "learn-algo-track",
+      "route": "/learn/algo-track",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Algo Track — Younit",
+      "width": 390,
+      "height": 1883
+    },
+    {
+      "file": "learn-algo-track-ar-desktop.json",
+      "name": "learn-algo-track-ar",
+      "route": "/ar/learn/algo-track",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "مسار الخوارزميات — يونِت",
+      "width": 1440,
+      "height": 1431
+    },
+    {
+      "file": "learn-algo-track-ar-mobile.json",
+      "name": "learn-algo-track-ar",
+      "route": "/ar/learn/algo-track",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "مسار الخوارزميات — يونِت",
+      "width": 390,
+      "height": 1873
+    },
+    {
+      "file": "learn-deep-dives-desktop.json",
+      "name": "learn-deep-dives",
+      "route": "/learn/deep-dives",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Deep Dives — Younit",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "learn-deep-dives-mobile.json",
+      "name": "learn-deep-dives",
+      "route": "/learn/deep-dives",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Deep Dives — Younit",
+      "width": 390,
+      "height": 1677
+    },
+    {
+      "file": "learn-deep-dives-ar-desktop.json",
+      "name": "learn-deep-dives-ar",
+      "route": "/ar/learn/deep-dives",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "تحليلات معمّقة — يونِت",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "learn-deep-dives-ar-mobile.json",
+      "name": "learn-deep-dives-ar",
+      "route": "/ar/learn/deep-dives",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "تحليلات معمّقة — يونِت",
+      "width": 390,
+      "height": 1703
+    },
+    {
+      "file": "learn-glossary-desktop.json",
+      "name": "learn-glossary",
       "route": "/learn/glossary",
       "device": "desktop",
       "locale": "en",
@@ -133,8 +214,8 @@
       "height": 4063
     },
     {
-      "file": "glossary-index-mobile.json",
-      "name": "glossary-index",
+      "file": "learn-glossary-mobile.json",
+      "name": "learn-glossary",
       "route": "/learn/glossary",
       "device": "mobile",
       "locale": "en",
@@ -143,8 +224,8 @@
       "height": 6886
     },
     {
-      "file": "glossary-index-ar-desktop.json",
-      "name": "glossary-index-ar",
+      "file": "learn-glossary-ar-desktop.json",
+      "name": "learn-glossary-ar",
       "route": "/ar/learn/glossary",
       "device": "desktop",
       "locale": "ar",
@@ -153,8 +234,8 @@
       "height": 3283
     },
     {
-      "file": "glossary-index-ar-mobile.json",
-      "name": "glossary-index-ar",
+      "file": "learn-glossary-ar-mobile.json",
+      "name": "learn-glossary-ar",
       "route": "/ar/learn/glossary",
       "device": "mobile",
       "locale": "ar",
@@ -163,128 +244,128 @@
       "height": 4980
     },
     {
-      "file": "glossary-term-desktop.json",
-      "name": "glossary-term",
-      "route": "/learn/glossary/bid-ask-spread",
+      "file": "build-desktop.json",
+      "name": "build",
+      "route": "/build",
       "device": "desktop",
       "locale": "en",
-      "title": "Bid-Ask Spread — Younit",
+      "title": "Build — Younit",
+      "width": 1440,
+      "height": 1225
+    },
+    {
+      "file": "build-mobile.json",
+      "name": "build",
+      "route": "/build",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Build — Younit",
+      "width": 390,
+      "height": 1925
+    },
+    {
+      "file": "build-ar-desktop.json",
+      "name": "build-ar",
+      "route": "/ar/build",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "ابنِ — يونِت",
+      "width": 1440,
+      "height": 1250
+    },
+    {
+      "file": "build-ar-mobile.json",
+      "name": "build-ar",
+      "route": "/ar/build",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "ابنِ — يونِت",
+      "width": 390,
+      "height": 1914
+    },
+    {
+      "file": "build-repositories-desktop.json",
+      "name": "build-repositories",
+      "route": "/build/repositories",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Repositories — Younit",
       "width": 1440,
       "height": 1000
     },
     {
-      "file": "glossary-term-mobile.json",
-      "name": "glossary-term",
-      "route": "/learn/glossary/bid-ask-spread",
+      "file": "build-repositories-mobile.json",
+      "name": "build-repositories",
+      "route": "/build/repositories",
       "device": "mobile",
       "locale": "en",
-      "title": "Bid-Ask Spread — Younit",
+      "title": "Repositories — Younit",
       "width": 390,
-      "height": 1350
+      "height": 1330
     },
     {
-      "file": "glossary-term-ar-desktop.json",
-      "name": "glossary-term-ar",
-      "route": "/ar/learn/glossary/bid-ask-spread",
+      "file": "build-repositories-ar-desktop.json",
+      "name": "build-repositories-ar",
+      "route": "/ar/build/repositories",
       "device": "desktop",
       "locale": "ar",
-      "title": "الفارق السعري (Bid-Ask Spread) — يونِت",
+      "title": "المستودعات — يونِت",
       "width": 1440,
       "height": 1000
     },
     {
-      "file": "glossary-term-ar-mobile.json",
-      "name": "glossary-term-ar",
-      "route": "/ar/learn/glossary/bid-ask-spread",
+      "file": "build-repositories-ar-mobile.json",
+      "name": "build-repositories-ar",
+      "route": "/ar/build/repositories",
       "device": "mobile",
       "locale": "ar",
-      "title": "الفارق السعري (Bid-Ask Spread) — يونِت",
+      "title": "المستودعات — يونِت",
       "width": 390,
-      "height": 1401
+      "height": 1356
     },
     {
-      "file": "article-desktop.json",
-      "name": "article",
-      "route": "/learn/foundation/01-market-basics",
+      "file": "build-templates-desktop.json",
+      "name": "build-templates",
+      "route": "/build/templates",
       "device": "desktop",
       "locale": "en",
-      "title": "Stock Market Basics — Younit",
+      "title": "Templates — Younit",
       "width": 1440,
-      "height": 9121
+      "height": 1058
     },
     {
-      "file": "article-mobile.json",
-      "name": "article",
-      "route": "/learn/foundation/01-market-basics",
+      "file": "build-templates-mobile.json",
+      "name": "build-templates",
+      "route": "/build/templates",
       "device": "mobile",
       "locale": "en",
-      "title": "Stock Market Basics — Younit",
+      "title": "Templates — Younit",
       "width": 390,
-      "height": 12220
+      "height": 1723
     },
     {
-      "file": "article-ar-desktop.json",
-      "name": "article-ar",
-      "route": "/ar/learn/foundation/01-market-basics",
+      "file": "build-templates-ar-desktop.json",
+      "name": "build-templates-ar",
+      "route": "/ar/build/templates",
       "device": "desktop",
       "locale": "ar",
-      "title": "أساسيات سوق الأسهم — يونِت",
+      "title": "القوالب — يونِت",
       "width": 1440,
-      "height": 7772
+      "height": 1098
     },
     {
-      "file": "article-ar-mobile.json",
-      "name": "article-ar",
-      "route": "/ar/learn/foundation/01-market-basics",
+      "file": "build-templates-ar-mobile.json",
+      "name": "build-templates-ar",
+      "route": "/ar/build/templates",
       "device": "mobile",
       "locale": "ar",
-      "title": "أساسيات سوق الأسهم — يونِت",
+      "title": "القوالب — يونِت",
       "width": 390,
-      "height": 9618
+      "height": 1784
     },
     {
-      "file": "deck-desktop.json",
-      "name": "deck",
-      "route": "/learn/foundation/01-market-basics/deck",
-      "device": "desktop",
-      "locale": "en",
-      "title": "Stock Market Basics — Younit",
-      "width": 1440,
-      "height": 8309
-    },
-    {
-      "file": "deck-mobile.json",
-      "name": "deck",
-      "route": "/learn/foundation/01-market-basics/deck",
-      "device": "mobile",
-      "locale": "en",
-      "title": "Stock Market Basics — Younit",
-      "width": 390,
-      "height": 13109
-    },
-    {
-      "file": "deck-ar-desktop.json",
-      "name": "deck-ar",
-      "route": "/ar/learn/foundation/01-market-basics/deck",
-      "device": "desktop",
-      "locale": "ar",
-      "title": "أساسيات سوق الأسهم — يونِت",
-      "width": 1440,
-      "height": 7954
-    },
-    {
-      "file": "deck-ar-mobile.json",
-      "name": "deck-ar",
-      "route": "/ar/learn/foundation/01-market-basics/deck",
-      "device": "mobile",
-      "locale": "ar",
-      "title": "أساسيات سوق الأسهم — يونِت",
-      "width": 390,
-      "height": 11838
-    },
-    {
-      "file": "project-index-desktop.json",
-      "name": "project-index",
+      "file": "build-showcase-desktop.json",
+      "name": "build-showcase",
       "route": "/build/showcase",
       "device": "desktop",
       "locale": "en",
@@ -293,8 +374,8 @@
       "height": 1043
     },
     {
-      "file": "project-index-mobile.json",
-      "name": "project-index",
+      "file": "build-showcase-mobile.json",
+      "name": "build-showcase",
       "route": "/build/showcase",
       "device": "mobile",
       "locale": "en",
@@ -303,8 +384,8 @@
       "height": 2003
     },
     {
-      "file": "project-index-ar-desktop.json",
-      "name": "project-index-ar",
+      "file": "build-showcase-ar-desktop.json",
+      "name": "build-showcase-ar",
       "route": "/ar/build/showcase",
       "device": "desktop",
       "locale": "ar",
@@ -313,8 +394,8 @@
       "height": 1056
     },
     {
-      "file": "project-index-ar-mobile.json",
-      "name": "project-index-ar",
+      "file": "build-showcase-ar-mobile.json",
+      "name": "build-showcase-ar",
       "route": "/ar/build/showcase",
       "device": "mobile",
       "locale": "ar",
@@ -323,48 +404,288 @@
       "height": 1952
     },
     {
-      "file": "project-detail-desktop.json",
-      "name": "project-detail",
-      "route": "/build/showcase/arabic-sentiment-egx",
+      "file": "build-capstones-desktop.json",
+      "name": "build-capstones",
+      "route": "/build/capstones",
       "device": "desktop",
       "locale": "en",
-      "title": "Arabic Sentiment Engine for EGX News — Younit",
+      "title": "Capstones — Younit",
       "width": 1440,
-      "height": 3009
+      "height": 1023
     },
     {
-      "file": "project-detail-mobile.json",
-      "name": "project-detail",
-      "route": "/build/showcase/arabic-sentiment-egx",
+      "file": "build-capstones-mobile.json",
+      "name": "build-capstones",
+      "route": "/build/capstones",
       "device": "mobile",
       "locale": "en",
-      "title": "Arabic Sentiment Engine for EGX News — Younit",
+      "title": "Capstones — Younit",
       "width": 390,
-      "height": 4171
+      "height": 1775
     },
     {
-      "file": "project-detail-ar-desktop.json",
-      "name": "project-detail-ar",
-      "route": "/ar/build/showcase/arabic-sentiment-egx",
+      "file": "build-capstones-ar-desktop.json",
+      "name": "build-capstones-ar",
+      "route": "/ar/build/capstones",
       "device": "desktop",
       "locale": "ar",
-      "title": "محرك تحليل المشاعر العربي لأخبار البورصة المصرية — يونِت",
+      "title": "مشاريع التخرج — يونِت",
       "width": 1440,
-      "height": 2947
+      "height": 1035
     },
     {
-      "file": "project-detail-ar-mobile.json",
-      "name": "project-detail-ar",
-      "route": "/ar/build/showcase/arabic-sentiment-egx",
+      "file": "build-capstones-ar-mobile.json",
+      "name": "build-capstones-ar",
+      "route": "/ar/build/capstones",
       "device": "mobile",
       "locale": "ar",
-      "title": "محرك تحليل المشاعر العربي لأخبار البورصة المصرية — يونِت",
+      "title": "مشاريع التخرج — يونِت",
       "width": 390,
-      "height": 3910
+      "height": 1735
     },
     {
-      "file": "editorial-index-desktop.json",
-      "name": "editorial-index",
+      "file": "build-apps-desktop.json",
+      "name": "build-apps",
+      "route": "/build/apps",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Apps — Younit",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "build-apps-mobile.json",
+      "name": "build-apps",
+      "route": "/build/apps",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Apps — Younit",
+      "width": 390,
+      "height": 1421
+    },
+    {
+      "file": "build-apps-ar-desktop.json",
+      "name": "build-apps-ar",
+      "route": "/ar/build/apps",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "التطبيقات — يونِت",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "build-apps-ar-mobile.json",
+      "name": "build-apps-ar",
+      "route": "/ar/build/apps",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "التطبيقات — يونِت",
+      "width": 390,
+      "height": 1401
+    },
+    {
+      "file": "compete-desktop.json",
+      "name": "compete",
+      "route": "/compete",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Compete — Younit",
+      "width": 1440,
+      "height": 1422
+    },
+    {
+      "file": "compete-mobile.json",
+      "name": "compete",
+      "route": "/compete",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Compete — Younit",
+      "width": 390,
+      "height": 1855
+    },
+    {
+      "file": "compete-ar-desktop.json",
+      "name": "compete-ar",
+      "route": "/ar/compete",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "نافِس — يونِت",
+      "width": 1440,
+      "height": 1407
+    },
+    {
+      "file": "compete-ar-mobile.json",
+      "name": "compete-ar",
+      "route": "/ar/compete",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "نافِس — يونِت",
+      "width": 390,
+      "height": 1622
+    },
+    {
+      "file": "compete-leaderboard-desktop.json",
+      "name": "compete-leaderboard",
+      "route": "/compete/leaderboard",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Leaderboard — Younit",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "compete-leaderboard-mobile.json",
+      "name": "compete-leaderboard",
+      "route": "/compete/leaderboard",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Leaderboard — Younit",
+      "width": 390,
+      "height": 1300
+    },
+    {
+      "file": "compete-leaderboard-ar-desktop.json",
+      "name": "compete-leaderboard-ar",
+      "route": "/ar/compete/leaderboard",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "لوحة الصدارة — يونِت",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "compete-leaderboard-ar-mobile.json",
+      "name": "compete-leaderboard-ar",
+      "route": "/ar/compete/leaderboard",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "لوحة الصدارة — يونِت",
+      "width": 390,
+      "height": 1313
+    },
+    {
+      "file": "compete-seasons-desktop.json",
+      "name": "compete-seasons",
+      "route": "/compete/seasons",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Seasons — Younit",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "compete-seasons-mobile.json",
+      "name": "compete-seasons",
+      "route": "/compete/seasons",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Seasons — Younit",
+      "width": 390,
+      "height": 1300
+    },
+    {
+      "file": "compete-seasons-ar-desktop.json",
+      "name": "compete-seasons-ar",
+      "route": "/ar/compete/seasons",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "المواسم — يونِت",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "compete-seasons-ar-mobile.json",
+      "name": "compete-seasons-ar",
+      "route": "/ar/compete/seasons",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "المواسم — يونِت",
+      "width": 390,
+      "height": 1313
+    },
+    {
+      "file": "compete-hackathons-desktop.json",
+      "name": "compete-hackathons",
+      "route": "/compete/hackathons",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Hackathons — Younit",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "compete-hackathons-mobile.json",
+      "name": "compete-hackathons",
+      "route": "/compete/hackathons",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Hackathons — Younit",
+      "width": 390,
+      "height": 1300
+    },
+    {
+      "file": "compete-hackathons-ar-desktop.json",
+      "name": "compete-hackathons-ar",
+      "route": "/ar/compete/hackathons",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "الهاكاثونات — يونِت",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "compete-hackathons-ar-mobile.json",
+      "name": "compete-hackathons-ar",
+      "route": "/ar/compete/hackathons",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "الهاكاثونات — يونِت",
+      "width": 390,
+      "height": 1289
+    },
+    {
+      "file": "compete-wall-of-fame-desktop.json",
+      "name": "compete-wall-of-fame",
+      "route": "/compete/wall-of-fame",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Wall of Fame — Younit",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "compete-wall-of-fame-mobile.json",
+      "name": "compete-wall-of-fame",
+      "route": "/compete/wall-of-fame",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Wall of Fame — Younit",
+      "width": 390,
+      "height": 1324
+    },
+    {
+      "file": "compete-wall-of-fame-ar-desktop.json",
+      "name": "compete-wall-of-fame-ar",
+      "route": "/ar/compete/wall-of-fame",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "قاعة الشرف — يونِت",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "compete-wall-of-fame-ar-mobile.json",
+      "name": "compete-wall-of-fame-ar",
+      "route": "/ar/compete/wall-of-fame",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "قاعة الشرف — يونِت",
+      "width": 390,
+      "height": 1313
+    },
+    {
+      "file": "editorial-desktop.json",
+      "name": "editorial",
       "route": "/editorial",
       "device": "desktop",
       "locale": "en",
@@ -373,8 +694,8 @@
       "height": 1000
     },
     {
-      "file": "editorial-index-mobile.json",
-      "name": "editorial-index",
+      "file": "editorial-mobile.json",
+      "name": "editorial",
       "route": "/editorial",
       "device": "mobile",
       "locale": "en",
@@ -383,8 +704,8 @@
       "height": 1407
     },
     {
-      "file": "editorial-index-ar-desktop.json",
-      "name": "editorial-index-ar",
+      "file": "editorial-ar-desktop.json",
+      "name": "editorial-ar",
       "route": "/ar/editorial",
       "device": "desktop",
       "locale": "ar",
@@ -393,8 +714,8 @@
       "height": 1000
     },
     {
-      "file": "editorial-index-ar-mobile.json",
-      "name": "editorial-index-ar",
+      "file": "editorial-ar-mobile.json",
+      "name": "editorial-ar",
       "route": "/ar/editorial",
       "device": "mobile",
       "locale": "ar",
@@ -483,44 +804,2284 @@
       "height": 2110
     },
     {
-      "file": "not-found-desktop.json",
-      "name": "not-found",
-      "route": "/nope",
+      "file": "learn-foundation-01-market-basics-desktop.json",
+      "name": "learn-foundation-01-market-basics",
+      "route": "/learn/foundation/01-market-basics",
       "device": "desktop",
       "locale": "en",
-      "title": "Page not found — Younit",
+      "title": "Stock Market Basics — Younit",
+      "width": 1440,
+      "height": 9121
+    },
+    {
+      "file": "learn-foundation-01-market-basics-mobile.json",
+      "name": "learn-foundation-01-market-basics",
+      "route": "/learn/foundation/01-market-basics",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Stock Market Basics — Younit",
+      "width": 390,
+      "height": 12220
+    },
+    {
+      "file": "learn-foundation-01-market-basics-ar-desktop.json",
+      "name": "learn-foundation-01-market-basics-ar",
+      "route": "/ar/learn/foundation/01-market-basics",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "أساسيات سوق الأسهم — يونِت",
+      "width": 1440,
+      "height": 8004
+    },
+    {
+      "file": "learn-foundation-01-market-basics-ar-mobile.json",
+      "name": "learn-foundation-01-market-basics-ar",
+      "route": "/ar/learn/foundation/01-market-basics",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "أساسيات سوق الأسهم — يونِت",
+      "width": 390,
+      "height": 9618
+    },
+    {
+      "file": "learn-foundation-02-market-landscape-desktop.json",
+      "name": "learn-foundation-02-market-landscape",
+      "route": "/learn/foundation/02-market-landscape",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Egypt's financial market landscape — Younit",
+      "width": 1440,
+      "height": 3250
+    },
+    {
+      "file": "learn-foundation-02-market-landscape-mobile.json",
+      "name": "learn-foundation-02-market-landscape",
+      "route": "/learn/foundation/02-market-landscape",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Egypt's financial market landscape — Younit",
+      "width": 390,
+      "height": 3795
+    },
+    {
+      "file": "learn-foundation-02-market-landscape-ar-desktop.json",
+      "name": "learn-foundation-02-market-landscape-ar",
+      "route": "/ar/learn/foundation/02-market-landscape",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "خريطة السوق المالي في مصر — يونِت",
+      "width": 1440,
+      "height": 2984
+    },
+    {
+      "file": "learn-foundation-02-market-landscape-ar-mobile.json",
+      "name": "learn-foundation-02-market-landscape-ar",
+      "route": "/ar/learn/foundation/02-market-landscape",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "خريطة السوق المالي في مصر — يونِت",
+      "width": 390,
+      "height": 3378
+    },
+    {
+      "file": "learn-foundation-03-how-people-trade-desktop.json",
+      "name": "learn-foundation-03-how-people-trade",
+      "route": "/learn/foundation/03-how-people-trade",
+      "device": "desktop",
+      "locale": "en",
+      "title": "How people actually trade — Younit",
+      "width": 1440,
+      "height": 3298
+    },
+    {
+      "file": "learn-foundation-03-how-people-trade-mobile.json",
+      "name": "learn-foundation-03-how-people-trade",
+      "route": "/learn/foundation/03-how-people-trade",
+      "device": "mobile",
+      "locale": "en",
+      "title": "How people actually trade — Younit",
+      "width": 390,
+      "height": 3953
+    },
+    {
+      "file": "learn-foundation-03-how-people-trade-ar-desktop.json",
+      "name": "learn-foundation-03-how-people-trade-ar",
+      "route": "/ar/learn/foundation/03-how-people-trade",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "كيف يتداول الناس فعليًا — يونِت",
+      "width": 1440,
+      "height": 3062
+    },
+    {
+      "file": "learn-foundation-03-how-people-trade-ar-mobile.json",
+      "name": "learn-foundation-03-how-people-trade-ar",
+      "route": "/ar/learn/foundation/03-how-people-trade",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "كيف يتداول الناس فعليًا — يونِت",
+      "width": 390,
+      "height": 3370
+    },
+    {
+      "file": "learn-foundation-04-reading-charts-desktop.json",
+      "name": "learn-foundation-04-reading-charts",
+      "route": "/learn/foundation/04-reading-charts",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Reading price charts — Younit",
+      "width": 1440,
+      "height": 3370
+    },
+    {
+      "file": "learn-foundation-04-reading-charts-mobile.json",
+      "name": "learn-foundation-04-reading-charts",
+      "route": "/learn/foundation/04-reading-charts",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Reading price charts — Younit",
+      "width": 390,
+      "height": 4128
+    },
+    {
+      "file": "learn-foundation-04-reading-charts-ar-desktop.json",
+      "name": "learn-foundation-04-reading-charts-ar",
+      "route": "/ar/learn/foundation/04-reading-charts",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "قراءة الرسوم البيانية للأسعار — يونِت",
+      "width": 1440,
+      "height": 3139
+    },
+    {
+      "file": "learn-foundation-04-reading-charts-ar-mobile.json",
+      "name": "learn-foundation-04-reading-charts-ar",
+      "route": "/ar/learn/foundation/04-reading-charts",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "قراءة الرسوم البيانية للأسعار — يونِت",
+      "width": 390,
+      "height": 3469
+    },
+    {
+      "file": "learn-foundation-05-reading-companies-desktop.json",
+      "name": "learn-foundation-05-reading-companies",
+      "route": "/learn/foundation/05-reading-companies",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Reading a company — Younit",
+      "width": 1440,
+      "height": 3035
+    },
+    {
+      "file": "learn-foundation-05-reading-companies-mobile.json",
+      "name": "learn-foundation-05-reading-companies",
+      "route": "/learn/foundation/05-reading-companies",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Reading a company — Younit",
+      "width": 390,
+      "height": 3857
+    },
+    {
+      "file": "learn-foundation-05-reading-companies-ar-desktop.json",
+      "name": "learn-foundation-05-reading-companies-ar",
+      "route": "/ar/learn/foundation/05-reading-companies",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "قراءة الشركة — يونِت",
+      "width": 1440,
+      "height": 2778
+    },
+    {
+      "file": "learn-foundation-05-reading-companies-ar-mobile.json",
+      "name": "learn-foundation-05-reading-companies-ar",
+      "route": "/ar/learn/foundation/05-reading-companies",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "قراءة الشركة — يونِت",
+      "width": 390,
+      "height": 3294
+    },
+    {
+      "file": "learn-algo-track-00-intro-desktop.json",
+      "name": "learn-algo-track-00-intro",
+      "route": "/learn/algo-track/00-intro",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Algorithmic Trading Without the Mystique — Younit",
+      "width": 1440,
+      "height": 1697
+    },
+    {
+      "file": "learn-algo-track-00-intro-mobile.json",
+      "name": "learn-algo-track-00-intro",
+      "route": "/learn/algo-track/00-intro",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Algorithmic Trading Without the Mystique — Younit",
+      "width": 390,
+      "height": 2000
+    },
+    {
+      "file": "learn-algo-track-00-intro-ar-desktop.json",
+      "name": "learn-algo-track-00-intro-ar",
+      "route": "/ar/learn/algo-track/00-intro",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "التداول الخوارزمي بلا غموض — يونِت",
+      "width": 1440,
+      "height": 1644
+    },
+    {
+      "file": "learn-algo-track-00-intro-ar-mobile.json",
+      "name": "learn-algo-track-00-intro-ar",
+      "route": "/ar/learn/algo-track/00-intro",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "التداول الخوارزمي بلا غموض — يونِت",
+      "width": 390,
+      "height": 1959
+    },
+    {
+      "file": "learn-algo-track-01-what-is-an-algorithm-desktop.json",
+      "name": "learn-algo-track-01-what-is-an-algorithm",
+      "route": "/learn/algo-track/01-what-is-an-algorithm",
+      "device": "desktop",
+      "locale": "en",
+      "title": "What Is an Algorithm? — Younit",
+      "width": 1440,
+      "height": 1744
+    },
+    {
+      "file": "learn-algo-track-01-what-is-an-algorithm-mobile.json",
+      "name": "learn-algo-track-01-what-is-an-algorithm",
+      "route": "/learn/algo-track/01-what-is-an-algorithm",
+      "device": "mobile",
+      "locale": "en",
+      "title": "What Is an Algorithm? — Younit",
+      "width": 390,
+      "height": 2088
+    },
+    {
+      "file": "learn-algo-track-01-what-is-an-algorithm-ar-desktop.json",
+      "name": "learn-algo-track-01-what-is-an-algorithm-ar",
+      "route": "/ar/learn/algo-track/01-what-is-an-algorithm",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "ما هي الخوارزمية؟ — يونِت",
+      "width": 1440,
+      "height": 1722
+    },
+    {
+      "file": "learn-algo-track-01-what-is-an-algorithm-ar-mobile.json",
+      "name": "learn-algo-track-01-what-is-an-algorithm-ar",
+      "route": "/ar/learn/algo-track/01-what-is-an-algorithm",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "ما هي الخوارزمية؟ — يونِت",
+      "width": 390,
+      "height": 2003
+    },
+    {
+      "file": "learn-algo-track-02-why-algos-at-all-desktop.json",
+      "name": "learn-algo-track-02-why-algos-at-all",
+      "route": "/learn/algo-track/02-why-algos-at-all",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Why Algos at All? — Younit",
+      "width": 1440,
+      "height": 1744
+    },
+    {
+      "file": "learn-algo-track-02-why-algos-at-all-mobile.json",
+      "name": "learn-algo-track-02-why-algos-at-all",
+      "route": "/learn/algo-track/02-why-algos-at-all",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Why Algos at All? — Younit",
+      "width": 390,
+      "height": 2051
+    },
+    {
+      "file": "learn-algo-track-02-why-algos-at-all-ar-desktop.json",
+      "name": "learn-algo-track-02-why-algos-at-all-ar",
+      "route": "/ar/learn/algo-track/02-why-algos-at-all",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "لماذا الخوارزميات أصلًا؟ — يونِت",
+      "width": 1440,
+      "height": 1722
+    },
+    {
+      "file": "learn-algo-track-02-why-algos-at-all-ar-mobile.json",
+      "name": "learn-algo-track-02-why-algos-at-all-ar",
+      "route": "/ar/learn/algo-track/02-why-algos-at-all",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "لماذا الخوارزميات أصلًا؟ — يونِت",
+      "width": 390,
+      "height": 2065
+    },
+    {
+      "file": "learn-algo-track-03-anatomy-of-a-trade-desktop.json",
+      "name": "learn-algo-track-03-anatomy-of-a-trade",
+      "route": "/learn/algo-track/03-anatomy-of-a-trade",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Anatomy of a Trade and a Strategy — Younit",
+      "width": 1440,
+      "height": 1811
+    },
+    {
+      "file": "learn-algo-track-03-anatomy-of-a-trade-mobile.json",
+      "name": "learn-algo-track-03-anatomy-of-a-trade",
+      "route": "/learn/algo-track/03-anatomy-of-a-trade",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Anatomy of a Trade and a Strategy — Younit",
+      "width": 390,
+      "height": 2127
+    },
+    {
+      "file": "learn-algo-track-03-anatomy-of-a-trade-ar-desktop.json",
+      "name": "learn-algo-track-03-anatomy-of-a-trade-ar",
+      "route": "/ar/learn/algo-track/03-anatomy-of-a-trade",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "تشريح الصفقة والاستراتيجية — يونِت",
+      "width": 1440,
+      "height": 1722
+    },
+    {
+      "file": "learn-algo-track-03-anatomy-of-a-trade-ar-mobile.json",
+      "name": "learn-algo-track-03-anatomy-of-a-trade-ar",
+      "route": "/ar/learn/algo-track/03-anatomy-of-a-trade",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "تشريح الصفقة والاستراتيجية — يونِت",
+      "width": 390,
+      "height": 2065
+    },
+    {
+      "file": "learn-algo-track-04-backtesting-desktop.json",
+      "name": "learn-algo-track-04-backtesting",
+      "route": "/learn/algo-track/04-backtesting",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Backtesting: Testing Ideas on the Past — Younit",
+      "width": 1440,
+      "height": 1775
+    },
+    {
+      "file": "learn-algo-track-04-backtesting-mobile.json",
+      "name": "learn-algo-track-04-backtesting",
+      "route": "/learn/algo-track/04-backtesting",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Backtesting: Testing Ideas on the Past — Younit",
+      "width": 390,
+      "height": 2103
+    },
+    {
+      "file": "learn-algo-track-04-backtesting-ar-desktop.json",
+      "name": "learn-algo-track-04-backtesting-ar",
+      "route": "/ar/learn/algo-track/04-backtesting",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "الاختبار الرجعي: اختبار الأفكار على الماضي — يونِت",
+      "width": 1440,
+      "height": 1790
+    },
+    {
+      "file": "learn-algo-track-04-backtesting-ar-mobile.json",
+      "name": "learn-algo-track-04-backtesting-ar",
+      "route": "/ar/learn/algo-track/04-backtesting",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "الاختبار الرجعي: اختبار الأفكار على الماضي — يونِت",
+      "width": 390,
+      "height": 2041
+    },
+    {
+      "file": "learn-algo-track-05-from-backtest-to-live-desktop.json",
+      "name": "learn-algo-track-05-from-backtest-to-live",
+      "route": "/learn/algo-track/05-from-backtest-to-live",
+      "device": "desktop",
+      "locale": "en",
+      "title": "From Backtest to Live — Younit",
+      "width": 1440,
+      "height": 1744
+    },
+    {
+      "file": "learn-algo-track-05-from-backtest-to-live-mobile.json",
+      "name": "learn-algo-track-05-from-backtest-to-live",
+      "route": "/learn/algo-track/05-from-backtest-to-live",
+      "device": "mobile",
+      "locale": "en",
+      "title": "From Backtest to Live — Younit",
+      "width": 390,
+      "height": 2065
+    },
+    {
+      "file": "learn-algo-track-05-from-backtest-to-live-ar-desktop.json",
+      "name": "learn-algo-track-05-from-backtest-to-live-ar",
+      "route": "/ar/learn/algo-track/05-from-backtest-to-live",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "من الاختبار الرجعي إلى التداول الحي — يونِت",
+      "width": 1440,
+      "height": 1790
+    },
+    {
+      "file": "learn-algo-track-05-from-backtest-to-live-ar-mobile.json",
+      "name": "learn-algo-track-05-from-backtest-to-live-ar",
+      "route": "/ar/learn/algo-track/05-from-backtest-to-live",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "من الاختبار الرجعي إلى التداول الحي — يونِت",
+      "width": 390,
+      "height": 2065
+    },
+    {
+      "file": "learn-algo-track-06-architect-your-algo-desktop.json",
+      "name": "learn-algo-track-06-architect-your-algo",
+      "route": "/learn/algo-track/06-architect-your-algo",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Architect Your Algo — Younit",
+      "width": 1440,
+      "height": 1744
+    },
+    {
+      "file": "learn-algo-track-06-architect-your-algo-mobile.json",
+      "name": "learn-algo-track-06-architect-your-algo",
+      "route": "/learn/algo-track/06-architect-your-algo",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Architect Your Algo — Younit",
+      "width": 390,
+      "height": 2004
+    },
+    {
+      "file": "learn-algo-track-06-architect-your-algo-ar-desktop.json",
+      "name": "learn-algo-track-06-architect-your-algo-ar",
+      "route": "/ar/learn/algo-track/06-architect-your-algo",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "صمّم بنية خوارزميتك — يونِت",
+      "width": 1440,
+      "height": 1722
+    },
+    {
+      "file": "learn-algo-track-06-architect-your-algo-ar-mobile.json",
+      "name": "learn-algo-track-06-architect-your-algo-ar",
+      "route": "/ar/learn/algo-track/06-architect-your-algo",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "صمّم بنية خوارزميتك — يونِت",
+      "width": 390,
+      "height": 2026
+    },
+    {
+      "file": "learn-algo-track-07-what-ai-brings-desktop.json",
+      "name": "learn-algo-track-07-what-ai-brings",
+      "route": "/learn/algo-track/07-what-ai-brings",
+      "device": "desktop",
+      "locale": "en",
+      "title": "What AI Brings to Algo Trading — Younit",
+      "width": 1440,
+      "height": 1733
+    },
+    {
+      "file": "learn-algo-track-07-what-ai-brings-mobile.json",
+      "name": "learn-algo-track-07-what-ai-brings",
+      "route": "/learn/algo-track/07-what-ai-brings",
+      "device": "mobile",
+      "locale": "en",
+      "title": "What AI Brings to Algo Trading — Younit",
+      "width": 390,
+      "height": 1962
+    },
+    {
+      "file": "learn-algo-track-07-what-ai-brings-ar-desktop.json",
+      "name": "learn-algo-track-07-what-ai-brings-ar",
+      "route": "/ar/learn/algo-track/07-what-ai-brings",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "ما الذي يضيفه الذكاء الاصطناعي إلى التداول الخوارزمي — يونِت",
+      "width": 1440,
+      "height": 1779
+    },
+    {
+      "file": "learn-algo-track-07-what-ai-brings-ar-mobile.json",
+      "name": "learn-algo-track-07-what-ai-brings-ar",
+      "route": "/ar/learn/algo-track/07-what-ai-brings",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "ما الذي يضيفه الذكاء الاصطناعي إلى التداول الخوارزمي — يونِت",
+      "width": 390,
+      "height": 1999
+    },
+    {
+      "file": "learn-deep-dives-efg-api-what-you-can-build-desktop.json",
+      "name": "learn-deep-dives-efg-api-what-you-can-build",
+      "route": "/learn/deep-dives/efg-api-what-you-can-build",
+      "device": "desktop",
+      "locale": "en",
+      "title": "The EFG API: What You Can Build With It — Younit",
+      "width": 1440,
+      "height": 2973
+    },
+    {
+      "file": "learn-deep-dives-efg-api-what-you-can-build-mobile.json",
+      "name": "learn-deep-dives-efg-api-what-you-can-build",
+      "route": "/learn/deep-dives/efg-api-what-you-can-build",
+      "device": "mobile",
+      "locale": "en",
+      "title": "The EFG API: What You Can Build With It — Younit",
+      "width": 390,
+      "height": 3969
+    },
+    {
+      "file": "learn-deep-dives-efg-api-what-you-can-build-ar-desktop.json",
+      "name": "learn-deep-dives-efg-api-what-you-can-build-ar",
+      "route": "/ar/learn/deep-dives/efg-api-what-you-can-build",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "EFG API: ما الذي يمكنك بناؤه بها — يونِت",
+      "width": 1440,
+      "height": 2576
+    },
+    {
+      "file": "learn-deep-dives-efg-api-what-you-can-build-ar-mobile.json",
+      "name": "learn-deep-dives-efg-api-what-you-can-build-ar",
+      "route": "/ar/learn/deep-dives/efg-api-what-you-can-build",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "EFG API: ما الذي يمكنك بناؤه بها — يونِت",
+      "width": 390,
+      "height": 3167
+    },
+    {
+      "file": "learn-deep-dives-egx-liquidity-why-stocks-dont-move-desktop.json",
+      "name": "learn-deep-dives-egx-liquidity-why-stocks-dont-move",
+      "route": "/learn/deep-dives/egx-liquidity-why-stocks-dont-move",
+      "device": "desktop",
+      "locale": "en",
+      "title": "EGX Liquidity: Why Some Stocks Don't Move — Younit",
+      "width": 1440,
+      "height": 2699
+    },
+    {
+      "file": "learn-deep-dives-egx-liquidity-why-stocks-dont-move-mobile.json",
+      "name": "learn-deep-dives-egx-liquidity-why-stocks-dont-move",
+      "route": "/learn/deep-dives/egx-liquidity-why-stocks-dont-move",
+      "device": "mobile",
+      "locale": "en",
+      "title": "EGX Liquidity: Why Some Stocks Don't Move — Younit",
+      "width": 390,
+      "height": 3501
+    },
+    {
+      "file": "learn-deep-dives-egx-liquidity-why-stocks-dont-move-ar-desktop.json",
+      "name": "learn-deep-dives-egx-liquidity-why-stocks-dont-move-ar",
+      "route": "/ar/learn/deep-dives/egx-liquidity-why-stocks-dont-move",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "سيولة البورصة المصرية: لماذا لا تتحرك بعض الأسهم — يونِت",
+      "width": 1440,
+      "height": 2486
+    },
+    {
+      "file": "learn-deep-dives-egx-liquidity-why-stocks-dont-move-ar-mobile.json",
+      "name": "learn-deep-dives-egx-liquidity-why-stocks-dont-move-ar",
+      "route": "/ar/learn/deep-dives/egx-liquidity-why-stocks-dont-move",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "سيولة البورصة المصرية: لماذا لا تتحرك بعض الأسهم — يونِت",
+      "width": 390,
+      "height": 3102
+    },
+    {
+      "file": "learn-deep-dives-egx-real-estate-primer-desktop.json",
+      "name": "learn-deep-dives-egx-real-estate-primer",
+      "route": "/learn/deep-dives/egx-real-estate-primer",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Egyptian Real Estate Sector: A Primer — Younit",
+      "width": 1440,
+      "height": 2672
+    },
+    {
+      "file": "learn-deep-dives-egx-real-estate-primer-mobile.json",
+      "name": "learn-deep-dives-egx-real-estate-primer",
+      "route": "/learn/deep-dives/egx-real-estate-primer",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Egyptian Real Estate Sector: A Primer — Younit",
+      "width": 390,
+      "height": 3554
+    },
+    {
+      "file": "learn-deep-dives-egx-real-estate-primer-ar-desktop.json",
+      "name": "learn-deep-dives-egx-real-estate-primer-ar",
+      "route": "/ar/learn/deep-dives/egx-real-estate-primer",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "قطاع العقارات المصري: مقدمة تمهيدية — يونِت",
+      "width": 1440,
+      "height": 2380
+    },
+    {
+      "file": "learn-deep-dives-egx-real-estate-primer-ar-mobile.json",
+      "name": "learn-deep-dives-egx-real-estate-primer-ar",
+      "route": "/ar/learn/deep-dives/egx-real-estate-primer",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "قطاع العقارات المصري: مقدمة تمهيدية — يونِت",
+      "width": 390,
+      "height": 3017
+    },
+    {
+      "file": "learn-glossary-bid-ask-spread-desktop.json",
+      "name": "learn-glossary-bid-ask-spread",
+      "route": "/learn/glossary/bid-ask-spread",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Bid-Ask Spread — Younit",
       "width": 1440,
       "height": 1000
     },
     {
-      "file": "not-found-mobile.json",
-      "name": "not-found",
-      "route": "/nope",
+      "file": "learn-glossary-bid-ask-spread-mobile.json",
+      "name": "learn-glossary-bid-ask-spread",
+      "route": "/learn/glossary/bid-ask-spread",
       "device": "mobile",
       "locale": "en",
-      "title": "Page not found — Younit",
+      "title": "Bid-Ask Spread — Younit",
       "width": 390,
-      "height": 1172
+      "height": 1350
     },
     {
-      "file": "not-found-ar-desktop.json",
-      "name": "not-found-ar",
-      "route": "/ar/nope",
+      "file": "learn-glossary-bid-ask-spread-ar-desktop.json",
+      "name": "learn-glossary-bid-ask-spread-ar",
+      "route": "/ar/learn/glossary/bid-ask-spread",
       "device": "desktop",
       "locale": "ar",
-      "title": "الصفحة غير موجودة — يونِت",
+      "title": "الفارق السعري (Bid-Ask Spread) — يونِت",
       "width": 1440,
       "height": 1000
     },
     {
-      "file": "not-found-ar-mobile.json",
-      "name": "not-found-ar",
-      "route": "/ar/nope",
+      "file": "learn-glossary-bid-ask-spread-ar-mobile.json",
+      "name": "learn-glossary-bid-ask-spread-ar",
+      "route": "/ar/learn/glossary/bid-ask-spread",
       "device": "mobile",
       "locale": "ar",
-      "title": "الصفحة غير موجودة — يونِت",
+      "title": "الفارق السعري (Bid-Ask Spread) — يونِت",
       "width": 390,
-      "height": 1179
+      "height": 1401
+    },
+    {
+      "file": "learn-glossary-bond-desktop.json",
+      "name": "learn-glossary-bond",
+      "route": "/learn/glossary/bond",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Bond — Younit",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "learn-glossary-bond-mobile.json",
+      "name": "learn-glossary-bond",
+      "route": "/learn/glossary/bond",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Bond — Younit",
+      "width": 390,
+      "height": 1374
+    },
+    {
+      "file": "learn-glossary-bond-ar-desktop.json",
+      "name": "learn-glossary-bond-ar",
+      "route": "/ar/learn/glossary/bond",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "سند — يونِت",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "learn-glossary-bond-ar-mobile.json",
+      "name": "learn-glossary-bond-ar",
+      "route": "/ar/learn/glossary/bond",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "سند — يونِت",
+      "width": 390,
+      "height": 1339
+    },
+    {
+      "file": "learn-glossary-book-value-desktop.json",
+      "name": "learn-glossary-book-value",
+      "route": "/learn/glossary/book-value",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Book Value — Younit",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "learn-glossary-book-value-mobile.json",
+      "name": "learn-glossary-book-value",
+      "route": "/learn/glossary/book-value",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Book Value — Younit",
+      "width": 390,
+      "height": 1442
+    },
+    {
+      "file": "learn-glossary-book-value-ar-desktop.json",
+      "name": "learn-glossary-book-value-ar",
+      "route": "/ar/learn/glossary/book-value",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "القيمة الدفترية — يونِت",
+      "width": 1440,
+      "height": 1018
+    },
+    {
+      "file": "learn-glossary-book-value-ar-mobile.json",
+      "name": "learn-glossary-book-value-ar",
+      "route": "/ar/learn/glossary/book-value",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "القيمة الدفترية — يونِت",
+      "width": 390,
+      "height": 1433
+    },
+    {
+      "file": "learn-glossary-candlestick-chart-desktop.json",
+      "name": "learn-glossary-candlestick-chart",
+      "route": "/learn/glossary/candlestick-chart",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Candlestick Chart — Younit",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "learn-glossary-candlestick-chart-mobile.json",
+      "name": "learn-glossary-candlestick-chart",
+      "route": "/learn/glossary/candlestick-chart",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Candlestick Chart — Younit",
+      "width": 390,
+      "height": 1374
+    },
+    {
+      "file": "learn-glossary-candlestick-chart-ar-desktop.json",
+      "name": "learn-glossary-candlestick-chart-ar",
+      "route": "/ar/learn/glossary/candlestick-chart",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "الرسم البياني بالشموع (Candlestick Chart) — يونِت",
+      "width": 1440,
+      "height": 1085
+    },
+    {
+      "file": "learn-glossary-candlestick-chart-ar-mobile.json",
+      "name": "learn-glossary-candlestick-chart-ar",
+      "route": "/ar/learn/glossary/candlestick-chart",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "الرسم البياني بالشموع (Candlestick Chart) — يونِت",
+      "width": 390,
+      "height": 1462
+    },
+    {
+      "file": "learn-glossary-earnings-per-share-desktop.json",
+      "name": "learn-glossary-earnings-per-share",
+      "route": "/learn/glossary/earnings-per-share",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Earnings Per Share (EPS) — Younit",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "learn-glossary-earnings-per-share-mobile.json",
+      "name": "learn-glossary-earnings-per-share",
+      "route": "/learn/glossary/earnings-per-share",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Earnings Per Share (EPS) — Younit",
+      "width": 390,
+      "height": 1410
+    },
+    {
+      "file": "learn-glossary-earnings-per-share-ar-desktop.json",
+      "name": "learn-glossary-earnings-per-share-ar",
+      "route": "/ar/learn/glossary/earnings-per-share",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "ربحية السهم (EPS) — يونِت",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "learn-glossary-earnings-per-share-ar-mobile.json",
+      "name": "learn-glossary-earnings-per-share-ar",
+      "route": "/ar/learn/glossary/earnings-per-share",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "ربحية السهم (EPS) — يونِت",
+      "width": 390,
+      "height": 1339
+    },
+    {
+      "file": "learn-glossary-egx-desktop.json",
+      "name": "learn-glossary-egx",
+      "route": "/learn/glossary/egx",
+      "device": "desktop",
+      "locale": "en",
+      "title": "EGX — Younit",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "learn-glossary-egx-mobile.json",
+      "name": "learn-glossary-egx",
+      "route": "/learn/glossary/egx",
+      "device": "mobile",
+      "locale": "en",
+      "title": "EGX — Younit",
+      "width": 390,
+      "height": 1326
+    },
+    {
+      "file": "learn-glossary-egx-ar-desktop.json",
+      "name": "learn-glossary-egx-ar",
+      "route": "/ar/learn/glossary/egx",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "البورصة المصرية (EGX) — يونِت",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "learn-glossary-egx-ar-mobile.json",
+      "name": "learn-glossary-egx-ar",
+      "route": "/ar/learn/glossary/egx",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "البورصة المصرية (EGX) — يونِت",
+      "width": 390,
+      "height": 1447
+    },
+    {
+      "file": "learn-glossary-egx-30-desktop.json",
+      "name": "learn-glossary-egx-30",
+      "route": "/learn/glossary/egx-30",
+      "device": "desktop",
+      "locale": "en",
+      "title": "EGX 30 — Younit",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "learn-glossary-egx-30-mobile.json",
+      "name": "learn-glossary-egx-30",
+      "route": "/learn/glossary/egx-30",
+      "device": "mobile",
+      "locale": "en",
+      "title": "EGX 30 — Younit",
+      "width": 390,
+      "height": 1420
+    },
+    {
+      "file": "learn-glossary-egx-30-ar-desktop.json",
+      "name": "learn-glossary-egx-30-ar",
+      "route": "/ar/learn/glossary/egx-30",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "مؤشر EGX 30 — يونِت",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "learn-glossary-egx-30-ar-mobile.json",
+      "name": "learn-glossary-egx-30-ar",
+      "route": "/ar/learn/glossary/egx-30",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "مؤشر EGX 30 — يونِت",
+      "width": 390,
+      "height": 1409
+    },
+    {
+      "file": "learn-glossary-equity-desktop.json",
+      "name": "learn-glossary-equity",
+      "route": "/learn/glossary/equity",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Equity — Younit",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "learn-glossary-equity-mobile.json",
+      "name": "learn-glossary-equity",
+      "route": "/learn/glossary/equity",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Equity — Younit",
+      "width": 390,
+      "height": 1442
+    },
+    {
+      "file": "learn-glossary-equity-ar-desktop.json",
+      "name": "learn-glossary-equity-ar",
+      "route": "/ar/learn/glossary/equity",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "حقوق الملكية (Equity) — يونِت",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "learn-glossary-equity-ar-mobile.json",
+      "name": "learn-glossary-equity-ar",
+      "route": "/ar/learn/glossary/equity",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "حقوق الملكية (Equity) — يونِت",
+      "width": 390,
+      "height": 1423
+    },
+    {
+      "file": "learn-glossary-fra-desktop.json",
+      "name": "learn-glossary-fra",
+      "route": "/learn/glossary/fra",
+      "device": "desktop",
+      "locale": "en",
+      "title": "FRA — Younit",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "learn-glossary-fra-mobile.json",
+      "name": "learn-glossary-fra",
+      "route": "/learn/glossary/fra",
+      "device": "mobile",
+      "locale": "en",
+      "title": "FRA — Younit",
+      "width": 390,
+      "height": 1374
+    },
+    {
+      "file": "learn-glossary-fra-ar-desktop.json",
+      "name": "learn-glossary-fra-ar",
+      "route": "/ar/learn/glossary/fra",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "الهيئة العامة للرقابة المالية (FRA) — يونِت",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "learn-glossary-fra-ar-mobile.json",
+      "name": "learn-glossary-fra-ar",
+      "route": "/ar/learn/glossary/fra",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "الهيئة العامة للرقابة المالية (FRA) — يونِت",
+      "width": 390,
+      "height": 1425
+    },
+    {
+      "file": "learn-glossary-limit-order-desktop.json",
+      "name": "learn-glossary-limit-order",
+      "route": "/learn/glossary/limit-order",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Limit Order — Younit",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "learn-glossary-limit-order-mobile.json",
+      "name": "learn-glossary-limit-order",
+      "route": "/learn/glossary/limit-order",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Limit Order — Younit",
+      "width": 390,
+      "height": 1396
+    },
+    {
+      "file": "learn-glossary-limit-order-ar-desktop.json",
+      "name": "learn-glossary-limit-order-ar",
+      "route": "/ar/learn/glossary/limit-order",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "أمر محدد السعر (Limit Order) — يونِت",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "learn-glossary-limit-order-ar-mobile.json",
+      "name": "learn-glossary-limit-order-ar",
+      "route": "/ar/learn/glossary/limit-order",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "أمر محدد السعر (Limit Order) — يونِت",
+      "width": 390,
+      "height": 1469
+    },
+    {
+      "file": "learn-glossary-liquidity-desktop.json",
+      "name": "learn-glossary-liquidity",
+      "route": "/learn/glossary/liquidity",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Liquidity — Younit",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "learn-glossary-liquidity-mobile.json",
+      "name": "learn-glossary-liquidity",
+      "route": "/learn/glossary/liquidity",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Liquidity — Younit",
+      "width": 390,
+      "height": 1420
+    },
+    {
+      "file": "learn-glossary-liquidity-ar-desktop.json",
+      "name": "learn-glossary-liquidity-ar",
+      "route": "/ar/learn/glossary/liquidity",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "السيولة — يونِت",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "learn-glossary-liquidity-ar-mobile.json",
+      "name": "learn-glossary-liquidity-ar",
+      "route": "/ar/learn/glossary/liquidity",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "السيولة — يونِت",
+      "width": 390,
+      "height": 1409
+    },
+    {
+      "file": "learn-glossary-market-capitalization-desktop.json",
+      "name": "learn-glossary-market-capitalization",
+      "route": "/learn/glossary/market-capitalization",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Market Capitalization — Younit",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "learn-glossary-market-capitalization-mobile.json",
+      "name": "learn-glossary-market-capitalization",
+      "route": "/learn/glossary/market-capitalization",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Market Capitalization — Younit",
+      "width": 390,
+      "height": 1458
+    },
+    {
+      "file": "learn-glossary-market-capitalization-ar-desktop.json",
+      "name": "learn-glossary-market-capitalization-ar",
+      "route": "/ar/learn/glossary/market-capitalization",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "القيمة السوقية — يونِت",
+      "width": 1440,
+      "height": 1018
+    },
+    {
+      "file": "learn-glossary-market-capitalization-ar-mobile.json",
+      "name": "learn-glossary-market-capitalization-ar",
+      "route": "/ar/learn/glossary/market-capitalization",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "القيمة السوقية — يونِت",
+      "width": 390,
+      "height": 1433
+    },
+    {
+      "file": "learn-glossary-market-order-desktop.json",
+      "name": "learn-glossary-market-order",
+      "route": "/learn/glossary/market-order",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Market Order — Younit",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "learn-glossary-market-order-mobile.json",
+      "name": "learn-glossary-market-order",
+      "route": "/learn/glossary/market-order",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Market Order — Younit",
+      "width": 390,
+      "height": 1326
+    },
+    {
+      "file": "learn-glossary-market-order-ar-desktop.json",
+      "name": "learn-glossary-market-order-ar",
+      "route": "/ar/learn/glossary/market-order",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "أمر بسعر السوق (Market Order) — يونِت",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "learn-glossary-market-order-ar-mobile.json",
+      "name": "learn-glossary-market-order-ar",
+      "route": "/ar/learn/glossary/market-order",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "أمر بسعر السوق (Market Order) — يونِت",
+      "width": 390,
+      "height": 1423
+    },
+    {
+      "file": "learn-glossary-ohlcv-desktop.json",
+      "name": "learn-glossary-ohlcv",
+      "route": "/learn/glossary/ohlcv",
+      "device": "desktop",
+      "locale": "en",
+      "title": "OHLCV — Younit",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "learn-glossary-ohlcv-mobile.json",
+      "name": "learn-glossary-ohlcv",
+      "route": "/learn/glossary/ohlcv",
+      "device": "mobile",
+      "locale": "en",
+      "title": "OHLCV — Younit",
+      "width": 390,
+      "height": 1396
+    },
+    {
+      "file": "learn-glossary-ohlcv-ar-desktop.json",
+      "name": "learn-glossary-ohlcv-ar",
+      "route": "/ar/learn/glossary/ohlcv",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "OHLCV — يونِت",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "learn-glossary-ohlcv-ar-mobile.json",
+      "name": "learn-glossary-ohlcv-ar",
+      "route": "/ar/learn/glossary/ohlcv",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "OHLCV — يونِت",
+      "width": 390,
+      "height": 1409
+    },
+    {
+      "file": "learn-glossary-price-discovery-desktop.json",
+      "name": "learn-glossary-price-discovery",
+      "route": "/learn/glossary/price-discovery",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Price Discovery — Younit",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "learn-glossary-price-discovery-mobile.json",
+      "name": "learn-glossary-price-discovery",
+      "route": "/learn/glossary/price-discovery",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Price Discovery — Younit",
+      "width": 390,
+      "height": 1350
+    },
+    {
+      "file": "learn-glossary-price-discovery-ar-desktop.json",
+      "name": "learn-glossary-price-discovery-ar",
+      "route": "/ar/learn/glossary/price-discovery",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "اكتشاف السعر — يونِت",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "learn-glossary-price-discovery-ar-mobile.json",
+      "name": "learn-glossary-price-discovery-ar",
+      "route": "/ar/learn/glossary/price-discovery",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "اكتشاف السعر — يونِت",
+      "width": 390,
+      "height": 1409
+    },
+    {
+      "file": "learn-glossary-price-to-earnings-ratio-desktop.json",
+      "name": "learn-glossary-price-to-earnings-ratio",
+      "route": "/learn/glossary/price-to-earnings-ratio",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Price-to-Earnings Ratio (P/E) — Younit",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "learn-glossary-price-to-earnings-ratio-mobile.json",
+      "name": "learn-glossary-price-to-earnings-ratio",
+      "route": "/learn/glossary/price-to-earnings-ratio",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Price-to-Earnings Ratio (P/E) — Younit",
+      "width": 390,
+      "height": 1446
+    },
+    {
+      "file": "learn-glossary-price-to-earnings-ratio-ar-desktop.json",
+      "name": "learn-glossary-price-to-earnings-ratio-ar",
+      "route": "/ar/learn/glossary/price-to-earnings-ratio",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "مضاعف الربحية (P/E) — يونِت",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "learn-glossary-price-to-earnings-ratio-ar-mobile.json",
+      "name": "learn-glossary-price-to-earnings-ratio-ar",
+      "route": "/ar/learn/glossary/price-to-earnings-ratio",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "مضاعف الربحية (P/E) — يونِت",
+      "width": 390,
+      "height": 1385
+    },
+    {
+      "file": "learn-glossary-settlement-desktop.json",
+      "name": "learn-glossary-settlement",
+      "route": "/learn/glossary/settlement",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Settlement — Younit",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "learn-glossary-settlement-mobile.json",
+      "name": "learn-glossary-settlement",
+      "route": "/learn/glossary/settlement",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Settlement — Younit",
+      "width": 390,
+      "height": 1350
+    },
+    {
+      "file": "learn-glossary-settlement-ar-desktop.json",
+      "name": "learn-glossary-settlement-ar",
+      "route": "/ar/learn/glossary/settlement",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "التسوية — يونِت",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "learn-glossary-settlement-ar-mobile.json",
+      "name": "learn-glossary-settlement-ar",
+      "route": "/ar/learn/glossary/settlement",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "التسوية — يونِت",
+      "width": 390,
+      "height": 1409
+    },
+    {
+      "file": "learn-glossary-stop-order-desktop.json",
+      "name": "learn-glossary-stop-order",
+      "route": "/learn/glossary/stop-order",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Stop Order — Younit",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "learn-glossary-stop-order-mobile.json",
+      "name": "learn-glossary-stop-order",
+      "route": "/learn/glossary/stop-order",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Stop Order — Younit",
+      "width": 390,
+      "height": 1350
+    },
+    {
+      "file": "learn-glossary-stop-order-ar-desktop.json",
+      "name": "learn-glossary-stop-order-ar",
+      "route": "/ar/learn/glossary/stop-order",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "أمر الإيقاف (Stop Order) — يونِت",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "learn-glossary-stop-order-ar-mobile.json",
+      "name": "learn-glossary-stop-order-ar",
+      "route": "/ar/learn/glossary/stop-order",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "أمر الإيقاف (Stop Order) — يونِت",
+      "width": 390,
+      "height": 1447
+    },
+    {
+      "file": "learn-glossary-volume-desktop.json",
+      "name": "learn-glossary-volume",
+      "route": "/learn/glossary/volume",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Volume — Younit",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "learn-glossary-volume-mobile.json",
+      "name": "learn-glossary-volume",
+      "route": "/learn/glossary/volume",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Volume — Younit",
+      "width": 390,
+      "height": 1396
+    },
+    {
+      "file": "learn-glossary-volume-ar-desktop.json",
+      "name": "learn-glossary-volume-ar",
+      "route": "/ar/learn/glossary/volume",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "حجم التداول — يونِت",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "learn-glossary-volume-ar-mobile.json",
+      "name": "learn-glossary-volume-ar",
+      "route": "/ar/learn/glossary/volume",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "حجم التداول — يونِت",
+      "width": 390,
+      "height": 1409
+    },
+    {
+      "file": "learn-glossary-yield-desktop.json",
+      "name": "learn-glossary-yield",
+      "route": "/learn/glossary/yield",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Yield — Younit",
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "file": "learn-glossary-yield-mobile.json",
+      "name": "learn-glossary-yield",
+      "route": "/learn/glossary/yield",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Yield — Younit",
+      "width": 390,
+      "height": 1374
+    },
+    {
+      "file": "learn-glossary-yield-ar-desktop.json",
+      "name": "learn-glossary-yield-ar",
+      "route": "/ar/learn/glossary/yield",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "العائد (Yield) — يونِت",
+      "width": 1440,
+      "height": 1018
+    },
+    {
+      "file": "learn-glossary-yield-ar-mobile.json",
+      "name": "learn-glossary-yield-ar",
+      "route": "/ar/learn/glossary/yield",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "العائد (Yield) — يونِت",
+      "width": 390,
+      "height": 1387
+    },
+    {
+      "file": "build-showcase-arabic-sentiment-egx-desktop.json",
+      "name": "build-showcase-arabic-sentiment-egx",
+      "route": "/build/showcase/arabic-sentiment-egx",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Arabic Sentiment Engine for EGX News — Younit",
+      "width": 1440,
+      "height": 3009
+    },
+    {
+      "file": "build-showcase-arabic-sentiment-egx-mobile.json",
+      "name": "build-showcase-arabic-sentiment-egx",
+      "route": "/build/showcase/arabic-sentiment-egx",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Arabic Sentiment Engine for EGX News — Younit",
+      "width": 390,
+      "height": 4171
+    },
+    {
+      "file": "build-showcase-arabic-sentiment-egx-ar-desktop.json",
+      "name": "build-showcase-arabic-sentiment-egx-ar",
+      "route": "/ar/build/showcase/arabic-sentiment-egx",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "محرك تحليل المشاعر العربي لأخبار البورصة المصرية — يونِت",
+      "width": 1440,
+      "height": 2947
+    },
+    {
+      "file": "build-showcase-arabic-sentiment-egx-ar-mobile.json",
+      "name": "build-showcase-arabic-sentiment-egx-ar",
+      "route": "/ar/build/showcase/arabic-sentiment-egx",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "محرك تحليل المشاعر العربي لأخبار البورصة المصرية — يونِت",
+      "width": 390,
+      "height": 3910
+    },
+    {
+      "file": "build-showcase-egx-momentum-screener-desktop.json",
+      "name": "build-showcase-egx-momentum-screener",
+      "route": "/build/showcase/egx-momentum-screener",
+      "device": "desktop",
+      "locale": "en",
+      "title": "EGX Momentum Screener — Younit",
+      "width": 1440,
+      "height": 3041
+    },
+    {
+      "file": "build-showcase-egx-momentum-screener-mobile.json",
+      "name": "build-showcase-egx-momentum-screener",
+      "route": "/build/showcase/egx-momentum-screener",
+      "device": "mobile",
+      "locale": "en",
+      "title": "EGX Momentum Screener — Younit",
+      "width": 390,
+      "height": 4223
+    },
+    {
+      "file": "build-showcase-egx-momentum-screener-ar-desktop.json",
+      "name": "build-showcase-egx-momentum-screener-ar",
+      "route": "/ar/build/showcase/egx-momentum-screener",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "أداة فرز الزخم في البورصة المصرية — يونِت",
+      "width": 1440,
+      "height": 2938
+    },
+    {
+      "file": "build-showcase-egx-momentum-screener-ar-mobile.json",
+      "name": "build-showcase-egx-momentum-screener-ar",
+      "route": "/ar/build/showcase/egx-momentum-screener",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "أداة فرز الزخم في البورصة المصرية — يونِت",
+      "width": 390,
+      "height": 4014
+    },
+    {
+      "file": "build-showcase-sector-rotation-tracker-desktop.json",
+      "name": "build-showcase-sector-rotation-tracker",
+      "route": "/build/showcase/sector-rotation-tracker",
+      "device": "desktop",
+      "locale": "en",
+      "title": "EGX Sector Rotation Tracker — Younit",
+      "width": 1440,
+      "height": 2910
+    },
+    {
+      "file": "build-showcase-sector-rotation-tracker-mobile.json",
+      "name": "build-showcase-sector-rotation-tracker",
+      "route": "/build/showcase/sector-rotation-tracker",
+      "device": "mobile",
+      "locale": "en",
+      "title": "EGX Sector Rotation Tracker — Younit",
+      "width": 390,
+      "height": 3600
+    },
+    {
+      "file": "build-showcase-sector-rotation-tracker-ar-desktop.json",
+      "name": "build-showcase-sector-rotation-tracker-ar",
+      "route": "/ar/build/showcase/sector-rotation-tracker",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "متتبّع دوران القطاعات في البورصة المصرية — يونِت",
+      "width": 1440,
+      "height": 2781
+    },
+    {
+      "file": "build-showcase-sector-rotation-tracker-ar-mobile.json",
+      "name": "build-showcase-sector-rotation-tracker-ar",
+      "route": "/ar/build/showcase/sector-rotation-tracker",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "متتبّع دوران القطاعات في البورصة المصرية — يونِت",
+      "width": 390,
+      "height": 3295
+    },
+    {
+      "file": "build-capstones-arabic-financial-nlp-corpus-desktop.json",
+      "name": "build-capstones-arabic-financial-nlp-corpus",
+      "route": "/build/capstones/arabic-financial-nlp-corpus",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Arabic Financial NLP Corpus for Egyptian Markets — Younit",
+      "width": 1440,
+      "height": 3359
+    },
+    {
+      "file": "build-capstones-arabic-financial-nlp-corpus-mobile.json",
+      "name": "build-capstones-arabic-financial-nlp-corpus",
+      "route": "/build/capstones/arabic-financial-nlp-corpus",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Arabic Financial NLP Corpus for Egyptian Markets — Younit",
+      "width": 390,
+      "height": 4470
+    },
+    {
+      "file": "build-capstones-arabic-financial-nlp-corpus-ar-desktop.json",
+      "name": "build-capstones-arabic-financial-nlp-corpus-ar",
+      "route": "/ar/build/capstones/arabic-financial-nlp-corpus",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "مدوّنة نصوص عربية لمعالجة اللغة المالية في الأسواق المصرية — يونِت",
+      "width": 1440,
+      "height": 3177
+    },
+    {
+      "file": "build-capstones-arabic-financial-nlp-corpus-ar-mobile.json",
+      "name": "build-capstones-arabic-financial-nlp-corpus-ar",
+      "route": "/ar/build/capstones/arabic-financial-nlp-corpus",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "مدوّنة نصوص عربية لمعالجة اللغة المالية في الأسواق المصرية — يونِت",
+      "width": 390,
+      "height": 4078
+    },
+    {
+      "file": "build-capstones-egx-volatility-ml-desktop.json",
+      "name": "build-capstones-egx-volatility-ml",
+      "route": "/build/capstones/egx-volatility-ml",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Predicting EGX 30 Volatility Using Machine Learning — Younit",
+      "width": 1440,
+      "height": 3304
+    },
+    {
+      "file": "build-capstones-egx-volatility-ml-mobile.json",
+      "name": "build-capstones-egx-volatility-ml",
+      "route": "/build/capstones/egx-volatility-ml",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Predicting EGX 30 Volatility Using Machine Learning — Younit",
+      "width": 390,
+      "height": 4413
+    },
+    {
+      "file": "build-capstones-egx-volatility-ml-ar-desktop.json",
+      "name": "build-capstones-egx-volatility-ml-ar",
+      "route": "/ar/build/capstones/egx-volatility-ml",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "التنبؤ بتقلب EGX 30 باستخدام تعلّم الآلة — يونِت",
+      "width": 1440,
+      "height": 3081
+    },
+    {
+      "file": "build-capstones-egx-volatility-ml-ar-mobile.json",
+      "name": "build-capstones-egx-volatility-ml-ar",
+      "route": "/ar/build/capstones/egx-volatility-ml",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "التنبؤ بتقلب EGX 30 باستخدام تعلّم الآلة — يونِت",
+      "width": 390,
+      "height": 4087
+    },
+    {
+      "file": "build-apps-egx-daily-snapshot-desktop.json",
+      "name": "build-apps-egx-daily-snapshot",
+      "route": "/build/apps/egx-daily-snapshot",
+      "device": "desktop",
+      "locale": "en",
+      "title": "EGX Daily Snapshot — Younit",
+      "width": 1440,
+      "height": 2882
+    },
+    {
+      "file": "build-apps-egx-daily-snapshot-mobile.json",
+      "name": "build-apps-egx-daily-snapshot",
+      "route": "/build/apps/egx-daily-snapshot",
+      "device": "mobile",
+      "locale": "en",
+      "title": "EGX Daily Snapshot — Younit",
+      "width": 390,
+      "height": 3607
+    },
+    {
+      "file": "build-apps-egx-daily-snapshot-ar-desktop.json",
+      "name": "build-apps-egx-daily-snapshot-ar",
+      "route": "/ar/build/apps/egx-daily-snapshot",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "اللقطة اليومية للبورصة المصرية — يونِت",
+      "width": 1440,
+      "height": 2727
+    },
+    {
+      "file": "build-apps-egx-daily-snapshot-ar-mobile.json",
+      "name": "build-apps-egx-daily-snapshot-ar",
+      "route": "/ar/build/apps/egx-daily-snapshot",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "اللقطة اليومية للبورصة المصرية — يونِت",
+      "width": 390,
+      "height": 3276
+    },
+    {
+      "file": "editorial-2026-04-week-2-desktop.json",
+      "name": "editorial-2026-04-week-2",
+      "route": "/editorial/2026-04-week-2",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Week in EGX: April Week 2 — Younit",
+      "width": 1440,
+      "height": 1914
+    },
+    {
+      "file": "editorial-2026-04-week-2-mobile.json",
+      "name": "editorial-2026-04-week-2",
+      "route": "/editorial/2026-04-week-2",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Week in EGX: April Week 2 — Younit",
+      "width": 390,
+      "height": 2428
+    },
+    {
+      "file": "editorial-2026-04-week-2-ar-desktop.json",
+      "name": "editorial-2026-04-week-2-ar",
+      "route": "/ar/editorial/2026-04-week-2",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "أسبوع في البورصة المصرية: الأسبوع الثاني من أبريل — يونِت",
+      "width": 1440,
+      "height": 1789
+    },
+    {
+      "file": "editorial-2026-04-week-2-ar-mobile.json",
+      "name": "editorial-2026-04-week-2-ar",
+      "route": "/ar/editorial/2026-04-week-2",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "أسبوع في البورصة المصرية: الأسبوع الثاني من أبريل — يونِت",
+      "width": 390,
+      "height": 2190
+    },
+    {
+      "file": "editorial-why-we-built-this-desktop.json",
+      "name": "editorial-why-we-built-this",
+      "route": "/editorial/why-we-built-this",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Why We Built This — Younit",
+      "width": 1440,
+      "height": 1943
+    },
+    {
+      "file": "editorial-why-we-built-this-mobile.json",
+      "name": "editorial-why-we-built-this",
+      "route": "/editorial/why-we-built-this",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Why We Built This — Younit",
+      "width": 390,
+      "height": 2765
+    },
+    {
+      "file": "editorial-why-we-built-this-ar-desktop.json",
+      "name": "editorial-why-we-built-this-ar",
+      "route": "/ar/editorial/why-we-built-this",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "لماذا بنينا هذا — يونِت",
+      "width": 1440,
+      "height": 1635
+    },
+    {
+      "file": "editorial-why-we-built-this-ar-mobile.json",
+      "name": "editorial-why-we-built-this-ar",
+      "route": "/ar/editorial/why-we-built-this",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "لماذا بنينا هذا — يونِت",
+      "width": 390,
+      "height": 2252
+    },
+    {
+      "file": "learn-foundation-01-market-basics-deck-desktop.json",
+      "name": "learn-foundation-01-market-basics-deck",
+      "route": "/learn/foundation/01-market-basics/deck",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Stock Market Basics — Younit",
+      "width": 1440,
+      "height": 8309
+    },
+    {
+      "file": "learn-foundation-01-market-basics-deck-mobile.json",
+      "name": "learn-foundation-01-market-basics-deck",
+      "route": "/learn/foundation/01-market-basics/deck",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Stock Market Basics — Younit",
+      "width": 390,
+      "height": 13109
+    },
+    {
+      "file": "learn-foundation-01-market-basics-deck-ar-desktop.json",
+      "name": "learn-foundation-01-market-basics-deck-ar",
+      "route": "/ar/learn/foundation/01-market-basics/deck",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "أساسيات سوق الأسهم — يونِت",
+      "width": 1440,
+      "height": 7954
+    },
+    {
+      "file": "learn-foundation-01-market-basics-deck-ar-mobile.json",
+      "name": "learn-foundation-01-market-basics-deck-ar",
+      "route": "/ar/learn/foundation/01-market-basics/deck",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "أساسيات سوق الأسهم — يونِت",
+      "width": 390,
+      "height": 11838
+    },
+    {
+      "file": "learn-foundation-02-market-landscape-deck-desktop.json",
+      "name": "learn-foundation-02-market-landscape-deck",
+      "route": "/learn/foundation/02-market-landscape/deck",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Egypt's financial market landscape — Younit",
+      "width": 1440,
+      "height": 8368
+    },
+    {
+      "file": "learn-foundation-02-market-landscape-deck-mobile.json",
+      "name": "learn-foundation-02-market-landscape-deck",
+      "route": "/learn/foundation/02-market-landscape/deck",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Egypt's financial market landscape — Younit",
+      "width": 390,
+      "height": 16981
+    },
+    {
+      "file": "learn-foundation-02-market-landscape-deck-ar-desktop.json",
+      "name": "learn-foundation-02-market-landscape-deck-ar",
+      "route": "/ar/learn/foundation/02-market-landscape/deck",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "خريطة السوق المالي في مصر — يونِت",
+      "width": 1440,
+      "height": 7726
+    },
+    {
+      "file": "learn-foundation-02-market-landscape-deck-ar-mobile.json",
+      "name": "learn-foundation-02-market-landscape-deck-ar",
+      "route": "/ar/learn/foundation/02-market-landscape/deck",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "خريطة السوق المالي في مصر — يونِت",
+      "width": 390,
+      "height": 15135
+    },
+    {
+      "file": "learn-foundation-03-how-people-trade-deck-desktop.json",
+      "name": "learn-foundation-03-how-people-trade-deck",
+      "route": "/learn/foundation/03-how-people-trade/deck",
+      "device": "desktop",
+      "locale": "en",
+      "title": "How people actually trade — Younit",
+      "width": 1440,
+      "height": 6190
+    },
+    {
+      "file": "learn-foundation-03-how-people-trade-deck-mobile.json",
+      "name": "learn-foundation-03-how-people-trade-deck",
+      "route": "/learn/foundation/03-how-people-trade/deck",
+      "device": "mobile",
+      "locale": "en",
+      "title": "How people actually trade — Younit",
+      "width": 390,
+      "height": 12794
+    },
+    {
+      "file": "learn-foundation-03-how-people-trade-deck-ar-desktop.json",
+      "name": "learn-foundation-03-how-people-trade-deck-ar",
+      "route": "/ar/learn/foundation/03-how-people-trade/deck",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "كيف يتداول الناس فعليًا — يونِت",
+      "width": 1440,
+      "height": 5539
+    },
+    {
+      "file": "learn-foundation-03-how-people-trade-deck-ar-mobile.json",
+      "name": "learn-foundation-03-how-people-trade-deck-ar",
+      "route": "/ar/learn/foundation/03-how-people-trade/deck",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "كيف يتداول الناس فعليًا — يونِت",
+      "width": 390,
+      "height": 10543
+    },
+    {
+      "file": "learn-foundation-04-reading-charts-deck-desktop.json",
+      "name": "learn-foundation-04-reading-charts-deck",
+      "route": "/learn/foundation/04-reading-charts/deck",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Reading price charts — Younit",
+      "width": 1440,
+      "height": 8087
+    },
+    {
+      "file": "learn-foundation-04-reading-charts-deck-mobile.json",
+      "name": "learn-foundation-04-reading-charts-deck",
+      "route": "/learn/foundation/04-reading-charts/deck",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Reading price charts — Younit",
+      "width": 390,
+      "height": 14175
+    },
+    {
+      "file": "learn-foundation-04-reading-charts-deck-ar-desktop.json",
+      "name": "learn-foundation-04-reading-charts-deck-ar",
+      "route": "/ar/learn/foundation/04-reading-charts/deck",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "قراءة الرسوم البيانية للأسعار — يونِت",
+      "width": 1440,
+      "height": 7423
+    },
+    {
+      "file": "learn-foundation-04-reading-charts-deck-ar-mobile.json",
+      "name": "learn-foundation-04-reading-charts-deck-ar",
+      "route": "/ar/learn/foundation/04-reading-charts/deck",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "قراءة الرسوم البيانية للأسعار — يونِت",
+      "width": 390,
+      "height": 12237
+    },
+    {
+      "file": "learn-foundation-05-reading-companies-deck-desktop.json",
+      "name": "learn-foundation-05-reading-companies-deck",
+      "route": "/learn/foundation/05-reading-companies/deck",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Reading a company — Younit",
+      "width": 1440,
+      "height": 8597
+    },
+    {
+      "file": "learn-foundation-05-reading-companies-deck-mobile.json",
+      "name": "learn-foundation-05-reading-companies-deck",
+      "route": "/learn/foundation/05-reading-companies/deck",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Reading a company — Younit",
+      "width": 390,
+      "height": 15910
+    },
+    {
+      "file": "learn-foundation-05-reading-companies-deck-ar-desktop.json",
+      "name": "learn-foundation-05-reading-companies-deck-ar",
+      "route": "/ar/learn/foundation/05-reading-companies/deck",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "قراءة الشركة — يونِت",
+      "width": 1440,
+      "height": 7734
+    },
+    {
+      "file": "learn-foundation-05-reading-companies-deck-ar-mobile.json",
+      "name": "learn-foundation-05-reading-companies-deck-ar",
+      "route": "/ar/learn/foundation/05-reading-companies/deck",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "قراءة الشركة — يونِت",
+      "width": 390,
+      "height": 12864
+    },
+    {
+      "file": "learn-algo-track-00-intro-deck-desktop.json",
+      "name": "learn-algo-track-00-intro-deck",
+      "route": "/learn/algo-track/00-intro/deck",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Algorithmic Trading Without the Mystique — Younit",
+      "width": 1440,
+      "height": 4857
+    },
+    {
+      "file": "learn-algo-track-00-intro-deck-mobile.json",
+      "name": "learn-algo-track-00-intro-deck",
+      "route": "/learn/algo-track/00-intro/deck",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Algorithmic Trading Without the Mystique — Younit",
+      "width": 390,
+      "height": 7465
+    },
+    {
+      "file": "learn-algo-track-00-intro-deck-ar-desktop.json",
+      "name": "learn-algo-track-00-intro-deck-ar",
+      "route": "/ar/learn/algo-track/00-intro/deck",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "التداول الخوارزمي بلا غموض — يونِت",
+      "width": 1440,
+      "height": 4484
+    },
+    {
+      "file": "learn-algo-track-00-intro-deck-ar-mobile.json",
+      "name": "learn-algo-track-00-intro-deck-ar",
+      "route": "/ar/learn/algo-track/00-intro/deck",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "التداول الخوارزمي بلا غموض — يونِت",
+      "width": 390,
+      "height": 6522
+    },
+    {
+      "file": "learn-algo-track-01-what-is-an-algorithm-deck-desktop.json",
+      "name": "learn-algo-track-01-what-is-an-algorithm-deck",
+      "route": "/learn/algo-track/01-what-is-an-algorithm/deck",
+      "device": "desktop",
+      "locale": "en",
+      "title": "What Is an Algorithm? — Younit",
+      "width": 1440,
+      "height": 5660
+    },
+    {
+      "file": "learn-algo-track-01-what-is-an-algorithm-deck-mobile.json",
+      "name": "learn-algo-track-01-what-is-an-algorithm-deck",
+      "route": "/learn/algo-track/01-what-is-an-algorithm/deck",
+      "device": "mobile",
+      "locale": "en",
+      "title": "What Is an Algorithm? — Younit",
+      "width": 390,
+      "height": 8981
+    },
+    {
+      "file": "learn-algo-track-01-what-is-an-algorithm-deck-ar-desktop.json",
+      "name": "learn-algo-track-01-what-is-an-algorithm-deck-ar",
+      "route": "/ar/learn/algo-track/01-what-is-an-algorithm/deck",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "ما هي الخوارزمية؟ — يونِت",
+      "width": 1440,
+      "height": 5370
+    },
+    {
+      "file": "learn-algo-track-01-what-is-an-algorithm-deck-ar-mobile.json",
+      "name": "learn-algo-track-01-what-is-an-algorithm-deck-ar",
+      "route": "/ar/learn/algo-track/01-what-is-an-algorithm/deck",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "ما هي الخوارزمية؟ — يونِت",
+      "width": 390,
+      "height": 7872
+    },
+    {
+      "file": "learn-algo-track-02-why-algos-at-all-deck-desktop.json",
+      "name": "learn-algo-track-02-why-algos-at-all-deck",
+      "route": "/learn/algo-track/02-why-algos-at-all/deck",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Why Algos at All? — Younit",
+      "width": 1440,
+      "height": 8355
+    },
+    {
+      "file": "learn-algo-track-02-why-algos-at-all-deck-mobile.json",
+      "name": "learn-algo-track-02-why-algos-at-all-deck",
+      "route": "/learn/algo-track/02-why-algos-at-all/deck",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Why Algos at All? — Younit",
+      "width": 390,
+      "height": 13411
+    },
+    {
+      "file": "learn-algo-track-02-why-algos-at-all-deck-ar-desktop.json",
+      "name": "learn-algo-track-02-why-algos-at-all-deck-ar",
+      "route": "/ar/learn/algo-track/02-why-algos-at-all/deck",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "لماذا الخوارزميات أصلًا؟ — يونِت",
+      "width": 1440,
+      "height": 7199
+    },
+    {
+      "file": "learn-algo-track-02-why-algos-at-all-deck-ar-mobile.json",
+      "name": "learn-algo-track-02-why-algos-at-all-deck-ar",
+      "route": "/ar/learn/algo-track/02-why-algos-at-all/deck",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "لماذا الخوارزميات أصلًا؟ — يونِت",
+      "width": 390,
+      "height": 10480
+    },
+    {
+      "file": "learn-algo-track-03-anatomy-of-a-trade-deck-desktop.json",
+      "name": "learn-algo-track-03-anatomy-of-a-trade-deck",
+      "route": "/learn/algo-track/03-anatomy-of-a-trade/deck",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Anatomy of a Trade and a Strategy — Younit",
+      "width": 1440,
+      "height": 6485
+    },
+    {
+      "file": "learn-algo-track-03-anatomy-of-a-trade-deck-mobile.json",
+      "name": "learn-algo-track-03-anatomy-of-a-trade-deck",
+      "route": "/learn/algo-track/03-anatomy-of-a-trade/deck",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Anatomy of a Trade and a Strategy — Younit",
+      "width": 390,
+      "height": 9661
+    },
+    {
+      "file": "learn-algo-track-03-anatomy-of-a-trade-deck-ar-desktop.json",
+      "name": "learn-algo-track-03-anatomy-of-a-trade-deck-ar",
+      "route": "/ar/learn/algo-track/03-anatomy-of-a-trade/deck",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "تشريح الصفقة والاستراتيجية — يونِت",
+      "width": 1440,
+      "height": 5988
+    },
+    {
+      "file": "learn-algo-track-03-anatomy-of-a-trade-deck-ar-mobile.json",
+      "name": "learn-algo-track-03-anatomy-of-a-trade-deck-ar",
+      "route": "/ar/learn/algo-track/03-anatomy-of-a-trade/deck",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "تشريح الصفقة والاستراتيجية — يونِت",
+      "width": 390,
+      "height": 8333
+    },
+    {
+      "file": "learn-algo-track-04-backtesting-deck-desktop.json",
+      "name": "learn-algo-track-04-backtesting-deck",
+      "route": "/learn/algo-track/04-backtesting/deck",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Backtesting: Testing Ideas on the Past — Younit",
+      "width": 1440,
+      "height": 8395
+    },
+    {
+      "file": "learn-algo-track-04-backtesting-deck-mobile.json",
+      "name": "learn-algo-track-04-backtesting-deck",
+      "route": "/learn/algo-track/04-backtesting/deck",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Backtesting: Testing Ideas on the Past — Younit",
+      "width": 390,
+      "height": 12556
+    },
+    {
+      "file": "learn-algo-track-04-backtesting-deck-ar-desktop.json",
+      "name": "learn-algo-track-04-backtesting-deck-ar",
+      "route": "/ar/learn/algo-track/04-backtesting/deck",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "الاختبار الرجعي: اختبار الأفكار على الماضي — يونِت",
+      "width": 1440,
+      "height": 7637
+    },
+    {
+      "file": "learn-algo-track-04-backtesting-deck-ar-mobile.json",
+      "name": "learn-algo-track-04-backtesting-deck-ar",
+      "route": "/ar/learn/algo-track/04-backtesting/deck",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "الاختبار الرجعي: اختبار الأفكار على الماضي — يونِت",
+      "width": 390,
+      "height": 10590
+    },
+    {
+      "file": "learn-algo-track-05-from-backtest-to-live-deck-desktop.json",
+      "name": "learn-algo-track-05-from-backtest-to-live-deck",
+      "route": "/learn/algo-track/05-from-backtest-to-live/deck",
+      "device": "desktop",
+      "locale": "en",
+      "title": "From Backtest to Live — Younit",
+      "width": 1440,
+      "height": 8921
+    },
+    {
+      "file": "learn-algo-track-05-from-backtest-to-live-deck-mobile.json",
+      "name": "learn-algo-track-05-from-backtest-to-live-deck",
+      "route": "/learn/algo-track/05-from-backtest-to-live/deck",
+      "device": "mobile",
+      "locale": "en",
+      "title": "From Backtest to Live — Younit",
+      "width": 390,
+      "height": 13403
+    },
+    {
+      "file": "learn-algo-track-05-from-backtest-to-live-deck-ar-desktop.json",
+      "name": "learn-algo-track-05-from-backtest-to-live-deck-ar",
+      "route": "/ar/learn/algo-track/05-from-backtest-to-live/deck",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "من الاختبار الرجعي إلى التداول الحي — يونِت",
+      "width": 1440,
+      "height": 8114
+    },
+    {
+      "file": "learn-algo-track-05-from-backtest-to-live-deck-ar-mobile.json",
+      "name": "learn-algo-track-05-from-backtest-to-live-deck-ar",
+      "route": "/ar/learn/algo-track/05-from-backtest-to-live/deck",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "من الاختبار الرجعي إلى التداول الحي — يونِت",
+      "width": 390,
+      "height": 11214
+    },
+    {
+      "file": "learn-algo-track-06-architect-your-algo-deck-desktop.json",
+      "name": "learn-algo-track-06-architect-your-algo-deck",
+      "route": "/learn/algo-track/06-architect-your-algo/deck",
+      "device": "desktop",
+      "locale": "en",
+      "title": "Architect Your Algo — Younit",
+      "width": 1440,
+      "height": 8379
+    },
+    {
+      "file": "learn-algo-track-06-architect-your-algo-deck-mobile.json",
+      "name": "learn-algo-track-06-architect-your-algo-deck",
+      "route": "/learn/algo-track/06-architect-your-algo/deck",
+      "device": "mobile",
+      "locale": "en",
+      "title": "Architect Your Algo — Younit",
+      "width": 390,
+      "height": 12111
+    },
+    {
+      "file": "learn-algo-track-06-architect-your-algo-deck-ar-desktop.json",
+      "name": "learn-algo-track-06-architect-your-algo-deck-ar",
+      "route": "/ar/learn/algo-track/06-architect-your-algo/deck",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "صمّم بنية خوارزميتك — يونِت",
+      "width": 1440,
+      "height": 7792
+    },
+    {
+      "file": "learn-algo-track-06-architect-your-algo-deck-ar-mobile.json",
+      "name": "learn-algo-track-06-architect-your-algo-deck-ar",
+      "route": "/ar/learn/algo-track/06-architect-your-algo/deck",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "صمّم بنية خوارزميتك — يونِت",
+      "width": 390,
+      "height": 10566
+    },
+    {
+      "file": "learn-algo-track-07-what-ai-brings-deck-desktop.json",
+      "name": "learn-algo-track-07-what-ai-brings-deck",
+      "route": "/learn/algo-track/07-what-ai-brings/deck",
+      "device": "desktop",
+      "locale": "en",
+      "title": "What AI Brings to Algo Trading — Younit",
+      "width": 1440,
+      "height": 8927
+    },
+    {
+      "file": "learn-algo-track-07-what-ai-brings-deck-mobile.json",
+      "name": "learn-algo-track-07-what-ai-brings-deck",
+      "route": "/learn/algo-track/07-what-ai-brings/deck",
+      "device": "mobile",
+      "locale": "en",
+      "title": "What AI Brings to Algo Trading — Younit",
+      "width": 390,
+      "height": 13393
+    },
+    {
+      "file": "learn-algo-track-07-what-ai-brings-deck-ar-desktop.json",
+      "name": "learn-algo-track-07-what-ai-brings-deck-ar",
+      "route": "/ar/learn/algo-track/07-what-ai-brings/deck",
+      "device": "desktop",
+      "locale": "ar",
+      "title": "ما الذي يضيفه الذكاء الاصطناعي إلى التداول الخوارزمي — يونِت",
+      "width": 1440,
+      "height": 8309
+    },
+    {
+      "file": "learn-algo-track-07-what-ai-brings-deck-ar-mobile.json",
+      "name": "learn-algo-track-07-what-ai-brings-deck-ar",
+      "route": "/ar/learn/algo-track/07-what-ai-brings/deck",
+      "device": "mobile",
+      "locale": "ar",
+      "title": "ما الذي يضيفه الذكاء الاصطناعي إلى التداول الخوارزمي — يونِت",
+      "width": 390,
+      "height": 11847
     }
   ]
 }
