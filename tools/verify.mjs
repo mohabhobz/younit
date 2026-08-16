@@ -108,10 +108,42 @@ for (const [route, name] of LOCALISED) {
       const broken = [...document.images]
         .filter((img) => !img.complete || img.naturalWidth === 0)
         .map((img) => img.currentSrc || img.src)
+
+      // The page shell clips a sideways overflow so the window never scrolls
+      // sideways, which means the document's own scrollWidth can no longer see
+      // one: a block wider than the phone is silently cut off instead. So look
+      // for the blocks themselves. Anything inside a box that scrolls
+      // sideways on purpose — a wide table — is doing what it was told.
+      const scrolls = (el) => {
+        const { overflowX } = getComputedStyle(el)
+        return overflowX === 'auto' || overflowX === 'scroll'
+      }
+      const view = document.documentElement.clientWidth
+      const clipped = []
+      // A deck is a carousel: the slide after this one is parked off to the
+      // side on purpose, and the deck's own stylesheet holds it there.
+      for (const el of document.querySelectorAll('main :not(.yn-deck):not(.yn-deck *)')) {
+        const box = el.getBoundingClientRect()
+        if (box.width < 1 || (box.right <= view + 1 && box.left >= -1)) continue
+        let inScroller = false
+        for (let p = el.parentElement; p && p !== document.body; p = p.parentElement) {
+          if (scrolls(p)) {
+            inScroller = true
+            break
+          }
+        }
+        if (inScroller) continue
+        const name = `${el.tagName.toLowerCase()}${
+          typeof el.className === 'string' && el.className ? `.${el.className.split(/\s+/)[0]}` : ''
+        }`
+        if (!clipped.includes(name)) clipped.push(name)
+      }
+
       return {
         overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
         text: (document.body.innerText || '').trim().length,
         h1: document.querySelectorAll('h1').length,
+        clipped: clipped.slice(0, 4),
         broken,
       }
     })
@@ -123,6 +155,8 @@ for (const [route, name] of LOCALISED) {
     const realErrors = errors.filter((e) => !/fonts\.(googleapis|gstatic)/.test(e))
 
     if (report.overflow > 1) failures.push(`${where}: horizontal overflow ${report.overflow}px`)
+    if (report.clipped.length)
+      failures.push(`${where}: wider than the window — ${report.clipped.join(', ')}`)
     if (report.text < 120) failures.push(`${where}: rendered only ${report.text} chars of text`)
     if (report.h1 !== 1) failures.push(`${where}: ${report.h1} <h1> elements (expected 1)`)
     if (report.broken.length) failures.push(`${where}: broken images ${report.broken.join(', ')}`)
