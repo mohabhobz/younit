@@ -12,6 +12,7 @@
  *   node tools/figma/export.mjs --base https://younit-gray.vercel.app
  */
 import { mkdirSync, writeFileSync, existsSync, rmSync } from 'node:fs'
+import { createHash } from 'node:crypto'
 import { chromium } from 'playwright'
 import { WALK } from './walk.js'
 import { ensureServer, browserHint } from '../server.mjs'
@@ -88,6 +89,29 @@ const browser = await chromium
   })
 
 const index = []
+const images = { written: 0, bytes: 0 }
+
+mkdirSync(new URL('./img/', OUT), { recursive: true })
+
+/** Data URLs out of the tree and into files beside it. */
+function charts(node, tally) {
+  if (!node) return
+
+  if (node.png) {
+    const data = Buffer.from(node.png.slice(node.png.indexOf(',') + 1), 'base64')
+    const name = `${createHash('sha1').update(data).digest('hex').slice(0, 16)}.png`
+    const path = new URL(`./img/${name}`, OUT)
+    if (!existsSync(path)) {
+      writeFileSync(path, data)
+      tally.written++
+      tally.bytes += data.length
+    }
+    node.src = `${PUBLIC}/figma/img/${name}`
+    delete node.png
+  }
+
+  for (const child of node.ch || []) charts(child, tally)
+}
 
 for (const [route, name, locale] of pages) {
   for (const [width, device] of VIEWPORTS) {
@@ -122,6 +146,13 @@ for (const [route, name, locale] of pages) {
     snapshot.device = device
     snapshot.locale = locale
 
+    // The charts come back as data URLs. Written beside the snapshots and
+    // referenced by address they become ordinary pictures — the plugin already
+    // knows how to fetch one, and a page does not carry a megabyte of base64
+    // it would have to decode again. Identical charts across two languages are
+    // one file, because the name is the hash of what is in it.
+    charts(snapshot.tree, images)
+
     const file = `${name}-${device}.json`
     const json = JSON.stringify(snapshot).split(BASE).join(PUBLIC)
     writeFileSync(new URL(`./pages/${file}`, OUT), json)
@@ -155,4 +186,7 @@ writeFileSync(
   ),
 )
 
-console.log(`\n${index.length} snapshots → public/figma/`)
+console.log(
+  `\n${index.length} snapshots and ${images.written} charts ` +
+    `(${Math.round(images.bytes / 1024)} kB) → public/figma/`,
+)
