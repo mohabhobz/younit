@@ -230,6 +230,28 @@ export const WALK = () => {
       }
     }
 
+    // A canvas is a picture with no elements in it. Walked like anything else
+    // it is an empty box, which is what left the wide white gaps under the
+    // charts — one lesson draws twenty-three of them. What it holds can only be
+    // read while it is on screen, so it is read here and carried out as a PNG.
+    if (el.tagName === 'CANVAS') {
+      let png = null
+      try {
+        png = el.toDataURL('image/png')
+      } catch (e) {
+        png = null
+      }
+      if (png && png.length > 128) {
+        return {
+          t: 'I',
+          n: el.getAttribute('aria-label') || el.id || 'chart',
+          r: [px(box.x), px(box.y + scrollY), px(box.width), px(box.height)],
+          png: png,
+          fit: 'fill',
+        }
+      }
+    }
+
     if (el.tagName === 'IMG') {
       return {
         t: 'I',
