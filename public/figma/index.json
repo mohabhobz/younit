@@ -1,7 +1,7 @@
 {
   "base": "https://younit-gray.vercel.app",
   "measured": "http://localhost:4173",
-  "generated": 308,
+  "generated": 256,
   "pages": [
     {
       "file": "home-desktop.json",
@@ -811,7 +811,7 @@
       "locale": "en",
       "title": "Stock Market Basics — Younit",
       "width": 1440,
-      "height": 9121
+      "height": 8169
     },
     {
       "file": "learn-foundation-01-market-basics-mobile.json",
@@ -821,7 +821,7 @@
       "locale": "en",
       "title": "Stock Market Basics — Younit",
       "width": 390,
-      "height": 12220
+      "height": 12529
     },
     {
       "file": "learn-foundation-01-market-basics-ar-desktop.json",
@@ -831,7 +831,7 @@
       "locale": "ar",
       "title": "أساسيات سوق الأسهم — يونِت",
       "width": 1440,
-      "height": 8004
+      "height": 7814
     },
     {
       "file": "learn-foundation-01-market-basics-ar-mobile.json",
@@ -841,7 +841,7 @@
       "locale": "ar",
       "title": "أساسيات سوق الأسهم — يونِت",
       "width": 390,
-      "height": 9618
+      "height": 11281
     },
     {
       "file": "learn-foundation-02-market-landscape-desktop.json",
@@ -851,7 +851,7 @@
       "locale": "en",
       "title": "Egypt's financial market landscape — Younit",
       "width": 1440,
-      "height": 3250
+      "height": 8206
     },
     {
       "file": "learn-foundation-02-market-landscape-mobile.json",
@@ -861,7 +861,7 @@
       "locale": "en",
       "title": "Egypt's financial market landscape — Younit",
       "width": 390,
-      "height": 3795
+      "height": 16435
     },
     {
       "file": "learn-foundation-02-market-landscape-ar-desktop.json",
@@ -871,7 +871,7 @@
       "locale": "ar",
       "title": "خريطة السوق المالي في مصر — يونِت",
       "width": 1440,
-      "height": 2984
+      "height": 7564
     },
     {
       "file": "learn-foundation-02-market-landscape-ar-mobile.json",
@@ -881,7 +881,7 @@
       "locale": "ar",
       "title": "خريطة السوق المالي في مصر — يونِت",
       "width": 390,
-      "height": 3378
+      "height": 14613
     },
     {
       "file": "learn-foundation-03-how-people-trade-desktop.json",
@@ -891,7 +891,7 @@
       "locale": "en",
       "title": "How people actually trade — Younit",
       "width": 1440,
-      "height": 3298
+      "height": 6190
     },
     {
       "file": "learn-foundation-03-how-people-trade-mobile.json",
@@ -901,7 +901,7 @@
       "locale": "en",
       "title": "How people actually trade — Younit",
       "width": 390,
-      "height": 3953
+      "height": 12794
     },
     {
       "file": "learn-foundation-03-how-people-trade-ar-desktop.json",
@@ -911,7 +911,7 @@
       "locale": "ar",
       "title": "كيف يتداول الناس فعليًا — يونِت",
       "width": 1440,
-      "height": 3062
+      "height": 5539
     },
     {
       "file": "learn-foundation-03-how-people-trade-ar-mobile.json",
@@ -921,7 +921,7 @@
       "locale": "ar",
       "title": "كيف يتداول الناس فعليًا — يونِت",
       "width": 390,
-      "height": 3370
+      "height": 10543
     },
     {
       "file": "learn-foundation-04-reading-charts-desktop.json",
@@ -931,7 +931,7 @@
       "locale": "en",
       "title": "Reading price charts — Younit",
       "width": 1440,
-      "height": 3370
+      "height": 8087
     },
     {
       "file": "learn-foundation-04-reading-charts-mobile.json",
@@ -941,7 +941,7 @@
       "locale": "en",
       "title": "Reading price charts — Younit",
       "width": 390,
-      "height": 4128
+      "height": 14175
     },
     {
       "file": "learn-foundation-04-reading-charts-ar-desktop.json",
@@ -951,7 +951,7 @@
       "locale": "ar",
       "title": "قراءة الرسوم البيانية للأسعار — يونِت",
       "width": 1440,
-      "height": 3139
+      "height": 7423
     },
     {
       "file": "learn-foundation-04-reading-charts-ar-mobile.json",
@@ -961,7 +961,7 @@
       "locale": "ar",
       "title": "قراءة الرسوم البيانية للأسعار — يونِت",
       "width": 390,
-      "height": 3469
+      "height": 12237
     },
     {
       "file": "learn-foundation-05-reading-companies-desktop.json",
@@ -971,7 +971,7 @@
       "locale": "en",
       "title": "Reading a company — Younit",
       "width": 1440,
-      "height": 3035
+      "height": 8597
     },
     {
       "file": "learn-foundation-05-reading-companies-mobile.json",
@@ -981,7 +981,7 @@
       "locale": "en",
       "title": "Reading a company — Younit",
       "width": 390,
-      "height": 3857
+      "height": 15910
     },
     {
       "file": "learn-foundation-05-reading-companies-ar-desktop.json",
@@ -991,7 +991,7 @@
       "locale": "ar",
       "title": "قراءة الشركة — يونِت",
       "width": 1440,
-      "height": 2778
+      "height": 7734
     },
     {
       "file": "learn-foundation-05-reading-companies-ar-mobile.json",
@@ -1001,7 +1001,7 @@
       "locale": "ar",
       "title": "قراءة الشركة — يونِت",
       "width": 390,
-      "height": 3294
+      "height": 12864
     },
     {
       "file": "learn-algo-track-00-intro-desktop.json",
@@ -1011,7 +1011,7 @@
       "locale": "en",
       "title": "Algorithmic Trading Without the Mystique — Younit",
       "width": 1440,
-      "height": 1697
+      "height": 4857
     },
     {
       "file": "learn-algo-track-00-intro-mobile.json",
@@ -1021,7 +1021,7 @@
       "locale": "en",
       "title": "Algorithmic Trading Without the Mystique — Younit",
       "width": 390,
-      "height": 2000
+      "height": 7465
     },
     {
       "file": "learn-algo-track-00-intro-ar-desktop.json",
@@ -1031,7 +1031,7 @@
       "locale": "ar",
       "title": "التداول الخوارزمي بلا غموض — يونِت",
       "width": 1440,
-      "height": 1644
+      "height": 4484
     },
     {
       "file": "learn-algo-track-00-intro-ar-mobile.json",
@@ -1041,7 +1041,7 @@
       "locale": "ar",
       "title": "التداول الخوارزمي بلا غموض — يونِت",
       "width": 390,
-      "height": 1959
+      "height": 6522
     },
     {
       "file": "learn-algo-track-01-what-is-an-algorithm-desktop.json",
@@ -1051,7 +1051,7 @@
       "locale": "en",
       "title": "What Is an Algorithm? — Younit",
       "width": 1440,
-      "height": 1744
+      "height": 5660
     },
     {
       "file": "learn-algo-track-01-what-is-an-algorithm-mobile.json",
@@ -1061,7 +1061,7 @@
       "locale": "en",
       "title": "What Is an Algorithm? — Younit",
       "width": 390,
-      "height": 2088
+      "height": 8981
     },
     {
       "file": "learn-algo-track-01-what-is-an-algorithm-ar-desktop.json",
@@ -1071,7 +1071,7 @@
       "locale": "ar",
       "title": "ما هي الخوارزمية؟ — يونِت",
       "width": 1440,
-      "height": 1722
+      "height": 5370
     },
     {
       "file": "learn-algo-track-01-what-is-an-algorithm-ar-mobile.json",
@@ -1081,7 +1081,7 @@
       "locale": "ar",
       "title": "ما هي الخوارزمية؟ — يونِت",
       "width": 390,
-      "height": 2003
+      "height": 7872
     },
     {
       "file": "learn-algo-track-02-why-algos-at-all-desktop.json",
@@ -1091,7 +1091,7 @@
       "locale": "en",
       "title": "Why Algos at All? — Younit",
       "width": 1440,
-      "height": 1744
+      "height": 8355
     },
     {
       "file": "learn-algo-track-02-why-algos-at-all-mobile.json",
@@ -1101,7 +1101,7 @@
       "locale": "en",
       "title": "Why Algos at All? — Younit",
       "width": 390,
-      "height": 2051
+      "height": 13411
     },
     {
       "file": "learn-algo-track-02-why-algos-at-all-ar-desktop.json",
@@ -1111,7 +1111,7 @@
       "locale": "ar",
       "title": "لماذا الخوارزميات أصلًا؟ — يونِت",
       "width": 1440,
-      "height": 1722
+      "height": 7199
     },
     {
       "file": "learn-algo-track-02-why-algos-at-all-ar-mobile.json",
@@ -1121,7 +1121,7 @@
       "locale": "ar",
       "title": "لماذا الخوارزميات أصلًا؟ — يونِت",
       "width": 390,
-      "height": 2065
+      "height": 10480
     },
     {
       "file": "learn-algo-track-03-anatomy-of-a-trade-desktop.json",
@@ -1131,7 +1131,7 @@
       "locale": "en",
       "title": "Anatomy of a Trade and a Strategy — Younit",
       "width": 1440,
-      "height": 1811
+      "height": 6485
     },
     {
       "file": "learn-algo-track-03-anatomy-of-a-trade-mobile.json",
@@ -1141,7 +1141,7 @@
       "locale": "en",
       "title": "Anatomy of a Trade and a Strategy — Younit",
       "width": 390,
-      "height": 2127
+      "height": 9661
     },
     {
       "file": "learn-algo-track-03-anatomy-of-a-trade-ar-desktop.json",
@@ -1151,7 +1151,7 @@
       "locale": "ar",
       "title": "تشريح الصفقة والاستراتيجية — يونِت",
       "width": 1440,
-      "height": 1722
+      "height": 5988
     },
     {
       "file": "learn-algo-track-03-anatomy-of-a-trade-ar-mobile.json",
@@ -1161,7 +1161,7 @@
       "locale": "ar",
       "title": "تشريح الصفقة والاستراتيجية — يونِت",
       "width": 390,
-      "height": 2065
+      "height": 8333
     },
     {
       "file": "learn-algo-track-04-backtesting-desktop.json",
@@ -1171,7 +1171,7 @@
       "locale": "en",
       "title": "Backtesting: Testing Ideas on the Past — Younit",
       "width": 1440,
-      "height": 1775
+      "height": 8395
     },
     {
       "file": "learn-algo-track-04-backtesting-mobile.json",
@@ -1181,7 +1181,7 @@
       "locale": "en",
       "title": "Backtesting: Testing Ideas on the Past — Younit",
       "width": 390,
-      "height": 2103
+      "height": 12556
     },
     {
       "file": "learn-algo-track-04-backtesting-ar-desktop.json",
@@ -1191,7 +1191,7 @@
       "locale": "ar",
       "title": "الاختبار الرجعي: اختبار الأفكار على الماضي — يونِت",
       "width": 1440,
-      "height": 1790
+      "height": 7637
     },
     {
       "file": "learn-algo-track-04-backtesting-ar-mobile.json",
@@ -1201,7 +1201,7 @@
       "locale": "ar",
       "title": "الاختبار الرجعي: اختبار الأفكار على الماضي — يونِت",
       "width": 390,
-      "height": 2041
+      "height": 10590
     },
     {
       "file": "learn-algo-track-05-from-backtest-to-live-desktop.json",
@@ -1211,7 +1211,7 @@
       "locale": "en",
       "title": "From Backtest to Live — Younit",
       "width": 1440,
-      "height": 1744
+      "height": 8921
     },
     {
       "file": "learn-algo-track-05-from-backtest-to-live-mobile.json",
@@ -1221,7 +1221,7 @@
       "locale": "en",
       "title": "From Backtest to Live — Younit",
       "width": 390,
-      "height": 2065
+      "height": 13403
     },
     {
       "file": "learn-algo-track-05-from-backtest-to-live-ar-desktop.json",
@@ -1231,7 +1231,7 @@
       "locale": "ar",
       "title": "من الاختبار الرجعي إلى التداول الحي — يونِت",
       "width": 1440,
-      "height": 1790
+      "height": 8114
     },
     {
       "file": "learn-algo-track-05-from-backtest-to-live-ar-mobile.json",
@@ -1241,7 +1241,7 @@
       "locale": "ar",
       "title": "من الاختبار الرجعي إلى التداول الحي — يونِت",
       "width": 390,
-      "height": 2065
+      "height": 11214
     },
     {
       "file": "learn-algo-track-06-architect-your-algo-desktop.json",
@@ -1251,7 +1251,7 @@
       "locale": "en",
       "title": "Architect Your Algo — Younit",
       "width": 1440,
-      "height": 1744
+      "height": 8379
     },
     {
       "file": "learn-algo-track-06-architect-your-algo-mobile.json",
@@ -1261,7 +1261,7 @@
       "locale": "en",
       "title": "Architect Your Algo — Younit",
       "width": 390,
-      "height": 2004
+      "height": 12111
     },
     {
       "file": "learn-algo-track-06-architect-your-algo-ar-desktop.json",
@@ -1271,7 +1271,7 @@
       "locale": "ar",
       "title": "صمّم بنية خوارزميتك — يونِت",
       "width": 1440,
-      "height": 1722
+      "height": 7792
     },
     {
       "file": "learn-algo-track-06-architect-your-algo-ar-mobile.json",
@@ -1281,7 +1281,7 @@
       "locale": "ar",
       "title": "صمّم بنية خوارزميتك — يونِت",
       "width": 390,
-      "height": 2026
+      "height": 10566
     },
     {
       "file": "learn-algo-track-07-what-ai-brings-desktop.json",
@@ -1291,7 +1291,7 @@
       "locale": "en",
       "title": "What AI Brings to Algo Trading — Younit",
       "width": 1440,
-      "height": 1733
+      "height": 8927
     },
     {
       "file": "learn-algo-track-07-what-ai-brings-mobile.json",
@@ -1301,7 +1301,7 @@
       "locale": "en",
       "title": "What AI Brings to Algo Trading — Younit",
       "width": 390,
-      "height": 1962
+      "height": 13393
     },
     {
       "file": "learn-algo-track-07-what-ai-brings-ar-desktop.json",
@@ -1311,7 +1311,7 @@
       "locale": "ar",
       "title": "ما الذي يضيفه الذكاء الاصطناعي إلى التداول الخوارزمي — يونِت",
       "width": 1440,
-      "height": 1779
+      "height": 8309
     },
     {
       "file": "learn-algo-track-07-what-ai-brings-ar-mobile.json",
@@ -1321,7 +1321,7 @@
       "locale": "ar",
       "title": "ما الذي يضيفه الذكاء الاصطناعي إلى التداول الخوارزمي — يونِت",
       "width": 390,
-      "height": 1999
+      "height": 11847
     },
     {
       "file": "learn-deep-dives-efg-api-what-you-can-build-desktop.json",
@@ -2562,526 +2562,6 @@
       "title": "لماذا بنينا هذا — يونِت",
       "width": 390,
       "height": 2252
-    },
-    {
-      "file": "learn-foundation-01-market-basics-deck-desktop.json",
-      "name": "learn-foundation-01-market-basics-deck",
-      "route": "/learn/foundation/01-market-basics/deck",
-      "device": "desktop",
-      "locale": "en",
-      "title": "Stock Market Basics — Younit",
-      "width": 1440,
-      "height": 8309
-    },
-    {
-      "file": "learn-foundation-01-market-basics-deck-mobile.json",
-      "name": "learn-foundation-01-market-basics-deck",
-      "route": "/learn/foundation/01-market-basics/deck",
-      "device": "mobile",
-      "locale": "en",
-      "title": "Stock Market Basics — Younit",
-      "width": 390,
-      "height": 13109
-    },
-    {
-      "file": "learn-foundation-01-market-basics-deck-ar-desktop.json",
-      "name": "learn-foundation-01-market-basics-deck-ar",
-      "route": "/ar/learn/foundation/01-market-basics/deck",
-      "device": "desktop",
-      "locale": "ar",
-      "title": "أساسيات سوق الأسهم — يونِت",
-      "width": 1440,
-      "height": 7954
-    },
-    {
-      "file": "learn-foundation-01-market-basics-deck-ar-mobile.json",
-      "name": "learn-foundation-01-market-basics-deck-ar",
-      "route": "/ar/learn/foundation/01-market-basics/deck",
-      "device": "mobile",
-      "locale": "ar",
-      "title": "أساسيات سوق الأسهم — يونِت",
-      "width": 390,
-      "height": 11838
-    },
-    {
-      "file": "learn-foundation-02-market-landscape-deck-desktop.json",
-      "name": "learn-foundation-02-market-landscape-deck",
-      "route": "/learn/foundation/02-market-landscape/deck",
-      "device": "desktop",
-      "locale": "en",
-      "title": "Egypt's financial market landscape — Younit",
-      "width": 1440,
-      "height": 8368
-    },
-    {
-      "file": "learn-foundation-02-market-landscape-deck-mobile.json",
-      "name": "learn-foundation-02-market-landscape-deck",
-      "route": "/learn/foundation/02-market-landscape/deck",
-      "device": "mobile",
-      "locale": "en",
-      "title": "Egypt's financial market landscape — Younit",
-      "width": 390,
-      "height": 16981
-    },
-    {
-      "file": "learn-foundation-02-market-landscape-deck-ar-desktop.json",
-      "name": "learn-foundation-02-market-landscape-deck-ar",
-      "route": "/ar/learn/foundation/02-market-landscape/deck",
-      "device": "desktop",
-      "locale": "ar",
-      "title": "خريطة السوق المالي في مصر — يونِت",
-      "width": 1440,
-      "height": 7726
-    },
-    {
-      "file": "learn-foundation-02-market-landscape-deck-ar-mobile.json",
-      "name": "learn-foundation-02-market-landscape-deck-ar",
-      "route": "/ar/learn/foundation/02-market-landscape/deck",
-      "device": "mobile",
-      "locale": "ar",
-      "title": "خريطة السوق المالي في مصر — يونِت",
-      "width": 390,
-      "height": 15135
-    },
-    {
-      "file": "learn-foundation-03-how-people-trade-deck-desktop.json",
-      "name": "learn-foundation-03-how-people-trade-deck",
-      "route": "/learn/foundation/03-how-people-trade/deck",
-      "device": "desktop",
-      "locale": "en",
-      "title": "How people actually trade — Younit",
-      "width": 1440,
-      "height": 6190
-    },
-    {
-      "file": "learn-foundation-03-how-people-trade-deck-mobile.json",
-      "name": "learn-foundation-03-how-people-trade-deck",
-      "route": "/learn/foundation/03-how-people-trade/deck",
-      "device": "mobile",
-      "locale": "en",
-      "title": "How people actually trade — Younit",
-      "width": 390,
-      "height": 12794
-    },
-    {
-      "file": "learn-foundation-03-how-people-trade-deck-ar-desktop.json",
-      "name": "learn-foundation-03-how-people-trade-deck-ar",
-      "route": "/ar/learn/foundation/03-how-people-trade/deck",
-      "device": "desktop",
-      "locale": "ar",
-      "title": "كيف يتداول الناس فعليًا — يونِت",
-      "width": 1440,
-      "height": 5539
-    },
-    {
-      "file": "learn-foundation-03-how-people-trade-deck-ar-mobile.json",
-      "name": "learn-foundation-03-how-people-trade-deck-ar",
-      "route": "/ar/learn/foundation/03-how-people-trade/deck",
-      "device": "mobile",
-      "locale": "ar",
-      "title": "كيف يتداول الناس فعليًا — يونِت",
-      "width": 390,
-      "height": 10543
-    },
-    {
-      "file": "learn-foundation-04-reading-charts-deck-desktop.json",
-      "name": "learn-foundation-04-reading-charts-deck",
-      "route": "/learn/foundation/04-reading-charts/deck",
-      "device": "desktop",
-      "locale": "en",
-      "title": "Reading price charts — Younit",
-      "width": 1440,
-      "height": 8087
-    },
-    {
-      "file": "learn-foundation-04-reading-charts-deck-mobile.json",
-      "name": "learn-foundation-04-reading-charts-deck",
-      "route": "/learn/foundation/04-reading-charts/deck",
-      "device": "mobile",
-      "locale": "en",
-      "title": "Reading price charts — Younit",
-      "width": 390,
-      "height": 14175
-    },
-    {
-      "file": "learn-foundation-04-reading-charts-deck-ar-desktop.json",
-      "name": "learn-foundation-04-reading-charts-deck-ar",
-      "route": "/ar/learn/foundation/04-reading-charts/deck",
-      "device": "desktop",
-      "locale": "ar",
-      "title": "قراءة الرسوم البيانية للأسعار — يونِت",
-      "width": 1440,
-      "height": 7423
-    },
-    {
-      "file": "learn-foundation-04-reading-charts-deck-ar-mobile.json",
-      "name": "learn-foundation-04-reading-charts-deck-ar",
-      "route": "/ar/learn/foundation/04-reading-charts/deck",
-      "device": "mobile",
-      "locale": "ar",
-      "title": "قراءة الرسوم البيانية للأسعار — يونِت",
-      "width": 390,
-      "height": 12237
-    },
-    {
-      "file": "learn-foundation-05-reading-companies-deck-desktop.json",
-      "name": "learn-foundation-05-reading-companies-deck",
-      "route": "/learn/foundation/05-reading-companies/deck",
-      "device": "desktop",
-      "locale": "en",
-      "title": "Reading a company — Younit",
-      "width": 1440,
-      "height": 8597
-    },
-    {
-      "file": "learn-foundation-05-reading-companies-deck-mobile.json",
-      "name": "learn-foundation-05-reading-companies-deck",
-      "route": "/learn/foundation/05-reading-companies/deck",
-      "device": "mobile",
-      "locale": "en",
-      "title": "Reading a company — Younit",
-      "width": 390,
-      "height": 15910
-    },
-    {
-      "file": "learn-foundation-05-reading-companies-deck-ar-desktop.json",
-      "name": "learn-foundation-05-reading-companies-deck-ar",
-      "route": "/ar/learn/foundation/05-reading-companies/deck",
-      "device": "desktop",
-      "locale": "ar",
-      "title": "قراءة الشركة — يونِت",
-      "width": 1440,
-      "height": 7734
-    },
-    {
-      "file": "learn-foundation-05-reading-companies-deck-ar-mobile.json",
-      "name": "learn-foundation-05-reading-companies-deck-ar",
-      "route": "/ar/learn/foundation/05-reading-companies/deck",
-      "device": "mobile",
-      "locale": "ar",
-      "title": "قراءة الشركة — يونِت",
-      "width": 390,
-      "height": 12864
-    },
-    {
-      "file": "learn-algo-track-00-intro-deck-desktop.json",
-      "name": "learn-algo-track-00-intro-deck",
-      "route": "/learn/algo-track/00-intro/deck",
-      "device": "desktop",
-      "locale": "en",
-      "title": "Algorithmic Trading Without the Mystique — Younit",
-      "width": 1440,
-      "height": 4857
-    },
-    {
-      "file": "learn-algo-track-00-intro-deck-mobile.json",
-      "name": "learn-algo-track-00-intro-deck",
-      "route": "/learn/algo-track/00-intro/deck",
-      "device": "mobile",
-      "locale": "en",
-      "title": "Algorithmic Trading Without the Mystique — Younit",
-      "width": 390,
-      "height": 7465
-    },
-    {
-      "file": "learn-algo-track-00-intro-deck-ar-desktop.json",
-      "name": "learn-algo-track-00-intro-deck-ar",
-      "route": "/ar/learn/algo-track/00-intro/deck",
-      "device": "desktop",
-      "locale": "ar",
-      "title": "التداول الخوارزمي بلا غموض — يونِت",
-      "width": 1440,
-      "height": 4484
-    },
-    {
-      "file": "learn-algo-track-00-intro-deck-ar-mobile.json",
-      "name": "learn-algo-track-00-intro-deck-ar",
-      "route": "/ar/learn/algo-track/00-intro/deck",
-      "device": "mobile",
-      "locale": "ar",
-      "title": "التداول الخوارزمي بلا غموض — يونِت",
-      "width": 390,
-      "height": 6522
-    },
-    {
-      "file": "learn-algo-track-01-what-is-an-algorithm-deck-desktop.json",
-      "name": "learn-algo-track-01-what-is-an-algorithm-deck",
-      "route": "/learn/algo-track/01-what-is-an-algorithm/deck",
-      "device": "desktop",
-      "locale": "en",
-      "title": "What Is an Algorithm? — Younit",
-      "width": 1440,
-      "height": 5660
-    },
-    {
-      "file": "learn-algo-track-01-what-is-an-algorithm-deck-mobile.json",
-      "name": "learn-algo-track-01-what-is-an-algorithm-deck",
-      "route": "/learn/algo-track/01-what-is-an-algorithm/deck",
-      "device": "mobile",
-      "locale": "en",
-      "title": "What Is an Algorithm? — Younit",
-      "width": 390,
-      "height": 8981
-    },
-    {
-      "file": "learn-algo-track-01-what-is-an-algorithm-deck-ar-desktop.json",
-      "name": "learn-algo-track-01-what-is-an-algorithm-deck-ar",
-      "route": "/ar/learn/algo-track/01-what-is-an-algorithm/deck",
-      "device": "desktop",
-      "locale": "ar",
-      "title": "ما هي الخوارزمية؟ — يونِت",
-      "width": 1440,
-      "height": 5370
-    },
-    {
-      "file": "learn-algo-track-01-what-is-an-algorithm-deck-ar-mobile.json",
-      "name": "learn-algo-track-01-what-is-an-algorithm-deck-ar",
-      "route": "/ar/learn/algo-track/01-what-is-an-algorithm/deck",
-      "device": "mobile",
-      "locale": "ar",
-      "title": "ما هي الخوارزمية؟ — يونِت",
-      "width": 390,
-      "height": 7872
-    },
-    {
-      "file": "learn-algo-track-02-why-algos-at-all-deck-desktop.json",
-      "name": "learn-algo-track-02-why-algos-at-all-deck",
-      "route": "/learn/algo-track/02-why-algos-at-all/deck",
-      "device": "desktop",
-      "locale": "en",
-      "title": "Why Algos at All? — Younit",
-      "width": 1440,
-      "height": 8355
-    },
-    {
-      "file": "learn-algo-track-02-why-algos-at-all-deck-mobile.json",
-      "name": "learn-algo-track-02-why-algos-at-all-deck",
-      "route": "/learn/algo-track/02-why-algos-at-all/deck",
-      "device": "mobile",
-      "locale": "en",
-      "title": "Why Algos at All? — Younit",
-      "width": 390,
-      "height": 13411
-    },
-    {
-      "file": "learn-algo-track-02-why-algos-at-all-deck-ar-desktop.json",
-      "name": "learn-algo-track-02-why-algos-at-all-deck-ar",
-      "route": "/ar/learn/algo-track/02-why-algos-at-all/deck",
-      "device": "desktop",
-      "locale": "ar",
-      "title": "لماذا الخوارزميات أصلًا؟ — يونِت",
-      "width": 1440,
-      "height": 7199
-    },
-    {
-      "file": "learn-algo-track-02-why-algos-at-all-deck-ar-mobile.json",
-      "name": "learn-algo-track-02-why-algos-at-all-deck-ar",
-      "route": "/ar/learn/algo-track/02-why-algos-at-all/deck",
-      "device": "mobile",
-      "locale": "ar",
-      "title": "لماذا الخوارزميات أصلًا؟ — يونِت",
-      "width": 390,
-      "height": 10480
-    },
-    {
-      "file": "learn-algo-track-03-anatomy-of-a-trade-deck-desktop.json",
-      "name": "learn-algo-track-03-anatomy-of-a-trade-deck",
-      "route": "/learn/algo-track/03-anatomy-of-a-trade/deck",
-      "device": "desktop",
-      "locale": "en",
-      "title": "Anatomy of a Trade and a Strategy — Younit",
-      "width": 1440,
-      "height": 6485
-    },
-    {
-      "file": "learn-algo-track-03-anatomy-of-a-trade-deck-mobile.json",
-      "name": "learn-algo-track-03-anatomy-of-a-trade-deck",
-      "route": "/learn/algo-track/03-anatomy-of-a-trade/deck",
-      "device": "mobile",
-      "locale": "en",
-      "title": "Anatomy of a Trade and a Strategy — Younit",
-      "width": 390,
-      "height": 9661
-    },
-    {
-      "file": "learn-algo-track-03-anatomy-of-a-trade-deck-ar-desktop.json",
-      "name": "learn-algo-track-03-anatomy-of-a-trade-deck-ar",
-      "route": "/ar/learn/algo-track/03-anatomy-of-a-trade/deck",
-      "device": "desktop",
-      "locale": "ar",
-      "title": "تشريح الصفقة والاستراتيجية — يونِت",
-      "width": 1440,
-      "height": 5988
-    },
-    {
-      "file": "learn-algo-track-03-anatomy-of-a-trade-deck-ar-mobile.json",
-      "name": "learn-algo-track-03-anatomy-of-a-trade-deck-ar",
-      "route": "/ar/learn/algo-track/03-anatomy-of-a-trade/deck",
-      "device": "mobile",
-      "locale": "ar",
-      "title": "تشريح الصفقة والاستراتيجية — يونِت",
-      "width": 390,
-      "height": 8333
-    },
-    {
-      "file": "learn-algo-track-04-backtesting-deck-desktop.json",
-      "name": "learn-algo-track-04-backtesting-deck",
-      "route": "/learn/algo-track/04-backtesting/deck",
-      "device": "desktop",
-      "locale": "en",
-      "title": "Backtesting: Testing Ideas on the Past — Younit",
-      "width": 1440,
-      "height": 8395
-    },
-    {
-      "file": "learn-algo-track-04-backtesting-deck-mobile.json",
-      "name": "learn-algo-track-04-backtesting-deck",
-      "route": "/learn/algo-track/04-backtesting/deck",
-      "device": "mobile",
-      "locale": "en",
-      "title": "Backtesting: Testing Ideas on the Past — Younit",
-      "width": 390,
-      "height": 12556
-    },
-    {
-      "file": "learn-algo-track-04-backtesting-deck-ar-desktop.json",
-      "name": "learn-algo-track-04-backtesting-deck-ar",
-      "route": "/ar/learn/algo-track/04-backtesting/deck",
-      "device": "desktop",
-      "locale": "ar",
-      "title": "الاختبار الرجعي: اختبار الأفكار على الماضي — يونِت",
-      "width": 1440,
-      "height": 7637
-    },
-    {
-      "file": "learn-algo-track-04-backtesting-deck-ar-mobile.json",
-      "name": "learn-algo-track-04-backtesting-deck-ar",
-      "route": "/ar/learn/algo-track/04-backtesting/deck",
-      "device": "mobile",
-      "locale": "ar",
-      "title": "الاختبار الرجعي: اختبار الأفكار على الماضي — يونِت",
-      "width": 390,
-      "height": 10590
-    },
-    {
-      "file": "learn-algo-track-05-from-backtest-to-live-deck-desktop.json",
-      "name": "learn-algo-track-05-from-backtest-to-live-deck",
-      "route": "/learn/algo-track/05-from-backtest-to-live/deck",
-      "device": "desktop",
-      "locale": "en",
-      "title": "From Backtest to Live — Younit",
-      "width": 1440,
-      "height": 8921
-    },
-    {
-      "file": "learn-algo-track-05-from-backtest-to-live-deck-mobile.json",
-      "name": "learn-algo-track-05-from-backtest-to-live-deck",
-      "route": "/learn/algo-track/05-from-backtest-to-live/deck",
-      "device": "mobile",
-      "locale": "en",
-      "title": "From Backtest to Live — Younit",
-      "width": 390,
-      "height": 13403
-    },
-    {
-      "file": "learn-algo-track-05-from-backtest-to-live-deck-ar-desktop.json",
-      "name": "learn-algo-track-05-from-backtest-to-live-deck-ar",
-      "route": "/ar/learn/algo-track/05-from-backtest-to-live/deck",
-      "device": "desktop",
-      "locale": "ar",
-      "title": "من الاختبار الرجعي إلى التداول الحي — يونِت",
-      "width": 1440,
-      "height": 8114
-    },
-    {
-      "file": "learn-algo-track-05-from-backtest-to-live-deck-ar-mobile.json",
-      "name": "learn-algo-track-05-from-backtest-to-live-deck-ar",
-      "route": "/ar/learn/algo-track/05-from-backtest-to-live/deck",
-      "device": "mobile",
-      "locale": "ar",
-      "title": "من الاختبار الرجعي إلى التداول الحي — يونِت",
-      "width": 390,
-      "height": 11214
-    },
-    {
-      "file": "learn-algo-track-06-architect-your-algo-deck-desktop.json",
-      "name": "learn-algo-track-06-architect-your-algo-deck",
-      "route": "/learn/algo-track/06-architect-your-algo/deck",
-      "device": "desktop",
-      "locale": "en",
-      "title": "Architect Your Algo — Younit",
-      "width": 1440,
-      "height": 8379
-    },
-    {
-      "file": "learn-algo-track-06-architect-your-algo-deck-mobile.json",
-      "name": "learn-algo-track-06-architect-your-algo-deck",
-      "route": "/learn/algo-track/06-architect-your-algo/deck",
-      "device": "mobile",
-      "locale": "en",
-      "title": "Architect Your Algo — Younit",
-      "width": 390,
-      "height": 12111
-    },
-    {
-      "file": "learn-algo-track-06-architect-your-algo-deck-ar-desktop.json",
-      "name": "learn-algo-track-06-architect-your-algo-deck-ar",
-      "route": "/ar/learn/algo-track/06-architect-your-algo/deck",
-      "device": "desktop",
-      "locale": "ar",
-      "title": "صمّم بنية خوارزميتك — يونِت",
-      "width": 1440,
-      "height": 7792
-    },
-    {
-      "file": "learn-algo-track-06-architect-your-algo-deck-ar-mobile.json",
-      "name": "learn-algo-track-06-architect-your-algo-deck-ar",
-      "route": "/ar/learn/algo-track/06-architect-your-algo/deck",
-      "device": "mobile",
-      "locale": "ar",
-      "title": "صمّم بنية خوارزميتك — يونِت",
-      "width": 390,
-      "height": 10566
-    },
-    {
-      "file": "learn-algo-track-07-what-ai-brings-deck-desktop.json",
-      "name": "learn-algo-track-07-what-ai-brings-deck",
-      "route": "/learn/algo-track/07-what-ai-brings/deck",
-      "device": "desktop",
-      "locale": "en",
-      "title": "What AI Brings to Algo Trading — Younit",
-      "width": 1440,
-      "height": 8927
-    },
-    {
-      "file": "learn-algo-track-07-what-ai-brings-deck-mobile.json",
-      "name": "learn-algo-track-07-what-ai-brings-deck",
-      "route": "/learn/algo-track/07-what-ai-brings/deck",
-      "device": "mobile",
-      "locale": "en",
-      "title": "What AI Brings to Algo Trading — Younit",
-      "width": 390,
-      "height": 13393
-    },
-    {
-      "file": "learn-algo-track-07-what-ai-brings-deck-ar-desktop.json",
-      "name": "learn-algo-track-07-what-ai-brings-deck-ar",
-      "route": "/ar/learn/algo-track/07-what-ai-brings/deck",
-      "device": "desktop",
-      "locale": "ar",
-      "title": "ما الذي يضيفه الذكاء الاصطناعي إلى التداول الخوارزمي — يونِت",
-      "width": 1440,
-      "height": 8309
-    },
-    {
-      "file": "learn-algo-track-07-what-ai-brings-deck-ar-mobile.json",
-      "name": "learn-algo-track-07-what-ai-brings-deck-ar",
-      "route": "/ar/learn/algo-track/07-what-ai-brings/deck",
-      "device": "mobile",
-      "locale": "ar",
-      "title": "ما الذي يضيفه الذكاء الاصطناعي إلى التداول الخوارزمي — يونِت",
-      "width": 390,
-      "height": 11847
     }
   ]
 }

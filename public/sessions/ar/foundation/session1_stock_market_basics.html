@@ -44,8 +44,7 @@
 .yn-deck .card:hover{border-color:var(--gold);transform:translateY(-2px);}
 .yn-deck .card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent);opacity:0;transition:opacity .2s;}
 .yn-deck .card:hover::before{opacity:1;}
-.yn-deck .card-icon{font-size:28px;margin-bottom:14px;display:block;}
-.yn-deck .card-title{font-weight:600;color:var(--yn-ink);margin-bottom:8px;font-size:15px;}
+.yn-deck .yn-deck .card-title{font-weight:600;color:var(--yn-ink);margin-bottom:8px;font-size:15px;}
 .yn-deck .card-body{color:var(--text-dim);font-size:14px;line-height:1.6;}
 
 /* CHART WRAP */
@@ -145,8 +144,7 @@
 /* EQUATION VISUAL */
 .yn-deck .eq-wrap{font-family:'IBM Plex Mono',monospace;width:100%;}
 .yn-deck .eq-line{display:flex;align-items:center;gap:12px;margin-bottom:14px;padding:12px 16px;background:var(--card);border:1px solid var(--border);border-radius:4px;font-size:13px;color:var(--text-dim);}
-.yn-deck .eq-icon{font-size:20px;flex-shrink:0;width:32px;text-align:center;}
-.yn-deck .eq-text{flex:1;}
+.yn-deck .yn-deck .eq-text{flex:1;}
 .yn-deck .eq-plus{color:var(--gold);font-size:18px;text-align:center;margin:2px 0;}
 .yn-deck .eq-result{background:rgba(255,208,90,.08);border-color:var(--gold);color:var(--gold);}
 
@@ -233,8 +231,8 @@
       <div class="slide-inner">
         <div class="slide-text">
           <div class="slide-eyebrow">منظور 01 من 05</div>
-          <h2 class="slide-headline">السوق آلة<br>تعمل بـ<em>الخوف</em> و<em>الطمع</em>.</h2>
-          <p class="slide-body">كل حركة سعر تحكي قصة عن النفس البشرية. حين يسود الطمع، يطارد الناس الأسعار الصاعدة ويشترون بتهور. وحين يسود الخوف، يبيعون في ذعر في أسوأ لحظة. السوق لا يستجيب للحقائق — بل يستجيب لما <em>يشعر</em> به الناس تجاه الحقائق. قاعدة وارن بافيت: "كن طامعًا حين يخاف الآخرون. وكن خائفًا حين يطمع الآخرون." <span style="display:block;margin-top:14px;font-size:12px;color:var(--text-muted);font-family:'IBM Plex Mono',monospace;">↳ قراءات توضيحية من مؤشرات المشاعر الكبرى للخوف والطمع.</span></p>
+          <h2 class="slide-headline">السوق آلة<br>تعمل بـ<em>الخوف</em>و<em>الطمع</em>.</h2>
+          <p class="slide-body">كل حركة سعر تحكي قصة عن النفس البشرية. حين يسود الطمع، يطارد الناس الأسعار الصاعدة ويشترون بتهور. وحين يسود الخوف، يبيعون في ذعر في أسوأ لحظة. السوق لا يستجيب للحقائق — بل يستجيب لما <em>يشعر</em>به الناس تجاه الحقائق. قاعدة وارن بافيت: "كن طامعًا حين يخاف الآخرون. وكن خائفًا حين يطمع الآخرون." <span style="display:block;margin-top:14px;font-size:12px;color:var(--text-muted);font-family:'IBM Plex Mono',monospace;">↳ قراءات توضيحية من مؤشرات المشاعر الكبرى للخوف والطمع.</span></p>
         </div>
         <div class="slide-visual">
           <div class="fg-meter">
@@ -287,15 +285,15 @@
         </div>
         <div class="slide-visual">
           <div class="eq-wrap">
-            <div class="eq-line"><span class="eq-icon">📈</span><span class="eq-text">السعر(t) = f(الزخم، التقلب)</span></div>
+            <div class="eq-line"><span class="eq-text">السعر(t) = f(الزخم، التقلب)</span></div>
             <div class="eq-plus">+</div>
-            <div class="eq-line"><span class="eq-icon">📊</span><span class="eq-text">الإشارة = المتوسط المتحرك(t) − المتوسط المتحرك(t−n)</span></div>
+            <div class="eq-line"><span class="eq-text">الإشارة = المتوسط المتحرك(t) − المتوسط المتحرك(t−n)</span></div>
             <div class="eq-plus">+</div>
-            <div class="eq-line"><span class="eq-icon">🔁</span><span class="eq-text">العودة إلى المتوسط: P(العودة إلى μ) → مرتفعة</span></div>
+            <div class="eq-line"><span class="eq-text">العودة إلى المتوسط: P(العودة إلى μ) → مرتفعة</span></div>
             <div class="eq-plus">+</div>
-            <div class="eq-line"><span class="eq-icon">⚙️</span><span class="eq-text">المخاطر = σ × √(الزمن) × حجم_المركز</span></div>
+            <div class="eq-line"><span class="eq-text">المخاطر = σ × √(الزمن) × حجم_المركز</span></div>
             <div class="eq-plus">=</div>
-            <div class="eq-line eq-result"><span class="eq-icon">🎯</span><span class="eq-text">الأفضلية: القيمة المتوقعة > 0</span></div>
+            <div class="eq-line eq-result"><span class="eq-text">الأفضلية: القيمة المتوقعة > 0</span></div>
           </div>
         </div>
       </div>
@@ -376,10 +374,10 @@
     <h2 class="section-title">ما هو سوق الأسهم؟</h2>
     <p class="section-lead">في جوهره، سوق الأسهم مكان يتبادل فيه المشترون والبائعون حصص ملكية في الشركات.</p>
     <div class="card-grid">
-      <div class="card"><span class="card-icon">🏢</span><div class="card-title">شركة تحتاج رأس مال</div><div class="card-body">تحتاج الشركة إلى مال لتنمو. وبدل الاقتراض من بنك، يمكنها أن تبيع للجمهور أجزاءً صغيرة من نفسها — تُسمى <strong>أسهمًا</strong>.</div></div>
-      <div class="card"><span class="card-icon">🎟️</span><div class="card-title">أنت تشتري سهمًا</div><div class="card-body">حين تشتري سهمًا، تملك جزءًا ضئيلًا من تلك الشركة. إن نجحت الشركة، ارتفعت قيمة سهمك. وإن تعثّرت، انخفضت.</div></div>
-      <div class="card"><span class="card-icon">⚖️</span><div class="card-title">البورصة (EGX)</div><div class="card-body">البورصة المصرية هي السوق المنظّم الذي يجري فيه كل هذا البيع والشراء لحظة بلحظة، تحت إشراف الهيئة العامة للرقابة المالية.</div></div>
-      <div class="card"><span class="card-icon">🤝</span><div class="card-title">الوسيط (EFG)</div><div class="card-body">لا يمكنك دخول EGX والتداول مباشرة. تحتاج وسيطًا مرخّصًا — EFG هيرميس — ليضع الأوامر نيابة عنك.</div></div>
+      <div class="card"><div class="card-title">شركة تحتاج رأس مال</div><div class="card-body">تحتاج الشركة إلى مال لتنمو. وبدل الاقتراض من بنك، يمكنها أن تبيع للجمهور أجزاءً صغيرة من نفسها — تُسمى <strong>أسهمًا</strong>.</div></div>
+      <div class="card"><div class="card-title">أنت تشتري سهمًا</div><div class="card-body">حين تشتري سهمًا، تملك جزءًا ضئيلًا من تلك الشركة. إن نجحت الشركة، ارتفعت قيمة سهمك. وإن تعثّرت، انخفضت.</div></div>
+      <div class="card"><div class="card-title">البورصة (EGX)</div><div class="card-body">البورصة المصرية هي السوق المنظّم الذي يجري فيه كل هذا البيع والشراء لحظة بلحظة، تحت إشراف الهيئة العامة للرقابة المالية.</div></div>
+      <div class="card"><div class="card-title">الوسيط (EFG)</div><div class="card-body">لا يمكنك دخول EGX والتداول مباشرة. تحتاج وسيطًا مرخّصًا — EFG هيرميس — ليضع الأوامر نيابة عنك.</div></div>
     </div>
     <div class="chart-wrap">
       <div class="chart-title">مسار التداول</div>
@@ -439,10 +437,10 @@
     <h2 class="section-title">كيف تشتري أو تبيع؟</h2>
     <p class="section-lead">حين تتداول، تضع "أمرًا" — تعليمة بالشراء أو البيع. أنواع الأوامر المختلفة تمنحك درجات تحكم مختلفة.</p>
     <div class="card-grid">
-      <div class="card"><span class="card-icon">🎯</span><div class="card-title">أمر بسعر السوق</div><div class="card-body">اشترِ الآن بأي سعر يعرضه السوق. يضمن التنفيذ لا السعر. يُستخدم حين تهمّ السرعة.</div></div>
-      <div class="card"><span class="card-icon">📍</span><div class="card-title">أمر محدد السعر</div><div class="card-body">اشترِ فقط عند EGP 65 أو أقل. يضمن السعر لا التنفيذ. لا تقع الصفقة إلا إذا بلغ السوق هدفك.</div></div>
-      <div class="card"><span class="card-icon">🛑</span><div class="card-title">أمر وقف الخسارة</div><div class="card-body">إذا هبط السعر إلى EGP 55، يبيع تلقائيًا لوقف الخسارة. أساسي لإدارة المخاطر — يجعلك تنام ليلًا.</div></div>
-      <div class="card"><span class="card-icon">📈</span><div class="card-title">أمر وقف محدد السعر</div><div class="card-body">يُفعَّل عند سعر الوقف، لكنه لا يُنفَّذ إلا داخل نطاق الحد الذي وضعته. تحكم أكبر، لكنه قد يفوتك في الأسواق السريعة.</div></div>
+      <div class="card"><div class="card-title">أمر بسعر السوق</div><div class="card-body">اشترِ الآن بأي سعر يعرضه السوق. يضمن التنفيذ لا السعر. يُستخدم حين تهمّ السرعة.</div></div>
+      <div class="card"><div class="card-title">أمر محدد السعر</div><div class="card-body">اشترِ فقط عند EGP 65 أو أقل. يضمن السعر لا التنفيذ. لا تقع الصفقة إلا إذا بلغ السوق هدفك.</div></div>
+      <div class="card"><div class="card-title">أمر وقف الخسارة</div><div class="card-body">إذا هبط السعر إلى EGP 55، يبيع تلقائيًا لوقف الخسارة. أساسي لإدارة المخاطر — يجعلك تنام ليلًا.</div></div>
+      <div class="card"><div class="card-title">أمر وقف محدد السعر</div><div class="card-body">يُفعَّل عند سعر الوقف، لكنه لا يُنفَّذ إلا داخل نطاق الحد الذي وضعته. تحكم أكبر، لكنه قد يفوتك في الأسواق السريعة.</div></div>
     </div>
     <div style="background:rgba(255,208,90,.06);border:1px solid rgba(255,208,90,.2);border-radius:4px;padding:14px 20px;margin-bottom:24px;font-size:13px;color:var(--text-dim);font-family:'IBM Plex Mono',monospace;">
       ↳ سجل الأوامر أدناه هو النسخة الواقعية من <strong>منحنيات العرض والطلب أعلاه</strong> — ملتقطة في لحظة واحدة، عند مستويات سعرية فعلية، بكميات حقيقية تنتظر التنفيذ.
@@ -464,8 +462,8 @@
 
     <div class="chart-tab-wrap">
       <div class="chart-tabs">
-        <button class="chart-tab on" onclick="showTab('line')">📈 الرسم الخطي</button>
-        <button class="chart-tab" onclick="showTab('candle')">🕯 الشمعة اليابانية</button>
+        <button class="chart-tab on" onclick="showTab('line')">الرسم الخطي</button>
+        <button class="chart-tab" onclick="showTab('candle')">الشمعة اليابانية</button>
       </div>
 
       <!-- LINE CHART PANEL -->
@@ -473,8 +471,8 @@
         <div class="chart-explainer">
           <div class="chart-explain-text">
             <h3>الرسم الخطي</h3>
-            <p>أبسط رسم بياني للسعر. يصل فقط بين <strong>أسعار الإغلاق</strong> لكل فترة — نقطة لكل يوم (أو ساعة، أو دقيقة)، يربطها خط.</p>
-            <p>جيد لرؤية الاتجاه العام. لكنه يهدر كثيرًا من المعلومات — لا ترى ما حدث <em>خلال</em> كل فترة.</p>
+            <p>أبسط رسم بياني للسعر. يصل فقط بين <strong>أسعار الإغلاق</strong>لكل فترة — نقطة لكل يوم (أو ساعة، أو دقيقة)، يربطها خط.</p>
+            <p>جيد لرؤية الاتجاه العام. لكنه يهدر كثيرًا من المعلومات — لا ترى ما حدث <em>خلال</em>كل فترة.</p>
             <ul class="chart-pros">
               <li>نظيف وسهل القراءة</li>
               <li>ممتاز لتحليل الاتجاه طويل المدى</li>
@@ -537,7 +535,7 @@
               <line x1="82" y1="185" x2="104" y2="185" stroke="#1C7A3E" stroke-width="1" stroke-dasharray="3"/>
               <!-- Label below -->
               <text x="55" y="212" fill="#1C7A3E" font-size="11" font-family="IBM Plex Mono">صاعدة</text>
-              <text x="52" y="224" fill="#666666" font-size="9" font-family="IBM Plex Mono">الإغلاق > الافتتاح</text>
+              <text x="52" y="224" fill="#666666" font-size="9" font-family="IBM Plex Mono">الإغلاق >الافتتاح</text>
 
               <!-- ── BEARISH CANDLE (red) ── x=230 -->
               <!-- Wick top -->
@@ -576,10 +574,9 @@
       <div class="chart-title">السهم نفسه — رسم خطي + حجم التداول (60 يومًا)</div>
       <div class="chart-subtitle">السعر وحجم التداول بُعدان منفصلان من المعلومات. لا يروي أيٌّ منهما القصة كاملة وحده.</div>
       <div style="margin-bottom:16px;font-size:14px;color:var(--text-dim);line-height:1.7;">
-        <strong style="color:var(--yn-ink);">حجم التداول</strong> يقيس كم سهمًا تغيّرت ملكيته في فترة ما. وهو يجيب: <em>كم من القناعة كان وراء حركة السعر هذه؟</em><br>
+        <strong style="color:var(--yn-ink);">حجم التداول</strong>يقيس كم سهمًا تغيّرت ملكيته في فترة ما. وهو يجيب: <em>كم من القناعة كان وراء حركة السعر هذه؟</em><br>
         <span style="color:var(--green);">● عمود حجم أخضر</span> = أُغلق السعر أعلى من اليوم السابق — المشترون في السيطرة.<br>
-        <span style="color:var(--red);">● عمود حجم أحمر</span> = أُغلق السعر أدنى من اليوم السابق — البائعون في السيطرة.<br>
-        حركة سعرية كبيرة على <strong>حجم تداول مرتفع</strong> إشارة قوية. والحركة نفسها على <strong>حجم منخفض</strong> ضعيفة ومرشحة للانعكاس.
+        <span style="color:var(--red);">● عمود حجم أحمر</span> = أُغلق السعر أدنى من اليوم السابق — البائعون في السيطرة.<br>حركة سعرية كبيرة على <strong>حجم تداول مرتفع</strong>إشارة قوية. والحركة نفسها على <strong>حجم منخفض</strong>ضعيفة ومرشحة للانعكاس.
       </div>
       <canvas id="priceChart" style="max-height:200px;"></canvas>
       <div style="height:16px;"></div>
@@ -987,7 +984,7 @@ function drawOHLC(){
     prices.push(parseFloat(p.toFixed(2)));
     volumes.push(Math.floor(Math.random()*900000+100000));
   }
-  // color volume bars: green if close > prev close, red if close < prev close
+  // color volume bars: green if close >prev close, red if close < prev close
   for(let i=0;i<days;i++){
     const up = i===0 ? true : prices[i] >= prices[i-1];
     volColors.push(up ? 'rgba(28,122,62,0.5)' : 'rgba(179,38,30,0.5)');

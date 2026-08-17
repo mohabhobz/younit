@@ -40,7 +40,11 @@ function draw(node, parentX, parentY) {
       `direction:${t.dir}`,
       t.tt && t.tt !== 'none' ? `text-transform:${t.tt}` : '',
       'white-space:pre-wrap',
-      node.lines === 1 ? 'white-space:pre' : '',
+      // The same promise the plugin makes: a line that did not wrap in the
+      // browser does not wrap here, and it stays where its box put it.
+      node.lines === 1 ? 'white-space:pre;display:flex;align-items:center' : '',
+      node.lines === 1 && t.a === 'center' ? 'justify-content:center' : '',
+      node.lines === 1 && (t.a === 'right' || t.a === 'end') ? 'justify-content:flex-end' : '',
       'overflow:visible',
     ]
       .filter(Boolean)

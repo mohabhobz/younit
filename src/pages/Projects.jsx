@@ -17,6 +17,9 @@ const COLLECTIONS = {
 
 const TONES = { live: 'blue', 'in-development': 'amber', archived: 'purple' }
 
+/** Card and description, sharing the grid's rows with the columns beside it. */
+const COLUMN = { display: 'grid', gridTemplateRows: 'subgrid', gridRow: 'span 2', gap: 0 }
+
 export default function Projects() {
   const { collection } = useParams()
   const { t, locale } = useI18n()
@@ -35,7 +38,12 @@ export default function Projects() {
         {docs.length ? (
           <Grid>
             {docs.map((doc) => (
-              <div key={doc.slug}>
+              // The column takes its two rows from the grid rather than laying
+              // them out itself, so every card in a row is the height of the
+              // tallest and every description starts on the same line. Without
+              // it a title that wraps to two lines makes its own card taller
+              // than the two beside it.
+              <div key={doc.slug} style={COLUMN}>
                 <EditorialCard
                   to={`/build/${collection}/${doc.slug}`}
                   tag={t(`build.status.${doc.status ?? 'in-development'}`)}

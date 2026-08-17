@@ -87,7 +87,8 @@ export default function SessionDeck() {
           trail={[
             { label: t('learn.title'), to: '/learn' },
             ...(track ? [{ label: t(track.key), to: track.path }] : []),
-            { label: doc.title, to: `/learn/${collection}/${slug}` },
+            // Not a link: this is the page you are on.
+            { label: doc.title },
             ...(index >= 0 && total
               ? [{ label: t('learn.sessionOf', { session: index + 1, total }) }]
               : []),

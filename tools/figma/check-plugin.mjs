@@ -150,6 +150,10 @@ function clone(source) {
   copy.name = source.name
   copy.characters = source.characters
   copy.fontName = source.fontName
+  copy.width = source.width
+  copy.height = source.height
+  copy.x = source.x
+  copy.y = source.y
   for (const child of source.children) copy.appendChild(clone(child))
   return copy
 }
@@ -180,6 +184,17 @@ const figma = {
   createRectangle: () => node('RECTANGLE'),
   createComponent: () => node('COMPONENT'),
   createNodeFromSvg: () => node('FRAME'),
+  createComponentFromNode(source) {
+    const component = node('COMPONENT')
+    component.name = source.name
+    component.width = source.width
+    component.height = source.height
+    for (const child of [...source.children]) component.appendChild(child)
+    if (source.parent) {
+      source.parent.children = source.parent.children.filter((c) => c !== source)
+    }
+    return component
+  },
   async createImageAsync() {
     return { hash: 'hash' }
   },
@@ -329,6 +344,10 @@ function compare(built, node, file, path) {
       }
     }
   }
+  // An instance's insides belong to its component, not to this page — that is
+  // the point of it being one. Only its own box has to match.
+  if (built.type === 'INSTANCE') return
+
   const kids = node.ch || []
   for (let i = 0; i < kids.length && i < built.children.length; i++) {
     compare(built.children[i], kids[i], file, path + node.n + ' › ')

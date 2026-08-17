@@ -10,6 +10,40 @@
 
 let COMPONENTS = {}
 
+/**
+ * The header and the footer are the same design on every page, so they are
+ * made once and used everywhere after that — a component built from the real
+ * thing rather than a redrawing of it. Change the header in the file and all
+ * hundred and fifty pages change with it.
+ *
+ * The key carries the width and the tone because those are the versions that
+ * genuinely differ: a header on a phone is not a narrower desktop header, and
+ * the blue one is not the dark one.
+ */
+const SHARED = ['Header', 'Footer']
+let BUILT = {}
+let BOARD = null
+
+let LOCALE = 'en'
+
+function sharedKey(node) {
+  const tone = node.bg ? tokenFor(node.bg) || 'plain' : 'plain'
+  // The language belongs in the key: the Arabic header is not the English one
+  // reversed. It carries its own wordmark from the brand PDF, its own words,
+  // and it reads the other way.
+  return node.cmp + ' · ' + LOCALE + ' · ' + Math.round(node.r[2]) + ' · ' + tone
+}
+
+/** Turns the frame just built into a component, and hands back an instance. */
+function componentise(node, frame, key) {
+  figma.currentPage.appendChild(frame)
+  const component = figma.createComponentFromNode(frame)
+  component.name = key
+  if (BOARD) BOARD.appendChild(component)
+  BUILT[key] = component
+  return component.createInstance()
+}
+
 /** The nearest type size token to a measured size, if it is close enough. */
 function sizeTokenFor(size) {
   for (const name of Object.keys(TOKENS.sizes)) {
@@ -106,6 +140,34 @@ async function buildText(node) {
   return text
 }
 
+/**
+ * Where a line that sizes itself has to sit.
+ *
+ * A text node left to size itself is exactly as wide as its words, so it can no
+ * longer be centred by its own box — and the arrow inside every round button
+ * ended up in a corner of it. The box is still known, so the words are placed
+ * in it the way the browser placed them.
+ */
+function offsetIn(node, text) {
+  if (node.lines !== 1) return [0, 0]
+
+  const [, , width, height] = node.r
+  const align = node.tx.a
+  const rtl = node.tx.dir === 'rtl'
+  const toEnd =
+    align === 'right' ||
+    align === 'end' ||
+    (rtl && (align === 'start' || align === 'left' || align === 'justify' || align === 'normal'))
+
+  let dx = 0
+  if (align === 'center') dx = (width - text.width) / 2
+  else if (toEnd) dx = width - text.width
+
+  // A line of body copy is as tall as its leading, so this is nothing most of
+  // the time. It is the glyph in a 44px circle that needs it.
+  return [dx, (height - text.height) / 2]
+}
+
 async function buildImage(node) {
   const rect = figma.createRectangle()
   rect.name = node.n || 'image'
@@ -185,8 +247,9 @@ async function buildNode(node, parentX, parentY) {
 
   if (node.t === 'T') {
     const text = await buildText(node)
-    text.x = node.r[0] - parentX
-    text.y = node.r[1] - parentY
+    const offset = offsetIn(node, text)
+    text.x = node.r[0] - parentX + offset[0]
+    text.y = node.r[1] - parentY + offset[1]
     return text
   }
 
@@ -203,6 +266,16 @@ async function buildNode(node, parentX, parentY) {
     vector.x = node.r[0] - parentX
     vector.y = node.r[1] - parentY
     return vector
+  }
+
+  // A header already made is not rebuilt: the instance is placed and the two
+  // hundred nodes inside it are never walked again.
+  const shared = SHARED.indexOf(node.cmp) !== -1 ? sharedKey(node) : null
+  if (shared && BUILT[shared]) {
+    const instance = BUILT[shared].createInstance()
+    instance.x = node.r[0] - parentX
+    instance.y = node.r[1] - parentY
+    return instance
   }
 
   const frame = figma.createFrame()
@@ -277,6 +350,13 @@ async function buildNode(node, parentX, parentY) {
     }
   }
 
+  if (shared) {
+    const instance = componentise(node, frame, shared)
+    instance.x = node.r[0] - parentX
+    instance.y = node.r[1] - parentY
+    return instance
+  }
+
   return frame
 }
 
@@ -291,6 +371,8 @@ function firstText(node) {
 }
 
 async function buildPage(snapshot, x, y) {
+  LOCALE = snapshot.locale || 'en'
+
   const page = figma.createFrame()
   page.name = snapshot.route + '  ·  ' + snapshot.device + '  ·  ' + snapshot.locale
   page.resize(Math.max(1, snapshot.w), Math.max(1, Math.round(snapshot.h)))

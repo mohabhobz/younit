@@ -142,7 +142,12 @@ for (const viewport of [PHONE, DESKTOP]) {
     await page.click('.yn-menu-button')
     await page.waitForTimeout(350)
   }
-  await page.click(`${where === 'phone' ? '.yn-nav-mobile' : '.yn-nav-desktop'} a >> nth=-1`)
+  // On a phone the language sits at the end of the menu; on a desktop it is
+  // its own control beside the nav, not the last link in it. Clicking the last
+  // nav link was measuring Editorial and calling it a language switch.
+  await page.click(
+    where === 'phone' ? '.yn-nav-mobile a >> nth=-1' : '.yn-locale-desktop a >> nth=-1',
+  )
   await page.waitForTimeout(500)
 
   const path = new URL(page.url()).pathname

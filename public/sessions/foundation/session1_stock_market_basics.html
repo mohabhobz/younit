@@ -44,8 +44,7 @@
 .yn-deck .card:hover{border-color:var(--gold);transform:translateY(-2px);}
 .yn-deck .card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent);opacity:0;transition:opacity .2s;}
 .yn-deck .card:hover::before{opacity:1;}
-.yn-deck .card-icon{font-size:28px;margin-bottom:14px;display:block;}
-.yn-deck .card-title{font-weight:600;color:var(--yn-ink);margin-bottom:8px;font-size:15px;}
+.yn-deck .yn-deck .card-title{font-weight:600;color:var(--yn-ink);margin-bottom:8px;font-size:15px;}
 .yn-deck .card-body{color:var(--text-dim);font-size:14px;line-height:1.6;}
 
 /* CHART WRAP */
@@ -145,8 +144,7 @@
 /* EQUATION VISUAL */
 .yn-deck .eq-wrap{font-family:'IBM Plex Mono',monospace;width:100%;}
 .yn-deck .eq-line{display:flex;align-items:center;gap:12px;margin-bottom:14px;padding:12px 16px;background:var(--card);border:1px solid var(--border);border-radius:4px;font-size:13px;color:var(--text-dim);}
-.yn-deck .eq-icon{font-size:20px;flex-shrink:0;width:32px;text-align:center;}
-.yn-deck .eq-text{flex:1;}
+.yn-deck .yn-deck .eq-text{flex:1;}
 .yn-deck .eq-plus{color:var(--gold);font-size:18px;text-align:center;margin:2px 0;}
 .yn-deck .eq-result{background:rgba(255,208,90,.08);border-color:var(--gold);color:var(--gold);}
 
@@ -233,8 +231,8 @@
       <div class="slide-inner">
         <div class="slide-text">
           <div class="slide-eyebrow">Perspective 01 of 05</div>
-          <h2 class="slide-headline">The market is a machine<br>that runs on <em>fear</em> and <em>greed</em>.</h2>
-          <p class="slide-body">Every price move tells a story about human psychology. When greed dominates, people chase rising prices and buy recklessly. When fear dominates, they panic sell at the worst moment. The market doesn't respond to facts — it responds to how people <em>feel</em> about facts. Warren Buffett's rule: "Be greedy when others are fearful. Be fearful when others are greedy." <span style="display:block;margin-top:14px;font-size:12px;color:var(--text-muted);font-family:'IBM Plex Mono',monospace;">↳ Illustrative readings from major fear/greed sentiment indices.</span></p>
+          <h2 class="slide-headline">The market is a machine<br>that runs on <em>fear</em>and <em>greed</em>.</h2>
+          <p class="slide-body">Every price move tells a story about human psychology. When greed dominates, people chase rising prices and buy recklessly. When fear dominates, they panic sell at the worst moment. The market doesn't respond to facts — it responds to how people <em>feel</em>about facts. Warren Buffett's rule: "Be greedy when others are fearful. Be fearful when others are greedy." <span style="display:block;margin-top:14px;font-size:12px;color:var(--text-muted);font-family:'IBM Plex Mono',monospace;">↳ Illustrative readings from major fear/greed sentiment indices.</span></p>
         </div>
         <div class="slide-visual">
           <div class="fg-meter">
@@ -287,15 +285,15 @@
         </div>
         <div class="slide-visual">
           <div class="eq-wrap">
-            <div class="eq-line"><span class="eq-icon">📈</span><span class="eq-text">Price(t) = f(momentum, volatility)</span></div>
+            <div class="eq-line"><span class="eq-text">Price(t) = f(momentum, volatility)</span></div>
             <div class="eq-plus">+</div>
-            <div class="eq-line"><span class="eq-icon">📊</span><span class="eq-text">Signal = Moving Avg(t) − Moving Avg(t−n)</span></div>
+            <div class="eq-line"><span class="eq-text">Signal = Moving Avg(t) − Moving Avg(t−n)</span></div>
             <div class="eq-plus">+</div>
-            <div class="eq-line"><span class="eq-icon">🔁</span><span class="eq-text">Mean Reversion: P(return to μ) → high</span></div>
+            <div class="eq-line"><span class="eq-text">Mean Reversion: P(return to μ) → high</span></div>
             <div class="eq-plus">+</div>
-            <div class="eq-line"><span class="eq-icon">⚙️</span><span class="eq-text">Risk = σ × √(time) × position_size</span></div>
+            <div class="eq-line"><span class="eq-text">Risk = σ × √(time) × position_size</span></div>
             <div class="eq-plus">=</div>
-            <div class="eq-line eq-result"><span class="eq-icon">🎯</span><span class="eq-text">EDGE: Expected Value > 0</span></div>
+            <div class="eq-line eq-result"><span class="eq-text">EDGE: Expected Value > 0</span></div>
           </div>
         </div>
       </div>
@@ -376,10 +374,10 @@
     <h2 class="section-title">What Is the Stock Market?</h2>
     <p class="section-lead">At its core, a stock market is a marketplace where buyers and sellers trade ownership pieces of companies.</p>
     <div class="card-grid">
-      <div class="card"><span class="card-icon">🏢</span><div class="card-title">A Company Needs Capital</div><div class="card-body">A company needs money to grow. Instead of borrowing from a bank, it can sell small pieces of itself — called <strong>shares</strong> — to the public.</div></div>
-      <div class="card"><span class="card-icon">🎟️</span><div class="card-title">You Buy a Share</div><div class="card-body">When you buy a share, you own a tiny fraction of that company. If the company does well, your share is worth more. If it does badly, it's worth less.</div></div>
-      <div class="card"><span class="card-icon">⚖️</span><div class="card-title">The Exchange (EGX)</div><div class="card-body">The Egyptian Exchange is the regulated marketplace where all this buying and selling happens in real time, under FRA supervision.</div></div>
-      <div class="card"><span class="card-icon">🤝</span><div class="card-title">The Broker (EFG)</div><div class="card-body">You can't walk into EGX and trade directly. You need a licensed intermediary — EFG Hermes — to place orders on your behalf.</div></div>
+      <div class="card"><div class="card-title">A Company Needs Capital</div><div class="card-body">A company needs money to grow. Instead of borrowing from a bank, it can sell small pieces of itself — called <strong>shares</strong> — to the public.</div></div>
+      <div class="card"><div class="card-title">You Buy a Share</div><div class="card-body">When you buy a share, you own a tiny fraction of that company. If the company does well, your share is worth more. If it does badly, it's worth less.</div></div>
+      <div class="card"><div class="card-title">The Exchange (EGX)</div><div class="card-body">The Egyptian Exchange is the regulated marketplace where all this buying and selling happens in real time, under FRA supervision.</div></div>
+      <div class="card"><div class="card-title">The Broker (EFG)</div><div class="card-body">You can't walk into EGX and trade directly. You need a licensed intermediary — EFG Hermes — to place orders on your behalf.</div></div>
     </div>
     <div class="chart-wrap">
       <div class="chart-title">THE TRADING FLOW</div>
@@ -439,10 +437,10 @@
     <h2 class="section-title">How Do You Buy or Sell?</h2>
     <p class="section-lead">When you trade, you place an "order" — an instruction to buy or sell. Different order types give you different control.</p>
     <div class="card-grid">
-      <div class="card"><span class="card-icon">🎯</span><div class="card-title">Market Order</div><div class="card-body">Buy NOW at whatever the market offers. Guarantees execution, not price. Used when speed matters.</div></div>
-      <div class="card"><span class="card-icon">📍</span><div class="card-title">Limit Order</div><div class="card-body">Only buy at EGP 65 or lower. Guarantees price, not execution. The trade only happens if market reaches your target.</div></div>
-      <div class="card"><span class="card-icon">🛑</span><div class="card-title">Stop-Loss Order</div><div class="card-body">If price falls to EGP 55, automatically sell to cut losses. Critical for risk management — lets you sleep at night.</div></div>
-      <div class="card"><span class="card-icon">📈</span><div class="card-title">Stop-Limit Order</div><div class="card-body">Triggered at the stop price, but only executes within your limit range. More control, but can miss in fast markets.</div></div>
+      <div class="card"><div class="card-title">Market Order</div><div class="card-body">Buy NOW at whatever the market offers. Guarantees execution, not price. Used when speed matters.</div></div>
+      <div class="card"><div class="card-title">Limit Order</div><div class="card-body">Only buy at EGP 65 or lower. Guarantees price, not execution. The trade only happens if market reaches your target.</div></div>
+      <div class="card"><div class="card-title">Stop-Loss Order</div><div class="card-body">If price falls to EGP 55, automatically sell to cut losses. Critical for risk management — lets you sleep at night.</div></div>
+      <div class="card"><div class="card-title">Stop-Limit Order</div><div class="card-body">Triggered at the stop price, but only executes within your limit range. More control, but can miss in fast markets.</div></div>
     </div>
     <div style="background:rgba(255,208,90,.06);border:1px solid rgba(255,208,90,.2);border-radius:4px;padding:14px 20px;margin-bottom:24px;font-size:13px;color:var(--text-dim);font-family:'IBM Plex Mono',monospace;">
       ↳ The order book below is the real-world version of the <strong>supply vs. demand curves above</strong> — captured at a single moment in time, at actual price levels, with real quantities waiting to trade.
@@ -464,8 +462,8 @@
 
     <div class="chart-tab-wrap">
       <div class="chart-tabs">
-        <button class="chart-tab on" onclick="showTab('line')">📈 Line Chart</button>
-        <button class="chart-tab" onclick="showTab('candle')">🕯 Japanese Candlestick</button>
+        <button class="chart-tab on" onclick="showTab('line')">Line Chart</button>
+        <button class="chart-tab" onclick="showTab('candle')">Japanese Candlestick</button>
       </div>
 
       <!-- LINE CHART PANEL -->
@@ -473,8 +471,8 @@
         <div class="chart-explainer">
           <div class="chart-explain-text">
             <h3>The Line Chart</h3>
-            <p>The simplest price chart. It connects only the <strong>closing prices</strong> of each period — one dot per day (or hour, or minute), joined by a line.</p>
-            <p>Good for seeing the big picture trend. But it throws away a lot of information — you don't see what happened <em>during</em> each period.</p>
+            <p>The simplest price chart. It connects only the <strong>closing prices</strong>of each period — one dot per day (or hour, or minute), joined by a line.</p>
+            <p>Good for seeing the big picture trend. But it throws away a lot of information — you don't see what happened <em>during</em>each period.</p>
             <ul class="chart-pros">
               <li>Clean and easy to read</li>
               <li>Great for long-term trend analysis</li>
@@ -537,7 +535,7 @@
               <line x1="82" y1="185" x2="104" y2="185" stroke="#1C7A3E" stroke-width="1" stroke-dasharray="3"/>
               <!-- Label below -->
               <text x="55" y="212" fill="#1C7A3E" font-size="11" font-family="IBM Plex Mono">BULLISH</text>
-              <text x="52" y="224" fill="#666666" font-size="9" font-family="IBM Plex Mono">CLOSE > OPEN</text>
+              <text x="52" y="224" fill="#666666" font-size="9" font-family="IBM Plex Mono">CLOSE >OPEN</text>
 
               <!-- ── BEARISH CANDLE (red) ── x=230 -->
               <!-- Wick top -->
@@ -576,10 +574,9 @@
       <div class="chart-title">SAME STOCK — LINE CHART + VOLUME (60 DAYS)</div>
       <div class="chart-subtitle">Price and volume are two separate dimensions of information. Neither tells the full story alone.</div>
       <div style="margin-bottom:16px;font-size:14px;color:var(--text-dim);line-height:1.7;">
-        <strong style="color:var(--yn-ink);">Volume</strong> measures how many shares changed hands in a given period. It answers: <em>how much conviction was behind this price move?</em><br>
+        <strong style="color:var(--yn-ink);">Volume</strong>measures how many shares changed hands in a given period. It answers: <em>how much conviction was behind this price move?</em><br>
         <span style="color:var(--green);">● Green volume bar</span> = price closed higher than previous day — buyers were in control.<br>
-        <span style="color:var(--red);">● Red volume bar</span> = price closed lower than previous day — sellers were in control.<br>
-        A large price move on <strong>high volume</strong> is a strong signal. The same move on <strong>low volume</strong> is weak and likely to reverse.
+        <span style="color:var(--red);">● Red volume bar</span> = price closed lower than previous day — sellers were in control.<br>A large price move on <strong>high volume</strong>is a strong signal. The same move on <strong>low volume</strong>is weak and likely to reverse.
       </div>
       <canvas id="priceChart" style="max-height:200px;"></canvas>
       <div style="height:16px;"></div>
@@ -987,7 +984,7 @@ function drawOHLC(){
     prices.push(parseFloat(p.toFixed(2)));
     volumes.push(Math.floor(Math.random()*900000+100000));
   }
-  // color volume bars: green if close > prev close, red if close < prev close
+  // color volume bars: green if close >prev close, red if close < prev close
   for(let i=0;i<days;i++){
     const up = i===0 ? true : prices[i] >= prices[i-1];
     volColors.push(up ? 'rgba(28,122,62,0.5)' : 'rgba(179,38,30,0.5)');

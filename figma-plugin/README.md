@@ -36,6 +36,14 @@ variables above rather than holding a copy of the value.
 PillRow, Breadcrumb. Built, not traced: a traced button is a picture of a
 button.
 
+The header and the footer join them from the other direction. They are the
+same design on every page, so the first page to bring one in becomes the
+component and every page after that gets an instance — change the header once
+and all hundred and fifty-four pages follow. There is one per language, width
+and tone, because those are the versions that genuinely differ: the Arabic
+header is not the English one reversed, it carries its own wordmark from the
+brand PDF and reads the other way.
+
 **Pages** — one frame per route per width, with auto layout wherever the
 exporter has verified Figma would put the children back where the browser had
 them, fills bound to the colour variables, and type bound to the scale.

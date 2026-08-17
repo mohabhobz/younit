@@ -6,7 +6,8 @@ import Home from './pages/Home.jsx'
 import Learn from './pages/Learn.jsx'
 import TrackIndex from './pages/TrackIndex.jsx'
 import Article from './pages/Article.jsx'
-import SessionDeck from './pages/SessionDeck.jsx'
+import Session from './pages/Session.jsx'
+import DeckMoved from './pages/DeckMoved.jsx'
 import Glossary from './pages/Glossary.jsx'
 import GlossaryTerm from './pages/GlossaryTerm.jsx'
 import Build from './pages/Build.jsx'
@@ -62,8 +63,8 @@ function pages() {
       <Route path="learn/glossary" element={<Glossary />} />
       <Route path="learn/glossary/:term" element={<GlossaryTerm />} />
       <Route path="learn/:collection" element={<TrackIndex />} />
-      <Route path="learn/:collection/:slug" element={<Article />} />
-      <Route path="learn/:collection/:slug/deck" element={<SessionDeck />} />
+      <Route path="learn/:collection/:slug" element={<Session />} />
+      <Route path="learn/:collection/:slug/deck" element={<DeckMoved />} />
 
       <Route path="build" element={<Build />} />
       <Route path="build/repositories" element={<BuildSection section="repositories" />} />
