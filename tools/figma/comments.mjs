@@ -12,15 +12,14 @@
  * resolving a comment, by design — resolving stays a person's decision, in the
  * file. So the loop is: this replies, marketing resolves.
  *
- * Setup, once:
+ * Setup, once. Figma → your avatar → Settings → Security → Personal access
+ * tokens; generate one with `file_comments:write` and `file_read`. Put it in a
+ * file called `.env` in the project root, which git already ignores:
  *
- *   Figma → your avatar → Settings → Security → Personal access tokens
- *   Generate one with `file_comments:write` and `file_read`.
+ *   FIGMA_TOKEN=figd_xxxxxxxx
+ *   FIGMA_FILE=AbCdEf123456
  *
- *   export FIGMA_TOKEN=figd_xxxxxxxx
- *   export FIGMA_FILE=<the key from the file URL>
- *
- * The key is the part after /design/ in the URL:
+ * The file key is the part after /design/ in the URL:
  *   figma.com/design/AbCdEf123456/Younit  →  AbCdEf123456
  *
  * Use:
@@ -30,10 +29,29 @@
  *   node tools/figma/comments.mjs done <id>         # reply "Done" on a thread
  *   node tools/figma/comments.mjs done <id> --note "moved to the deck"
  */
-import { writeFileSync } from 'node:fs'
+import { writeFileSync, readFileSync, existsSync } from 'node:fs'
 
-const TOKEN = process.env.FIGMA_TOKEN
-const FILE = process.env.FIGMA_FILE || process.argv[3]
+/**
+ * A token typed into one terminal is gone from the next one. `.env` is already
+ * ignored by git, so it can live there and be read from here rather than being
+ * exported again every morning — and it never goes near a commit.
+ */
+function fromEnvFile() {
+  const path = new URL('../../.env', import.meta.url)
+  if (!existsSync(path)) return {}
+
+  const out = {}
+  for (const line of readFileSync(path, 'utf8').split('\n')) {
+    const match = /^\s*(?:export\s+)?([A-Z_]+)\s*=\s*(.*)\s*$/.exec(line)
+    if (match) out[match[1]] = match[2].replace(/^["']|["']$/g, '').trim()
+  }
+  return out
+}
+
+const dotenv = fromEnvFile()
+
+const TOKEN = process.env.FIGMA_TOKEN || dotenv.FIGMA_TOKEN
+const FILE = process.env.FIGMA_FILE || dotenv.FIGMA_FILE || process.argv[3]
 const LIVE = process.env.YOUNIT_URL || 'https://younit-gray.vercel.app'
 
 const argv = process.argv.slice(2)
@@ -45,15 +63,23 @@ const flag = (name) => {
 
 if (!TOKEN) {
   console.error(
-    'No FIGMA_TOKEN. Make one at Figma → Settings → Security → Personal access\n' +
-      'tokens with `file_comments:write` and `file_read`, then:\n\n' +
-      '  export FIGMA_TOKEN=figd_xxxxxxxx\n',
+    'No FIGMA_TOKEN.\n\n' +
+      'Make one at Figma → your avatar → Settings → Security → Personal access\n' +
+      'tokens, with `file_comments:write` and `file_read`. Then put it in a file\n' +
+      'called .env in this folder — git already ignores it:\n\n' +
+      '  FIGMA_TOKEN=figd_xxxxxxxx\n' +
+      '  FIGMA_FILE=xxxxxxxxxxxxxxxxxxxxxx\n',
   )
   process.exit(1)
 }
 
 if (!FILE) {
-  console.error('No FIGMA_FILE. It is the part after /design/ in the file URL.\n')
+  console.error(
+    'No FIGMA_FILE.\n\n' +
+      'It is the part after /design/ in the file URL:\n' +
+      '  figma.com/design/AbCdEf123456/Younit  →  AbCdEf123456\n\n' +
+      'Put it in .env beside the token, or pass it: comments.mjs pull <key>\n',
+  )
   process.exit(1)
 }
 
