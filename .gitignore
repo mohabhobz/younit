@@ -10,3 +10,7 @@ tools/shots/
 
 # Deploy scratch
 .vercel/
+
+# Marketing comments pulled from Figma — regenerated, not source
+figma-comments.md
+figma-comments.json

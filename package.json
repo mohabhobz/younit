@@ -17,7 +17,9 @@
     "figma:tokens": "node tools/figma/tokens.mjs",
     "figma:export": "node tools/figma/export.mjs",
     "figma:plugin": "node tools/figma/build-plugin.mjs",
-    "figma": "npm run figma:tokens && npm run figma:plugin && npm run figma:export"
+    "figma": "npm run figma:tokens && npm run figma:plugin && npm run figma:export",
+    "figma:comments": "node tools/figma/comments.mjs pull",
+    "figma:done": "node tools/figma/comments.mjs done"
   },
   "dependencies": {
     "@fontsource-variable/anybody": "^5.3.0",
