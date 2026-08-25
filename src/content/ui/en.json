@@ -51,8 +51,8 @@
       "buildCaption": "run a strategy on live egx data - or build the tool, dashboard or agent you wish existed.",
       "competeCaption": "strategies go head to head on a public leaderboard -through seasons, competitions, and hackathons.",
       "learningSnapshot": "Understand the market behind your code",
-      "builderSnapshot": "Builder Snapshot",
-      "competitionSnapshot": "Competition Snapshot",
+      "builderSnapshot": "Bring your trading idea to life",
+      "competitionSnapshot": "Put your strategy to the test!",
       "lessonsCompleted": "What is the stock market and what is Algo Trading",
       "learningProgress": "Learning progress",
       "progressRate": "Progress rate",
@@ -64,7 +64,8 @@
       "currentRank": "Current rank",
       "rankChange": "Rank change",
       "seeAllRanks": "See all ranks",
-      "learnPhotoAlt": "People trading at their desks"
+      "learnPhotoAlt": "People trading at their desks",
+      "getStarted": "Click here to get started"
     },
     "api": {
       "titleLine1": "Build on this,",

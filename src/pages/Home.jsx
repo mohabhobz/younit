@@ -5,19 +5,14 @@ import SiteHeader from "../components/layout/SiteHeader.jsx";
 import SiteFooter from "../components/layout/SiteFooter.jsx";
 import { Button } from "../components/ui/Button.jsx";
 import {
-  EditorialCard,
   Panel,
   SnapshotCard,
-  TrackCard,
 } from "../components/ui/Card.jsx";
 import {
   Badge,
   Display,
-  MonoChip,
-  PanelBadge,
   Rule,
 } from "../components/ui/Pieces.jsx";
-import { findDoc, formatDate, peopleById } from "../lib/content.js";
 import { useI18n } from "../lib/i18n.jsx";
 import Photo from "../components/ui/Photo.jsx";
 import photoJpg from "../assets/compete-team.jpg";
@@ -321,7 +316,7 @@ function RankSteps() {
   );
 }
 
-function CardCta({ children, tone, href }) {
+function CardCta({ children, tone, href, to }) {
   return (
     <div
       style={{
@@ -331,7 +326,9 @@ function CardCta({ children, tone, href }) {
         paddingTop: 6,
       }}
     >
-      <Button tone={tone} size="sm" href={href}>
+      {/* `to` is a page of this site and goes through the router, which
+          keeps the language prefix; `href` is an anchor on this one. */}
+      <Button tone={tone} size="sm" href={href} to={to}>
         {children}
       </Button>
     </div>
@@ -405,42 +402,22 @@ function Journey() {
             <div style={{ display: "flex", justifyContent: "center" }}>
               <Badge>{t("home.journey.builderSnapshot")}</Badge>
             </div>
-            <div>
-              <div style={{ ...LABEL, paddingTop: 12, paddingBottom: 12 }}>
-                {t("home.journey.activeStrategy")}
-              </div>
-              <div
-                data-count=""
-                className="yn-display"
-                style={{ fontSize: "var(--yn-stat)", lineHeight: 1.05 }}
-              >
-                12
-              </div>
-            </div>
-            <hr style={{ border: 0, borderTop: "1px solid var(--yn-ink)", margin: 0 }} />
-            <div>
-              <div style={LABEL}>{t("home.journey.backtestReturn")}</div>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                }}
-              >
-                <span
-                  data-count=""
-                  className="yn-display"
-                  style={{ fontSize: "var(--yn-stat-2)", lineHeight: 1.05 }}
-                >
-                  +18.4%
-                </span>
-                <Glyph data-draw="" />
-              </div>
-              <div style={{ ...LABEL, marginTop: 6 }}>{t("home.journey.backtestReturn")}</div>
-            </div>
+            {/* The counts are gone. What is left is the shape of a strategy —
+                a rule, a signal, a position — which is the thing being offered
+                rather than a figure standing in for it. */}
             <div
               data-seq=""
-              style={{ display: "flex", alignItems: "center", gap: 8 }}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 8,
+                paddingTop: 12,
+                // The counts that filled the rest of this card are gone, and
+                // the button holds the floor. Without this the chips cling to
+                // the top and leave the middle empty.
+                marginBottom: "auto",
+              }}
             >
               <FlowChip glyph="step" line1={t("home.flow.price")} line2={t("home.flow.priceRule")} />
               <span style={{ fontSize: 'var(--yn-small)' }}>→</span>
@@ -448,8 +425,8 @@ function Journey() {
               <span style={{ fontSize: 'var(--yn-small)' }}>→</span>
               <FlowChip glyph="step" line1={t("home.flow.buy")} line2={t("home.flow.buyRule")} />
             </div>
-            <CardCta tone="blue" href="#api">
-              {t("home.journey.runStrategy")}
+            <CardCta tone="blue" to="/build/repositories">
+              {t("home.journey.getStarted")}
             </CardCta>
           </SnapshotCard>
 
@@ -513,210 +490,8 @@ function Journey() {
 }
 
 /* -------------------------------------------------------------------------- */
-/* The API, two ways                                                          */
+/* The photograph                                                             */
 /* -------------------------------------------------------------------------- */
-
-const CODE = `from efg import Client
-
-client = Client(api_key="YOUR_KEY")
-
-# where's CIB trading right now?
-quote = client.quote("COMI")
-print(quote.last)
-
-# Buy 100 shares, limit at 135
-order = client.buy("COMI", qty=100, limit=135.00)
-print(order.id, order.status)`;
-
-function PanelHead({ tone, children }) {
-  const { t } = useI18n()
-
-  return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        gap: 20,
-        marginBottom: 16,
-        flexWrap: "wrap",
-      }}
-    >
-      <PanelBadge tone={tone}>{t("home.api.badge")}</PanelBadge>
-      <span
-        style={{
-          fontSize: 14,
-          color: "var(--yn-grey-dark)",
-          lineHeight: 1.4,
-          flex: 1,
-        }}
-      >
-        {children}
-      </span>
-    </div>
-  );
-}
-
-function ApiTwoWays() {
-  const { t } = useI18n()
-
-  // The panel's point is that the same thing can be said in plain language —
-  // so the transcript is in the reader's language, not always in English.
-  const transcript = t("home.transcript")
-
-  return (
-    <section id="api" style={{ padding: "var(--yn-section) 0" }}>
-      <Display size="h1" style={{ lineHeight: 1.05, margin: "0 0 10px" }}>
-        {t("home.api.titleLine1")}
-        <br />
-        {t("home.api.titleLine2")}
-      </Display>
-      <p
-        className="yn-display"
-        style={{
-          fontSize: "var(--yn-h3)",
-          lineHeight: 1.2,
-          margin: "0 0 56px",
-        }}
-      >
-        {t("home.api.sublineLine1")}
-        <br />
-        {t("home.api.sublineLine2")}
-      </p>
-
-      <div
-        data-reveal=""
-        style={{
-          display: "grid",
-          gridTemplateColumns:
-            "repeat(auto-fit, minmax(min(420px, 100%), 1fr))",
-          gap: 56,
-          alignItems: "stretch",
-        }}
-      >
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <PanelHead tone="purple">
-            {t("home.api.codeLead")}
-          </PanelHead>
-          <Panel tone="purple" style={{ flex: 1 }}>
-            <pre
-              style={{
-                fontFamily: "var(--yn-mono)",
-                fontSize: 'var(--yn-small)',
-                lineHeight: 1.75,
-                whiteSpace: "pre-wrap",
-              }}
-            >
-              {CODE}
-            </pre>
-          </Panel>
-        </div>
-
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <PanelHead tone="blue">
-            {t("home.api.agentLead")}
-          </PanelHead>
-          <Panel
-            tone="blue"
-            seq
-            style={{ display: "flex", flexDirection: "column", gap: 14, flex: 1 }}
-          >
-            {transcript.map((turn, i) => (
-              <div key={turn.line}>
-                <MonoChip>{turn.who}</MonoChip>
-                <div
-                  style={{
-                    fontFamily: "var(--yn-mono)",
-                    fontSize: 12,
-                    letterSpacing: "0.02em",
-                    lineHeight: 1.6,
-                    margin:
-                      i === transcript.length - 1 ? "8px 0 0" : "8px 0 8px",
-                  }}
-                >
-                  {turn.line}
-                </div>
-                {i < transcript.length - 1 ? (
-                  <hr
-                    style={{
-                      border: 0,
-                      borderTop: "1px solid var(--yn-ink)",
-                      margin: 0,
-                    }}
-                  />
-                ) : null}
-              </div>
-            ))}
-          </Panel>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* -------------------------------------------------------------------------- */
-/* Editorial, photo band, project tracks                                      */
-/* -------------------------------------------------------------------------- */
-
-/**
- * The three the design calls out, resolved against the real content files. The
- * tag is derived from each document's own collection and kind — hard-coding it
- * is how the deep dive ended up labelled "Newsletter" and the newsletter
- * "Deep Dive".
- */
-const FEATURED = [
-  { collection: "deep-dives", slug: "efg-api-what-you-can-build", tone: "purple" },
-  { collection: "deep-dives", slug: "egx-liquidity-why-stocks-dont-move", tone: "amber" },
-  { collection: "editorial", slug: "2026-04-week-2", tone: "blue" },
-];
-
-function tagFor(doc, t) {
-  if (doc.collection === "deep-dives") return t("learn.deepDiveTag");
-  return t(`editorial.kinds.${doc.kind ?? "newsletter"}`);
-}
-
-function Editorial() {
-  const { t, locale } = useI18n()
-
-  const items = FEATURED.map((f) => ({
-    ...f,
-    doc: findDoc(f.collection, f.slug, locale),
-  })).filter((f) => f.doc);
-  if (!items.length) return null;
-
-  return (
-    <section id="editorial" style={{ padding: "var(--yn-section) 0" }}>
-      <Display size="h1">{t("home.editorial.title")}</Display>
-      <p
-        className="yn-display"
-        style={{ fontSize: "var(--yn-h3)", margin: "0 0 48px" }}
-      >
-        {t("home.editorial.subtitle")}
-      </p>
-
-      <div data-reveal="" style={THREE_UP}>
-        {items.map(({ doc, tone, collection }) => {
-          const author = (doc.authors ?? [])
-            .map((id) => peopleById[id]?.name)
-            .filter(Boolean)[0];
-          const base =
-            collection === "editorial" ? "/editorial" : "/learn/deep-dives";
-          return (
-            <EditorialCard
-              key={doc.slug}
-              to={`${base}/${doc.slug}`}
-              tag={tagFor(doc, t)}
-              tagTone={tone}
-              title={doc.title}
-              meta={[formatDate(doc.publishedAt, locale), author]
-                .filter(Boolean)
-                .join(" • ")}
-            />
-          );
-        })}
-      </div>
-    </section>
-  );
-}
 
 function PhotoBand() {
   const { t } = useI18n()
@@ -770,39 +545,6 @@ const TRACKS = [
   },
 ];
 
-function ProjectTracks() {
-  const { t, locale } = useI18n()
-
-  const items = TRACKS.map((track) => ({
-    ...track,
-    doc: findDoc(track.collection, track.slug, locale),
-  })).filter((track) => track.doc);
-  if (!items.length) return null;
-
-  return (
-    <section style={{ padding: "var(--yn-section) 0 104px" }}>
-      <Display size="h1" style={{ margin: "0 0 48px" }}>
-        {t("home.tracks.titleLine1")}
-        <br />
-        {t("home.tracks.titleLine2")}
-      </Display>
-
-      <div data-reveal="" style={THREE_UP}>
-        {items.map((track) => (
-          <TrackCard
-            key={track.slug}
-            to={`/build/${track.collection}/${track.slug}`}
-            metaStart={track.metaStart}
-            metaEnd={t(track.metaEnd)}
-            title={track.doc.title}
-            shape={track.shape}
-          />
-        ))}
-      </div>
-    </section>
-  );
-}
-
 /* -------------------------------------------------------------------------- */
 
 export default function Home() {
@@ -838,11 +580,7 @@ export default function Home() {
         <Rule />
         <Journey />
         <Rule />
-        <ApiTwoWays />
-        <Rule />
-        <Editorial />
         <PhotoBand />
-        <ProjectTracks />
       </main>
 
       <SiteFooter tone="blue" />
