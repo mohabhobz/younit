@@ -121,11 +121,11 @@ function Hero() {
         </p>
 
         <div data-cta="" className="yn-cta-row">
-          {/* Both destinations are still with the client: the account link
-              goes to EFG ONE and the key link to the page Raed drew. Until the
-              addresses arrive they point at the explanation on this page,
-              which is where a reader who cannot get in yet should land. */}
-          <Button tone="amber" href="#what">
+          {/* The labels are marketing's; the destinations are not settled.
+              Both keep the addresses they already had rather than being
+              pointed somewhere invented — the account link belongs to EFG ONE
+              and the key link to the page Raed drew, and neither has arrived. */}
+          <Button tone="amber" href="#journey">
             {t("home.ctaFoundation")}
           </Button>
           <Button tone="blue" href="#api">
