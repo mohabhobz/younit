@@ -38,11 +38,11 @@
     "forwardArrow": "→"
   },
   "home": {
-    "eyebrow": "Egypt's open initiative for Capital Markets",
+    "eyebrow": "The MENA Region's First API Trading Platform",
     "headline": "Learn, Build, Compete.",
     "subline": "Not a sandbox. not a toy, the actual api, open to anyone willing to learn.",
-    "ctaFoundation": "Start the foundation series",
-    "ctaApi": "Explore the api",
+    "ctaFoundation": "Open an account",
+    "ctaApi": "Get your API key",
     "journey": {
       "learn": "01. Learn",
       "build": "02. Build",
@@ -50,10 +50,10 @@
       "learnCaption": "from what a stock is to writing your first trading algorithm - through the foundation series and the algo track.",
       "buildCaption": "run a strategy on live egx data - or build the tool, dashboard or agent you wish existed.",
       "competeCaption": "strategies go head to head on a public leaderboard -through seasons, competitions, and hackathons.",
-      "learningSnapshot": "Learning Snapshot",
+      "learningSnapshot": "Understand the market behind your code",
       "builderSnapshot": "Builder Snapshot",
       "competitionSnapshot": "Competition Snapshot",
-      "lessonsCompleted": "Lessons completed",
+      "lessonsCompleted": "What is the stock market and what is Algo Trading",
       "learningProgress": "Learning progress",
       "progressRate": "Progress rate",
       "steadyProgress": "steady progress",
@@ -63,7 +63,8 @@
       "runStrategy": "Run strategy",
       "currentRank": "Current rank",
       "rankChange": "Rank change",
-      "seeAllRanks": "See all ranks"
+      "seeAllRanks": "See all ranks",
+      "learnPhotoAlt": "People trading at their desks"
     },
     "api": {
       "titleLine1": "Build on this,",
@@ -112,6 +113,14 @@
       "capstone": "Capstone track",
       "seeking": "Seeking university teams",
       "builtOn": "Built on efg api"
+    },
+    "what": {
+      "title": "What is Younit",
+      "subtitle": "and how to get on board",
+      "body1": "Younit is an open API trading platform by EFG Hermes, giving developers, students, traders, and curious builders direct access to market infrastructure through simple, documented APIs and an open-source Python SDK.",
+      "body2": "Until now, this level of infrastructure has been accessible almost exclusively to professional trading desks. We are opening it up — giving the next generation of builders the tools to explore markets, develop trading strategies, and create their own applications from day one.",
+      "body3": "Use real-time and historical market data to test your ideas, build and experiment with new strategies, and put your skills to the test through challenges and competitions.",
+      "videoLabel": "Watch how it works"
     }
   },
   "learn": {

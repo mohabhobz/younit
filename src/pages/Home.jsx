@@ -20,8 +20,10 @@ import {
 import { findDoc, formatDate, peopleById } from "../lib/content.js";
 import { useI18n } from "../lib/i18n.jsx";
 import Photo from "../components/ui/Photo.jsx";
-import photoJpg from "../assets/desk-code.jpg";
-import photoWebp from "../assets/desk-code.webp";
+import photoJpg from "../assets/compete-team.jpg";
+import photoWebp from "../assets/compete-team.webp";
+import deskJpg from "../assets/desk-code.jpg";
+import deskWebp from "../assets/desk-code.webp";
 
 /* Shared inline styles that recur across sections. ---------------------------- */
 
@@ -119,7 +121,11 @@ function Hero() {
         </p>
 
         <div data-cta="" className="yn-cta-row">
-          <Button tone="amber" href="#journey">
+          {/* Both destinations are still with the client: the account link
+              goes to EFG ONE and the key link to the page Raed drew. Until the
+              addresses arrive they point at the explanation on this page,
+              which is where a reader who cannot get in yet should land. */}
+          <Button tone="amber" href="#what">
             {t("home.ctaFoundation")}
           </Button>
           <Button tone="blue" href="#api">
@@ -129,6 +135,77 @@ function Hero() {
       </div>
 
       <ArchPyramid tone="blue" />
+    </section>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/* What Younit is                                                             */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * The introduction, above the three tracks.
+ *
+ * Marketing asked for it there: a reader who does not yet know what this is
+ * cannot be sold three ways of using it. So the explanation comes first and the
+ * journey follows.
+ *
+ * The video is a reserved frame rather than a player. There is no film yet, and
+ * a box that says so is honest where an embedded player with nothing in it is
+ * not — the moment there is one, its source goes in and the frame stays as it
+ * is.
+ */
+function WhatIsYounit() {
+  const { t } = useI18n()
+
+  return (
+    <section id="what" style={{ padding: "var(--yn-section) 0" }}>
+      <div
+        data-reveal=""
+        style={{
+          display: "grid",
+          gridTemplateColumns: "var(--yn-hero-cols)",
+          gap: 56,
+          alignItems: "start",
+        }}
+      >
+        <div>
+          <Display size="h2">{t("home.what.title")}</Display>
+          <Display size="h2" style={{ marginBottom: 28 }}>
+            {t("home.what.subtitle")}
+          </Display>
+
+          {["body1", "body2", "body3"].map((key) => (
+            <p
+              key={key}
+              style={{
+                fontSize: "var(--yn-body-size)",
+                lineHeight: 1.7,
+                color: "var(--yn-grey-dark)",
+                margin: "0 0 18px",
+                maxWidth: "58ch",
+              }}
+            >
+              {t(`home.what.${key}`)}
+            </p>
+          ))}
+        </div>
+
+        <div
+          style={{
+            aspectRatio: "16 / 9",
+            borderRadius: "var(--yn-r-card)",
+            border: "1px solid var(--yn-ink)",
+            background: "var(--yn-blue)",
+            display: "grid",
+            placeItems: "center",
+            gap: 12,
+          }}
+        >
+          <Glyph kind="step" width={64} height={46} />
+          <span style={{ ...LABEL }}>{t("home.what.videoLabel")}</span>
+        </div>
+      </div>
     </section>
   );
 }
@@ -288,48 +365,29 @@ function Journey() {
             <div style={{ display: "flex", justifyContent: "center" }}>
               <Badge>{t("home.journey.learningSnapshot")}</Badge>
             </div>
-            <div>
-              <div style={{ ...LABEL, paddingTop: 12, paddingBottom: 12 }}>
-                {t("home.journey.lessonsCompleted")}
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                }}
-              >
-                <span
-                  data-count=""
-                  className="yn-display"
-                  style={{ fontSize: "var(--yn-stat)", lineHeight: 1.05 }}
-                >
-                  03/08
-                </span>
-                <Glyph data-draw="" />
-              </div>
-            </div>
-            <hr style={{ border: 0, borderTop: "1px solid var(--yn-ink)", margin: 0 }} />
+            {/* No counter and no progress bar: there is no tracker behind
+                them yet, and a number nobody is keeping is a promise the site
+                cannot make. A line about what the track teaches, and a
+                photograph of the thing itself. */}
             <div
+              className="yn-display"
               style={{
-                display: "flex",
-                alignItems: "flex-end",
-                justifyContent: "space-between",
-                gap: 12,
+                fontSize: "var(--yn-card-title)",
+                lineHeight: 1.25,
+                paddingTop: 12,
               }}
             >
-              <div style={{ ...LABEL, lineHeight: 1.4 }}>
-                {t("home.journey.learningProgress")}
-              </div>
-              <span
-                data-count=""
-                className="yn-display"
-                style={{ fontSize: "var(--yn-stat-2)", lineHeight: 1 }}
-              >
-                68%
-              </span>
+              {t("home.journey.lessonsCompleted")}
             </div>
-            <ProgressGrid />
+            <Photo
+              webp={deskWebp}
+              jpg={deskJpg}
+              width={2624}
+              height={875}
+              ratio="4 / 3"
+              radius="tile"
+              alt={t("home.journey.learnPhotoAlt")}
+            />
             <CardCta tone="white" href="#api">
               {t("home.journey.continueLesson")}
             </CardCta>
@@ -775,6 +833,8 @@ export default function Home() {
         }}
       >
         <Hero />
+        <Rule />
+        <WhatIsYounit />
         <Rule />
         <Journey />
         <Rule />
