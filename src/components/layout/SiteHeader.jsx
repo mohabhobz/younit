@@ -3,11 +3,20 @@ import { Link as RouterLink, useLocation } from 'react-router-dom'
 import { Wordmark } from '../../brand/marks.jsx'
 import { Link, NavLink, useI18n, LOCALES, DEFAULT_LOCALE, swapLocale } from '../../lib/i18n.jsx'
 
+/**
+ * The three things you can do here, and then who is behind it.
+ *
+ * Editorial was the fourth and is not any more — marketing asked for About in
+ * its place. The writing is still on the site: the homepage carries the latest
+ * of it, the footer links to it, and its own addresses are unchanged. It is
+ * only out of the top row, where the three verbs and the introduction read as
+ * one line rather than four destinations.
+ */
 const NAV = [
   { to: '/learn', key: 'nav.learn' },
   { to: '/build', key: 'nav.build' },
   { to: '/compete', key: 'nav.compete' },
-  { to: '/editorial', key: 'nav.editorial' },
+  { to: '/about', key: 'nav.about' },
 ]
 
 const LINK_STYLE = {
