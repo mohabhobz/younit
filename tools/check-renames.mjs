@@ -50,7 +50,10 @@ const ROUTES = [
   ['/about', ['Younit'], []],
   ['/ar/about', ['يونِت'], []],
   ['/partners', ['Younit'], []],
-  ['/', ['LetsYounit!', 'EFG Hermes'], []],
+  ['/', ['LetsYounit!', 'EFG Hermes'], ['Editorial', 'Partners']],
+  // Compete is one line and a waiting sign; the four section links are gone.
+  ['/compete', ['Stay tuned for the next competition'], ['Leaderboard', 'Seasons', 'Hackathons', 'Wall of Fame']],
+  ['/ar/compete', ['ترقّبوا المنافسة القادمة'], []],
   ['/ar', ['LetsYounit!', 'إي إف چي هيرميس'], []],
 ]
 
@@ -88,6 +91,16 @@ const REMOVED = [
   '/build/capstones',
   '/build/apps',
   '/ar/build/showcase',
+  '/compete/leaderboard',
+  '/compete/seasons',
+  '/compete/hackathons',
+  '/compete/wall-of-fame',
+  '/ar/compete/leaderboard',
+  '/editorial',
+  '/editorial/why-we-built-this',
+  '/ar/editorial',
+  '/partners',
+  '/ar/partners',
 ]
 for (const route of REMOVED) {
   await page.goto(`${BASE}${route}`, { waitUntil: 'networkidle' })

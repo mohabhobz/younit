@@ -583,3 +583,42 @@ pre {
 .yn-callout p:last-child {
   margin: 0;
 }
+
+/* --- Waiting -------------------------------------------------------------- *
+
+   Three dots that keep time while a competition is being prepared. The global
+   reduced-motion rule above stops the animation for anyone who has asked for
+   less movement, and three dots at rest still read as waiting — so nothing is
+   lost when they stop.
+   -------------------------------------------------------------------------- */
+.yn-loading {
+  display: inline-flex;
+  gap: 8px;
+}
+
+.yn-loading > span {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--yn-r-pill);
+  background: var(--yn-ink);
+  opacity: 0.35;
+  animation: yn-loading-pulse 1.2s var(--yn-ease) infinite;
+}
+
+.yn-loading > span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.yn-loading > span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes yn-loading-pulse {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 1;
+  }
+}

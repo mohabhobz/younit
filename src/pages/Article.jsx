@@ -5,24 +5,20 @@ import Breadcrumb from '../components/ui/Breadcrumb.jsx'
 import MarkComplete from '../components/learn/MarkComplete.jsx'
 import { PillRow } from '../components/ui/Button.jsx'
 import { Micro, PageHeading, Rule, Section } from '../components/ui/Pieces.jsx'
-import { authorsOf, findDoc, formatDate, neighbours, readingTime } from '../lib/content.js'
+import { authorsOf, findDoc, formatDate, neighbours } from '../lib/content.js'
 import { useI18n } from '../lib/i18n.jsx'
 import Prose from '../components/ui/Prose.jsx'
 import Contents from '../components/ui/Contents.jsx'
 
 /**
- * `key` is the track; `rootKey` is the section it sits in. Editorial is its own
- * section, so it has no track above it — naming it twice would print the same
- * word either side of the separator.
+ * `key` is the track; `rootKey` is the section it sits in. Editorial was here
+ * too until marketing asked for that page to go, and this page went with it —
+ * what is left is a lesson without a deck.
  */
 const CRUMBS = {
   foundation: { key: 'learn.foundationTitle', root: '/learn', rootKey: 'learn.title' },
   'algo-track': { key: 'learn.algoTrackTitle', root: '/learn', rootKey: 'learn.title' },
-  editorial: { root: '/editorial', rootKey: 'nav.editorial' },
 }
-
-/** Only these live under /learn. `editorial` has its own top-level route. */
-const LEARN_COLLECTIONS = new Set(['foundation', 'algo-track'])
 
 /** One cell per session in the track, the current one filled. */
 function TrackProgress({ index, total }) {
@@ -48,25 +44,21 @@ export default function Article() {
   const params = useParams()
   const { t, locale } = useI18n()
 
-  // /editorial/:slug carries no :collection segment.
-  const collection = params.collection ?? 'editorial'
+  const collection = params.collection
 
   // The route pattern is /learn/:collection/:slug, so without this guard any
-  // collection resolves under /learn: /learn/showcase/<slug> would render an
-  // article whose breadcrumb points at a page that does not exist, and every
-  // editorial post would be reachable at a second URL under /learn.
-  const allowed = params.collection ? LEARN_COLLECTIONS.has(params.collection) : true
-  const doc = allowed ? findDoc(collection, params.slug, locale) : null
+  // collection resolves under /learn: /learn/deep-dives/<slug> would render an
+  // article whose breadcrumb points at a page that no longer exists.
+  const crumb = CRUMBS[collection]
+  const doc = crumb ? findDoc(collection, params.slug, locale) : null
   if (!doc) return <NotFound />
 
-  const crumb = CRUMBS[collection]
   const { index, total, prev, next } = neighbours(collection, doc.slug, locale)
   const authors = authorsOf(doc)
-  const isTrack = collection === 'foundation' || collection === 'algo-track'
 
-  // Reading order, not list order.
-  const [earlier, later] = isTrack ? [prev, next] : [next, prev]
-  const base = collection === 'editorial' ? '/editorial' : `/learn/${collection}`
+  // A track reads forwards: the next session is the one after this in the list.
+  const [earlier, later] = [prev, next]
+  const base = `/learn/${collection}`
 
   return (
     <Page title={doc.title} width={1120}>
@@ -74,8 +66,8 @@ export default function Article() {
         <Breadcrumb
           trail={[
             { label: t(crumb.rootKey), to: crumb.root },
-            ...(crumb.key ? [{ label: t(crumb.key), to: `/learn/${collection}` }] : []),
-            ...(isTrack && index >= 0
+            { label: t(crumb.key), to: `/learn/${collection}` },
+            ...(index >= 0
               ? [{ label: t('learn.sessionOf', { session: index + 1, total }) }]
               : []),
           ]}
@@ -85,18 +77,15 @@ export default function Article() {
           {doc.title}
         </PageHeading>
 
+        {/* No timing: marketing asked for them off every session. */}
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px 24px' }}>
-          {/* A session no longer says how long it takes: marketing asked for
-              the timings to come off all of them. Editorial keeps its reading
-              time, which is a different promise. */}
-          {isTrack ? null : <Micro>{readingTime(t, doc.readingMinutes)}</Micro>}
           {authors.map((person) => (
             <Micro key={person.name}>{person.name}</Micro>
           ))}
           {doc.publishedAt ? <Micro>{formatDate(doc.publishedAt, locale)}</Micro> : null}
         </div>
 
-        {isTrack && total > 0 ? <TrackProgress index={index} total={total} /> : null}
+        {total > 0 ? <TrackProgress index={index} total={total} /> : null}
       </Section>
 
       {/* The reading column keeps its measure; the space beside it carries the
@@ -111,15 +100,10 @@ export default function Article() {
       </Section>
 
 
-      {isTrack ? (
-        <Section style={{ paddingTop: 0 }}>
-          <MarkComplete slug={doc.slug} />
-        </Section>
-      ) : null}
+      <Section style={{ paddingTop: 0 }}>
+        <MarkComplete slug={doc.slug} />
+      </Section>
 
-      {/* A track reads forwards: the next session is the one after this in the
-          list. A dated collection is listed newest first, so the one after this
-          in the list is the older post — "previous" in time, not "next". */}
       {earlier || later ? (
         <>
           <Rule animate={false} />
@@ -128,7 +112,7 @@ export default function Article() {
               {earlier ? (
                 <PillRow
                   to={`${base}/${earlier.slug}`}
-                  meta={isTrack ? t('learn.prevSession') : t('common.previous')}
+                  meta={t('learn.prevSession')}
                 >
                   {earlier.title}
                 </PillRow>
@@ -136,7 +120,7 @@ export default function Article() {
               {later ? (
                 <PillRow
                   to={`${base}/${later.slug}`}
-                  meta={isTrack ? t('learn.nextSession') : t('common.next')}
+                  meta={t('learn.nextSession')}
                 >
                   {later.title}
                 </PillRow>

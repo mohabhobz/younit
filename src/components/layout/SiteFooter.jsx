@@ -12,12 +12,10 @@ const PLATFORM = [
   { to: '/learn', key: 'nav.learn' },
   { to: '/build', key: 'nav.build' },
   { to: '/compete', key: 'nav.compete' },
-  { to: '/editorial', key: 'nav.editorial' },
 ]
 
 const EFG = [
   { to: '/about', key: 'nav.about' },
-  { to: '/partners', key: 'nav.partners' },
   { href: 'https://www.efghldg.com', key: 'footer.efgHolding' },
   { href: 'https://github.com/efg-hermes', key: 'footer.github' },
 ]

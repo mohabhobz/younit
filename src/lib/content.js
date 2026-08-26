@@ -155,12 +155,7 @@ export function formatDate(value, locale = DEFAULT_LOCALE) {
 export const counts = {
   foundation: byCollection('foundation').length,
   algoTrack: byCollection('algo-track').length,
-  deepDives: byCollection('deep-dives').length,
   glossary: byCollection('glossary').length,
-  editorial: byCollection('editorial').length,
-  showcase: byCollection('showcase').length,
-  capstones: byCollection('capstones').length,
-  apps: byCollection('apps').length,
 }
 
 /**

@@ -7,9 +7,7 @@
     "learn": "Learn",
     "build": "Build",
     "compete": "Compete",
-    "editorial": "Editorial",
     "about": "About",
-    "partners": "Partners",
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
     "primary": "Primary",
@@ -182,29 +180,10 @@
   },
   "compete": {
     "title": "Compete",
-    "sub": "Opening in Phase 2. Here is what each section will be.",
-    "comingSoon": "Opening in Phase 2",
-    "leaderboardTitle": "Leaderboard",
-    "leaderboardSub": "Transparent, algorithmic rankings across all active participants.",
-    "seasonsTitle": "Seasons",
-    "seasonsSub": "Structured competition windows with defined rules and prizes.",
-    "hackathonsTitle": "Hackathons",
-    "hackathonsSub": "Time-boxed building challenges open to all.",
-    "wallOfFameTitle": "Wall of Fame",
-    "wallOfFameSub": "A permanent record of exceptional builders and performances.",
-    "photoAlt": "Two builders at a desk, one screen showing code",
-    "phaseNote": "This section opens in Phase 2. The description above is accurate — not a placeholder."
-  },
-  "editorial": {
-    "title": "From Younit",
-    "sub": "Market commentary, builder profiles, and the weekly EGX recap.",
-    "kinds": {
-      "newsletter": "Newsletter",
-      "commentary": "Commentary",
-      "profile": "Profile",
-      "explainer": "Explainer"
-    },
-    "empty": "Nothing published yet."
+    "sub": "Opening in Phase 2.",
+    "stayTuned": "Stay tuned for the next competition",
+    "loading": "Loading",
+    "photoAlt": "Two builders at a desk, one screen showing code"
   },
   "about": {
     "title": "About",
@@ -214,26 +193,6 @@
     "p4": "Users own their work. Everything built on EFG infrastructure belongs to the builders. EFG does not claim ownership of student projects, capstone papers, or community applications.",
     "whyTitle": "Why this exists",
     "whyBody": "Egypt has no shortage of brilliant people. It has had a shortage of access. Younit exists to remove one specific barrier: the infrastructure to build real things on real markets. Not a sandbox. Not a toy. The actual API, open to anyone willing to learn."
-  },
-  "partners": {
-    "title": "Partners",
-    "universitiesTitle": "University Partners",
-    "partnerStatus": "Partner",
-    "efgTitle": "EFG Hermes",
-    "divisions": [
-      "Research Division — content and editorial",
-      "Corporate Data Science — platform and infrastructure",
-      "Technology — API and data feeds"
-    ],
-    "acknowledgmentsTitle": "Acknowledgments",
-    "acknowledgments": "Younit exists because of the students, researchers, and practitioners who took Stock Market 101 in its earliest form and asked what came next. Their feedback shaped this platform.",
-    "universities": [
-      "American University in Cairo (AUC)",
-      "German University in Cairo (GUC)",
-      "Cairo University — Faculty of Computers & AI",
-      "Ain Shams University — Faculty of Engineering",
-      "Nile University"
-    ]
   },
   "footer": {
     "hub": "LetsYounit!",

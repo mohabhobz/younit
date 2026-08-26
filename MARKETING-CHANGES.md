@@ -105,6 +105,22 @@ checked before removing, and checked again after.
 `check:renames` now also checks the removals: every page listed above must not
 open, and the homepage must not carry that photograph.
 
+## Batch 6 — Compete, Editorial and Partners
+
+- [x] Capstones and Apps: already gone in batch 5 — the comments confirm it.
+- [x] Compete is one line and a waiting sign: "Stay tuned for the next
+      competition", with three dots that keep time. Nothing to click, and no
+      date claimed. The photograph stays.
+- [x] Leaderboard, Seasons, Hackathons, Wall of Fame: pages removed.
+- [x] Editorial: page removed, with the article pages under it, and the footer
+      link that pointed at it.
+- [x] Partners: page removed, and its footer link with it. (Asked and
+      confirmed: the whole page, not only the university list.)
+
+The footer is two shorter lists now — Platform is Learn, Build, Compete; the
+EFG column is About, EFG Holding, GitHub. Nothing on the site links to a page
+that is not there.
+
 ## To raise with marketing
 
 - **The Build card has an empty middle.** Removing the two figures left the card
@@ -133,6 +149,9 @@ open, and the homepage must not carry that photograph.
   kit lead, the three link slots, and taking "clone, fork, build" out. Taken
   together with the four rows marked Delete beside it, the reading is that the
   four go and Repositories stays. Say the word if that is wrong.
+- **The site is now five pages and the sessions.** Home, Learn (with the two
+  tracks and the glossary), Build → Repositories, Compete, About. Worth a look
+  at whether that is the site you want before it goes anywhere.
 - **The Figma snapshots are behind the site.** They still show the old track
   names and the old homepage, because they were exported before batch 4. A
   fresh `npm run figma:export` will catch them up when the pages settle.

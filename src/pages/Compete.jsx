@@ -1,19 +1,19 @@
 import Page from '../components/layout/Page.jsx'
-import { COMPETE_SECTIONS } from './CompeteSection.jsx'
-import { Card, Grid } from '../components/ui/Card.jsx'
-import { Badge, PageHeading, Section } from '../components/ui/Pieces.jsx'
+import { Card } from '../components/ui/Card.jsx'
+import { Display, PageHeading, Section } from '../components/ui/Pieces.jsx'
 import Photo from '../components/ui/Photo.jsx'
 import competeJpg from '../assets/compete-team.jpg'
 import competeWebp from '../assets/compete-team.webp'
-import { Link, useI18n } from '../lib/i18n.jsx'
+import { useI18n } from '../lib/i18n.jsx'
 
 /**
- * Nothing here has launched. The page describes what each section will be and
- * shows no ranks, no names and no figures — which is also what the design
- * specifies. The four entries link to their own pages, as the original site did.
+ * One line and a waiting sign.
+ *
+ * The page used to describe the four sections and link to a page for each.
+ * Marketing asked for all four to go and for this to say that the next
+ * competition is coming — so there is nothing here to click, and nothing that
+ * claims a date nobody has given.
  */
-const ORDER = ['leaderboard', 'hackathons', 'seasons', 'wall-of-fame']
-
 export default function Compete() {
   const { t } = useI18n()
 
@@ -23,31 +23,19 @@ export default function Compete() {
         <PageHeading sub={t('compete.sub')}>{t('compete.title')}</PageHeading>
 
         <Card radius="band" style={{ padding: 'clamp(24px, 4vw, 48px)', background: 'transparent' }}>
-          <Grid cols={2} gap={28} style={{ marginBottom: 40 }}>
-            {ORDER.map((section) => {
-              const key = COMPETE_SECTIONS[section]
-              return (
-                <Link
-                  key={section}
-                  to={`/compete/${section}`}
-                  style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}
-                >
-                  <Badge tone="purple">{t(`compete.${key}Title`)}</Badge>
-                  <p
-                    style={{
-                      margin: 0,
-                      fontSize: 'var(--yn-body-size)',
-                      color: 'var(--yn-grey-dark)',
-                      flex: 1,
-                      lineHeight: 1.6,
-                    }}
-                  >
-                    {t(`compete.${key}Sub`)}
-                  </p>
-                </Link>
-              )
-            })}
-          </Grid>
+          <div style={{ display: 'grid', gap: 20, justifyItems: 'center', padding: '48px 0 56px' }}>
+            <Display size="h2-journey" as="p" style={{ margin: 0, textAlign: 'center' }}>
+              {t('compete.stayTuned')}
+            </Display>
+
+            {/* Three dots that keep time. A reader who has asked for less
+                movement gets them still, which still reads as waiting. */}
+            <span className="yn-loading" role="status" aria-label={t('compete.loading')}>
+              <span />
+              <span />
+              <span />
+            </span>
+          </div>
 
           <Photo
             webp={competeWebp}
