@@ -13,14 +13,24 @@
 
 :root {
   /* --- Palette ----------------------------------------------------------- */
-  --yn-blue: #a3c6d7;
-  --yn-purple: #ac91e1;
-  --yn-grey: #d7d7d7;
+  /* The five swatches on the Colors page of the revised branding deck of
+     20 August, read off the artwork rather than typed from memory: primary
+     grey, the two secondaries, the dark, and the accent. Four of the five moved
+     when the deck did — the blue and the yellow by a visible amount. */
+  --yn-blue: #8ecadc;
+  --yn-purple: #ba8eee;
+  --yn-grey: #d8d8d8;
   --yn-grey-dark: #444444;
-  --yn-amber: #ffd05a;
+  --yn-amber: #ffcc00;
   --yn-white: #ffffff;
   --yn-ink: #000000;
   --yn-ink-2: #1a1a1a;
+
+  /* The band the header and the footer sit in. The deck's own website mockup
+     puts it in the purple, not the blue it used to be — so the colour lives
+     here under the name of the job it does, and moving the chrome again is one
+     line rather than three files. */
+  --yn-chrome: var(--yn-purple);
 
   /* --- Type -------------------------------------------------------------- */
   /* Poppins 300/400 stands in for ITC Avant Garde Gothic Pro (Book).

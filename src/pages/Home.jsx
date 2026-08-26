@@ -127,7 +127,9 @@ function Hero() {
         </div>
       </div>
 
-      <ArchPyramid tone="blue" />
+      {/* Purple, as the deck's own homepage draws it — the blue arches were
+          ours. */}
+      <ArchPyramid tone="purple" />
     </section>
   );
 }
@@ -546,7 +548,7 @@ export default function Home() {
       }}
     >
       <BrandDefs />
-      <SiteHeader tone="blue" />
+      <SiteHeader tone="brand" />
 
       <main
         id="top"
@@ -563,7 +565,7 @@ export default function Home() {
         <Journey />
       </main>
 
-      <SiteFooter tone="blue" />
+      <SiteFooter tone="brand" />
     </div>
   );
 }

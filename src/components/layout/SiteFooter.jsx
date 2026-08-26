@@ -3,7 +3,7 @@ import { Link, useI18n } from '../../lib/i18n.jsx'
 
 /**
  * Structure and destinations are the original site's footer, restyled to the
- * template's blue band. The template's own "Style guide →" button is not here:
+ * brand band. The template's own "Style guide →" button is not here:
  * it linked between two files inside Claude Design and was never part of the
  * product.
  */
@@ -58,14 +58,14 @@ function Column({ heading, items }) {
   )
 }
 
-export default function SiteFooter({ tone = 'blue' }) {
+export default function SiteFooter({ tone = 'brand' }) {
   const { t } = useI18n()
   const dark = tone === 'dark'
 
   return (
     <footer
       style={{
-        background: dark ? 'var(--yn-ink-2)' : 'var(--yn-blue)',
+        background: dark ? 'var(--yn-ink-2)' : 'var(--yn-chrome)',
         color: dark ? 'var(--yn-white)' : 'var(--yn-ink)',
         padding: '56px var(--yn-gutter) 48px',
       }}

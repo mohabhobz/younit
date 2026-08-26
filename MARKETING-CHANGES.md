@@ -139,6 +139,26 @@ still downloading the removed articles. They now live in `archive/`, out of the
 build and still in the repository. **The bundle went from 478 kB to 405 kB
 (gzip 145 → 125 kB).** Putting a collection back is moving its folder back.
 
+## Batch 8 — the revised deck's design, applied
+
+Read off the deck's own artwork, not typed from memory. No copy changed.
+
+- [x] The palette moves to the deck's five swatches: blue `#A3C6D7` → `#8ECADC`,
+      purple `#AC91E1` → `#BA8EEE`, grey `#D7D7D7` → `#D8D8D8`, accent
+      `#FFD05A` → `#FFCC00`. The dark, `#444444`, was already right.
+- [x] The header and footer band is the purple, as the deck's website mockup
+      draws it — it was the blue. The colour now lives in one token,
+      `--yn-chrome`, so moving the chrome again is one line.
+- [x] The arches in the hero are purple, as the deck draws them. They were ours
+      in blue.
+- [x] The three cards keep the colours the deck gives them: Learn blue, Build
+      purple, Compete yellow — those already matched.
+- [x] Typography: no change needed. The deck names ITC Avant Garde Gothic Pro
+      for headlines, but the font kit the client shipped in `Source/Fonts` is
+      Anybody, IBM Plex Mono, IBM Plex Sans Arabic and **Poppins** — which is
+      what the site uses. Body stays Anybody at width 117, weight 348; Arabic
+      stays IBM Plex Sans Arabic.
+
 ## To raise with marketing
 
 - **The Build card has an empty middle.** Removing the two figures left the card
@@ -167,6 +187,11 @@ build and still in the repository. **The bundle went from 478 kB to 405 kB
   kit lead, the three link slots, and taking "clone, fork, build" out. Taken
   together with the four rows marked Delete beside it, the reading is that the
   four go and Repositories stays. Say the word if that is wrong.
+- **White on the purple band is 2.6:1.** The deck draws the header's links in
+  white on the purple, so that is what the site does. It reads better than the
+  1.8:1 the blue gave and is still under the 4.5:1 anyone can read comfortably.
+  The same purple with black links is 8.2:1. One word and it is fixed — but it
+  is the brand's call, not ours.
 - **The site is now five pages and the sessions.** Home, Learn (with the two
   tracks and the glossary), Build → Repositories, Compete, About. Worth a look
   at whether that is the site you want before it goes anywhere.

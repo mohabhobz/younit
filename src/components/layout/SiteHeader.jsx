@@ -121,13 +121,14 @@ function LocaleSwitch({ style, className, brandChrome }) {
 }
 
 /**
- * The homepage band is blue, and the design source sets its chrome in white on
- * it — 1.8:1, below the readable bar. That is the client's decision to change,
- * not a developer's, so the elements it applies to say so in the markup and the
+ * The brand band is the purple of the revised deck, and the deck sets its
+ * chrome in white on it — 2.6:1, better than the 1.8:1 the blue gave and still
+ * below the readable bar. That is the client's decision to change, not a
+ * developer's, so the elements it applies to say so in the markup and the
  * contrast check reads the attribute rather than matching English words.
  * See the README's "Outstanding".
  */
-export default function SiteHeader({ tone = 'blue' }) {
+export default function SiteHeader({ tone = 'brand' }) {
   const { t } = useI18n()
   const { pathname } = useLocation()
   const [open, setOpen] = useState(false)
@@ -168,7 +169,7 @@ export default function SiteHeader({ tone = 'blue' }) {
     <header
       className="yn-header"
       style={{
-        background: dark ? 'var(--yn-ink-2)' : 'var(--yn-blue)',
+        background: dark ? 'var(--yn-ink-2)' : 'var(--yn-chrome)',
         padding: '14px var(--yn-gutter)',
         display: 'flex',
         alignItems: 'center',
@@ -263,7 +264,7 @@ export default function SiteHeader({ tone = 'blue' }) {
         // so a closed menu cannot be tabbed into behind the page. React 19
         // takes this as a boolean; an empty string is dropped.
         inert={!open}
-        style={{ background: dark ? 'var(--yn-ink-2)' : 'var(--yn-blue)' }}
+        style={{ background: dark ? 'var(--yn-ink-2)' : 'var(--yn-chrome)' }}
       >
         {NAV.map((item) => (
           <NavLink

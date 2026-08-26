@@ -13,7 +13,7 @@ import { useI18n } from '../../lib/i18n.jsx'
 export default function Page({
   children,
   header = 'dark',
-  footer = 'blue',
+  footer = 'brand',
   title,
   // A lesson deck draws its own full-bleed bands and its own sticky nav, so it
   // sits outside the 1440 frame and manages its own gutters.
