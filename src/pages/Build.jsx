@@ -2,17 +2,14 @@ import Page from '../components/layout/Page.jsx'
 import { ArchPyramid } from '../brand/marks.jsx'
 import { Button, PillRow } from '../components/ui/Button.jsx'
 import { Display, Section } from '../components/ui/Pieces.jsx'
-import { counts } from '../lib/content.js'
 import { useI18n } from '../lib/i18n.jsx'
 
-/** The five sections, in the original site's order. */
-const SECTIONS = [
-  { key: 'build.repositoriesTitle', to: '/build/repositories' },
-  { key: 'build.templatesTitle', to: '/build/templates' },
-  { key: 'build.showcaseTitle', to: '/build/showcase', meta: `${counts.showcase}` },
-  { key: 'build.capstonesTitle', to: '/build/capstones', meta: `${counts.capstones}` },
-  { key: 'build.appsTitle', to: '/build/apps', meta: `${counts.apps}` },
-]
+/**
+ * One section for now. Templates, Showcase, Capstones and Apps were the other
+ * four and marketing asked for all of them to go; the counts they advertised
+ * went with them.
+ */
+const SECTIONS = [{ key: 'build.repositoriesTitle', to: '/build/repositories' }]
 
 export default function Build() {
   const { t } = useI18n()

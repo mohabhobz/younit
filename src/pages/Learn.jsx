@@ -8,11 +8,11 @@ import { useI18n } from '../lib/i18n.jsx'
 /**
  * The Learn sections, each linking to its own index.
  *
- * Deep Dives is not among them for now — marketing asked for it to come off the
- * page. The writing and its addresses are untouched: `/learn/deep-dives` still
- * answers, and every article that lives under it still opens, so nothing that
- * was linked to it anywhere breaks. It is only off this index until they say
- * otherwise.
+ * Deep Dives is not among them for now. It came off this index first and then,
+ * on the second comment, the page itself: `/learn/deep-dives` and the articles
+ * under it are not found. Nothing else on the site pointed at them, and the
+ * writing is still in the repository, so this is a line to put back rather than
+ * work to redo.
  */
 const TRACKS = [
   {

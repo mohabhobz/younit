@@ -78,6 +78,33 @@ that mentions them, and an author's biography.
 shows one of these names, in both languages, and fails if an old name is still
 written anywhere or a new one is missing.
 
+## Batch 5 — pages taken away, and the startup kit
+
+The rule followed here: take a page away and what sits under it goes with it,
+unless something else on the site opens it. Nothing did, in every case below —
+checked before removing, and checked again after.
+
+- [x] The photograph above the footer on the homepage goes. It came in with the
+      Editorial section, which went in batch 3.
+- [x] The timings come off every session — "45 min", "50 min" — on the track
+      pages and in the session headers. Editorial keeps its reading time, which
+      is a different promise to the reader.
+- [x] Deep Dives: the page itself now, not only its card. `/learn/deep-dives`
+      and its three articles are not found. The writing stays in the repository.
+- [x] Templates: page removed.
+- [x] Showcase: page removed, with the project pages under it.
+- [x] Capstones and Apps: pages removed, with the project pages under them.
+      Build is one row now — Repositories.
+- [x] Repositories: "Clone, fork, build" comes out of the line under the title.
+- [x] Repositories: "Explore the startup kit to get started" is the lead.
+- [x] Repositories: three places held for Raslan's links. Each says the link is
+      coming rather than pointing anywhere — no address was invented.
+- [x] "What is Algo Trading" was already done in batch 4; the Figma still shows
+      the old name because the snapshots there predate it.
+
+`check:renames` now also checks the removals: every page listed above must not
+open, and the homepage must not carry that photograph.
+
 ## To raise with marketing
 
 - **The Build card has an empty middle.** Removing the two figures left the card
@@ -101,6 +128,14 @@ written anywhere or a new one is missing.
   word.
 - **The Arabic for both track names is ours, not marketing's.** سوق الأسهم 101
   and ما هو التداول الخوارزمي. The comments were written in English only.
+- **"Delete this page, we won't need it now" sat on the Repositories row.**
+  Repositories was kept, because three other comments rewrite it — the startup
+  kit lead, the three link slots, and taking "clone, fork, build" out. Taken
+  together with the four rows marked Delete beside it, the reading is that the
+  four go and Repositories stays. Say the word if that is wrong.
+- **The Figma snapshots are behind the site.** They still show the old track
+  names and the old homepage, because they were exported before batch 4. A
+  fresh `npm run figma:export` will catch them up when the pages settle.
 
 ## Waiting on the client
 

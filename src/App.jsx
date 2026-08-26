@@ -12,8 +12,6 @@ import Glossary from './pages/Glossary.jsx'
 import GlossaryTerm from './pages/GlossaryTerm.jsx'
 import Build from './pages/Build.jsx'
 import BuildSection from './pages/BuildSection.jsx'
-import Projects from './pages/Projects.jsx'
-import ProjectDetail from './pages/ProjectDetail.jsx'
 import Compete from './pages/Compete.jsx'
 import CompeteSection from './pages/CompeteSection.jsx'
 import Editorial from './pages/Editorial.jsx'
@@ -66,11 +64,13 @@ function pages() {
       <Route path="learn/:collection/:slug" element={<Session />} />
       <Route path="learn/:collection/:slug/deck" element={<DeckMoved />} />
 
+      {/* Repositories is the only Build page for now. Templates, Showcase,
+          Capstones and Apps were asked for by marketing to go, and with them
+          the project pages that lived under Showcase, Capstones and Apps —
+          nothing else on the site linked to any of them. Their writing is
+          still in the repository. */}
       <Route path="build" element={<Build />} />
       <Route path="build/repositories" element={<BuildSection section="repositories" />} />
-      <Route path="build/templates" element={<BuildSection section="templates" />} />
-      <Route path="build/:collection" element={<Projects />} />
-      <Route path="build/:collection/:slug" element={<ProjectDetail />} />
 
       <Route path="compete" element={<Compete />} />
       <Route path="compete/:section" element={<CompeteSection />} />

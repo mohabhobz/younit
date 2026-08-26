@@ -18,12 +18,11 @@ import Contents from '../components/ui/Contents.jsx'
 const CRUMBS = {
   foundation: { key: 'learn.foundationTitle', root: '/learn', rootKey: 'learn.title' },
   'algo-track': { key: 'learn.algoTrackTitle', root: '/learn', rootKey: 'learn.title' },
-  'deep-dives': { key: 'learn.deepDivesTitle', root: '/learn', rootKey: 'learn.title' },
   editorial: { root: '/editorial', rootKey: 'nav.editorial' },
 }
 
 /** Only these live under /learn. `editorial` has its own top-level route. */
-const LEARN_COLLECTIONS = new Set(['foundation', 'algo-track', 'deep-dives'])
+const LEARN_COLLECTIONS = new Set(['foundation', 'algo-track'])
 
 /** One cell per session in the track, the current one filled. */
 function TrackProgress({ index, total }) {
@@ -87,7 +86,10 @@ export default function Article() {
         </PageHeading>
 
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px 24px' }}>
-          <Micro>{doc.duration || readingTime(t, doc.readingMinutes)}</Micro>
+          {/* A session no longer says how long it takes: marketing asked for
+              the timings to come off all of them. Editorial keeps its reading
+              time, which is a different promise. */}
+          {isTrack ? null : <Micro>{readingTime(t, doc.readingMinutes)}</Micro>}
           {authors.map((person) => (
             <Micro key={person.name}>{person.name}</Micro>
           ))}

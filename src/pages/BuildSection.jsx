@@ -2,18 +2,20 @@ import Page from '../components/layout/Page.jsx'
 import NotFound from './NotFound.jsx'
 import Breadcrumb from '../components/ui/Breadcrumb.jsx'
 import { Button } from '../components/ui/Button.jsx'
-import { Card, Grid } from '../components/ui/Card.jsx'
-import { Display, PageHeading, Section } from '../components/ui/Pieces.jsx'
+import { Card } from '../components/ui/Card.jsx'
+import { Micro, PageHeading, Section } from '../components/ui/Pieces.jsx'
 import { useI18n } from '../lib/i18n.jsx'
 
 /**
- * The two Build sections that have no content yet. Both say so plainly rather
- * than showing invented listings — the same stance the original site took.
+ * Repositories, which is the only Build page for now. Templates was the other
+ * and marketing asked for it to go.
  */
 const SECTIONS = {
   repositories: { key: 'repositories', href: 'https://github.com/efg-hermes' },
-  templates: { key: 'templates', categories: true },
 }
+
+/** Three, because marketing asked for room for three links to start with. */
+const SLOTS = [0, 1, 2]
 
 export default function BuildSection({ section }) {
   const { t } = useI18n()
@@ -21,8 +23,6 @@ export default function BuildSection({ section }) {
   if (!meta) return <NotFound />
 
   const title = t(`build.${meta.key}Title`)
-  const empty = t(`build.${meta.key}Empty`)
-  const categories = meta.categories ? t('build.templateCategories') : null
 
   return (
     <Page title={title}>
@@ -30,31 +30,41 @@ export default function BuildSection({ section }) {
         <Breadcrumb trail={[{ label: t('build.title'), to: '/build' }, { label: title }]} />
         <PageHeading sub={t(`build.${meta.key}Sub`)}>{title}</PageHeading>
 
-        {categories ? (
-          <Grid cols={2} gap={28}>
-            {categories.map((category) => (
-              <Card key={category} style={{ height: '100%' }}>
-                <Display size="track-title" as="h2">
-                  {category}
-                </Display>
-                <p style={{ margin: '12px 0 0', fontSize: 'var(--yn-body-size)', color: 'var(--yn-grey-dark)' }}>
-                  {empty}
-                </p>
-              </Card>
-            ))}
-          </Grid>
-        ) : (
-          <Card>
-            <p style={{ margin: 0, fontSize: 'var(--yn-body-size)', color: 'var(--yn-grey-dark)' }}>{empty}</p>
-            {meta.href ? (
-              <div style={{ marginTop: 24 }}>
-                <Button tone="purple" href={meta.href}>
-                  {t('build.githubCta')}
-                </Button>
+        <Card>
+          <p
+            className="yn-display"
+            style={{ margin: 0, fontSize: 'var(--yn-h3)', lineHeight: 1.25 }}
+          >
+            {t('build.startupKitLead')}
+          </p>
+
+          {/* The three links are Raslan's to give. Until they arrive the page
+              holds their places and says so, which is the honest version of a
+              link that does not exist yet. */}
+          <div style={{ display: 'grid', gap: 12, marginTop: 24 }}>
+            {SLOTS.map((slot) => (
+              <div
+                key={slot}
+                style={{
+                  border: '1px dashed var(--yn-grey-dark)',
+                  borderRadius: 'var(--yn-r-pill)',
+                  padding: '14px 22px',
+                  opacity: 0.6,
+                }}
+              >
+                <Micro>{t('build.startupKitSlot')}</Micro>
               </div>
-            ) : null}
-          </Card>
-        )}
+            ))}
+          </div>
+
+          {meta.href ? (
+            <div style={{ marginTop: 24 }}>
+              <Button tone="purple" href={meta.href}>
+                {t('build.githubCta')}
+              </Button>
+            </div>
+          ) : null}
+        </Card>
       </Section>
     </Page>
   )

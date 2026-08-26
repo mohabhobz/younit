@@ -1,8 +1,10 @@
 /**
- * Marketing renamed three things. This walks every page that shows a name, in
- * both languages, and fails if the old one is still written anywhere or the new
- * one is missing where it belongs — including the places a name is not typed by
- * hand: breadcrumbs, deck headers, tab titles and the footer.
+ * What marketing renamed, and what they asked to be taken away.
+ *
+ * The renames are checked everywhere a name is written or read — breadcrumbs,
+ * deck headers, tab titles and the footer, in both languages — and the removals
+ * are checked twice over: the page must not open, and the thing must not be
+ * left showing somewhere else.
  *
  *   node tools/check-renames.mjs
  */
@@ -32,6 +34,12 @@ const GONE = [
 
 const ROUTES = [
   ['/learn', ['Stock Market 101', 'What is Algo Trading'], ['Deep Dives']],
+  // The timings came off every session, and the Build page is one row now.
+  ['/learn/foundation', [], ['45 min', '50 min', 'min read']],
+  ['/ar/learn/foundation', [], ['45', 'دقيقة']],
+  ['/build', ['Repositories'], ['Templates', 'Showcase', 'Capstones', 'Apps']],
+  ['/build/repositories', ['Explore the startup kit to get started', 'Link coming soon'], ['Clone, fork, build']],
+  ['/ar/build/repositories', ['استكشف حزمة البداية لتبدأ'], ['انسخها']],
   ['/ar/learn', ['سوق الأسهم 101', 'ما هو التداول الخوارزمي'], ['تحليلات معمّقة']],
   ['/learn/foundation', ['Stock Market 101'], []],
   ['/ar/learn/foundation', ['سوق الأسهم 101'], []],
@@ -67,21 +75,42 @@ for (const [route, wanted, unwanted] of ROUTES) {
   }
 }
 
-// The addresses the removed card used to point at still answer, so anything
-// that linked to them anywhere else does not fall over.
-for (const route of ['/learn/deep-dives', '/ar/learn/deep-dives']) {
+// The pages marketing asked to be taken away, and everything that lived under
+// them. Nothing else on the site linked to any of these, so they are gone
+// rather than orphaned.
+const REMOVED = [
+  '/learn/deep-dives',
+  '/learn/deep-dives/efg-api-what-you-can-build',
+  '/ar/learn/deep-dives',
+  '/build/templates',
+  '/build/showcase',
+  '/build/showcase/arabic-sentiment-egx',
+  '/build/capstones',
+  '/build/apps',
+  '/ar/build/showcase',
+]
+for (const route of REMOVED) {
   await page.goto(`${BASE}${route}`, { waitUntil: 'networkidle' })
   const text = await page.evaluate(() => document.body.innerText)
-  if (/not found|غير موجودة/i.test(text)) problems.push(`${route} is a 404 — it should still open`)
+  if (!/not found|غير موجودة/i.test(text)) problems.push(`${route} still opens — it was removed`)
+}
+
+// The photograph that stood with the editorial section is off the homepage.
+await page.goto(`${BASE}/`, { waitUntil: 'networkidle' })
+const photos = await page.evaluate(() =>
+  [...document.querySelectorAll('main img')].map((img) => img.currentSrc || img.src),
+)
+if (photos.some((src) => /compete-team/.test(src))) {
+  problems.push('the homepage still carries the photograph that came with Editorial')
 }
 
 await browser.close()
 stop()
 
-console.log(`${ROUTES.length + 2} pages read in both languages`)
+console.log(`${ROUTES.length + REMOVED.length + 1} pages read in both languages`)
 if (problems.length) {
   console.error('FAIL')
   for (const problem of problems) console.error(`  ${problem}`)
   process.exit(1)
 }
-console.log('PASS — every renamed thing reads its new name, and nothing keeps the old one')
+console.log('PASS — the new names are everywhere, the old ones nowhere, and what was removed is gone')

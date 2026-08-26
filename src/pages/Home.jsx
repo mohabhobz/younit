@@ -15,8 +15,6 @@ import {
 } from "../components/ui/Pieces.jsx";
 import { useI18n } from "../lib/i18n.jsx";
 import Photo from "../components/ui/Photo.jsx";
-import photoJpg from "../assets/compete-team.jpg";
-import photoWebp from "../assets/compete-team.webp";
 import deskJpg from "../assets/desk-code.jpg";
 import deskWebp from "../assets/desk-code.webp";
 
@@ -493,22 +491,6 @@ function Journey() {
 /* The photograph                                                             */
 /* -------------------------------------------------------------------------- */
 
-function PhotoBand() {
-  const { t } = useI18n()
-
-  return (
-    <div data-reveal="">
-      <Photo
-        webp={photoWebp}
-        jpg={photoJpg}
-        width={2624}
-        height={875}
-        alt={t("compete.photoAlt")}
-      />
-    </div>
-  );
-}
-
 /* Meta labels are design copy from the template; the titles and destinations
    resolve against the real content files. */
 const TRACKS = [
@@ -579,8 +561,6 @@ export default function Home() {
         <WhatIsYounit />
         <Rule />
         <Journey />
-        <Rule />
-        <PhotoBand />
       </main>
 
       <SiteFooter tone="blue" />
