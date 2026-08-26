@@ -287,19 +287,19 @@ function FlowChip({ glyph, line1, line2 }) {
   return (
     <div
       style={{
-        // A square, the size of the thing it holds — not a band stretched
-        // across the card. The three of them stand in the middle of the column.
-        width: 128,
-        aspectRatio: "1 / 1",
+        // The size of what it holds, not a shape forced around it: one width
+        // so the three line up, and the height hugs the glyph and its two
+        // lines. The three stand in the middle of the column.
+        width: 104,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        gap: 6,
+        gap: 4,
         background: "var(--yn-white)",
         border: "1px solid var(--yn-ink)",
         borderRadius: 8,
-        padding: "8px 6px",
+        padding: "10px 8px",
         textAlign: "center",
       }}
     >
