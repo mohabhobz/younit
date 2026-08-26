@@ -121,6 +121,24 @@ The footer is two shorter lists now — Platform is Learn, Build, Compete; the
 EFG column is About, EFG Holding, GitHub. Nothing on the site links to a page
 that is not there.
 
+## Batch 7 — checked, and the writing taken out of the bundle
+
+Every comment in this batch was already done in batches 4 and 5. Each was
+checked by address rather than by memory:
+
+- [x] The session page says Stock Market 101 — breadcrumb, header and tab title.
+- [x] The Algo sessions say What is Algo Trading, including the back button on
+      the deck itself, in both languages.
+- [x] The Deep Dives article page: not found.
+- [x] All five Showcase and Capstone project pages, and the Apps one: not found.
+
+One thing was not finished, and this batch is what found it. The pages were
+gone, but their writing was still in `src/content`, and everything there is
+compiled into the bundle whether a page renders it or not — so every visitor was
+still downloading the removed articles. They now live in `archive/`, out of the
+build and still in the repository. **The bundle went from 478 kB to 405 kB
+(gzip 145 → 125 kB).** Putting a collection back is moving its folder back.
+
 ## To raise with marketing
 
 - **The Build card has an empty middle.** Removing the two figures left the card
