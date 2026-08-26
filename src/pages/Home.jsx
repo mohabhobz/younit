@@ -191,9 +191,14 @@ function WhatIsYounit() {
             aspectRatio: "16 / 9",
             borderRadius: "var(--yn-r-card)",
             border: "1px solid var(--yn-ink)",
-            background: "var(--yn-blue)",
-            display: "grid",
-            placeItems: "center",
+            background: "var(--yn-chrome)",
+            // The two rows of a grid share the height between them, which put
+            // the glyph near the top and the words near the bottom. They are
+            // one thing, so they sit together in the middle.
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
             gap: 12,
           }}
         >
@@ -269,11 +274,27 @@ function ProgressGrid() {
   );
 }
 
+/** The step between two chips, pointing the way the card is read. */
+function Down() {
+  return (
+    <span aria-hidden="true" style={{ fontSize: "var(--yn-small)", textAlign: "center", lineHeight: 1 }}>
+      ↓
+    </span>
+  )
+}
+
 function FlowChip({ glyph, line1, line2 }) {
   return (
     <div
       style={{
+        // Stacked, the three chips share the card's height between them, so
+        // what is in each one sits in the middle of it rather than at the top.
         flex: 1,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 4,
         background: "var(--yn-white)",
         border: "1px solid var(--yn-ink)",
         borderRadius: 8,
@@ -405,24 +426,26 @@ function Journey() {
             {/* The counts are gone. What is left is the shape of a strategy —
                 a rule, a signal, a position — which is the thing being offered
                 rather than a figure standing in for it. */}
+            {/* A strategy reads downwards: a rule, then a signal, then a
+                position. Standing the three on top of each other turns the
+                arrows the same way and gives the card its middle back — the
+                counts that used to fill it are gone. */}
             <div
               data-seq=""
               style={{
+                flex: 1,
                 display: "flex",
-                alignItems: "center",
+                flexDirection: "column",
+                alignItems: "stretch",
                 justifyContent: "center",
-                gap: 8,
+                gap: 6,
                 paddingTop: 12,
-                // The counts that filled the rest of this card are gone, and
-                // the button holds the floor. Without this the chips cling to
-                // the top and leave the middle empty.
-                marginBottom: "auto",
               }}
             >
               <FlowChip glyph="step" line1={t("home.flow.price")} line2={t("home.flow.priceRule")} />
-              <span style={{ fontSize: 'var(--yn-small)' }}>→</span>
+              <Down />
               <FlowChip glyph="bar" line1={t("home.flow.volume")} line2={t("home.flow.volumeRule")} />
-              <span style={{ fontSize: 'var(--yn-small)' }}>→</span>
+              <Down />
               <FlowChip glyph="step" line1={t("home.flow.buy")} line2={t("home.flow.buyRule")} />
             </div>
             <CardCta tone="blue" to="/build/repositories">
@@ -442,38 +465,51 @@ function Journey() {
             <div style={{ display: "flex", justifyContent: "center" }}>
               <Badge>{t("home.journey.competitionSnapshot")}</Badge>
             </div>
-            <div>
-              <div style={{ ...LABEL, paddingTop: 12, paddingBottom: 12 }}>
-                {t("home.journey.currentRank")}
-              </div>
-              <div
-                data-count=""
-                className="yn-display"
-                style={{ fontSize: "var(--yn-stat)", lineHeight: 1.05 }}
-              >
-                04/124
-              </div>
-            </div>
-            <hr style={{ border: 0, borderTop: "1px solid var(--yn-ink)", margin: 0 }} />
+            {/* The card is as tall as the two beside it and holds less, so
+                what it holds sits in the middle of it rather than against the
+                top. */}
             <div
               style={{
+                flex: 1,
                 display: "flex",
-                alignItems: "flex-end",
-                justifyContent: "space-between",
+                flexDirection: "column",
+                justifyContent: "center",
                 gap: 16,
               }}
             >
               <div>
-                <div style={LABEL}>{t("home.journey.rankChange")}</div>
+                <div style={{ ...LABEL, paddingBottom: 12 }}>
+                  {t("home.journey.currentRank")}
+                </div>
                 <div
+                  data-count=""
                   className="yn-display"
-                  style={{ fontSize: "var(--yn-stat-2)", lineHeight: 1.1 }}
+                  style={{ fontSize: "var(--yn-stat)", lineHeight: 1.05 }}
                 >
-                  <span data-count="">5</span>{" "}
-                  <span style={{ fontSize: 'var(--yn-eyebrow)' }}>↑</span>
+                  04/124
                 </div>
               </div>
-              <RankSteps />
+              <hr style={{ border: 0, borderTop: "1px solid var(--yn-ink)", margin: 0 }} />
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "flex-end",
+                  justifyContent: "space-between",
+                  gap: 16,
+                }}
+              >
+                <div>
+                  <div style={LABEL}>{t("home.journey.rankChange")}</div>
+                  <div
+                    className="yn-display"
+                    style={{ fontSize: "var(--yn-stat-2)", lineHeight: 1.1 }}
+                  >
+                    <span data-count="">5</span>{" "}
+                    <span style={{ fontSize: 'var(--yn-eyebrow)' }}>↑</span>
+                  </div>
+                </div>
+                <RankSteps />
+              </div>
             </div>
             <CardCta tone="white" href="#editorial">
               {t("home.journey.seeAllRanks")}

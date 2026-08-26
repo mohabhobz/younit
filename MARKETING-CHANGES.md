@@ -159,13 +159,22 @@ Read off the deck's own artwork, not typed from memory. No copy changed.
       what the site uses. Body stays Anybody at width 117, weight 348; Arabic
       stays IBM Plex Sans Arabic.
 
+## Batch 9 — the four on the homepage
+
+- [x] The favicon is redrawn to the deck's own Favicon panel: a square plate
+      with a modest corner radius (9.5% of the side, not the quarter circle it
+      had), the mark filling 85% of the width rather than 68%, and both centred.
+      Checked at 128, 32 and 16 pixels.
+- [x] The Build card's three chips stand one above the other and the arrows
+      point down. They share the card's height between them, so the card is
+      full — this is what the empty middle needed.
+- [x] The Compete card's content sits in the middle of the card rather than
+      against the top, and so does what is inside the video frame — the glyph
+      and its line were a grid's two rows, pushed apart.
+- [x] The video frame takes the header's colour.
+
 ## To raise with marketing
 
-- **The Build card has an empty middle.** Removing the two figures left the card
-  taller than what is now in it. Centring the row of chips did not close the
-  gap, because the card's height is set by the Learn and Compete cards beside
-  it. It needs something in it or a shorter card, and both are marketing's
-  choice, not ours.
 - **Three buttons now point at sections that were removed.** The hero's "Get
   your API key" and the Learn card's "Continue lesson" point at `#api`; the
   Compete card's "See all ranks" points at `#editorial`. They still scroll
