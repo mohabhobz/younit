@@ -2,7 +2,7 @@ import { Micro } from './Pieces.jsx'
 import { useI18n } from '../../lib/i18n.jsx'
 import { Link } from '../../lib/i18n.jsx'
 
-/** `Learn › Foundation Series › Session 1 of 5`, as the original site sets it. */
+/** `Learn › Stock Market 101 › Session 1 of 5`, as the original site sets it. */
 export default function Breadcrumb({ trail }) {
   const { t } = useI18n()
 

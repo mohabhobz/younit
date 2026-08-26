@@ -6,8 +6,13 @@ import { counts } from '../lib/content.js'
 import { useI18n } from '../lib/i18n.jsx'
 
 /**
- * The four Learn sections, each linking to its own index — the same structure
- * the original site used, with its copy.
+ * The Learn sections, each linking to its own index.
+ *
+ * Deep Dives is not among them for now — marketing asked for it to come off the
+ * page. The writing and its addresses are untouched: `/learn/deep-dives` still
+ * answers, and every article that lives under it still opens, so nothing that
+ * was linked to it anywhere breaks. It is only off this index until they say
+ * otherwise.
  */
 const TRACKS = [
   {
@@ -25,14 +30,6 @@ const TRACKS = [
     description: 'learn.algoTrackShort',
     to: '/learn/algo-track',
     cta: 'white',
-  },
-  {
-    tone: 'white',
-    title: 'learn.deepDivesTitle',
-    meta: ['learn.articles', { count: counts.deepDives }],
-    description: 'learn.deepDivesSub',
-    to: '/learn/deep-dives',
-    cta: 'blue',
   },
   {
     tone: 'white',

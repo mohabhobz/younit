@@ -47,7 +47,7 @@
       "learn": "01. Learn",
       "build": "02. Build",
       "compete": "03. Compete",
-      "learnCaption": "from what a stock is to writing your first trading algorithm - through the foundation series and the algo track.",
+      "learnCaption": "from what a stock is to writing your first trading algorithm - through stock market 101 and the algo trading track.",
       "buildCaption": "run a strategy on live egx data - or build the tool, dashboard or agent you wish existed.",
       "competeCaption": "strategies go head to head on a public leaderboard -through seasons, competitions, and hackathons.",
       "learningSnapshot": "Understand the market behind your code",
@@ -78,7 +78,7 @@
     },
     "editorial": {
       "title": "Editorial",
-      "subtitle": "Latest from the Hub"
+      "subtitle": "Latest from Younit"
     },
     "tracks": {
       "titleLine1": "Project tracks",
@@ -130,14 +130,14 @@
     "sessions": "{count} sessions",
     "articles": "{count} articles",
     "terms": "{count} terms",
-    "foundationTitle": "Foundation Series",
+    "foundationTitle": "Stock Market 101",
     "foundationShort": "Everything you need to understand how markets actually work.",
     "foundationSub": "Five sessions. Everything you need to understand how markets actually work.",
-    "foundationEmpty": "Foundation sessions are being prepared.",
-    "algoTrackTitle": "Algo Track",
+    "foundationEmpty": "Stock Market 101 sessions are being prepared.",
+    "algoTrackTitle": "What is Algo Trading",
     "algoTrackShort": "From first principles to deploying a live algorithmic trading strategy.",
     "algoTrackSub": "Eight sessions. From first principles to deploying a live algorithmic trading strategy.",
-    "algoTrackEmpty": "Algo Track sessions are being prepared.",
+    "algoTrackEmpty": "These sessions are being prepared.",
     "deepDivesTitle": "Deep Dives",
     "deepDivesSub": "Longer-form analysis on specific sectors, instruments, and ideas.",
     "deepDivesEmpty": "Deep dives are being prepared.",
@@ -218,7 +218,7 @@
     "phaseNote": "This section opens in Phase 2. The description above is accurate — not a placeholder."
   },
   "editorial": {
-    "title": "From the Hub",
+    "title": "From Younit",
     "sub": "Market commentary, builder profiles, and the weekly EGX recap.",
     "kinds": {
       "newsletter": "Newsletter",
@@ -230,12 +230,12 @@
   },
   "about": {
     "title": "About",
-    "p1": "EFG Innovation Hub is Egypt's open initiative for capital markets education, infrastructure, and community. It is built and maintained by EFG Holding, and it is free, permanently.",
-    "p2": "The Hub is not a trading platform. It does not execute trades, hold positions, or provide investment advice. It is an educational initiative built on EFG's open market data API — the same infrastructure that powers EFG's own research and technology operations.",
-    "p3": "The three pillars — Learn, Build, Compete — reflect the three things the Hub enables. Content in the Learn pillar is written by the EFG research and data science team. The Build pillar points to real code in real repositories. The Compete pillar, opening in Phase 2, provides transparent, algorithmic rankings of participant-built strategies running on live EGX data.",
+    "p1": "Younit is Egypt's open initiative for capital markets education, infrastructure, and community. It is built and maintained by EFG Holding, and it is free, permanently.",
+    "p2": "Younit is not a trading platform. It does not execute trades, hold positions, or provide investment advice. It is an educational initiative built on EFG's open market data API — the same infrastructure that powers EFG's own research and technology operations.",
+    "p3": "The three pillars — Learn, Build, Compete — reflect the three things Younit enables. Content in the Learn pillar is written by the EFG research and data science team. The Build pillar points to real code in real repositories. The Compete pillar, opening in Phase 2, provides transparent, algorithmic rankings of participant-built strategies running on live EGX data.",
     "p4": "Users own their work. Everything built on EFG infrastructure belongs to the builders. EFG does not claim ownership of student projects, capstone papers, or community applications.",
     "whyTitle": "Why this exists",
-    "whyBody": "Egypt has no shortage of brilliant people. It has had a shortage of access. The Innovation Hub exists to remove one specific barrier: the infrastructure to build real things on real markets. Not a sandbox. Not a toy. The actual API, open to anyone willing to learn."
+    "whyBody": "Egypt has no shortage of brilliant people. It has had a shortage of access. Younit exists to remove one specific barrier: the infrastructure to build real things on real markets. Not a sandbox. Not a toy. The actual API, open to anyone willing to learn."
   },
   "partners": {
     "title": "Partners",
@@ -248,7 +248,7 @@
       "Technology — API and data feeds"
     ],
     "acknowledgmentsTitle": "Acknowledgments",
-    "acknowledgments": "The Hub exists because of the students, researchers, and practitioners who took the Foundation Series in its earliest form and asked what came next. Their feedback shaped this platform.",
+    "acknowledgments": "Younit exists because of the students, researchers, and practitioners who took Stock Market 101 in its earliest form and asked what came next. Their feedback shaped this platform.",
     "universities": [
       "American University in Cairo (AUC)",
       "German University in Cairo (GUC)",
@@ -258,18 +258,15 @@
     ]
   },
   "footer": {
-    "hub": "EFG Innovation Hub",
+    "hub": "LetsYounit!",
     "mission": "Egypt's open initiative for capital markets education and infrastructure.",
     "platform": "Platform",
-    "efg": "EFG",
+    "efg": "EFG Hermes",
     "efgHolding": "EFG Holding",
     "github": "GitHub",
-    "legal": "The Hub is an educational initiative. Nothing here is investment advice.",
+    "legal": "Younit is an educational initiative. Nothing here is investment advice.",
     "copyright": "© {year} EFG Holding. All rights reserved.",
-    "poweredBy": "Powered by ⊕ EFG Hermes",
-    "taglineIdea": "One idea",
-    "taglineRule": "One rule",
-    "taglineStrategy": "One automated strategy"
+    "poweredBy": "Powered by ⊕ EFG Hermes"
   },
   "notFound": {
     "title": "Page not found",

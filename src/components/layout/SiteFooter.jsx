@@ -1,4 +1,4 @@
-import { Wordmark, Bullet } from '../../brand/marks.jsx'
+import { Wordmark } from '../../brand/marks.jsx'
 import { Link, useI18n } from '../../lib/i18n.jsx'
 
 /**
@@ -133,10 +133,8 @@ export default function SiteFooter({ tone = 'blue' }) {
           color: dark ? 'var(--yn-white)' : 'var(--yn-ink-2)',
         }}
       >
-        <span>
-          {t('footer.taglineIdea')} <Bullet /> {t('footer.taglineRule')} <Bullet />{' '}
-          {t('footer.taglineStrategy')}
-        </span>
+        {/* "One idea · One rule · One automated strategy" stood here. Marketing
+            asked for it to go, and with it the three strings it was made of. */}
         <span>{t('footer.legal')}</span>
         <span>{t('footer.copyright', { year: new Date().getFullYear() })}</span>
       </div>

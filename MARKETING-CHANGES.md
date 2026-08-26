@@ -51,6 +51,33 @@ the bottom rather than being guessed at.
 - [x] Remove the Project tracks section.
       The photo band stays — no comment asked for it to go.
 
+## Batch 4 — names, on Learn and in the footer
+
+Each rename was followed everywhere the name is written or read from, not only
+where the pin was: the Learn cards, the track indexes, the breadcrumbs, the tab
+titles, the session decks themselves in both languages, the editorial writing
+that mentions them, and an author's biography.
+
+- [x] "Foundation Series" → **Stock Market 101** (Arabic: سوق الأسهم 101).
+      17 places, including the header inside all five session decks.
+- [x] "Algo Track" → **What is Algo Trading** (Arabic: ما هو التداول الخوارزمي).
+      21 places, including all eight decks and the map inside them. Four
+      sentences that read "the Algo Track" were reworded so they still read as
+      English — the new name is a question, and "the What is Algo Trading" is
+      not a sentence.
+- [x] Deep Dives comes off the Learn page. Its writing and its addresses are
+      untouched: `/learn/deep-dives` and every article under it still open, so
+      nothing that linked to them anywhere is broken. It is off the index only,
+      "for now".
+- [x] The footer's "EFG Innovation Hub" → **LetsYounit!**
+- [x] The footer's "EFG" column heading → **EFG Hermes**.
+- [x] "One idea · One rule · One automated strategy" removed from the footer,
+      and the three strings with it.
+
+`npm run check:renames` was added to the check suite: it reads every page that
+shows one of these names, in both languages, and fails if an old name is still
+written anywhere or a new one is missing.
+
 ## To raise with marketing
 
 - **The Build card has an empty middle.** Removing the two figures left the card
@@ -63,6 +90,17 @@ the bottom rather than being guessed at.
   Compete card's "See all ranks" points at `#editorial`. They still scroll
   nowhere. Left exactly as they were, per your instruction — tell us the
   destinations and we will put them in.
+- **The addresses still carry the old names.** `/learn/foundation` and
+  `/learn/algo-track` are unchanged, because changing an address breaks every
+  link already sent, bookmarked or printed. Nothing on the page shows them, and
+  they can be changed with a redirect from the old ones the moment you say so.
+- **"LetsYounit!" replaced a name that was also used as a noun.** The footer
+  heading is now LetsYounit!, but the About and Partners pages said "the Hub" in
+  the middle of sentences, where an exclamation cannot stand. Those read
+  "Younit" now. If marketing wants LetsYounit! in the prose as well, say the
+  word.
+- **The Arabic for both track names is ours, not marketing's.** سوق الأسهم 101
+  and ما هو التداول الخوارزمي. The comments were written in English only.
 
 ## Waiting on the client
 
