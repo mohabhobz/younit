@@ -287,14 +287,15 @@ function FlowChip({ glyph, line1, line2 }) {
   return (
     <div
       style={{
-        // Stacked, the three chips share the card's height between them, so
-        // what is in each one sits in the middle of it rather than at the top.
-        flex: 1,
+        // A square, the size of the thing it holds — not a band stretched
+        // across the card. The three of them stand in the middle of the column.
+        width: 128,
+        aspectRatio: "1 / 1",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        gap: 4,
+        gap: 6,
         background: "var(--yn-white)",
         border: "1px solid var(--yn-ink)",
         borderRadius: 8,
@@ -436,7 +437,7 @@ function Journey() {
                 flex: 1,
                 display: "flex",
                 flexDirection: "column",
-                alignItems: "stretch",
+                alignItems: "center",
                 justifyContent: "center",
                 gap: 6,
                 paddingTop: 12,
