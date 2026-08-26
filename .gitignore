@@ -14,3 +14,6 @@ tools/shots/
 # Marketing comments pulled from Figma — regenerated, not source
 figma-comments.md
 figma-comments.json
+
+# Files this machine cannot delete through the bridge are moved here instead.
+_to_delete
