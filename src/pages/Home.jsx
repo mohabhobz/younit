@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useMotion from "../lib/useMotion.js";
 import { BrandDefs, ArchPyramid, Glyph } from "../brand/marks.jsx";
 import SiteHeader from "../components/layout/SiteHeader.jsx";
@@ -88,43 +88,41 @@ function Hero() {
           {t("home.eyebrow")}
         </p>
 
+        {/* "Learn, Build, Compete." is in the row above and in the three
+            sections below, so the headline is what the platform lets you do. */}
         <h1
           data-type=""
           className="yn-display"
           style={{
-            fontSize: "var(--yn-hero)",
-            lineHeight: "var(--yn-lh-hero)",
+            fontSize: "var(--yn-h1)",
+            lineHeight: "var(--yn-lh-h1)",
             letterSpacing: "-0.02em",
-            margin: "0 0 28px",
+            margin: "0 0 36px",
+            maxWidth: "18ch",
           }}
         >
           {t("home.headline")}
         </h1>
 
-        <p
-          data-type=""
-          style={{
-            fontSize: 'var(--yn-body-size)',
-            color: "var(--yn-grey-dark)",
-            margin: "0 0 40px",
-            maxWidth: "46ch",
-          }}
-        >
-          {t("home.subline")}
-        </p>
-
         <div data-cta="" className="yn-cta-row">
-          {/* The labels are marketing's; the destinations are not settled.
-              Both keep the addresses they already had rather than being
-              pointed somewhere invented — the account link belongs to EFG ONE
-              and the key link to the page Raed drew, and neither has arrived. */}
-          <Button tone="amber" href="#journey">
-            {t("home.ctaFoundation")}
-          </Button>
+          <OpenAccount />
+          {/* The key's destination is EFG's own page and has not arrived, so
+              this keeps the address it had rather than one of my choosing. */}
           <Button tone="blue" href="#api">
             {t("home.ctaApi")}
           </Button>
         </div>
+
+        <p
+          style={{
+            fontSize: "var(--yn-small)",
+            color: "var(--yn-grey-dark)",
+            margin: "18px 0 0",
+            maxWidth: "48ch",
+          }}
+        >
+          {t("home.appNote")}
+        </p>
       </div>
 
       {/* Purple, as the deck's own homepage draws it — the blue arches were
@@ -132,6 +130,98 @@ function Hero() {
       <ArchPyramid tone="purple" />
     </section>
   );
+}
+
+const BODY = {
+  fontSize: "var(--yn-body-size)",
+  lineHeight: 1.7,
+  color: "var(--yn-grey-dark)",
+  margin: "0 0 18px",
+  maxWidth: "58ch",
+};
+
+/**
+ * The rest of a long passage, and the button that asks for it.
+ *
+ * Marketing's note was that the page reads as a wall. So the first paragraph
+ * stands and the remainder waits behind a word — and it is in the markup either
+ * way, so a reader who cannot use the button still meets the whole text and a
+ * search engine still reads it.
+ */
+function More({ label, less, children }) {
+  const [open, setOpen] = useState(false)
+  const id = "yn-more-" + label.replace(/\s+/g, "-").toLowerCase()
+
+  return (
+    <>
+      <div id={id} hidden={!open}>
+        {children}
+      </div>
+      <button
+        type="button"
+        className="yn-more"
+        aria-expanded={open}
+        aria-controls={id}
+        onClick={() => setOpen((was) => !was)}
+      >
+        {open ? less : label}
+      </button>
+    </>
+  )
+}
+
+/**
+ * Opening an account means downloading EFG Hermes ONE, and which shop that is
+ * depends on the phone in the reader's hand.
+ *
+ * The reading happens after the page is drawn, not while it is being written:
+ * on a server or in a snapshot there is no `navigator`, and a button that
+ * guessed would send half its readers to the wrong shop. Until the answer is
+ * known — and on a desktop, where it never will be — both shops are offered by
+ * name, which is also what someone at a laptop needs.
+ */
+const STORES = {
+  ios: 'https://apps.apple.com/eg/app/efg-hermes-one/id1593210448',
+  android: 'https://play.google.com/store/apps/details?id=com.efgh.oneapp',
+}
+
+function usePlatform() {
+  const [platform, setPlatform] = useState(null)
+
+  useEffect(() => {
+    const ua = navigator.userAgent || ''
+    // iPadOS 13 and later say "Macintosh"; a touch point is what gives it away.
+    const iPad = /Macintosh/.test(ua) && navigator.maxTouchPoints > 1
+    if (/iPhone|iPod|iPad/.test(ua) || iPad) setPlatform('ios')
+    else if (/Android/.test(ua)) setPlatform('android')
+    else setPlatform('desktop')
+  }, [])
+
+  return platform
+}
+
+function OpenAccount() {
+  const { t } = useI18n()
+  const platform = usePlatform()
+
+  if (platform === 'ios' || platform === 'android') {
+    return (
+      <Button tone="amber" href={STORES[platform]}>
+        {t("home.ctaFoundation")}
+      </Button>
+    )
+  }
+
+  return (
+    <span style={{ display: "inline-flex", flexWrap: "wrap", gap: 12, alignItems: "center" }}>
+      <Button tone="amber" href={STORES.ios}>
+        {t("home.appStore")}
+      </Button>
+      <Button tone="amber" href={STORES.android}>
+        {t("home.googlePlay")}
+      </Button>
+    </span>
+  )
 }
 
 /* -------------------------------------------------------------------------- */
@@ -165,25 +255,14 @@ function WhatIsYounit() {
         }}
       >
         <div>
-          <Display size="h2">{t("home.what.title")}</Display>
           <Display size="h2" style={{ marginBottom: 28 }}>
-            {t("home.what.subtitle")}
+            {t("home.what.title")}
           </Display>
 
-          {["body1", "body2", "body3"].map((key) => (
-            <p
-              key={key}
-              style={{
-                fontSize: "var(--yn-body-size)",
-                lineHeight: 1.7,
-                color: "var(--yn-grey-dark)",
-                margin: "0 0 18px",
-                maxWidth: "58ch",
-              }}
-            >
-              {t(`home.what.${key}`)}
-            </p>
-          ))}
+          <p style={BODY}>{t("home.what.body1")}</p>
+          <More label={t("common.readMore")} less={t("common.readLess")}>
+            <p style={BODY}>{t("home.what.body2")}</p>
+          </More>
         </div>
 
         <div
@@ -205,6 +284,52 @@ function WhatIsYounit() {
           <Glyph kind="step" width={64} height={46} />
           <span style={{ ...LABEL }}>{t("home.what.videoLabel")}</span>
         </div>
+      </div>
+    </section>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/* How Younit works                                                           */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Seven steps, from downloading the app to building on the infrastructure.
+ *
+ * The first is on the page and the other six wait behind the button, for the
+ * same reason the introduction does: marketing asked for the page not to read
+ * as a wall of text.
+ */
+function HowItWorks() {
+  const { t } = useI18n()
+  const steps = t("home.how.steps")
+
+  const step = (item, i) => (
+    <div key={item.title} style={{ display: "flex", gap: 16, margin: "0 0 22px" }}>
+      <span className="yn-display" style={{ fontSize: "var(--yn-h3)", lineHeight: 1.1, opacity: 0.5 }}>
+        {String(i + 1).padStart(2, "0")}
+      </span>
+      <div>
+        <div className="yn-display" style={{ fontSize: "var(--yn-h3)", lineHeight: 1.2, marginBottom: 6 }}>
+          {item.title}
+        </div>
+        <p style={{ ...BODY, margin: 0 }}>{item.body}</p>
+      </div>
+    </div>
+  )
+
+  return (
+    <section id="how" style={{ padding: "var(--yn-section) 0" }}>
+      <div data-reveal="">
+        <Display size="h2" style={{ marginBottom: 28 }}>
+          {t("home.how.title")}
+        </Display>
+
+        {step(steps[0], 0)}
+        <More label={t("common.readMore")} less={t("common.readLess")}>
+          {steps.slice(1).map((item, i) => step(item, i + 1))}
+          <p style={{ ...BODY, marginTop: 24 }}>{t("home.how.closing")}</p>
+        </More>
       </div>
     </section>
   );
@@ -271,70 +396,6 @@ function ProgressGrid() {
         ),
       )}
     </div>
-  );
-}
-
-/** The step between two chips, pointing the way the card is read. */
-function Down() {
-  return (
-    <span aria-hidden="true" style={{ fontSize: "var(--yn-small)", textAlign: "center", lineHeight: 1 }}>
-      ↓
-    </span>
-  )
-}
-
-function FlowChip({ glyph, line1, line2 }) {
-  return (
-    <div
-      style={{
-        // The size of what it holds, not a shape forced around it: one width
-        // so the three line up, and the height hugs the glyph and its two
-        // lines. The three stand in the middle of the column.
-        width: 104,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: 4,
-        background: "var(--yn-white)",
-        border: "1px solid var(--yn-ink)",
-        borderRadius: 8,
-        padding: "10px 8px",
-        textAlign: "center",
-      }}
-    >
-      <Glyph kind={glyph} width={34} height={26} />
-      <div
-        style={{
-          fontFamily: "var(--yn-mono)",
-          fontSize: 9,
-          letterSpacing: "0.04em",
-          lineHeight: 1.3,
-        }}
-      >
-        {line1}
-        <br />
-        {line2}
-      </div>
-    </div>
-  );
-}
-
-function RankSteps() {
-  return (
-    <svg
-      data-rise=""
-      viewBox="0 0 132 100"
-      style={{ width: 150, height: 114, flex: "0 0 auto" }}
-      aria-hidden="true"
-    >
-      <g stroke="var(--yn-ink)" strokeWidth="2">
-        <rect x="2" y="62" width="42" height="36" fill="var(--yn-white)" />
-        <rect x="44" y="42" width="42" height="56" fill="var(--yn-white)" />
-        <rect x="86" y="22" width="42" height="76" fill="var(--yn-white)" />
-        <rect x="86" y="2" width="42" height="34" fill="var(--yn-blue)" />
-      </g>
-    </svg>
   );
 }
 
@@ -427,28 +488,20 @@ function Journey() {
             {/* The counts are gone. What is left is the shape of a strategy —
                 a rule, a signal, a position — which is the thing being offered
                 rather than a figure standing in for it. */}
-            {/* A strategy reads downwards: a rule, then a signal, then a
-                position. Standing the three on top of each other turns the
-                arrows the same way and gives the card its middle back — the
-                counts that used to fill it are gone. */}
-            <div
-              data-seq=""
+            {/* The three chips are gone — marketing asked for the icons off
+                and this line on. */}
+            <p
               style={{
                 flex: 1,
                 display: "flex",
-                flexDirection: "column",
                 alignItems: "center",
-                justifyContent: "center",
-                gap: 6,
-                paddingTop: 12,
+                fontSize: "var(--yn-body-size)",
+                lineHeight: 1.6,
+                margin: 0,
               }}
             >
-              <FlowChip glyph="step" line1={t("home.flow.price")} line2={t("home.flow.priceRule")} />
-              <Down />
-              <FlowChip glyph="bar" line1={t("home.flow.volume")} line2={t("home.flow.volumeRule")} />
-              <Down />
-              <FlowChip glyph="step" line1={t("home.flow.buy")} line2={t("home.flow.buyRule")} />
-            </div>
+              {t("home.journey.builderBody")}
+            </p>
             <CardCta tone="blue" to="/build/repositories">
               {t("home.journey.getStarted")}
             </CardCta>
@@ -466,52 +519,11 @@ function Journey() {
             <div style={{ display: "flex", justifyContent: "center" }}>
               <Badge>{t("home.journey.competitionSnapshot")}</Badge>
             </div>
-            {/* The card is as tall as the two beside it and holds less, so
-                what it holds sits in the middle of it rather than against the
-                top. */}
-            <div
-              style={{
-                flex: 1,
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                gap: 16,
-              }}
-            >
-              <div>
-                <div style={{ ...LABEL, paddingBottom: 12 }}>
-                  {t("home.journey.currentRank")}
-                </div>
-                <div
-                  data-count=""
-                  className="yn-display"
-                  style={{ fontSize: "var(--yn-stat)", lineHeight: 1.05 }}
-                >
-                  04/124
-                </div>
-              </div>
-              <hr style={{ border: 0, borderTop: "1px solid var(--yn-ink)", margin: 0 }} />
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "flex-end",
-                  justifyContent: "space-between",
-                  gap: 16,
-                }}
-              >
-                <div>
-                  <div style={LABEL}>{t("home.journey.rankChange")}</div>
-                  <div
-                    className="yn-display"
-                    style={{ fontSize: "var(--yn-stat-2)", lineHeight: 1.1 }}
-                  >
-                    <span data-count="">5</span>{" "}
-                    <span style={{ fontSize: 'var(--yn-eyebrow)' }}>↑</span>
-                  </div>
-                </div>
-                <RankSteps />
-              </div>
-            </div>
+            {/* The rank and the change are off the card for now, at marketing's
+                asking. What is left is what the section is called and the way
+                in — no figures standing in for a leaderboard that has not
+                opened. */}
+            <div style={{ flex: 1 }} />
             <CardCta tone="white" href="#editorial">
               {t("home.journey.seeAllRanks")}
             </CardCta>
@@ -598,6 +610,8 @@ export default function Home() {
         <Hero />
         <Rule />
         <WhatIsYounit />
+        <Rule />
+        <HowItWorks />
         <Rule />
         <Journey />
       </main>

@@ -173,6 +173,42 @@ Read off the deck's own artwork, not typed from memory. No copy changed.
       and its line were a grid's two rows, pushed apart.
 - [x] The video frame takes the header's colour.
 
+## Batch 10 — the comments deck (Younit comments website.pptx)
+
+- [x] Eyebrow → "MENA's First API Trading Platform".
+- [x] "Learn, Build, Compete." comes off the hero — it is in the row above and
+      in the three sections below.
+- [x] The hero line is marketing's: "Trade with algorithms, connect to the
+      market, and build your own trading apps with Younit". It is the page's
+      h1 now, so the page still has exactly one.
+- [x] "Open an account" downloads EFG Hermes ONE, and **the page reads the
+      device**: an iPhone or iPad goes to the App Store, an Android phone to
+      Google Play. On a desktop, where there is nothing to detect, both shops
+      are offered by name.
+- [x] Under the buttons: "Download EFG Hermes ONE and open your account first.
+      When you are done, come back and click Get your API key."
+- [x] "Get your API key" keeps the address it had — EFG's own page has not
+      arrived yet.
+- [x] The introduction is two sections now: **What is Younit** and **How Younit
+      Works**, both in marketing's words, with the seven steps written out.
+- [x] Neither reads as a wall: the first paragraph and the first step stand, and
+      **Read more** opens the rest. The hidden text is in the page either way,
+      so a reader without the button and a search engine both get all of it.
+- [x] The Build card loses the three icons and says: "Access Younit's APIs,
+      market data, and SDK to build, test, and automate your own strategies and
+      applications."
+- [x] The Compete card loses the figures in its middle, for now.
+- [x] Footer: "The content provided does not constitute investment advice.",
+      and the line beside it now reads EFG Hermes rather than EFG Holding.
+- [x] About gains two sections — About EFG Hermes and About Younit. Each says
+      its text is being written, because that text is coming from you.
+
+**The font question, answered.** Yes — the site is on the kit the client
+shipped: Poppins for display, Anybody (width 117, weight 348) for body, IBM Plex
+Sans Arabic for Arabic, IBM Plex Mono for code. The deck's type page names ITC
+Avant Garde Gothic Pro for headlines, but the font folder delivered with it
+contains Poppins, not that.
+
 ## To raise with marketing
 
 - **Three buttons now point at sections that were removed.** The hero's "Get

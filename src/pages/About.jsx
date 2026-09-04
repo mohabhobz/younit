@@ -28,6 +28,32 @@ export default function About() {
           <p>{t('about.whyBody')}</p>
         </div>
       </Section>
+
+      <Rule animate={false} />
+
+      {/* Two sections marketing asked for. Their words are being written and
+          will be sent; until they arrive each says so rather than standing
+          under a heading with nothing beneath it, and rather than carrying
+          something I made up. */}
+      <Section>
+        <Display size="h3" as="h2" style={{ marginBottom: 24 }}>
+          {t('about.efgTitle')}
+        </Display>
+        <div className="yn-prose">
+          <p>{t('about.pending')}</p>
+        </div>
+      </Section>
+
+      <Rule animate={false} />
+
+      <Section>
+        <Display size="h3" as="h2" style={{ marginBottom: 24 }}>
+          {t('about.younitTitle')}
+        </Display>
+        <div className="yn-prose">
+          <p>{t('about.pending')}</p>
+        </div>
+      </Section>
     </Page>
   )
 }

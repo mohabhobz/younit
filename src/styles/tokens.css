@@ -632,3 +632,31 @@ pre {
     opacity: 1;
   }
 }
+
+/* --- Read more ------------------------------------------------------------ *
+
+   The button that opens the rest of a passage. It is a button, because it acts
+   on this page rather than going anywhere, and it is drawn as the reading it
+   belongs to: the body face, underlined, at a size the eye passes over rather
+   than stops at.
+   -------------------------------------------------------------------------- */
+.yn-more {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--yn-ink);
+  font: inherit;
+  font-size: var(--yn-small);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  cursor: pointer;
+  transition: opacity 160ms var(--yn-ease);
+}
+
+.yn-more:hover,
+.yn-more:focus-visible {
+  opacity: 0.65;
+}

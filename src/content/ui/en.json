@@ -33,12 +33,13 @@
     "photoPlaceholderLabel": "Placeholder: {label}",
     "artwork": "Stacked units — the Younit motif",
     "backArrow": "←",
-    "forwardArrow": "→"
+    "forwardArrow": "→",
+    "readMore": "Read more",
+    "readLess": "Read less"
   },
   "home": {
-    "eyebrow": "The MENA Region's First API Trading Platform",
-    "headline": "Learn, Build, Compete.",
-    "subline": "Not a sandbox. not a toy, the actual api, open to anyone willing to learn.",
+    "eyebrow": "MENA's First API Trading Platform",
+    "headline": "Trade with algorithms, connect to the market, and build your own trading apps with Younit",
     "ctaFoundation": "Open an account",
     "ctaApi": "Get your API key",
     "journey": {
@@ -56,14 +57,10 @@
       "progressRate": "Progress rate",
       "steadyProgress": "steady progress",
       "continueLesson": "Continue lesson",
-      "activeStrategy": "Active strategy",
-      "backtestReturn": "Backtest return",
-      "runStrategy": "Run strategy",
-      "currentRank": "Current rank",
-      "rankChange": "Rank change",
       "seeAllRanks": "See all ranks",
       "learnPhotoAlt": "People trading at their desks",
-      "getStarted": "Click here to get started"
+      "getStarted": "Click here to get started",
+      "builderBody": "Access Younit's APIs, market data, and SDK to build, test, and automate your own strategies and applications."
     },
     "api": {
       "titleLine1": "Build on this,",
@@ -115,11 +112,47 @@
     },
     "what": {
       "title": "What is Younit",
-      "subtitle": "and how to get on board",
-      "body1": "Younit is an open API trading platform by EFG Hermes, giving developers, students, traders, and curious builders direct access to market infrastructure through simple, documented APIs and an open-source Python SDK.",
-      "body2": "Until now, this level of infrastructure has been accessible almost exclusively to professional trading desks. We are opening it up — giving the next generation of builders the tools to explore markets, develop trading strategies, and create their own applications from day one.",
-      "body3": "Use real-time and historical market data to test your ideas, build and experiment with new strategies, and put your skills to the test through challenges and competitions.",
+      "body1": "Younit opens EFG Hermes' trading infrastructure through APIs, providing access to Egypt's stock market, real-time and historical market data, and an open-source Python SDK.",
+      "body2": "As the first retail algorithmic trading API in Egypt and the wider MENA region, Younit enables users to automate trades, build trading apps, test strategies, backtest ideas, and work with real market data through one platform.",
       "videoLabel": "Watch how it works"
+    },
+    "appNote": "Download EFG Hermes ONE and open your account first. When you are done, come back and click Get your API key.",
+    "appStore": "App Store",
+    "googlePlay": "Google Play",
+    "appChoose": "Get the EFG Hermes ONE app",
+    "how": {
+      "title": "How Younit Works",
+      "steps": [
+        {
+          "title": "Create your account",
+          "body": "Sign up for Younit by downloading the EFG Hermes ONE app. Once you have downloaded the app, click \"Get your API key\" on the Younit website and enter your username and ID to generate your API key."
+        },
+        {
+          "title": "Connect to Younit",
+          "body": "Install the Python SDK on your computer. This lets you connect to the Egyptian stock market and use Younit through code."
+        },
+        {
+          "title": "Access market data",
+          "body": "Use the API to access live prices, historical market data, market depth, and your portfolio. You can use this information to understand the market and build your own tools."
+        },
+        {
+          "title": "Build your strategy",
+          "body": "Write your own trading rules or use a model to decide when to buy or sell. Your strategy could be as simple or advanced as you want."
+        },
+        {
+          "title": "Test before you trade",
+          "body": "Use historical market data to backtest your strategy. This shows you how your idea would have performed in the past and helps you identify what works and what does not before putting real money at risk."
+        },
+        {
+          "title": "Trade automatically",
+          "body": "Once you are ready, connect your strategy to your Younit account. Your code can then place and manage trades automatically based on the rules you created."
+        },
+        {
+          "title": "Keep building",
+          "body": "Younit is not just for trading. You can use the infrastructure to build trading apps, analytics tools, portfolio dashboards, and other financial products."
+        }
+      ],
+      "closing": "In simple terms: Younit gives you the tools to access the market, build an idea, test it with real data, and turn it into a working trading solution."
     }
   },
   "learn": {
@@ -158,9 +191,9 @@
     "title": "Build",
     "sub": "This is where building happens, in the open.",
     "repositoriesTitle": "Repositories",
-    "repositoriesSub": "Curated public repositories from EFG Hermes."
-,   "startupKitLead": "Explore the startup kit to get started"
-,   "startupKitSlot": "Link coming soon",
+    "repositoriesSub": "Curated public repositories from EFG Hermes.",
+    "startupKitLead": "Explore the startup kit to get started",
+    "startupKitSlot": "Link coming soon",
     "kindShowcase": "Showcase",
     "kindCapstone": "Capstone",
     "kindApp": "App",
@@ -192,7 +225,10 @@
     "p3": "The three pillars — Learn, Build, Compete — reflect the three things Younit enables. Content in the Learn pillar is written by the EFG research and data science team. The Build pillar points to real code in real repositories. The Compete pillar, opening in Phase 2, provides transparent, algorithmic rankings of participant-built strategies running on live EGX data.",
     "p4": "Users own their work. Everything built on EFG infrastructure belongs to the builders. EFG does not claim ownership of student projects, capstone papers, or community applications.",
     "whyTitle": "Why this exists",
-    "whyBody": "Egypt has no shortage of brilliant people. It has had a shortage of access. Younit exists to remove one specific barrier: the infrastructure to build real things on real markets. Not a sandbox. Not a toy. The actual API, open to anyone willing to learn."
+    "whyBody": "Egypt has no shortage of brilliant people. It has had a shortage of access. Younit exists to remove one specific barrier: the infrastructure to build real things on real markets. Not a sandbox. Not a toy. The actual API, open to anyone willing to learn.",
+    "efgTitle": "About EFG Hermes",
+    "younitTitle": "About Younit",
+    "pending": "This section is being written. It will be here shortly."
   },
   "footer": {
     "hub": "LetsYounit!",
@@ -201,8 +237,8 @@
     "efg": "EFG Hermes",
     "efgHolding": "EFG Holding",
     "github": "GitHub",
-    "legal": "Younit is an educational initiative. Nothing here is investment advice.",
-    "copyright": "© {year} EFG Holding. All rights reserved.",
+    "legal": "The content provided does not constitute investment advice.",
+    "copyright": "© {year} EFG Hermes. All rights reserved.",
     "poweredBy": "Powered by ⊕ EFG Hermes"
   },
   "notFound": {
