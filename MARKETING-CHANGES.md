@@ -237,6 +237,13 @@ contains Poppins, not that.
   1.8:1 the blue gave and is still under the 4.5:1 anyone can read comfortably.
   The same purple with black links is 8.2:1. One word and it is fixed — but it
   is the brand's call, not ours.
+- **The Compete card on the homepage is empty now** the figures are out of its
+  middle — a badge and a button with a lot of yellow between them. Say what
+  belongs there and it goes in.
+- **On a desktop the account button becomes two**, App Store and Google Play,
+  because there is no device to read. On a phone it is the single button the
+  deck draws.
+- **The Learn page is three cards**, so the glossary sits alone on its row.
 - **The site is now five pages and the sessions.** Home, Learn (with the two
   tracks and the glossary), Build → Repositories, Compete, About. Worth a look
   at whether that is the site you want before it goes anywhere.
