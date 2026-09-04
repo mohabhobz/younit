@@ -13,7 +13,6 @@ import GlossaryTerm from './pages/GlossaryTerm.jsx'
 import Build from './pages/Build.jsx'
 import BuildSection from './pages/BuildSection.jsx'
 import Compete from './pages/Compete.jsx'
-import About from './pages/About.jsx'
 import NotFound from './pages/NotFound.jsx'
 
 /** Every navigation starts at the top of the new page, as a document should. */
@@ -70,12 +69,12 @@ function pages() {
       <Route path="build/repositories" element={<BuildSection section="repositories" />} />
 
       {/* Compete is one page now: Leaderboard, Seasons, Hackathons and Wall of
-          Fame were asked for by marketing to go, and so were Editorial and
-          Partners. Nothing on the site opens any of them any more — the footer
+          Fame were asked for by marketing to go, and so were Editorial,
+          Partners and About — About's two new sections are on the homepage
+          instead. Nothing on the site opens any of them any more — the footer
           lost its two links with them. Their writing is still here. */}
       <Route path="compete" element={<Compete />} />
 
-      <Route path="about" element={<About />} />
 
       <Route path="*" element={<NotFound />} />
     </>

@@ -7,7 +7,6 @@
     "learn": "Learn",
     "build": "Build",
     "compete": "Compete",
-    "about": "About",
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
     "primary": "Primary",
@@ -153,6 +152,11 @@
         }
       ],
       "closing": "In simple terms: Younit gives you the tools to access the market, build an idea, test it with real data, and turn it into a working trading solution."
+    },
+    "who": {
+      "efgTitle": "About EFG Hermes",
+      "younitTitle": "About Younit",
+      "pending": "This section is being written. It will be here shortly."
     }
   },
   "learn": {
@@ -217,18 +221,6 @@
     "stayTuned": "Stay tuned for the next competition",
     "loading": "Loading",
     "photoAlt": "Two builders at a desk, one screen showing code"
-  },
-  "about": {
-    "title": "About",
-    "p1": "Younit is Egypt's open initiative for capital markets education, infrastructure, and community. It is built and maintained by EFG Hermes, and it is free, permanently.",
-    "p2": "Younit is not a trading platform. It does not execute trades, hold positions, or provide investment advice. It is an educational initiative built on EFG's open market data API — the same infrastructure that powers EFG's own research and technology operations.",
-    "p3": "The three pillars — Learn, Build, Compete — reflect the three things Younit enables. Content in the Learn pillar is written by the EFG research and data science team. The Build pillar points to real code in real repositories. The Compete pillar, opening in Phase 2, provides transparent, algorithmic rankings of participant-built strategies running on live EGX data.",
-    "p4": "Users own their work. Everything built on EFG infrastructure belongs to the builders. EFG does not claim ownership of student projects, capstone papers, or community applications.",
-    "whyTitle": "Why this exists",
-    "whyBody": "Egypt has no shortage of brilliant people. It has had a shortage of access. Younit exists to remove one specific barrier: the infrastructure to build real things on real markets. Not a sandbox. Not a toy. The actual API, open to anyone willing to learn.",
-    "efgTitle": "About EFG Hermes",
-    "younitTitle": "About Younit",
-    "pending": "This section is being written. It will be here shortly."
   },
   "footer": {
     "hub": "LetsYounit!",

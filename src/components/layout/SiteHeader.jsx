@@ -16,7 +16,6 @@ const NAV = [
   { to: '/learn', key: 'nav.learn' },
   { to: '/build', key: 'nav.build' },
   { to: '/compete', key: 'nav.compete' },
-  { to: '/about', key: 'nav.about' },
 ]
 
 const LINK_STYLE = {

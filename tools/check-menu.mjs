@@ -97,9 +97,10 @@ for (const [locale, home] of [
   }
   if (open.label === closed.label) fail(`${locale}: the button's label did not change`)
 
-  // Four sections, then the language, last.
-  if (open.links.length !== 5) {
-    fail(`${locale}: the panel has ${open.links.length} links, expected 5`)
+  // The sections, then the language, last. There are three sections since
+  // About came off the row with Editorial and Partners.
+  if (open.links.length !== 4) {
+    fail(`${locale}: the panel has ${open.links.length} links, expected 4`)
   }
   // The pair shows both languages; the one you are reading is not a link, so
   // the last link is always the other one.

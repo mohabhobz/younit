@@ -24,6 +24,7 @@ const GONE = [
   'Algo Track',
   'EFG Innovation Hub',
   'Innovation Hub',
+  'EFG Holding',
   'One automated strategy',
   'One idea',
   'سلسلة الأساسيات',
@@ -49,10 +50,8 @@ const ROUTES = [
   ['/learn/algo-track/00-intro', ['What is Algo Trading'], []],
   ['/ar/learn/algo-track/00-intro', ['ما هو التداول الخوارزمي'], []],
   ['/ar/learn/foundation/01-market-basics', ['سوق الأسهم 101'], []],
-  ['/about', ['Younit'], []],
-  ['/ar/about', ['يونِت'], []],
   ['/partners', ['Younit'], []],
-  ['/', ['LetsYounit!', 'EFG Hermes'], ['Editorial', 'Partners']],
+  ['/', ['LetsYounit!', 'EFG Hermes', 'About EFG Hermes', 'About Younit'], ['Editorial', 'Partners', 'EFG Holding']],
   // Compete is one line and a waiting sign; the four section links are gone.
   ['/compete', ['Stay tuned for the next competition'], ['Leaderboard', 'Seasons', 'Hackathons', 'Wall of Fame']],
   ['/ar/compete', ['ترقّبوا المنافسة القادمة'], []],
@@ -111,6 +110,8 @@ const REMOVED = [
   '/ar/editorial',
   '/partners',
   '/ar/partners',
+  '/about',
+  '/ar/about',
 ]
 for (const route of REMOVED) {
   await page.goto(`${BASE}${route}`, { waitUntil: 'networkidle' })

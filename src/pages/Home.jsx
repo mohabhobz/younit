@@ -89,16 +89,21 @@ function Hero() {
         </p>
 
         {/* "Learn, Build, Compete." is in the row above and in the three
-            sections below, so the headline is what the platform lets you do. */}
+            sections below, so the headline is what the platform lets you do.
+            Three words could be set at the hero size; a sentence of eleven
+            cannot — at 64px it broke into five lines and read as a wall. It is
+            set as the sentence it is: two or three lines, a measure that keeps
+            them even, and the eyebrow above it left as the loudest thing on the
+            page. */}
         <h1
           data-type=""
           className="yn-display"
           style={{
-            fontSize: "var(--yn-h1)",
-            lineHeight: "var(--yn-lh-h1)",
-            letterSpacing: "-0.02em",
-            margin: "0 0 36px",
-            maxWidth: "18ch",
+            fontSize: "var(--yn-h2)",
+            lineHeight: 1.15,
+            letterSpacing: "-0.01em",
+            margin: "6px 0 36px",
+            maxWidth: "24ch",
           }}
         >
           {t("home.headline")}
@@ -418,8 +423,8 @@ function WhoWeAre() {
           gap: 28,
         }}
       >
-        {panel(t("about.efgTitle"), t("about.pending"))}
-        {panel(t("about.younitTitle"), t("about.pending"))}
+        {panel(t("home.who.efgTitle"), t("home.who.pending"))}
+        {panel(t("home.who.younitTitle"), t("home.who.pending"))}
       </div>
     </section>
   );
