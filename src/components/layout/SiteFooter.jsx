@@ -16,7 +16,7 @@ const PLATFORM = [
 
 const EFG = [
   { to: '/about', key: 'nav.about' },
-  { href: 'https://www.efghldg.com', key: 'footer.efgHolding' },
+  { href: 'https://www.efghldg.com', key: 'footer.efgHermes' },
   { href: 'https://github.com/efg-hermes', key: 'footer.github' },
 ]
 

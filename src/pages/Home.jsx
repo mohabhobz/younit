@@ -105,12 +105,12 @@ function Hero() {
         </h1>
 
         <div data-cta="" className="yn-cta-row">
-          <OpenAccount />
-          {/* The key's destination is EFG's own page and has not arrived, so
-              this keeps the address it had rather than one of my choosing. */}
-          <Button tone="blue" href="#api">
-            {t("home.ctaApi")}
+          {/* "Open an account" keeps the address it had: EFG ONE is where an
+              account is opened, and the key is what carries the app links. */}
+          <Button tone="amber" href="#journey">
+            {t("home.ctaFoundation")}
           </Button>
+          <GetTheApp />
         </div>
 
         <p
@@ -171,14 +171,17 @@ function More({ label, less, children }) {
 }
 
 /**
- * Opening an account means downloading EFG Hermes ONE, and which shop that is
- * depends on the phone in the reader's hand.
+ * The key is behind the app, and which shop that is depends on the phone in the
+ * reader's hand.
  *
- * The reading happens after the page is drawn, not while it is being written:
+ * The reading happens after the page is drawn, never while it is being written:
  * on a server or in a snapshot there is no `navigator`, and a button that
- * guessed would send half its readers to the wrong shop. Until the answer is
- * known — and on a desktop, where it never will be — both shops are offered by
- * name, which is also what someone at a laptop needs.
+ * guessed would send half its readers to the wrong shop. iPadOS calls itself a
+ * Macintosh, so a touch point is what gives it away.
+ *
+ * At a desktop there is no phone to read, and the label marketing wrote still
+ * has to be the label — so the button says what it says everywhere, and on a
+ * desktop it opens the two shops by name underneath rather than choosing one.
  */
 const STORES = {
   ios: 'https://apps.apple.com/eg/app/efg-hermes-one/id1593210448',
@@ -190,7 +193,6 @@ function usePlatform() {
 
   useEffect(() => {
     const ua = navigator.userAgent || ''
-    // iPadOS 13 and later say "Macintosh"; a touch point is what gives it away.
     const iPad = /Macintosh/.test(ua) && navigator.maxTouchPoints > 1
     if (/iPhone|iPod|iPad/.test(ua) || iPad) setPlatform('ios')
     else if (/Android/.test(ua)) setPlatform('android')
@@ -200,26 +202,34 @@ function usePlatform() {
   return platform
 }
 
-function OpenAccount() {
+function GetTheApp() {
   const { t } = useI18n()
   const platform = usePlatform()
+  const [shown, setShown] = useState(false)
 
   if (platform === 'ios' || platform === 'android') {
     return (
-      <Button tone="amber" href={STORES[platform]}>
-        {t("home.ctaFoundation")}
+      <Button tone="blue" href={STORES[platform]}>
+        {t("home.ctaApi")}
       </Button>
     )
   }
 
   return (
     <span style={{ display: "inline-flex", flexWrap: "wrap", gap: 12, alignItems: "center" }}>
-      <Button tone="amber" href={STORES.ios}>
-        {t("home.appStore")}
+      <Button tone="blue" onClick={() => setShown((was) => !was)} aria-expanded={shown}>
+        {t("home.ctaApi")}
       </Button>
-      <Button tone="amber" href={STORES.android}>
-        {t("home.googlePlay")}
-      </Button>
+      {shown ? (
+        <>
+          <Button tone="white" size="sm" href={STORES.ios}>
+            {t("home.appStore")}
+          </Button>
+          <Button tone="white" size="sm" href={STORES.android}>
+            {t("home.googlePlay")}
+          </Button>
+        </>
+      ) : null}
     </span>
   )
 }
@@ -304,16 +314,35 @@ function HowItWorks() {
   const { t } = useI18n()
   const steps = t("home.how.steps")
 
+  // Numbered, one under the other, the way the deck sets them out: the number
+  // in its own column so the titles line up, and space rather than rules
+  // between them — the deck draws none, and a hairline at a fractional height
+  // renders half-dark on some rows and not others.
   const step = (item, i) => (
-    <div key={item.title} style={{ display: "flex", gap: 16, margin: "0 0 22px" }}>
-      <span className="yn-display" style={{ fontSize: "var(--yn-h3)", lineHeight: 1.1, opacity: 0.5 }}>
-        {String(i + 1).padStart(2, "0")}
+    <div
+      key={item.title}
+      style={{
+        display: "grid",
+        gridTemplateColumns: "auto minmax(0, 1fr)",
+        columnGap: 20,
+        alignItems: "baseline",
+        margin: i === 0 ? "0" : "32px 0 0",
+      }}
+    >
+      <span
+        className="yn-display"
+        style={{ fontSize: "var(--yn-h2-journey)", lineHeight: 1, color: "var(--yn-grey-dark)" }}
+      >
+        {i + 1}.
       </span>
       <div>
-        <div className="yn-display" style={{ fontSize: "var(--yn-h3)", lineHeight: 1.2, marginBottom: 6 }}>
+        <div
+          className="yn-display"
+          style={{ fontSize: "var(--yn-h3)", lineHeight: 1.2, marginBottom: 8 }}
+        >
           {item.title}
         </div>
-        <p style={{ ...BODY, margin: 0 }}>{item.body}</p>
+        <p style={{ ...BODY, margin: 0, maxWidth: "70ch" }}>{item.body}</p>
       </div>
     </div>
   )
@@ -328,8 +357,69 @@ function HowItWorks() {
         {step(steps[0], 0)}
         <More label={t("common.readMore")} less={t("common.readLess")}>
           {steps.slice(1).map((item, i) => step(item, i + 1))}
-          <p style={{ ...BODY, marginTop: 24 }}>{t("home.how.closing")}</p>
+          <p
+            className="yn-display"
+            style={{
+              fontSize: "var(--yn-h3)",
+              lineHeight: 1.4,
+              margin: "28px 0 0",
+              maxWidth: "60ch",
+            }}
+          >
+            {t("home.how.closing")}
+          </p>
         </More>
+      </div>
+    </section>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/* Who this is                                                                */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * The two sections marketing asked for. They were drawn on the About page and
+ * moved here: this is the page a first reader lands on, and "who is behind
+ * this" belongs where the question is asked.
+ *
+ * The words for both are being written and will be sent. Until they arrive each
+ * says so — a heading with nothing under it reads as a page half built, and a
+ * paragraph I invented would have to be unwritten later.
+ */
+function WhoWeAre() {
+  const { t } = useI18n()
+
+  const panel = (title, body) => (
+    <div
+      style={{
+        border: "1px solid var(--yn-ink)",
+        borderRadius: "var(--yn-r-card)",
+        padding: "clamp(22px, 3vw, 34px)",
+        display: "flex",
+        flexDirection: "column",
+        gap: 14,
+      }}
+    >
+      <Display size="h3" as="h2">
+        {title}
+      </Display>
+      <p style={{ ...BODY, margin: 0 }}>{body}</p>
+    </div>
+  )
+
+  return (
+    <section id="who" style={{ padding: "var(--yn-section) 0" }}>
+      <div
+        data-reveal=""
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(min(320px, 100%), 1fr))",
+          gap: 28,
+        }}
+      >
+        {panel(t("about.efgTitle"), t("about.pending"))}
+        {panel(t("about.younitTitle"), t("about.pending"))}
       </div>
     </section>
   );
@@ -614,6 +704,8 @@ export default function Home() {
         <HowItWorks />
         <Rule />
         <Journey />
+        <Rule />
+        <WhoWeAre />
       </main>
 
       <SiteFooter tone="brand" />

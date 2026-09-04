@@ -220,7 +220,7 @@
   },
   "about": {
     "title": "About",
-    "p1": "Younit is Egypt's open initiative for capital markets education, infrastructure, and community. It is built and maintained by EFG Holding, and it is free, permanently.",
+    "p1": "Younit is Egypt's open initiative for capital markets education, infrastructure, and community. It is built and maintained by EFG Hermes, and it is free, permanently.",
     "p2": "Younit is not a trading platform. It does not execute trades, hold positions, or provide investment advice. It is an educational initiative built on EFG's open market data API — the same infrastructure that powers EFG's own research and technology operations.",
     "p3": "The three pillars — Learn, Build, Compete — reflect the three things Younit enables. Content in the Learn pillar is written by the EFG research and data science team. The Build pillar points to real code in real repositories. The Compete pillar, opening in Phase 2, provides transparent, algorithmic rankings of participant-built strategies running on live EGX data.",
     "p4": "Users own their work. Everything built on EFG infrastructure belongs to the builders. EFG does not claim ownership of student projects, capstone papers, or community applications.",
@@ -235,7 +235,7 @@
     "mission": "Egypt's open initiative for capital markets education and infrastructure.",
     "platform": "Platform",
     "efg": "EFG Hermes",
-    "efgHolding": "EFG Holding",
+    "efgHermes": "EFG Hermes",
     "github": "GitHub",
     "legal": "The content provided does not constitute investment advice.",
     "copyright": "© {year} EFG Hermes. All rights reserved.",

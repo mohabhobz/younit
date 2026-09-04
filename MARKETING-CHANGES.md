@@ -209,6 +209,23 @@ Sans Arabic for Arabic, IBM Plex Mono for code. The deck's type page names ITC
 Avant Garde Gothic Pro for headlines, but the font folder delivered with it
 contains Poppins, not that.
 
+## Batch 11 — your four
+
+- [x] EFG Holding is EFG Hermes everywhere it was written: the About copy, the
+      footer's link, the line beside the year, and an author's title and
+      biography.
+- [x] The two sections — About EFG Hermes and About Younit — are on the home
+      page rather than the About page, as two panels below the three tracks.
+      Each still says its words are being written, because they are yours to
+      send.
+- [x] How Younit Works is set out the way the deck sets it: the number in its
+      own column, the title, then the step. The first is on the page and Read
+      more opens the other six.
+- [x] "Get your API key" is the button that reads the device — an iPhone or iPad
+      to the App Store, an Android phone to Google Play. On a desktop it keeps
+      its label and opens the two shops beside it. "Open an account" keeps the
+      address it had.
+
 ## To raise with marketing
 
 - **Three buttons now point at sections that were removed.** The hero's "Get
@@ -240,9 +257,13 @@ contains Poppins, not that.
 - **The Compete card on the homepage is empty now** the figures are out of its
   middle — a badge and a button with a lot of yellow between them. Say what
   belongs there and it goes in.
-- **On a desktop the account button becomes two**, App Store and Google Play,
-  because there is no device to read. On a phone it is the single button the
-  deck draws.
+- **The app links moved to "Get your API key", on your instruction.** The
+  comments deck put them on "Open an account" — "Open an account should direct
+  users to download EFG Hermes ONE so they can onboard first" — so those two
+  read differently. Say which is right and it takes one line.
+- **The footer says EFG Hermes twice**: the column heading and the link under it
+  that goes to efghldg.com. That is what "everywhere" gives; if the link should
+  keep a different name, say the word.
 - **The Learn page is three cards**, so the glossary sits alone on its row.
 - **The site is now five pages and the sessions.** Home, Learn (with the two
   tracks and the glossary), Build → Repositories, Compete, About. Worth a look
