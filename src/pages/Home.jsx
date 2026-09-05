@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import useMotion from "../lib/useMotion.js";
-import { BrandDefs, ArchPyramid, Glyph } from "../brand/marks.jsx";
+import { BrandDefs, ArchPyramid } from "../brand/marks.jsx";
 import SiteHeader from "../components/layout/SiteHeader.jsx";
 import SiteFooter from "../components/layout/SiteFooter.jsx";
 import { Button } from "../components/ui/Button.jsx";
@@ -15,6 +15,10 @@ import {
 } from "../components/ui/Pieces.jsx";
 import { useI18n } from "../lib/i18n.jsx";
 import Photo from "../components/ui/Photo.jsx";
+import Clip from "../components/ui/Clip.jsx";
+import whatMp4 from "../assets/what-younit.mp4";
+import whatPoster from "../assets/what-younit-poster.jpg";
+import whatWebm from "../assets/what-younit.webm";
 import buildJpg from "../assets/build-desk.jpg";
 import buildWebp from "../assets/build-desk.webp";
 import competeJpg from "../assets/compete-screen.jpg";
@@ -23,13 +27,6 @@ import deskJpg from "../assets/desk-code.jpg";
 import deskWebp from "../assets/desk-code.webp";
 
 /* Shared inline styles that recur across sections. ---------------------------- */
-
-const LABEL = {
-  fontSize: 'var(--yn-micro)',
-  letterSpacing: "0.08em",
-  textTransform: "uppercase",
-  color: "var(--yn-ink-2)",
-};
 
 const CAPTION = {
   textAlign: "center",
@@ -268,25 +265,17 @@ function WhatIsYounit() {
           <p style={{ ...BODY, margin: 0 }}>{t("home.what.body2")}</p>
         </div>
 
-        <div
-          style={{
-            aspectRatio: "16 / 9",
-            borderRadius: "var(--yn-r-card)",
-            border: "1px solid var(--yn-ink)",
-            background: "var(--yn-chrome)",
-            // The two rows of a grid share the height between them, which put
-            // the glyph near the top and the words near the bottom. They are
-            // one thing, so they sit together in the middle.
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: 12,
-          }}
-        >
-          <Glyph kind="step" width={64} height={46} />
-          <span style={{ ...LABEL }}>{t("home.what.videoLabel")}</span>
-        </div>
+        {/* The grey box with a glyph in it stood here, waiting for a film.
+            The film arrived: one idea becomes a rule, the rule sends signals,
+            the signals run a strategy on their own, and it all returns to the
+            single square it started from, so the ten seconds loop without a
+            seam. */}
+        <Clip
+          mp4={whatMp4}
+          webm={whatWebm}
+          poster={whatPoster}
+          alt={t("home.what.videoAlt")}
+        />
       </div>
     </section>
   );

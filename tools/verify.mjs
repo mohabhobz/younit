@@ -88,7 +88,13 @@ for (const [route, name] of LOCALISED) {
     })
     page.on('pageerror', (e) => errors.push(`pageerror: ${e.message}`))
 
-    await page.goto(`${BASE}${route}`, { waitUntil: 'networkidle' })
+    // Not `waitUntil: 'networkidle'`. A page that carries a looping video
+    // never goes quiet — the media element keeps a request open for as long as
+    // it plays — so the wait would sit there until the harness gave up. Wait
+    // for the load event, then give the network three seconds to settle if it
+    // is going to, which is what the check actually wanted.
+    await page.goto(`${BASE}${route}`, { waitUntil: 'load' })
+    await page.waitForLoadState('networkidle', { timeout: 3000 }).catch(() => {})
 
     // Scroll the whole page before checking. Images below the fold are lazy, so
     // a check at the top would call every one of them broken; scrolling also
@@ -101,7 +107,7 @@ for (const [route, name] of LOCALISED) {
       }
       window.scrollTo(0, 0)
     })
-    await page.waitForLoadState('networkidle')
+    await page.waitForLoadState('networkidle', { timeout: 3000 }).catch(() => {})
     await page.waitForTimeout(200)
 
     const report = await page.evaluate(() => {

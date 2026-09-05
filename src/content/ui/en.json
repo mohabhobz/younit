@@ -115,7 +115,7 @@
       "title": "What is Younit",
       "body1": "Younit opens EFG Hermes' trading infrastructure through APIs, providing access to Egypt's stock market, real-time and historical market data, and an open-source Python SDK.",
       "body2": "As the first retail algorithmic trading API in Egypt and the wider MENA region, Younit enables users to automate trades, build trading apps, test strategies, backtest ideas, and work with real market data through one platform.",
-      "videoLabel": "Watch how it works"
+      "videoAlt": "A short film: a single square becomes a rule, the rule sends signals down three paths, and a grid lights up as the strategy runs on its own."
     },
     "appNote": "Download EFG Hermes ONE and open your account first. When you are done, come back and click Get your API key.",
     "appStore": "App Store",
