@@ -7,9 +7,16 @@ import { Link, useI18n } from '../../lib/i18n.jsx'
  * the label colour. Sizes and colours are the template's, not invented.
  */
 
+/**
+ * The vertical padding is deliberately uneven. Type is not centred inside its
+ * own line box — the face keeps room under the baseline for descenders that
+ * uppercase labels never use — so equal padding leaves the label riding high
+ * in the pill. The pixel moved from the bottom to the top on each size puts
+ * the letters in the middle of the shape.
+ */
 const SIZES = {
-  lg: { padding: '14px 30px', fontSize: 'var(--yn-small)' },
-  sm: { padding: '9px 22px', fontSize: 'var(--yn-micro)' },
+  lg: { padding: '15px 30px 13px', fontSize: 'var(--yn-small)' },
+  sm: { padding: '11px 22px 7px', fontSize: 'var(--yn-micro)' },
 }
 
 /**

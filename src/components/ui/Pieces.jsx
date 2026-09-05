@@ -10,7 +10,8 @@ export function Tag({ children, tone = 'purple', size = 'lg' }) {
         background: FILLS[tone] ?? FILLS.purple,
         border: '1px solid var(--yn-ink)',
         borderRadius: 'var(--yn-r-pill)',
-        padding: size === 'sm' ? '5px 16px' : '6px 20px',
+        /* Uneven on purpose — see the note on Badge below. */
+        padding: size === 'sm' ? '7px 16px 3px' : '8px 20px 4px',
         fontFamily: 'var(--yn-display)',
         fontWeight: 400,
         fontSize: size === 'sm' ? 14 : 16,
@@ -23,7 +24,15 @@ export function Tag({ children, tone = 'purple', size = 'lg' }) {
   )
 }
 
-/** Unfilled outline pill — the snapshot badge, in the body face at 13. */
+/**
+ * Unfilled outline pill — the snapshot badge, in the body face at 13.
+ *
+ * The vertical padding is not even. A line of type is not centred in its own
+ * line box: the face reserves room under the baseline for descenders, so equal
+ * padding leaves the writing sitting high in the pill. Two pixels moved from
+ * the bottom to the top put the ink in the middle of the shape, which is where
+ * the eye looks for it.
+ */
 export function Badge({ children, tone = 'ink' }) {
   return (
     <span
@@ -31,7 +40,7 @@ export function Badge({ children, tone = 'ink' }) {
         display: 'inline-block',
         border: `1px solid ${tone === 'ink' ? 'var(--yn-ink)' : FILLS[tone]}`,
         borderRadius: 'var(--yn-r-pill)',
-        padding: '5px 18px',
+        padding: '7px 18px 3px',
         fontSize: 'var(--yn-small)',
         lineHeight: 1.3,
       }}
@@ -48,7 +57,7 @@ export function PanelBadge({ children, tone = 'purple' }) {
       style={{
         border: `1px solid ${FILLS[tone]}`,
         borderRadius: 'var(--yn-r-pill)',
-        padding: '6px 12px',
+        padding: '8px 12px 4px',
         fontFamily: 'var(--yn-display)',
         fontWeight: 400,
         fontSize: 16,
