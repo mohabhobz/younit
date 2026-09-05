@@ -526,7 +526,7 @@ function Journey() {
           <Display size="h2-journey">{t("home.journey.learn")}</Display>
 
           <SnapshotCard tone="blue" style={{ height: "100%" }}>
-            <div style={{ display: "flex", justifyContent: "center" }}>
+            <div className="yn-card-badge">
               <Badge>{t("home.journey.learningSnapshot")}</Badge>
             </div>
             {/* No counter and no progress bar: there is no tracker behind
@@ -534,12 +534,8 @@ function Journey() {
                 cannot make. A line about what the track teaches, and a
                 photograph of the thing itself. */}
             <div
-              className="yn-display"
-              style={{
-                fontSize: "var(--yn-card-title)",
-                lineHeight: 1.25,
-                paddingTop: 12,
-              }}
+              className="yn-display yn-card-slot"
+              style={{ fontSize: "var(--yn-card-title)", lineHeight: 1.25 }}
             >
               {t("home.journey.lessonsCompleted")}
             </div>
@@ -566,7 +562,7 @@ function Journey() {
           <Display size="h2-journey">{t("home.journey.build")}</Display>
 
           <SnapshotCard tone="purple" style={{ height: "100%" }}>
-            <div style={{ display: "flex", justifyContent: "center" }}>
+            <div className="yn-card-badge">
               <Badge>{t("home.journey.builderSnapshot")}</Badge>
             </div>
             {/* The counts are gone. What is left is the shape of a strategy —
@@ -575,16 +571,11 @@ function Journey() {
             {/* The three chips are gone — marketing asked for the icons off
                 and this line on — and the card carries a photograph like the
                 two beside it. */}
-            <p
-              style={{
-                fontSize: "var(--yn-body-size)",
-                lineHeight: 1.6,
-                margin: 0,
-                paddingTop: 12,
-              }}
-            >
-              {t("home.journey.builderBody")}
-            </p>
+            <div className="yn-card-slot">
+              <p style={{ fontSize: "var(--yn-body-size)", lineHeight: 1.6, margin: 0 }}>
+                {t("home.journey.builderBody")}
+              </p>
+            </div>
             <Photo
               webp={buildWebp}
               jpg={buildJpg}
@@ -608,23 +599,22 @@ function Journey() {
           <Display size="h2-journey">{t("home.journey.compete")}</Display>
 
           <SnapshotCard tone="amber" style={{ height: "100%" }}>
-            <div style={{ display: "flex", justifyContent: "center" }}>
+            <div className="yn-card-badge">
               <Badge>{t("home.journey.competitionSnapshot")}</Badge>
             </div>
             {/* The rank and the change are off the card, at marketing's asking.
                 In their place a photograph, like the two cards beside it — no
                 figures standing in for a leaderboard that has not opened. */}
-            <div style={{ paddingTop: 12 }}>
-              <Photo
-                webp={competeWebp}
-                jpg={competeJpg}
-                width={1600}
-                height={1200}
-                ratio="4 / 3"
-                radius="tile"
-                alt={t("home.journey.competePhotoAlt")}
-              />
-            </div>
+            <div className="yn-card-slot" aria-hidden="true" />
+            <Photo
+              webp={competeWebp}
+              jpg={competeJpg}
+              width={1600}
+              height={1200}
+              ratio="4 / 3"
+              radius="tile"
+              alt={t("home.journey.competePhotoAlt")}
+            />
             <CardCta tone="white" href="#editorial">
               {t("home.journey.seeAllRanks")}
             </CardCta>

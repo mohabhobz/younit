@@ -692,3 +692,47 @@ pre {
     grid-column: span 3;
   }
 }
+
+/* --- The three journey cards ---------------------------------------------- *
+
+   Each card is a badge, a line or two of writing, a photograph and a way in.
+   The writing is a different length in each, which put the three photographs at
+   three different heights. The slot is the height of the longest of them, so
+   the pictures start on the same line and the buttons finish on the same one.
+   Below the breakpoint the cards stack, there is nothing to line up with, and
+   the slot gives its height back.
+   -------------------------------------------------------------------------- */
+.yn-card-slot {
+  /* Four lines of body text and the space above them. The Build paragraph
+     runs to four lines somewhere in every column count the cards go through
+     (1180-1280 at three across, 760-860 at two), so the floor is set to the
+     tallest the writing ever gets rather than to what it happens to be at
+     1440. Above that the three slots are always the same height and the
+     photographs always start on the same line. */
+  min-height: 110px;
+  padding-top: 12px;
+}
+
+/* The badge above the writing is the other thing that moves the photographs:
+   "Learning snapshot" is a word longer than the two beside it and turns onto a
+   second line before they do, which used to drop that card's picture by the
+   height of the extra line. The row is held at two lines and the badge sits in
+   the middle of it, so one card wrapping no longer moves anything. */
+.yn-card-badge {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 46px;
+}
+
+@media (max-width: 700px) {
+  .yn-card-badge {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .yn-card-slot {
+    min-height: 0;
+  }
+}
