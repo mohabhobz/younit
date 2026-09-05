@@ -346,28 +346,12 @@ function HowItWorks() {
   return (
     <section id="how" style={{ padding: "var(--yn-section) 0" }}>
       <div data-reveal="">
-        {/* The title and the sentence that sums the seven up share a line: both
-            start at the top of the row, so the eye finds them together instead
-            of at two different heights with a hole between them. */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "var(--yn-hero-cols)",
-            gap: 40,
-            alignItems: "start",
-            marginBottom: 36,
-          }}
-        >
+        {/* The title, then the sentence that sums the seven up, one under the
+            other. Side by side they sat at two heights with a gap between
+            them; stacked they read as one introduction. */}
+        <div style={{ marginBottom: 36 }}>
           <Display size="h2">{t("home.how.title")}</Display>
-          <p
-            style={{
-              ...BODY,
-              fontSize: "var(--yn-body-size)",
-              lineHeight: 1.7,
-              margin: 0,
-              maxWidth: "52ch",
-            }}
-          >
+          <p style={{ ...BODY, margin: "14px 0 0", maxWidth: "62ch" }}>
             {t("home.how.closing")}
           </p>
         </div>
