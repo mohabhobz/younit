@@ -22,18 +22,11 @@ const EFG = [
 function Column({ heading, items }) {
   const { t } = useI18n()
 
+  // The headings are off the footer. The name still labels the list for a
+  // screen reader, which reads "Platform, navigation" and does not need it
+  // printed to know one list from the other.
   return (
     <nav aria-label={heading}>
-      <div
-        style={{
-          fontSize: 'var(--yn-micro)',
-          letterSpacing: '0.09em',
-          textTransform: 'uppercase',
-          marginBottom: 16,
-        }}
-      >
-        {heading}
-      </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 2, fontSize: 14 }}>
         {items.map((item) =>
           item.href ? (
