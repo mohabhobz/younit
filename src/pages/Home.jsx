@@ -111,12 +111,14 @@ function Hero() {
         </h1>
 
         <div data-cta="" className="yn-cta-row">
-          {/* "Open an account" keeps the address it had: EFG ONE is where an
-              account is opened, and the key is what carries the app links. */}
-          <Button tone="amber" href="#journey">
-            {t("home.ctaFoundation")}
+          {/* The account button carries the app shops. The key keeps the
+              address the account button used to have — the three tracks —
+              because the page that hands out an API key does not exist yet
+              and a button must not point at a guess. */}
+          <OpenAnAccount />
+          <Button tone="blue" href="#journey">
+            {t("home.ctaApi")}
           </Button>
-          <GetTheApp />
         </div>
 
         <p
@@ -177,17 +179,18 @@ function More({ label, less, children }) {
 }
 
 /**
- * The key is behind the app, and which shop that is depends on the phone in the
- * reader's hand.
+ * An account is opened in the app, and which shop that is depends on the phone
+ * in the reader's hand.
+ *
+ * The two buttons had their work the wrong way round: the key was fetching the
+ * app and the account was scrolling the page. The note under them always said
+ * it plainly — download EFG Hermes ONE, open the account, then come back for
+ * the key — so "Open an account" is the button that goes to the shop.
  *
  * The reading happens after the page is drawn, never while it is being written:
  * on a server or in a snapshot there is no `navigator`, and a button that
  * guessed would send half its readers to the wrong shop. iPadOS calls itself a
  * Macintosh, so a touch point is what gives it away.
- *
- * At a desktop there is no phone to read, and the label marketing wrote still
- * has to be the label — so the button says what it says everywhere, and on a
- * desktop it opens the two shops by name underneath rather than choosing one.
  */
 const STORES = {
   ios: 'https://apps.apple.com/eg/app/efg-hermes-one/id1593210448',
@@ -208,7 +211,7 @@ function usePlatform() {
   return platform
 }
 
-function GetTheApp() {
+function OpenAnAccount() {
   const { t } = useI18n()
   const platform = usePlatform()
 
@@ -218,8 +221,8 @@ function GetTheApp() {
   const href = platform === 'android' ? STORES.android : STORES.ios
 
   return (
-    <Button tone="blue" href={href}>
-      {t("home.ctaApi")}
+    <Button tone="amber" href={href}>
+      {t("home.ctaFoundation")}
     </Button>
   )
 }

@@ -221,10 +221,13 @@ contains Poppins, not that.
 - [x] How Younit Works is set out the way the deck sets it: the number in its
       own column, the title, then the step. The first is on the page and Read
       more opens the other six.
-- [x] "Get your API key" is the button that reads the device — an iPhone or iPad
-      to the App Store, an Android phone to Google Play. On a desktop it keeps
-      its label and opens the two shops beside it. "Open an account" keeps the
-      address it had.
+- [x] "Open an account" is the button that reads the device — an iPhone or iPad
+      to the App Store, an Android phone to Google Play, and a desktop to the
+      App Store page, which opens fine in a browser. This is what the comments
+      deck asked for and what the note under the buttons has always said:
+      download the app, open the account, then come back for the key. The two
+      buttons had it the wrong way round for a while; they are the right way
+      round now.
 
 ## To raise with marketing
 
@@ -257,10 +260,10 @@ contains Poppins, not that.
 - **The Compete card on the homepage is empty now** the figures are out of its
   middle — a badge and a button with a lot of yellow between them. Say what
   belongs there and it goes in.
-- **The app links moved to "Get your API key", on your instruction.** The
-  comments deck put them on "Open an account" — "Open an account should direct
-  users to download EFG Hermes ONE so they can onboard first" — so those two
-  read differently. Say which is right and it takes one line.
+- **"Get your API key" scrolls to the three tracks.** It took over the address
+  "Open an account" used to have, because the page that hands out a key does
+  not exist yet and a button must not point at a guess. Send the address and it
+  goes in.
 - **The footer says EFG Hermes twice**: the column heading and the link under it
   that goes to efghldg.com. That is what "everywhere" gives; if the link should
   keep a different name, say the word.
@@ -274,8 +277,8 @@ contains Poppins, not that.
 
 ## Waiting on the client
 
-- The EFG ONE account address, for "Open an account".
-- Where "Get your API key" should go.
+- Where "Get your API key" should go. "Open an account" now opens the app in
+  the reader's own shop, so that one is answered.
 - The video for the What-is-Younit frame.
 - @nouranallam's confirmation of the What-is-Younit copy.
 - Which images from the branding deck go where, and their licence.
