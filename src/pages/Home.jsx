@@ -258,10 +258,10 @@ function WhatIsYounit() {
             {t("home.what.title")}
           </Display>
 
+          {/* Two paragraphs, both on the page. Read more was for a wall of
+              text and this is not one. */}
           <p style={BODY}>{t("home.what.body1")}</p>
-          <More label={t("common.readMore")} less={t("common.readLess")}>
-            <p style={BODY}>{t("home.what.body2")}</p>
-          </More>
+          <p style={{ ...BODY, margin: 0 }}>{t("home.what.body2")}</p>
         </div>
 
         <div
