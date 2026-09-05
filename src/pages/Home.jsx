@@ -303,61 +303,72 @@ function HowItWorks() {
   const { t } = useI18n()
   const steps = t("home.how.steps")
 
-  // Numbered, one under the other, the way the deck sets them out: the number
-  // in its own column so the titles line up, and space rather than rules
-  // between them — the deck draws none, and a hairline at a fractional height
-  // renders half-dark on some rows and not others.
+  // A step is a card, and the cards fill the width. One column of text with
+  // half the page empty beside it is what this was, and seven of them read as a
+  // document rather than a path. As cards they read as steps: the number large
+  // and pale at the top, the title, then the step itself.
   const step = (item, i) => (
     <div
       key={item.title}
       style={{
-        display: "grid",
-        gridTemplateColumns: "auto minmax(0, 1fr)",
-        columnGap: 20,
-        alignItems: "baseline",
-        margin: i === 0 ? "0" : "32px 0 0",
+        background: "var(--yn-white)",
+        border: "1px solid var(--yn-ink)",
+        borderRadius: "var(--yn-r-card)",
+        padding: "clamp(20px, 2.4vw, 28px)",
+        display: "flex",
+        flexDirection: "column",
+        gap: 10,
+        height: "100%",
       }}
     >
       <span
         className="yn-display"
-        style={{ fontSize: "var(--yn-h2-journey)", lineHeight: 1, color: "var(--yn-grey-dark)" }}
+        aria-hidden="true"
+        style={{
+          fontSize: "var(--yn-h2-journey)",
+          lineHeight: 1,
+          color: "var(--yn-purple)",
+        }}
       >
-        {i + 1}.
+        {String(i + 1).padStart(2, "0")}
       </span>
-      <div>
-        <div
-          className="yn-display"
-          style={{ fontSize: "var(--yn-h3)", lineHeight: 1.2, marginBottom: 8 }}
-        >
-          {item.title}
-        </div>
-        <p style={{ ...BODY, margin: 0, maxWidth: "70ch" }}>{item.body}</p>
+      <div className="yn-display" style={{ fontSize: "var(--yn-card-title)", lineHeight: 1.2 }}>
+        {item.title}
       </div>
+      <p style={{ ...BODY, margin: 0, maxWidth: "42ch" }}>{item.body}</p>
     </div>
   )
 
   return (
     <section id="how" style={{ padding: "var(--yn-section) 0" }}>
       <div data-reveal="">
-        <Display size="h2" style={{ marginBottom: 28 }}>
-          {t("home.how.title")}
-        </Display>
-
-        {step(steps[0], 0)}
-        <More label={t("common.readMore")} less={t("common.readLess")}>
-          {steps.slice(1).map((item, i) => step(item, i + 1))}
+        {/* The title and the sentence that sums the seven up sit together, so
+            the section says what it is before it is walked through. */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "var(--yn-hero-cols)",
+            gap: 40,
+            alignItems: "end",
+            marginBottom: 36,
+          }}
+        >
+          <Display size="h2">{t("home.how.title")}</Display>
           <p
             className="yn-display"
-            style={{
-              fontSize: "var(--yn-h3)",
-              lineHeight: 1.4,
-              margin: "28px 0 0",
-              maxWidth: "60ch",
-            }}
+            style={{ fontSize: "var(--yn-h3)", lineHeight: 1.35, margin: 0, maxWidth: "44ch" }}
           >
             {t("home.how.closing")}
           </p>
-        </More>
+        </div>
+
+        <div className="yn-steps">{steps.slice(0, 3).map((item, i) => step(item, i))}</div>
+
+        <div style={{ marginTop: 20 }}>
+          <More label={t("common.readMore")} less={t("common.readLess")}>
+            <div className="yn-steps">{steps.slice(3).map((item, i) => step(item, i + 3))}</div>
+          </More>
+        </div>
       </div>
     </section>
   );
