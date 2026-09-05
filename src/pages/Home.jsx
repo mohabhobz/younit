@@ -210,32 +210,16 @@ function usePlatform() {
 function GetTheApp() {
   const { t } = useI18n()
   const platform = usePlatform()
-  const [shown, setShown] = useState(false)
 
-  if (platform === 'ios' || platform === 'android') {
-    return (
-      <Button tone="blue" href={STORES[platform]}>
-        {t("home.ctaApi")}
-      </Button>
-    )
-  }
+  // One button, everywhere. An Android phone goes to Google Play; everything
+  // else — an iPhone, an iPad, and a desktop, where there is no phone to read —
+  // goes to the App Store page, which opens fine in a browser.
+  const href = platform === 'android' ? STORES.android : STORES.ios
 
   return (
-    <span style={{ display: "inline-flex", flexWrap: "wrap", gap: 12, alignItems: "center" }}>
-      <Button tone="blue" onClick={() => setShown((was) => !was)} aria-expanded={shown}>
-        {t("home.ctaApi")}
-      </Button>
-      {shown ? (
-        <>
-          <Button tone="white" size="sm" href={STORES.ios}>
-            {t("home.appStore")}
-          </Button>
-          <Button tone="white" size="sm" href={STORES.android}>
-            {t("home.googlePlay")}
-          </Button>
-        </>
-      ) : null}
-    </span>
+    <Button tone="blue" href={href}>
+      {t("home.ctaApi")}
+    </Button>
   )
 }
 
