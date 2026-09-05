@@ -59,7 +59,9 @@
       "seeAllRanks": "See all ranks",
       "learnPhotoAlt": "People trading at their desks",
       "getStarted": "Click here to get started",
-      "builderBody": "Access Younit's APIs, market data, and SDK to build, test, and automate your own strategies and applications."
+      "builderBody": "Access Younit's APIs, market data, and SDK to build, test, and automate your own strategies and applications.",
+      "buildPhotoAlt": "A developer at a desk, writing a strategy beside a chart",
+      "competePhotoAlt": "A team reading a ranked list of results on a screen"
     },
     "api": {
       "titleLine1": "Build on this,",

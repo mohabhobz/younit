@@ -15,6 +15,10 @@ import {
 } from "../components/ui/Pieces.jsx";
 import { useI18n } from "../lib/i18n.jsx";
 import Photo from "../components/ui/Photo.jsx";
+import buildJpg from "../assets/build-desk.jpg";
+import buildWebp from "../assets/build-desk.webp";
+import competeJpg from "../assets/compete-screen.jpg";
+import competeWebp from "../assets/compete-screen.webp";
 import deskJpg from "../assets/desk-code.jpg";
 import deskWebp from "../assets/desk-code.webp";
 
@@ -585,19 +589,27 @@ function Journey() {
                 a rule, a signal, a position — which is the thing being offered
                 rather than a figure standing in for it. */}
             {/* The three chips are gone — marketing asked for the icons off
-                and this line on. */}
+                and this line on — and the card carries a photograph like the
+                two beside it. */}
             <p
               style={{
-                flex: 1,
-                display: "flex",
-                alignItems: "center",
                 fontSize: "var(--yn-body-size)",
                 lineHeight: 1.6,
                 margin: 0,
+                paddingTop: 12,
               }}
             >
               {t("home.journey.builderBody")}
             </p>
+            <Photo
+              webp={buildWebp}
+              jpg={buildJpg}
+              width={1600}
+              height={1200}
+              ratio="4 / 3"
+              radius="tile"
+              alt={t("home.journey.buildPhotoAlt")}
+            />
             <CardCta tone="blue" to="/build/repositories">
               {t("home.journey.getStarted")}
             </CardCta>
@@ -615,11 +627,20 @@ function Journey() {
             <div style={{ display: "flex", justifyContent: "center" }}>
               <Badge>{t("home.journey.competitionSnapshot")}</Badge>
             </div>
-            {/* The rank and the change are off the card for now, at marketing's
-                asking. What is left is what the section is called and the way
-                in — no figures standing in for a leaderboard that has not
-                opened. */}
-            <div style={{ flex: 1 }} />
+            {/* The rank and the change are off the card, at marketing's asking.
+                In their place a photograph, like the two cards beside it — no
+                figures standing in for a leaderboard that has not opened. */}
+            <div style={{ paddingTop: 12 }}>
+              <Photo
+                webp={competeWebp}
+                jpg={competeJpg}
+                width={1600}
+                height={1200}
+                ratio="4 / 3"
+                radius="tile"
+                alt={t("home.journey.competePhotoAlt")}
+              />
+            </div>
             <CardCta tone="white" href="#editorial">
               {t("home.journey.seeAllRanks")}
             </CardCta>
