@@ -87,6 +87,11 @@ function Hero() {
           className="yn-display"
           style={{
             fontSize: "var(--yn-h1)",
+            // The display face is Light everywhere else, which at this size
+            // read thinner than the claim deserves. Regular is one step up —
+            // the weight marketing asked for, and the heaviest Poppins cut the
+            // site loads, so it costs nothing to download.
+            fontWeight: 400,
             lineHeight: 1.05,
             letterSpacing: "-0.01em",
             margin: "0 0 14px",

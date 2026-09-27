@@ -185,7 +185,16 @@ export default function SiteHeader({ tone = 'brand' }) {
         zIndex: 50,
       }}
     >
-      <Link to="/" style={{ display: 'block' }} aria-label={`Younit — ${t('common.home')}`}>
+      {/* The logo and the language sit in equal shares of what is left, so the
+          sections land on the middle of the page rather than on the middle of
+          the gap between them. The logo is much the wider of the two, and
+          without this it pushed the row of sections to the right — which is
+          what it looked like: a centred nav that was not centred. */}
+      <Link
+        to="/"
+        style={{ display: 'block', flex: '1 1 0' }}
+        aria-label={`Younit — ${t('common.home')}`}
+      >
         {/* The whole endorsement is inside the artwork now. The two lines of
             type that used to sit above the wordmark — a circle where the EFG
             mark belongs, the name in capitals — were ours, not theirs. */}
@@ -203,7 +212,7 @@ export default function SiteHeader({ tone = 'brand' }) {
           gap: 'clamp(20px, 3.5vw, 56px)',
           alignItems: 'center',
           justifyContent: 'center',
-          flex: 1,
+          flex: '0 0 auto',
         }}
       >
         {NAV.map((item) => (
@@ -224,7 +233,12 @@ export default function SiteHeader({ tone = 'brand' }) {
         ))}
       </nav>
 
-      <LocaleSwitch className="yn-locale-desktop" brandChrome={brandChrome} />
+      <span
+        className="yn-locale-desktop"
+        style={{ flex: '1 1 0', display: 'flex', justifyContent: 'flex-end' }}
+      >
+        <LocaleSwitch brandChrome={brandChrome} />
+      </span>
 
       {/* Phone: one control, and the panel it opens. */}
       <button
