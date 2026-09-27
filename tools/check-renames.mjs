@@ -18,13 +18,21 @@ const EXECUTABLE = '/opt/pw-browsers/chromium'
 const browser = await chromium.launch(existsSync(EXECUTABLE) ? { executablePath: EXECUTABLE } : {})
 const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } })
 
-/** Nothing on the site may say any of these again. */
+/**
+ * Nothing on the site may say any of these again.
+ *
+ * "EFG Holding" came off this list on 27 September. It was here because the
+ * client asked for every EFG Holding to become EFG Hermes — and then sent the
+ * About EFG Hermes copy, which names the listed parent in its first line:
+ * "EFG Hermes, an EFG Holding company (HRHO.CA)". Those are their words about
+ * their own company, so they stand; what the rule was guarding against was us
+ * calling the bank by the parent's name, and nothing does.
+ */
 const GONE = [
   'Foundation Series',
   'Algo Track',
   'EFG Innovation Hub',
   'Innovation Hub',
-  'EFG Holding',
   'One automated strategy',
   'One idea',
   'سلسلة الأساسيات',
@@ -51,7 +59,10 @@ const ROUTES = [
   ['/ar/learn/algo-track/00-intro', ['ما هو التداول الخوارزمي'], []],
   ['/ar/learn/foundation/01-market-basics', ['سوق الأسهم 101'], []],
   ['/partners', ['Younit'], []],
-  ['/', ['LetsYounit!', 'EFG Hermes', 'About EFG Hermes', 'About Younit'], ['Editorial', 'Partners', 'EFG Holding']],
+  // "About Younit" left the homepage on 27 September — marketing struck the
+  // panel out, because What is Younit says it further up. The About EFG Hermes
+  // panel stayed and now carries their own copy.
+  ['/', ['LetsYounit!', 'EFG Hermes', 'About EFG Hermes'], ['Editorial', 'Partners', 'About Younit']],
   // Compete is one line and a waiting sign; the four section links are gone.
   ['/compete', ['Stay tuned for the next competition'], ['Leaderboard', 'Seasons', 'Hackathons', 'Wall of Fame']],
   ['/ar/compete', ['ترقّبوا المنافسة القادمة'], []],

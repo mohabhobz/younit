@@ -18,6 +18,7 @@ import Contents from '../components/ui/Contents.jsx'
 const CRUMBS = {
   foundation: { key: 'learn.foundationTitle', root: '/learn', rootKey: 'learn.title' },
   'algo-track': { key: 'learn.algoTrackTitle', root: '/learn', rootKey: 'learn.title' },
+  'egx-guide': { key: 'learn.egxGuideTitle', root: '/learn', rootKey: 'learn.title' },
 }
 
 /** One cell per session in the track, the current one filled. */

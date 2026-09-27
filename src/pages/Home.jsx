@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import useMotion from "../lib/useMotion.js";
-import { BrandDefs, ArchPyramid } from "../brand/marks.jsx";
+import { BrandDefs, BlockForms } from "../brand/marks.jsx";
 import SiteHeader from "../components/layout/SiteHeader.jsx";
 import SiteFooter from "../components/layout/SiteFooter.jsx";
 import { Button } from "../components/ui/Button.jsx";
@@ -77,38 +77,37 @@ function Hero() {
       }}
     >
       <div>
+        {/* Marketing's note, twice now: the layout is too bulky, and MENA's
+            First API Trading Platform should be bigger than the sentence under
+            it. So the claim is the headline of the page — the h1, at the hero
+            size — and what the platform lets you do follows it at half that,
+            which also takes the long sentence from four lines down to three. */}
+        <h1
+          data-type=""
+          className="yn-display"
+          style={{
+            fontSize: "var(--yn-h1)",
+            lineHeight: 1.05,
+            letterSpacing: "-0.01em",
+            margin: "0 0 14px",
+            maxWidth: "16ch",
+          }}
+        >
+          {t("home.eyebrow")}
+        </h1>
+
         <p
           data-type=""
           className="yn-display"
           style={{
             fontSize: "var(--yn-eyebrow)",
             lineHeight: "var(--yn-lh-eyebrow)",
-            margin: "0 0 4px",
-          }}
-        >
-          {t("home.eyebrow")}
-        </p>
-
-        {/* "Learn, Build, Compete." is in the row above and in the three
-            sections below, so the headline is what the platform lets you do.
-            Three words could be set at the hero size; a sentence of eleven
-            cannot — at 64px it broke into five lines and read as a wall. It is
-            set as the sentence it is: two or three lines, a measure that keeps
-            them even, and the eyebrow above it left as the loudest thing on the
-            page. */}
-        <h1
-          data-type=""
-          className="yn-display"
-          style={{
-            fontSize: "var(--yn-h2)",
-            lineHeight: 1.15,
-            letterSpacing: "-0.01em",
-            margin: "6px 0 36px",
-            maxWidth: "24ch",
+            margin: "0 0 36px",
+            maxWidth: "34ch",
           }}
         >
           {t("home.headline")}
-        </h1>
+        </p>
 
         <div data-cta="" className="yn-cta-row">
           {/* The account button carries the app shops. The key keeps the
@@ -124,6 +123,9 @@ function Hero() {
         <p
           style={{
             fontSize: "var(--yn-small)",
+            // Without this the face's own default leading applies and the
+            // three lines touch, directly under the hero we just re-set.
+            lineHeight: 1.6,
             color: "var(--yn-grey-dark)",
             margin: "18px 0 0",
             maxWidth: "48ch",
@@ -133,9 +135,10 @@ function Hero() {
         </p>
       </div>
 
-      {/* Purple, as the deck's own homepage draws it — the blue arches were
-          ours. */}
-      <ArchPyramid tone="purple" />
+      {/* The arch pyramid stood here. Marketing asked for the branding deck's
+          block forms in its place, and for them to move — so they do, a row at
+          a time from the top down. */}
+      <BlockForms />
     </section>
   );
 }
@@ -303,16 +306,20 @@ function HowItWorks() {
   // half the page empty beside it is what this was, and seven of them read as a
   // document rather than a path. As cards they read as steps: the number large
   // and pale at the top, the title, then the step itself.
+  //
+  // Marketing asked for the brand's colours here, used the way the three
+  // tracks below use them — so the cards are filled rather than white, in the
+  // tracks' own order, and the seventh comes back round to the blue. The
+  // number was purple, which disappears on a purple card; it is ink now, held
+  // back by its weight rather than by its colour.
+  const TONES = ["blue", "purple", "amber"]
+
   const step = (item, i) => (
-    <div
+    <SnapshotCard
       key={item.title}
+      tone={TONES[i % TONES.length]}
       style={{
-        background: "var(--yn-white)",
-        border: "1px solid var(--yn-ink)",
-        borderRadius: "var(--yn-r-card)",
         padding: "clamp(20px, 2.4vw, 28px)",
-        display: "flex",
-        flexDirection: "column",
         gap: 10,
         height: "100%",
       }}
@@ -323,7 +330,8 @@ function HowItWorks() {
         style={{
           fontSize: "var(--yn-h2-journey)",
           lineHeight: 1,
-          color: "var(--yn-purple)",
+          color: "var(--yn-ink)",
+          opacity: 0.45,
         }}
       >
         {String(i + 1).padStart(2, "0")}
@@ -331,8 +339,8 @@ function HowItWorks() {
       <div className="yn-display" style={{ fontSize: "var(--yn-card-title)", lineHeight: 1.2 }}>
         {item.title}
       </div>
-      <p style={{ ...BODY, margin: 0, maxWidth: "42ch" }}>{item.body}</p>
-    </div>
+      <p style={{ ...BODY, margin: 0, maxWidth: "42ch", color: "var(--yn-ink)" }}>{item.body}</p>
+    </SnapshotCard>
   )
 
   return (
@@ -365,47 +373,47 @@ function HowItWorks() {
 /* -------------------------------------------------------------------------- */
 
 /**
- * The two sections marketing asked for. They were drawn on the About page and
- * moved here: this is the page a first reader lands on, and "who is behind
- * this" belongs where the question is asked.
+ * About EFG Hermes.
  *
- * The words for both are being written and will be sent. Until they arrive each
- * says so — a heading with nothing under it reads as a page half built, and a
- * paragraph I invented would have to be unwritten later.
+ * One panel, not two. The second said "About Younit", and marketing struck it
+ * out: what Younit is has already been said further up the page, at length,
+ * with a film beside it. The words here are the client's own, to the comma,
+ * and they end on a working address for the press.
+ *
+ * The panel is as wide as its writing rather than as wide as the page. Run to
+ * the frame it was a bordered box with six hundred pixels of nothing on the
+ * right, which reads as a section that failed to load.
  */
 function WhoWeAre() {
   const { t } = useI18n()
-
-  const panel = (title, body) => (
-    <div
-      style={{
-        border: "1px solid var(--yn-ink)",
-        borderRadius: "var(--yn-r-card)",
-        padding: "clamp(22px, 3vw, 34px)",
-        display: "flex",
-        flexDirection: "column",
-        gap: 14,
-      }}
-    >
-      <Display size="h3" as="h2">
-        {title}
-      </Display>
-      <p style={{ ...BODY, margin: 0 }}>{body}</p>
-    </div>
-  )
+  const email = t("home.who.efgMediaEmail")
+  const [before, after] = t("home.who.efgMedia").split("{email}")
 
   return (
     <section id="who" style={{ padding: "var(--yn-section) 0" }}>
       <div
         data-reveal=""
         style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(min(320px, 100%), 1fr))",
-          gap: 28,
+          border: "1px solid var(--yn-ink)",
+          borderRadius: "var(--yn-r-card)",
+          padding: "clamp(22px, 3vw, 34px)",
+          display: "flex",
+          flexDirection: "column",
+          gap: 14,
+          maxWidth: "82ch",
         }}
       >
-        {panel(t("home.who.efgTitle"), t("home.who.pending"))}
-        {panel(t("home.who.younitTitle"), t("home.who.pending"))}
+        <Display size="h3" as="h2">
+          {t("home.who.efgTitle")}
+        </Display>
+        <p style={{ ...BODY, margin: 0, maxWidth: "none" }}>{t("home.who.efgBody")}</p>
+        <p style={{ ...BODY, margin: 0, maxWidth: "none" }}>
+          {before}
+          <a className="yn-navlink" href={`mailto:${email}`}>
+            {email}
+          </a>
+          {after}
+        </p>
       </div>
     </section>
   );
@@ -523,13 +531,13 @@ function Journey() {
             </div>
             {/* No counter and no progress bar: there is no tracker behind
                 them yet, and a number nobody is keeping is a promise the site
-                cannot make. A line about what the track teaches, and a
-                photograph of the thing itself. */}
-            <div
-              className="yn-display yn-card-slot"
-              style={{ fontSize: "var(--yn-card-title)", lineHeight: 1.25 }}
-            >
-              {t("home.journey.lessonsCompleted")}
+                cannot make. Marketing asked for all three cards to read at the
+                same weight, so the line that was set as a display title is now
+                a paragraph like the two beside it — and the words are theirs. */}
+            <div className="yn-card-slot">
+              <p style={{ fontSize: "var(--yn-body-size)", lineHeight: 1.6, margin: 0 }}>
+                {t("home.journey.learnerBody")}
+              </p>
             </div>
             <Photo
               webp={deskWebp}
@@ -540,7 +548,10 @@ function Journey() {
               radius="tile"
               alt={t("home.journey.learnPhotoAlt")}
             />
-            <CardCta tone="white" href="#api">
+            {/* Was `#api`, which is not on this page any more, so the button
+                did nothing. It now goes to Learn — the card's own section,
+                and this site's own page, not an address we invented. */}
+            <CardCta tone="white" to="/learn">
               {t("home.journey.continueLesson")}
             </CardCta>
           </SnapshotCard>
@@ -595,9 +606,13 @@ function Journey() {
               <Badge>{t("home.journey.competitionSnapshot")}</Badge>
             </div>
             {/* The rank and the change are off the card, at marketing's asking.
-                In their place a photograph, like the two cards beside it — no
-                figures standing in for a leaderboard that has not opened. */}
-            <div className="yn-card-slot" aria-hidden="true" />
+                The card is no longer empty either: the competition has not
+                opened, and this is the sentence they wrote to say so. */}
+            <div className="yn-card-slot">
+              <p style={{ fontSize: "var(--yn-body-size)", lineHeight: 1.6, margin: 0 }}>
+                {t("home.journey.competitionBody")}
+              </p>
+            </div>
             <Photo
               webp={competeWebp}
               jpg={competeJpg}
@@ -607,7 +622,10 @@ function Journey() {
               radius="tile"
               alt={t("home.journey.competePhotoAlt")}
             />
-            <CardCta tone="white" href="#editorial">
+            {/* Was `#editorial`, and that section was removed months ago. It
+                goes to Compete, which is the page that says the same thing
+                this card now says: the competition has not opened yet. */}
+            <CardCta tone="white" to="/compete">
               {t("home.journey.seeAllRanks")}
             </CardCta>
           </SnapshotCard>

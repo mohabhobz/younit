@@ -148,9 +148,12 @@ Read off the deck's own artwork, not typed from memory. No copy changed.
       `#FFD05A` → `#FFCC00`. The dark, `#444444`, was already right.
 - [x] The header and footer band is the purple, as the deck's website mockup
       draws it — it was the blue. The colour now lives in one token,
-      `--yn-chrome`, so moving the chrome again is one line.
+      `--yn-chrome`, so moving the chrome again is one line. **Superseded on 27
+      September**: they asked for the blue back, on two slides, and the one line
+      is what it took.
 - [x] The arches in the hero are purple, as the deck draws them. They were ours
-      in blue.
+      in blue. **Superseded on 27 September**: the arches are gone from the
+      homepage and the branding deck's block forms stand there instead.
 - [x] The three cards keep the colours the deck gives them: Learn blue, Build
       purple, Compete yellow — those already matched.
 - [x] Typography: no change needed. The deck names ITC Avant Garde Gothic Pro
@@ -252,21 +255,20 @@ contains Poppins, not that.
   kit lead, the three link slots, and taking "clone, fork, build" out. Taken
   together with the four rows marked Delete beside it, the reading is that the
   four go and Repositories stays. Say the word if that is wrong.
-- **White on the purple band is 2.6:1.** The deck draws the header's links in
-  white on the purple, so that is what the site does. It reads better than the
-  1.8:1 the blue gave and is still under the 4.5:1 anyone can read comfortably.
-  The same purple with black links is 8.2:1. One word and it is fixed — but it
-  is the brand's call, not ours.
-- **The Compete card on the homepage is empty now** the figures are out of its
-  middle — a badge and a button with a lot of yellow between them. Say what
-  belongs there and it goes in.
+- **Answered, 27 September.** The band went back to the blue at their asking,
+  and white on that blue is 1.7:1 — not a colour, a rumour. The writing on the
+  band is ink now, which reads at 12:1 and matches the logo artwork, which is
+  black. If the brand wants white on the band, it needs a darker blue.
+- **The Compete card carries their own sentence now** — "Coming soon. Stay
+  tuned for the opportunity to test your strategy and compete with others." —
+  sent on 27 September. @nouranallam may add more to it.
 - **"Get your API key" scrolls to the three tracks.** It took over the address
   "Open an account" used to have, because the page that hands out a key does
   not exist yet and a button must not point at a guess. Send the address and it
   goes in.
-- **The footer says EFG Hermes twice**: the column heading and the link under it
-  that goes to efghldg.com. That is what "everywhere" gives; if the link should
-  keep a different name, say the word.
+- **The footer says LetsYounit! twice**: once under the logo, and once where
+  GitHub used to be, which is the name they asked for on 27 September. Both are
+  their own words; say the word and one of them changes.
 - **The Learn page is three cards**, so the glossary sits alone on its row.
 - **The site is now five pages and the sessions.** Home, Learn (with the two
   tracks and the glossary), Build → Repositories, Compete, About. Worth a look
@@ -279,6 +281,12 @@ contains Poppins, not that.
 
 - Where "Get your API key" should go. "Open an account" now opens the app in
   the reader's own shop, so that one is answered.
+- The address behind LetsYounit! in the footer. It is a name, not a link,
+  until one arrives.
+- Whether the site is to have a CMS. Asked on 27 September; it does not have
+  one, and that is a decision with a cost attached.
+- Who wrote the Egyptian Exchange guide. It is published without a byline
+  because the document does not carry one.
 - The video for the What-is-Younit frame.
 - @nouranallam's confirmation of the What-is-Younit copy.
 - Which images from the branding deck go where, and their licence.

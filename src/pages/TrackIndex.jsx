@@ -17,6 +17,7 @@ import { useI18n } from '../lib/i18n.jsx'
 const TRACKS = {
   foundation: { key: 'foundation' },
   'algo-track': { key: 'algoTrack' },
+  'egx-guide': { key: 'egxGuide' },
 }
 
 export default function TrackIndex() {

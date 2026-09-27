@@ -38,7 +38,7 @@
   },
   "home": {
     "eyebrow": "MENA's First API Trading Platform",
-    "headline": "Trade with algorithms, connect to the market, and build your own trading apps with Younit",
+    "headline": "Trade with algorithms, connect to the market, and build your own trading apps with Younit.",
     "ctaFoundation": "Open an account",
     "ctaApi": "Get your API key",
     "journey": {
@@ -51,7 +51,6 @@
       "learningSnapshot": "Understand the market behind your code",
       "builderSnapshot": "Bring your trading idea to life",
       "competitionSnapshot": "Put your strategy to the test!",
-      "lessonsCompleted": "What is the stock market and what is Algo Trading",
       "learningProgress": "Learning progress",
       "progressRate": "Progress rate",
       "steadyProgress": "steady progress",
@@ -61,7 +60,9 @@
       "getStarted": "Click here to get started",
       "builderBody": "Access Younit's APIs, market data, and SDK to build, test, and automate your own strategies and applications.",
       "buildPhotoAlt": "A developer at a desk, writing a strategy beside a chart",
-      "competePhotoAlt": "A team reading a ranked list of results on a screen"
+      "competePhotoAlt": "A team reading a ranked list of results on a screen",
+      "learnerBody": "Explore the fundamentals of financial markets and algorithmic trading, and build the knowledge you need to understand how markets work and how trading strategies are developed.",
+      "competitionBody": "Coming soon. Stay tuned for the opportunity to test your strategy and compete with others."
     },
     "api": {
       "titleLine1": "Build on this,",
@@ -112,7 +113,7 @@
       "builtOn": "Built on efg api"
     },
     "what": {
-      "title": "What is Younit",
+      "title": "What is Younit?",
       "body1": "Younit opens EFG Hermes' trading infrastructure through APIs, providing access to Egypt's stock market, real-time and historical market data, and an open-source Python SDK.",
       "body2": "As the first retail algorithmic trading API in Egypt and the wider MENA region, Younit enables users to automate trades, build trading apps, test strategies, backtest ideas, and work with real market data through one platform.",
       "videoAlt": "A short film: a single square becomes a rule, the rule sends signals down three paths, and a grid lights up as the strategy runs on its own."
@@ -157,8 +158,9 @@
     },
     "who": {
       "efgTitle": "About EFG Hermes",
-      "younitTitle": "About Younit",
-      "pending": "This section is being written. It will be here shortly."
+      "efgBody": "EFG Hermes, an EFG Holding company (HRHO.CA), is the leading investment bank in the Middle East and North Africa. As the financial partner of choice in MENA, it combines deep regional insight with global expertise to serve individuals, corporations, institutions, and governments. The firm offers a comprehensive suite of financial services across Sell-Side and Buy-Side activities, including Investment Banking, Brokerage, Research, Asset Management, and Private Equity. With a focused distribution network, rigorous sector coverage, and a track record of execution, EFG Hermes delivers tailored solutions to meet clients' needs.",
+      "efgMedia": "For media inquiries, kindly contact {email}",
+      "efgMediaEmail": "publicrelations@efgholding.com"
     }
   },
   "learn": {
@@ -191,7 +193,11 @@
     "deckFailed": "This session's deck could not be loaded. The written session is on the {link}.",
     "deckFailedLink": "lesson page",
     "readingTimeOne": "1 min read",
-    "contents": "Contents"
+    "contents": "Contents",
+    "egxGuideTitle": "Investing on the Egyptian Exchange",
+    "egxGuideShort": "A first-timer's guide: what the EGX is, how to open an account, and how to place your first order.",
+    "egxGuideSub": "Four parts. A first-timer's guide to the Egyptian Exchange: what it is, how to open an account, and how to place your first order.",
+    "egxGuideEmpty": "This guide is being prepared."
   },
   "build": {
     "title": "Build",
@@ -228,12 +234,11 @@
     "hub": "LetsYounit!",
     "mission": "Egypt's open initiative for capital markets education and infrastructure.",
     "platform": "Platform",
-    "efg": "EFG Hermes",
-    "efgHermes": "EFG Hermes",
-    "github": "GitHub",
+    "efg": "EFG Hermes ONE",
+    "efgHermes": "EFG Hermes ONE",
+    "github": "LetsYounit!",
     "legal": "The content provided does not constitute investment advice.",
-    "copyright": "© {year} EFG Hermes. All rights reserved.",
-    "poweredBy": "Powered by ⊕ EFG Hermes"
+    "copyright": "© {year} EFG Hermes. All rights reserved."
   },
   "notFound": {
     "title": "Page not found",

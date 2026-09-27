@@ -1,6 +1,6 @@
 import { useEffect, useId, useState } from 'react'
 import { Link as RouterLink, useLocation } from 'react-router-dom'
-import { Wordmark } from '../../brand/marks.jsx'
+import { Lockup } from '../../brand/marks.jsx'
 import { Link, NavLink, useI18n, LOCALES, DEFAULT_LOCALE, swapLocale } from '../../lib/i18n.jsx'
 
 /**
@@ -18,11 +18,16 @@ const NAV = [
   { to: '/compete', key: 'nav.compete' },
 ]
 
+/**
+ * No colour here on purpose. The band is either the brand's own — light, and
+ * written on in ink — or the near-black the deck pages use, which needs white.
+ * The header sets one colour on itself and everything inside inherits it, so
+ * there is one decision rather than one per control.
+ */
 const LINK_STYLE = {
   fontSize: 14,
   letterSpacing: '0.12em',
   textTransform: 'uppercase',
-  color: 'var(--yn-white)',
 }
 
 /**
@@ -169,6 +174,7 @@ export default function SiteHeader({ tone = 'brand' }) {
       className="yn-header"
       style={{
         background: dark ? 'var(--yn-ink-2)' : 'var(--yn-chrome)',
+        color: dark ? 'var(--yn-white)' : 'var(--yn-on-chrome)',
         padding: '14px var(--yn-gutter)',
         display: 'flex',
         alignItems: 'center',
@@ -180,19 +186,10 @@ export default function SiteHeader({ tone = 'brand' }) {
       }}
     >
       <Link to="/" style={{ display: 'block' }} aria-label={`Younit — ${t('common.home')}`}>
-        <div
-          data-brand-chrome=""
-          style={{
-            fontSize: 6,
-            letterSpacing: '0.18em',
-            textTransform: 'uppercase',
-            color: 'var(--yn-white)',
-            marginBottom: 3,
-          }}
-        >
-          {t('footer.poweredBy')}
-        </div>
-        <Wordmark width={116} tone="light" />
+        {/* The whole endorsement is inside the artwork now. The two lines of
+            type that used to sit above the wordmark — a circle where the EFG
+            mark belongs, the name in capitals — were ours, not theirs. */}
+        <Lockup width={240} tone={dark ? 'light' : 'dark'} />
       </Link>
 
       {/* Desktop: the sections in a row, the language last. */}
@@ -247,7 +244,7 @@ export default function SiteHeader({ tone = 'brand' }) {
           padding: 0,
           background: 'none',
           border: 0,
-          color: 'var(--yn-white)',
+          color: 'inherit',
           cursor: 'pointer',
         }}
       >
@@ -263,7 +260,10 @@ export default function SiteHeader({ tone = 'brand' }) {
         // so a closed menu cannot be tabbed into behind the page. React 19
         // takes this as a boolean; an empty string is dropped.
         inert={!open}
-        style={{ background: dark ? 'var(--yn-ink-2)' : 'var(--yn-chrome)' }}
+        style={{
+          background: dark ? 'var(--yn-ink-2)' : 'var(--yn-chrome)',
+          color: dark ? 'var(--yn-white)' : 'var(--yn-on-chrome)',
+        }}
       >
         {NAV.map((item) => (
           <NavLink

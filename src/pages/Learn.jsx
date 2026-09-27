@@ -32,6 +32,14 @@ const TRACKS = [
     cta: 'white',
   },
   {
+    tone: 'amber',
+    title: 'learn.egxGuideTitle',
+    meta: ['learn.sessions', { count: counts.egxGuide }],
+    description: 'learn.egxGuideShort',
+    to: '/learn/egx-guide',
+    cta: 'white',
+  },
+  {
     tone: 'white',
     title: 'learn.glossaryTitle',
     meta: ['learn.terms', { count: counts.glossary }],

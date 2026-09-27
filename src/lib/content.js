@@ -154,6 +154,7 @@ export function formatDate(value, locale = DEFAULT_LOCALE) {
 /** Counts the index pages advertise, derived rather than typed by hand. */
 export const counts = {
   foundation: byCollection('foundation').length,
+  egxGuide: byCollection('egx-guide').length,
   algoTrack: byCollection('algo-track').length,
   glossary: byCollection('glossary').length,
 }

@@ -1,4 +1,5 @@
 import { useI18n } from '../lib/i18n.jsx'
+import { LOCKUP_BOX, LOCKUP_PATH, LOCKUP_TRANSFORM } from './lockup.js'
 
 /**
  * Brand marks, transcribed verbatim from the Claude Design source.
@@ -111,6 +112,42 @@ export function Wordmark({ width = 116, tone = 'dark', style }) {
   )
 }
 
+/**
+ * The wordmark with its endorsement, as the brand file draws it.
+ *
+ * Arabic keeps its own wordmark: there is no Arabic cut of the endorsed
+ * lockup in the artwork we were given, so the page sets the Arabic mark and
+ * leaves the endorsement to the English side rather than inventing one.
+ */
+export function Lockup({ width = 168, tone = 'dark', style }) {
+  const { locale } = useI18n()
+
+  if (locale === 'ar') {
+    return <Wordmark width={Math.round(width * 0.7)} tone={tone} style={style} />
+  }
+
+  return (
+    <svg
+      viewBox={`0 0 ${LOCKUP_BOX.w} ${LOCKUP_BOX.h}`}
+      role="img"
+      aria-label="younit — powered by EFG Hermes"
+      style={{
+        width,
+        height: (width / LOCKUP_BOX.w) * LOCKUP_BOX.h,
+        display: 'block',
+        ...style,
+      }}
+    >
+      <g
+        transform={LOCKUP_TRANSFORM}
+        fill={tone === 'light' ? 'var(--yn-white)' : 'var(--yn-ink)'}
+      >
+        <path d={LOCKUP_PATH} />
+      </g>
+    </svg>
+  )
+}
+
 /** Icon A — the o alone. */
 export function Dot({ size = 24, style, ...rest }) {
   return (
@@ -181,6 +218,84 @@ const UNITS = [
   { x: 360, y: 300, delay: 0.27 },
   { x: 480, y: 300, delay: 0.34 },
 ]
+
+/**
+ * The block forms.
+ *
+ * Marketing asked for the composition from the branding deck — "the block
+ * forms are designed to be rearranged in multiple compositions" — in place of
+ * the arch pyramid the homepage was carrying, and for it to move.
+ *
+ * It is the deck's own arrangement: two cubes, four, six, and the same again
+ * below, so the shape reads twice and is symmetrical about its middle. The
+ * cubes are drawn rather than traced, because they are a lattice and not a
+ * picture: a face, a lid and a cheek, seamed in the page's own background so
+ * the blocks read as separate solids the way the deck draws them.
+ *
+ * Rows are painted top-first, so every row covers the one behind it.
+ */
+const CUBE = { face: 120, depth: 20, step: 110 }
+
+const BLOCK_ROWS = [
+  [2, 3],
+  [1, 2, 3, 4],
+  [0, 1, 2, 3, 4, 5],
+  [2, 3],
+  [1, 2, 3, 4],
+  [0, 1, 2, 3, 4, 5],
+]
+
+const BLOCKS = BLOCK_ROWS.flatMap((columns, row) =>
+  columns.map((column, i) => ({
+    x: column * CUBE.face,
+    y: row * CUBE.step,
+    // Each row lands after the one above it, and each cube a beat after its
+    // neighbour, so the shape builds from the top down rather than appearing.
+    delay: 0.06 * row + 0.035 * i,
+  })),
+)
+
+function Cube({ x, y }) {
+  const { face: w, depth: e } = CUBE
+  const seam = { stroke: 'var(--yn-white)', strokeWidth: 3, strokeLinejoin: 'round' }
+
+  return (
+    <g transform={`translate(${x} ${y + e})`} fill="var(--yn-ink)" {...seam}>
+      <polygon points={`0,0 ${e},${-e} ${w + e},${-e} ${w},0`} />
+      <polygon points={`${w},0 ${w + e},${-e} ${w + e},${w - e} ${w},${w}`} />
+      <rect x="0" y="0" width={w} height={w} />
+    </g>
+  )
+}
+
+export function BlockForms({ animate = true, style }) {
+  const { t } = useI18n()
+  const width = 6 * CUBE.face + CUBE.depth
+  const height = 5 * CUBE.step + CUBE.face + CUBE.depth
+
+  return (
+    <svg
+      viewBox={`0 0 ${width} ${height}`}
+      role="img"
+      aria-label={t('common.artwork')}
+      style={{ width: '100%', height: 'auto', display: 'block', ...style }}
+    >
+      {BLOCKS.map((b) => (
+        <g
+          key={`${b.x}-${b.y}`}
+          data-unit={animate ? '' : undefined}
+          style={
+            animate
+              ? { animation: `younit-unit-in 0.62s var(--yn-ease) ${b.delay}s both` }
+              : undefined
+          }
+        >
+          <Cube x={b.x} y={b.y} />
+        </g>
+      ))}
+    </svg>
+  )
+}
 
 export function ArchPyramid({ tone = 'blue', animate = true, style }) {
   const { t } = useI18n()

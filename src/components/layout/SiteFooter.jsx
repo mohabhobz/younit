@@ -1,4 +1,4 @@
-import { Wordmark } from '../../brand/marks.jsx'
+import { Lockup } from '../../brand/marks.jsx'
 import { Link, useI18n } from '../../lib/i18n.jsx'
 
 /**
@@ -14,9 +14,18 @@ const PLATFORM = [
   { to: '/compete', key: 'nav.compete' },
 ]
 
+/**
+ * The second column is EFG Hermes ONE — the app an account is opened in, which
+ * is where marketing asked this link to go — and LetsYounit!, which took
+ * GitHub's place at their asking.
+ *
+ * LetsYounit! has no address. They have not sent one, and a name is better
+ * than a link that goes nowhere, so it is set as plain text beside the other
+ * and becomes a link the day an address arrives.
+ */
 const EFG = [
-  { href: 'https://www.efghldg.com', key: 'footer.efgHermes' },
-  { href: 'https://github.com/efg-hermes', key: 'footer.github' },
+  { href: 'https://www.efghermesone.com', key: 'footer.efgHermes' },
+  { key: 'footer.github' },
 ]
 
 function Column({ heading, items }) {
@@ -39,10 +48,12 @@ function Column({ heading, items }) {
             >
               {t(item.key)}
             </a>
-          ) : (
+          ) : item.to ? (
             <Link key={item.key} className="yn-navlink" to={item.to}>
               {t(item.key)}
             </Link>
+          ) : (
+            <span key={item.key}>{t(item.key)}</span>
           ),
         )}
       </div>
@@ -72,7 +83,9 @@ export default function SiteFooter({ tone = 'brand' }) {
         }}
       >
         <div style={{ gridColumn: 'span 1' }}>
-          <Wordmark width={130} tone="light" style={{ marginBottom: 18 }} />
+          {/* Marketing asked for the endorsed logo here too — the footer was
+              carrying the bare wordmark. */}
+          <Lockup width={300} tone={dark ? "light" : "dark"} style={{ marginBottom: 18 }} />
           <div
             style={{
               fontFamily: 'var(--yn-display)',
@@ -86,6 +99,7 @@ export default function SiteFooter({ tone = 'brand' }) {
           <p
             style={{
               fontSize: 'var(--yn-small)',
+              lineHeight: 1.6,
               color: dark ? 'var(--yn-white)' : 'var(--yn-ink-2)',
               opacity: 0.75,
               maxWidth: '38ch',

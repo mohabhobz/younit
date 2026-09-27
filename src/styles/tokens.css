@@ -26,11 +26,18 @@
   --yn-ink: #000000;
   --yn-ink-2: #1a1a1a;
 
-  /* The band the header and the footer sit in. The deck's own website mockup
-     puts it in the purple, not the blue it used to be — so the colour lives
-     here under the name of the job it does, and moving the chrome again is one
-     line rather than three files. */
-  --yn-chrome: var(--yn-purple);
+  /* The band the header and the footer sit in. It has been the blue, then the
+     purple the deck's mockup used, and now the blue again — marketing asked for
+     it twice in the same round of comments, once at the top of the page and
+     once at the bottom. The colour lives here under the name of the job it
+     does, so moving the chrome is one line rather than three files. */
+  --yn-chrome: var(--yn-blue);
+
+  /* What is painted on that band. The purple took white; this blue is light
+     enough that white falls to about 1.7:1 against it, which is not a colour,
+     it is a rumour. Ink reads at 12:1 on it and matches the logo artwork,
+     which is black. One name, so the band and its writing move together. */
+  --yn-on-chrome: var(--yn-ink);
 
   /* --- Type -------------------------------------------------------------- */
   /* Poppins 300/400 stands in for ITC Avant Garde Gothic Pro (Book).
@@ -703,13 +710,15 @@ pre {
    the slot gives its height back.
    -------------------------------------------------------------------------- */
 .yn-card-slot {
-  /* Four lines of body text and the space above them. The Build paragraph
-     runs to four lines somewhere in every column count the cards go through
-     (1180-1280 at three across, 760-860 at two), so the floor is set to the
-     tallest the writing ever gets rather than to what it happens to be at
-     1440. Above that the three slots are always the same height and the
-     photographs always start on the same line. */
-  min-height: 110px;
+  /* Seven lines of body text and the space above them.
+     The three cards now carry three paragraphs of very different lengths —
+     the client wrote a long one for Learn, a short one for Compete — and the
+     photographs underneath still have to start on the same line. So the floor
+     is the tallest the longest of them ever gets, which is seven lines: that
+     happens to Learn around 1200px, where three columns are at their
+     narrowest, and again around 780px with two. It is written as lines rather
+     than pixels so it follows the body size instead of contradicting it. */
+  min-height: calc(7 * 1.6 * var(--yn-body-size) + 12px);
   padding-top: 12px;
 }
 
