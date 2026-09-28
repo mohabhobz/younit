@@ -142,12 +142,15 @@ function Hero() {
       </div>
 
       {/* The block forms stood here for a day. They are the branding deck's
-          own artwork and they are staying in the repository for the page they
+          own artwork and they are staying in the repository for the pages they
           are meant for, but the arches come back to the homepage — and they
-          keep moving rather than settling, which is what was asked for both
-          here and on Build. They wear the header's colour, from the same
-          token, so the two can never drift apart. */}
-      <ArchPyramid tone="chrome" />
+          keep moving rather than settling, which is what was asked for.
+
+          Purple, not the header's blue. They followed the band for a week;
+          marketing asked for the artwork to carry the brand's second colour
+          instead, so it stops reading as a continuation of the chrome and
+          starts reading as a thing on the page. */}
+      <ArchPyramid tone="purple" />
     </section>
   );
 }
