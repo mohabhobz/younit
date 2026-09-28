@@ -734,6 +734,11 @@ pre {
 .yn-steps {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  /* Every row the same height as the tallest. The seventh step is alone on
+     its row, and without this it was as short as its own writing while the six
+     above it were stretched by their neighbours — the same width but visibly
+     not the same card. It used to take the whole row instead, which was worse. */
+  grid-auto-rows: 1fr;
   gap: 20px;
 }
 
@@ -746,14 +751,6 @@ pre {
 @media (max-width: 700px) {
   .yn-steps {
     grid-template-columns: minmax(0, 1fr);
-  }
-}
-
-/* Seven does not divide by three, so the last step takes the row it would
-   otherwise leave two thirds empty. */
-@media (min-width: 1101px) {
-  .yn-steps > :last-child:nth-child(4) {
-    grid-column: span 3;
   }
 }
 
