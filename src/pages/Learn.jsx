@@ -1,5 +1,5 @@
 import Page from '../components/layout/Page.jsx'
-import { BlockForms } from '../brand/marks.jsx'
+import { OpenBook } from '../brand/marks.jsx'
 import { PillRow } from '../components/ui/Button.jsx'
 import { Display, Section } from '../components/ui/Pieces.jsx'
 import { counts } from '../lib/content.js'
@@ -69,10 +69,10 @@ export default function Learn() {
 
           </div>
 
-          {/* The same cubes as Build, arranged differently: a staircase, so
-              the two pages do not meet a reader with the same picture twice.
-              Build keeps the stack. */}
-          <BlockForms layout="steps" />
+          {/* An open book, drawn with the block forms' own cells and seams.
+              The arches were here, then a staircase of cubes; neither said
+              what the page is for. Build keeps the stack. */}
+          <OpenBook />
         </div>
 
         {/* The rows run the full frame rather than sharing the width with the
