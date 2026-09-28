@@ -198,7 +198,25 @@ pre {
   --yn-lh-eyebrow: 1.45;
 }
 
-[dir='rtl'] .yn-display {
+[dir='rtl'] /* The hero's claim.
+   English says it in five words and Arabic in eighteen — "أول منصة تداول
+   خوارزمي مخصصة للأفراد عبر واجهة برمجة التطبيقات (API) في مصر والشرق الأوسط
+   وشمال أفريقيا" — so one size cannot serve both. At the English size the
+   Arabic ran to seven lines and pushed its own buttons off the screen, which
+   is the "too bulky" the client had already objected to once. Arabic takes the
+   next step down and a wider measure; it is still comfortably the loudest
+   thing on the page, which is the point of the instruction. */
+.yn-hero-claim {
+  font-size: var(--yn-h1);
+  max-width: 16ch;
+}
+
+[dir='rtl'] .yn-hero-claim {
+  font-size: var(--yn-h2);
+  max-width: 28ch;
+}
+
+.yn-display {
   line-height: 1.4;
 }
 
@@ -244,6 +262,24 @@ pre {
 }
 
 /* --- Type primitives ------------------------------------------------------ */
+
+/* The hero's claim.
+   English says it in five words and Arabic in eighteen — "أول منصة تداول
+   خوارزمي مخصصة للأفراد عبر واجهة برمجة التطبيقات (API) في مصر والشرق الأوسط
+   وشمال أفريقيا" — so one size cannot serve both. At the English size the
+   Arabic ran to seven lines and pushed its own buttons off the screen, which
+   is the "too bulky" the client had already objected to once. Arabic takes the
+   next step down and a wider measure; it is still comfortably the loudest
+   thing on the page, which is the point of the instruction. */
+.yn-hero-claim {
+  font-size: var(--yn-h1);
+  max-width: 16ch;
+}
+
+[dir='rtl'] .yn-hero-claim {
+  font-size: var(--yn-h2);
+  max-width: 28ch;
+}
 
 .yn-display {
   font-family: var(--yn-display);

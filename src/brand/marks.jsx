@@ -81,7 +81,7 @@ export function Wordmark({ width = 116, tone = 'dark', style }) {
       <svg
         viewBox={`0 0 ${WORDMARK_AR_BOX.w} ${WORDMARK_AR_BOX.h}`}
         role="img"
-        aria-label="يونِت"
+        aria-label="يون إت"
         fill={tone === 'light' ? 'var(--yn-white)' : 'var(--yn-ink)'}
         style={{
           width,

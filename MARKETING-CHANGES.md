@@ -262,10 +262,11 @@ contains Poppins, not that.
 - **The Compete card carries their own sentence now** — "Coming soon. Stay
   tuned for the opportunity to test your strategy and compete with others." —
   sent on 27 September. @nouranallam may add more to it.
-- **The Arabic on every new section is ours, not theirs.** Marked on the
-  deployed site the same evening: "الكونتنت العربي". The English copy in this
-  round is the client's, word for word; the Arabic beside it is a translation
-  we wrote so the page is whole in both languages. It is theirs to replace.
+- **The Arabic is theirs now.** "Revised Younit Arabic Website Content"
+  arrived on 28 September and is on the page. Four lines in it had already been
+  overtaken by their own screenshots a few hours earlier, and one company name
+  is spelled three ways inside it — both are written up in
+  CLIENT-COMMENTS-2026-09.md and need a word back.
 - **"Get your API key" scrolls to the three tracks.** It took over the address
   "Open an account" used to have, because the page that hands out a key does
   not exist yet and a button must not point at a guess. Send the address and it

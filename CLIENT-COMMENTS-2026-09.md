@@ -112,8 +112,41 @@ Seven screenshots of younit-gray.vercel.app, marked up in WhatsApp.
 - [x] **W7 — the block forms come off the homepage.** The arches are back.
       The blocks stay in the repository, drawn and animated, for the page they
       are meant for.
-- [ ] **W8 — the Arabic content.** Marked "الكونتنت العربي" on `/ar`. The
-      Arabic on the page is ours; theirs has not arrived.
+- [x] **W8 — the Arabic content.** It arrived as "Revised Younit Arabic
+      Website Content" and is on the page: the hero, What is Younit, How Younit
+      Works and its seven steps, the three cards, About EFG Hermes, Build,
+      Compete and the footer. The brand is spelled **يون إت**, in two words, as
+      every line of their document spells it — that replaced our one-word form
+      in seventeen places, including the check that guards it.
+
+      Their Arabic claim runs to eighteen words where the English runs to five,
+      so at the English size it filled seven lines and pushed its own buttons
+      off the screen. Arabic takes the next size down and a wider measure; it
+      is still the loudest thing on the page. See the notes below for the four
+      places their document and their later instructions disagree.
+
+## Where the Arabic document and their own later notes disagree
+
+The Arabic content was written against the site as it stood before the
+evening's screenshots, so four lines in it have already been overtaken. Each is
+left as the later instruction says, not as the document says:
+
+- **"تُفتح في المرحلة الثانية."** is in the document for Compete. It is the
+  line the screenshot marked "Remove this" a few hours later, so it is off the
+  page.
+- **"#LetsYounit"** is how the document writes the name. The site says
+  "LetsYounit!" in both languages, which is what the English comments asked
+  for. One spelling, two languages — say which.
+- **"GiftHub"**, twice. It is GitHub in the address bar and in the link, so the
+  site says GitHub. Worth telling them so the next document does too.
+- **The press contact** is in the English About EFG Hermes and not in the
+  Arabic. The Arabic page carries it anyway, translated — a press address that
+  exists in one language only reads as an omission.
+
+One more, theirs to settle rather than ours: the document spells the company
+three ways — "إي اف چي هيرميس", "إي اف چي القابضة" and "إي إف جي هيرميس", the
+last two inside the same paragraph. Their paragraph is on the page word for
+word, so all three are on it. The rest of the site says "إي إف چي هيرميس".
 
 ## Still with the client
 

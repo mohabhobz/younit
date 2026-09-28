@@ -84,18 +84,19 @@ function Hero() {
             which also takes the long sentence from four lines down to three. */}
         <h1
           data-type=""
-          className="yn-display"
+          className="yn-display yn-hero-claim"
           style={{
-            fontSize: "var(--yn-h1)",
             // The display face is Light everywhere else, which at this size
             // read thinner than the claim deserves. Regular is one step up —
             // the weight marketing asked for, and the heaviest Poppins cut the
             // site loads, so it costs nothing to download.
+            //
+            // The size and the measure are in the stylesheet, because Arabic
+            // needs its own and a style attribute cannot carry a language.
             fontWeight: 400,
             lineHeight: 1.05,
             letterSpacing: "-0.01em",
             margin: "0 0 14px",
-            maxWidth: "16ch",
           }}
         >
           {t("home.eyebrow")}

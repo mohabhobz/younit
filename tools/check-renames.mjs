@@ -29,6 +29,9 @@ const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } })
  * calling the bank by the parent's name, and nothing does.
  */
 const GONE = [
+  // The brand in Arabic is two words, as every line of the revised Arabic
+  // content spells it. The one-word form was ours.
+  'يونِت',
   'Foundation Series',
   'Algo Track',
   'EFG Innovation Hub',
@@ -65,7 +68,7 @@ const ROUTES = [
   ['/', ['LetsYounit!', 'EFG Hermes', 'About EFG Hermes'], ['Editorial', 'Partners', 'About Younit']],
   // Compete is one line and a waiting sign; the four section links are gone.
   ['/compete', ['Stay tuned for the next competition'], ['Leaderboard', 'Seasons', 'Hackathons', 'Wall of Fame']],
-  ['/ar/compete', ['ترقّبوا المنافسة القادمة'], []],
+  ['/ar/compete', ['ترقّبوا التحديات والمسابقات القادمة'], []],
   ['/ar', ['LetsYounit!', 'إي إف چي هيرميس'], []],
 ]
 
