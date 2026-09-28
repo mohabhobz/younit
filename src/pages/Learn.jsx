@@ -1,5 +1,5 @@
 import Page from '../components/layout/Page.jsx'
-import { ArchPyramid } from '../brand/marks.jsx'
+import { BlockForms } from '../brand/marks.jsx'
 import { PillRow } from '../components/ui/Button.jsx'
 import { Display, Section } from '../components/ui/Pieces.jsx'
 import { counts } from '../lib/content.js'
@@ -69,9 +69,8 @@ export default function Learn() {
 
           </div>
 
-          {/* The same colour as the header, from the same token, as on the
-              other two pages. */}
-          <ArchPyramid tone="chrome" />
+          {/* The block forms, as on Build. The arches stay on the homepage. */}
+          <BlockForms />
         </div>
 
         {/* The rows run the full frame rather than sharing the width with the
