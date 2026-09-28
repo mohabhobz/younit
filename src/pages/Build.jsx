@@ -49,8 +49,9 @@ export default function Build() {
             </div>
           </div>
 
-          {/* It was still. They asked for it to move here too. */}
-          <ArchPyramid tone="purple" />
+          {/* It was still. They asked for it to move here too, and to wear
+              the header's colour. */}
+          <ArchPyramid tone="chrome" />
         </div>
       </Section>
     </Page>

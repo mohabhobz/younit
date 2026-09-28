@@ -56,6 +56,13 @@ export function BrandDefs() {
         <symbol id="archunit-p" viewBox="0 0 146 176">
           {archUnit('var(--yn-purple)')}
         </symbol>
+        {/* The arches in the header's own colour. It reads the chrome token
+            rather than the blue, so if the band moves again — and it has, from
+            blue to purple and back — the artwork moves with it instead of
+            being found a week later still wearing last month's colour. */}
+        <symbol id="archunit-c" viewBox="0 0 146 176">
+          {archUnit('var(--yn-chrome)')}
+        </symbol>
       </defs>
     </svg>
   )
@@ -299,7 +306,8 @@ export function BlockForms({ animate = true, style }) {
 
 export function ArchPyramid({ tone = 'blue', animate = true, style }) {
   const { t } = useI18n()
-  const href = tone === 'purple' ? '#archunit-p' : '#archunit'
+  const href =
+    tone === 'purple' ? '#archunit-p' : tone === 'chrome' ? '#archunit-c' : '#archunit'
 
   return (
     <svg

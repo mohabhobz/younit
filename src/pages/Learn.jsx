@@ -76,7 +76,9 @@ export default function Learn() {
             </div>
           </div>
 
-          <ArchPyramid tone="blue" />
+          {/* The same colour as the header, from the same token, as on the
+              other two pages. */}
+          <ArchPyramid tone="chrome" />
         </div>
       </Section>
     </Page>
