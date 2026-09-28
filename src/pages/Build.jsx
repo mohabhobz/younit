@@ -1,5 +1,5 @@
 import Page from '../components/layout/Page.jsx'
-import { ArchPyramid } from '../brand/marks.jsx'
+import { BlockForms } from '../brand/marks.jsx'
 import { Button, PillRow } from '../components/ui/Button.jsx'
 import { Display, Section } from '../components/ui/Pieces.jsx'
 import { useI18n } from '../lib/i18n.jsx'
@@ -42,9 +42,10 @@ export default function Build() {
 
           </div>
 
-          {/* It was still. They asked for it to move here too, and to wear
-              the header's colour. */}
-          <ArchPyramid tone="chrome" />
+          {/* The branding deck's block forms. They stood on the homepage for
+              a day and came off it; this is the page they were kept for. They
+              drop in a row at a time and then keep floating. */}
+          <BlockForms />
         </div>
 
         {/* Full width, as on Learn, so the two pages keep the same shape. */}
