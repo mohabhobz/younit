@@ -69,8 +69,10 @@ export default function Learn() {
 
           </div>
 
-          {/* The block forms, as on Build. The arches stay on the homepage. */}
-          <BlockForms />
+          {/* The same cubes as Build, arranged differently: a staircase, so
+              the two pages do not meet a reader with the same picture twice.
+              Build keeps the stack. */}
+          <BlockForms layout="steps" />
         </div>
 
         {/* The rows run the full frame rather than sharing the width with the
