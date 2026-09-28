@@ -330,65 +330,92 @@ export function BlockForms({ animate = true, style }) {
  * Learn carried the arches, then a staircase of cubes, and neither said
  * "learning" — the staircase in particular read as blocks that happened to be
  * stacked unevenly. This is the thing itself: two pages opening from a spine,
- * with the stack of paper under them, so a reader knows what the page is about
+ * with the block of paper under them, so a reader knows what the page is about
  * before they have read a word of it.
  *
- * It is not a picture pasted into the brand. Every page is divided into the
- * same cells the cubes are, filled in ink and seamed in the page's own
- * background at the same three pixels, and the twenty-four of them are the
- * same twenty-four the other two artworks carry. They drop in from the spine
- * outwards, a row at a time, and then float on the same slow four seconds.
+ * It is not a picture pasted into the brand, and it is not flat. Every page is
+ * divided into cells, and every cell is a solid drawn exactly as `Cube` draws
+ * one: a face, a lid lifted up and to the right by the lattice's own twenty
+ * pixels, a cheek down the right-hand side, and the page's background seaming
+ * the three together. The twenty-four of them are the same twenty-four the
+ * other two artworks carry. They drop in from the spine outwards, a row at a
+ * time, and then float on the same slow four seconds.
  *
- * The geometry is four corners per page — A and D on the outer edge, B and C
- * at the spine — and every cell is found by interpolating between them, so
- * the whole shape moves if those eight numbers move.
+ * Each page is four corners — A and D on one edge, B and C on the other — and
+ * every cell is found by interpolating between them. Both pages list their
+ * corners LEFT to RIGHT, which is why the right-hand page starts at the spine
+ * and the left-hand one ends there: a solid only reads as a solid if every
+ * lid and every cheek leans the same way, so the order of the corners is the
+ * order the light comes from, not a description of the book.
  */
 const BOOK = {
   w: 740,
   h: 690,
   // The block of paper under each sheet. Without it the book is a flat V.
-  depth: 55,
+  paper: 55,
   cols: 3,
   rows: 4,
   // The spine edges lean towards each other, wide at the top and all but
   // touching at the bottom, so the gap between the pages is a valley rather
   // than a corridor — which is the difference between a book and two panels.
+  // `spineFirst` says which end of the page the spine is at, so the cells can
+  // still land from the spine outwards however their corners are listed.
   pages: [
-    { A: [40, 105], B: [348, 180], C: [366, 540], D: [40, 465] },
-    { A: [700, 105], B: [392, 180], C: [374, 540], D: [700, 465] },
+    { A: [40, 105], B: [348, 180], C: [366, 540], D: [40, 465], spineFirst: false },
+    { A: [392, 180], B: [700, 105], C: [700, 465], D: [374, 540], spineFirst: true },
   ],
 }
 
 const mix = (p, q, t) => [p[0] + (q[0] - p[0]) * t, p[1] + (q[1] - p[1]) * t]
 const pts = (list) => list.map((p) => p.join(',')).join(' ')
 
-function bookPage({ A, B, C, D }) {
-  const { cols, rows, depth } = BOOK
-  // u runs from the outer edge to the spine, v from the top edge to the
-  // bottom one, so a cell is the quad between four of those readings.
+/**
+ * One cell, given its four corners clockwise from the top left, as the three
+ * faces of a solid. The lift is the cube's own depth, so a cell of the book
+ * and a cube of the block forms catch the light identically.
+ */
+function solid([p0, p1, p2, p3]) {
+  const up = ([x, y]) => [x + CUBE.depth, y - CUBE.depth]
+
+  return {
+    lid: pts([p0, up(p0), up(p1), p1]),
+    cheek: pts([p1, up(p1), up(p2), p2]),
+    face: pts([p0, p1, p2, p3]),
+  }
+}
+
+function bookPage({ A, B, C, D, spineFirst }) {
+  const { cols, rows, paper } = BOOK
+  // u runs left to right across the page, v from the top edge to the bottom
+  // one, so a cell is the quad between four of those readings.
   const at = (u, v) => mix(mix(A, B, u), mix(D, C, u), v)
   const cells = []
 
+  // Rows top first and columns left to right, so every lid and cheek is
+  // covered by the solid in front of it — the same order the cubes are
+  // painted in.
   for (let r = 0; r < rows; r += 1) {
     for (let c = 0; c < cols; c += 1) {
+      const fromSpine = spineFirst ? c : cols - 1 - c
+
       cells.push({
         key: `${r}-${c}`,
-        points: pts([
+        ...solid([
           at(c / cols, r / rows),
           at((c + 1) / cols, r / rows),
           at((c + 1) / cols, (r + 1) / rows),
           at(c / cols, (r + 1) / rows),
         ]),
-        delay: 0.06 * r + 0.035 * (cols - 1 - c),
+        delay: 0.06 * r + 0.035 * fromSpine,
       })
     }
   }
 
-  return {
-    cells,
-    edge: pts([D, C, [C[0], C[1] + depth], [D[0], D[1] + depth]]),
-    edgeDelay: 0.06 * rows,
-  }
+  // The paper under the sheet, drawn as one more solid so it sits in the same
+  // light as everything above it. D and C are the bottom edge, left to right.
+  const block = solid([D, C, [C[0], C[1] + paper], [D[0], D[1] + paper]])
+
+  return { cells, block, blockDelay: 0.06 * rows }
 }
 
 const BOOK_PAGES = BOOK.pages.map(bookPage)
@@ -408,6 +435,16 @@ export function OpenBook({ animate = true, style }) {
         }
       : undefined
 
+  // Written as a call rather than a nested component, so React is not handed
+  // a new component type on every render.
+  const drawSolid = (shape, delay, key) => (
+    <g key={key} data-unit={animate ? '' : undefined} style={rides(delay)}>
+      <polygon points={shape.lid} />
+      <polygon points={shape.cheek} />
+      <polygon points={shape.face} />
+    </g>
+  )
+
   return (
     <svg
       viewBox={`0 0 ${BOOK.w} ${BOOK.h}`}
@@ -415,22 +452,13 @@ export function OpenBook({ animate = true, style }) {
       aria-label={t('common.artwork')}
       style={{ width: '100%', height: 'auto', display: 'block', ...style }}
     >
+      {/* The left page first and the right one over it, so the cheeks that
+          lean into the valley are covered by the page they lean towards. */}
       <g fill="var(--yn-ink)" {...seam}>
-        {BOOK_PAGES.map((page, i) => (
-          <g key={page.edge}>
-            <polygon
-              points={page.edge}
-              data-unit={animate ? '' : undefined}
-              style={rides(page.edgeDelay)}
-            />
-            {page.cells.map((cell) => (
-              <polygon
-                key={`${i}-${cell.key}`}
-                points={cell.points}
-                data-unit={animate ? '' : undefined}
-                style={rides(cell.delay)}
-              />
-            ))}
+        {BOOK_PAGES.map((page) => (
+          <g key={page.block.face}>
+            {drawSolid(page.block, page.blockDelay, 'paper')}
+            {page.cells.map((cell) => drawSolid(cell, cell.delay, cell.key))}
           </g>
         ))}
       </g>
