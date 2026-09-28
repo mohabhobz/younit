@@ -262,13 +262,14 @@ contains Poppins, not that.
 - **The Compete card carries their own sentence now** — "Coming soon. Stay
   tuned for the opportunity to test your strategy and compete with others." —
   sent on 27 September. @nouranallam may add more to it.
+- **The Arabic on every new section is ours, not theirs.** Marked on the
+  deployed site the same evening: "الكونتنت العربي". The English copy in this
+  round is the client's, word for word; the Arabic beside it is a translation
+  we wrote so the page is whole in both languages. It is theirs to replace.
 - **"Get your API key" scrolls to the three tracks.** It took over the address
   "Open an account" used to have, because the page that hands out a key does
   not exist yet and a button must not point at a guess. Send the address and it
   goes in.
-- **The footer says LetsYounit! twice**: once under the logo, and once where
-  GitHub used to be, which is the name they asked for on 27 September. Both are
-  their own words; say the word and one of them changes.
 - **The Learn page is three cards**, so the glossary sits alone on its row.
 - **The site is now five pages and the sessions.** Home, Learn (with the two
   tracks and the glossary), Build → Repositories, Compete, About. Worth a look
@@ -281,8 +282,6 @@ contains Poppins, not that.
 
 - Where "Get your API key" should go. "Open an account" now opens the app in
   the reader's own shop, so that one is answered.
-- The address behind LetsYounit! in the footer. It is a name, not a link,
-  until one arrives.
 - Whether the site is to have a CMS. Asked on 27 September; it does not have
   one, and that is a decision with a cost attached.
 - Who wrote the Egyptian Exchange guide. It is published without a byline

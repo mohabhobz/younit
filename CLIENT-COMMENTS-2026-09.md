@@ -88,6 +88,33 @@ Two buttons on the cards they were annotating pointed at `#api` and
 nothing at all. They now go to Learn and to Compete — this site's own pages,
 not addresses we invented. Say the word and they go back to doing nothing.
 
+## Second round, from the deployed site — 27 September, evening
+
+Seven screenshots of younit-gray.vercel.app, marked up in WhatsApp.
+
+- [x] **W1 — /compete: remove "Opening in Phase 2."** The card under it
+      already says the competition has not opened, and says it better.
+- [x] **W2 — /build: "EFG's public repositories" becomes "EFG Hermes'".**
+- [x] **W3 — the artwork keeps moving.** The arches dropped in and then sat
+      still. Each block now rides a slow four-second float that never ends,
+      staggered by the same delay that dropped it in, so the stack ripples.
+      On the Build page it was not animated at all; it is now.
+- [x] **W4 — the footer said LetsYounit! twice.** The one under the logo is
+      gone. The one in the right column keeps the name and takes GitHub's
+      address back — which also closes the question that was open on D9.
+- [x] **W5 — Learn is laid out like Build.** Title and line on the left with
+      the artwork beside them, and the four tracks as rows rather than as
+      filled cards. The session counts ride on the rows.
+- [x] **W6 — the How Younit Works cards are outlines.** They were filled in
+      the brand's three colours for a day; the note was to make them the card
+      About EFG Hermes is. Seven filled boxes were louder than the three
+      tracks they sit above.
+- [x] **W7 — the block forms come off the homepage.** The arches are back.
+      The blocks stay in the repository, drawn and animated, for the page they
+      are meant for.
+- [ ] **W8 — the Arabic content.** Marked "الكونتنت العربي" on `/ar`. The
+      Arabic on the page is ours; theirs has not arrived.
+
 ## Still with the client
 
 - The address behind LetsYounit! (D9).

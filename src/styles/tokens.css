@@ -204,6 +204,21 @@ pre {
 
 /* --- Motion -------------------------------------------------------------- */
 
+/* After it has landed, a unit keeps breathing. Marketing asked for the artwork
+   to stay in motion rather than settle, so each block rides a slow float that
+   never ends — staggered by the same delay that dropped it in, which makes the
+   stack ripple instead of pulsing as one lump. Ten pixels over four seconds is
+   at the edge of noticing, which is the point: it is alive, not busy. */
+@keyframes younit-unit-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
 @keyframes younit-unit-in {
   0% {
     opacity: 0;

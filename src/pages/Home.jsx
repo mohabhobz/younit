@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import useMotion from "../lib/useMotion.js";
-import { BrandDefs, BlockForms } from "../brand/marks.jsx";
+import { BrandDefs, ArchPyramid } from "../brand/marks.jsx";
 import SiteHeader from "../components/layout/SiteHeader.jsx";
 import SiteFooter from "../components/layout/SiteFooter.jsx";
 import { Button } from "../components/ui/Button.jsx";
@@ -140,10 +140,12 @@ function Hero() {
         </p>
       </div>
 
-      {/* The arch pyramid stood here. Marketing asked for the branding deck's
-          block forms in its place, and for them to move — so they do, a row at
-          a time from the top down. */}
-      <BlockForms />
+      {/* The block forms stood here for a day. They are the branding deck's
+          own artwork and they are staying in the repository for the page they
+          are meant for, but the arches come back to the homepage — and they
+          keep moving rather than settling, which is what was asked for both
+          here and on Build. */}
+      <ArchPyramid tone="purple" />
     </section>
   );
 }
@@ -312,19 +314,20 @@ function HowItWorks() {
   // document rather than a path. As cards they read as steps: the number large
   // and pale at the top, the title, then the step itself.
   //
-  // Marketing asked for the brand's colours here, used the way the three
-  // tracks below use them — so the cards are filled rather than white, in the
-  // tracks' own order, and the seventh comes back round to the blue. The
-  // number was purple, which disappears on a purple card; it is ink now, held
-  // back by its weight rather than by its colour.
-  const TONES = ["blue", "purple", "amber"]
-
+  // They were filled — blue, purple, amber, in the tracks' own order — for a
+  // day. Marketing looked at the page whole and asked for them to be the card
+  // About EFG Hermes is: an outline, no fill, on the page's own ground. Seven
+  // filled boxes in a row were louder than the three tracks they sat above,
+  // and the three are the point of the page.
   const step = (item, i) => (
-    <SnapshotCard
+    <div
       key={item.title}
-      tone={TONES[i % TONES.length]}
       style={{
+        border: "1px solid var(--yn-ink)",
+        borderRadius: "var(--yn-r-card)",
         padding: "clamp(20px, 2.4vw, 28px)",
+        display: "flex",
+        flexDirection: "column",
         gap: 10,
         height: "100%",
       }}
@@ -344,8 +347,8 @@ function HowItWorks() {
       <div className="yn-display" style={{ fontSize: "var(--yn-card-title)", lineHeight: 1.2 }}>
         {item.title}
       </div>
-      <p style={{ ...BODY, margin: 0, maxWidth: "42ch", color: "var(--yn-ink)" }}>{item.body}</p>
-    </SnapshotCard>
+      <p style={{ ...BODY, margin: 0, maxWidth: "42ch" }}>{item.body}</p>
+    </div>
   )
 
   return (

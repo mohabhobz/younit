@@ -220,18 +220,16 @@
       "in-development": "In development",
       "archived": "Archived"
     },
-    "lead": "Start by exploring EFG's public repositories.",
+    "lead": "Start by exploring EFG Hermes' public repositories.",
     "githubCta": "github.com/efg-hermes →"
   },
   "compete": {
     "title": "Compete",
-    "sub": "Opening in Phase 2.",
     "stayTuned": "Stay tuned for the next competition",
     "loading": "Loading",
     "photoAlt": "Two builders at a desk, one screen showing code"
   },
   "footer": {
-    "hub": "LetsYounit!",
     "mission": "Egypt's open initiative for capital markets education and infrastructure.",
     "platform": "Platform",
     "efg": "EFG Hermes ONE",

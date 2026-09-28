@@ -109,13 +109,24 @@ export function PillRow({ children, to, href, meta }) {
     <>
       <span
         className="yn-display"
-        style={{ fontSize: 'var(--yn-h3)', lineHeight: 1.15 }}
+        // `minWidth: 0` lets the title be the thing that shrinks. Without it a
+        // long session title sets the row's minimum width and the whole row
+        // runs off a phone screen.
+        style={{ fontSize: 'var(--yn-h3)', lineHeight: 1.15, minWidth: 0 }}
       >
         {children}
       </span>
       <span style={{ display: 'flex', alignItems: 'center', gap: 20, marginInlineStart: 'auto' }}>
         {meta ? (
-          <span style={{ fontSize: 'var(--yn-small)', color: 'var(--yn-grey-dark)' }}>
+          <span
+            style={{
+              fontSize: 'var(--yn-small)',
+              color: 'var(--yn-grey-dark)',
+              // "4 sessions" broke across two lines beside a title that had
+              // already wrapped, which read as a second title.
+              whiteSpace: 'nowrap',
+            }}
+          >
             {meta}
           </span>
         ) : null}
@@ -127,6 +138,9 @@ export function PillRow({ children, to, href, meta }) {
   const style = {
     display: 'flex',
     alignItems: 'center',
+    // The meta and the arrow drop under a long title on a narrow screen
+    // rather than pushing the row off the side of it.
+    flexWrap: 'wrap',
     gap: 20,
     width: '100%',
     paddingBlock: 10,

@@ -1,51 +1,47 @@
 import Page from '../components/layout/Page.jsx'
-import { Button } from '../components/ui/Button.jsx'
-import { Grid, SnapshotCard } from '../components/ui/Card.jsx'
-import { Display, Micro, PageHeading, Section } from '../components/ui/Pieces.jsx'
+import { ArchPyramid } from '../brand/marks.jsx'
+import { PillRow } from '../components/ui/Button.jsx'
+import { Display, Section } from '../components/ui/Pieces.jsx'
 import { counts } from '../lib/content.js'
 import { useI18n } from '../lib/i18n.jsx'
 
 /**
- * The Learn sections, each linking to its own index.
+ * Learn, laid out the way Build is.
  *
- * Deep Dives is not among them for now. It came off this index first and then,
- * on the second comment, the page itself: `/learn/deep-dives` and the articles
- * under it are not found. Nothing else on the site pointed at them, and the
- * writing is still in the repository, so this is a line to put back rather than
- * work to redo.
+ * It was four filled cards in a two-by-two grid. Marketing asked for this page
+ * to read like Build: the title and its line on the left with the artwork
+ * beside them, and the sections under it as a list of rows rather than as
+ * cards. So the two Learn and Build now share one shape, and a reader moving
+ * between them meets the same page twice rather than two designs.
+ *
+ * The count each track advertises rides on its row as meta, which is where the
+ * row puts it — nothing is lost by dropping the cards.
+ *
+ * Deep Dives is not among them. It came off this index first and then, on the
+ * second comment, the page itself: `/learn/deep-dives` and the articles under
+ * it are not found. The writing is still in the repository, so this is a line
+ * to put back rather than work to redo.
  */
 const TRACKS = [
   {
-    tone: 'blue',
     title: 'learn.foundationTitle',
     meta: ['learn.sessions', { count: counts.foundation }],
-    description: 'learn.foundationShort',
     to: '/learn/foundation',
-    cta: 'amber',
   },
   {
-    tone: 'purple',
     title: 'learn.algoTrackTitle',
     meta: ['learn.sessions', { count: counts.algoTrack }],
-    description: 'learn.algoTrackShort',
     to: '/learn/algo-track',
-    cta: 'white',
   },
   {
-    tone: 'amber',
     title: 'learn.egxGuideTitle',
     meta: ['learn.sessions', { count: counts.egxGuide }],
-    description: 'learn.egxGuideShort',
     to: '/learn/egx-guide',
-    cta: 'white',
   },
   {
-    tone: 'white',
     title: 'learn.glossaryTitle',
     meta: ['learn.terms', { count: counts.glossary }],
-    description: 'learn.glossarySub',
     to: '/learn/glossary',
-    cta: 'blue',
   },
 ]
 
@@ -55,26 +51,33 @@ export default function Learn() {
   return (
     <Page title={t('learn.title')}>
       <Section>
-        <PageHeading sub={t('learn.sub')}>{t('learn.title')}</PageHeading>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'var(--yn-hero-cols)',
+            gap: 48,
+            alignItems: 'center',
+          }}
+        >
+          <div>
+            <Display as="h1" size="h1">
+              {t('learn.title')}
+            </Display>
+            <p className="yn-display" style={{ fontSize: 'var(--yn-h3)', margin: '10px 0 0' }}>
+              {t('learn.sub')}
+            </p>
 
-        <Grid cols={2} gap={36}>
-          {TRACKS.map((track) => (
-            <SnapshotCard key={track.title} tone={track.tone} style={{ height: '100%' }}>
-              <Micro style={{ color: 'var(--yn-ink-2)' }}>{t(...track.meta)}</Micro>
-              <Display size="h2-journey" as="h2">
-                {t(track.title)}
-              </Display>
-              <p style={{ margin: 0, fontSize: 'var(--yn-body-size)', lineHeight: 1.6 }}>
-                {t(track.description)}
-              </p>
-              <div style={{ marginTop: 'auto', paddingTop: 6 }}>
-                <Button tone={track.cta} size="sm" to={track.to}>
-                  {t('common.viewAll')}
-                </Button>
-              </div>
-            </SnapshotCard>
-          ))}
-        </Grid>
+            <div style={{ display: 'grid', gap: 12, marginTop: 40 }}>
+              {TRACKS.map((track) => (
+                <PillRow key={track.title} to={track.to} meta={t(...track.meta)}>
+                  {t(track.title)}
+                </PillRow>
+              ))}
+            </div>
+          </div>
+
+          <ArchPyramid tone="blue" />
+        </div>
       </Section>
     </Page>
   )

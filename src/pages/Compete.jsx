@@ -20,7 +20,10 @@ export default function Compete() {
   return (
     <Page title={t('compete.title')} footer="dark">
       <Section>
-        <PageHeading sub={t('compete.sub')}>{t('compete.title')}</PageHeading>
+        {/* No subtitle. "Opening in Phase 2." stood here and they asked for
+            it to go — the card below already says the competition has not
+            opened, and says it better. */}
+        <PageHeading>{t('compete.title')}</PageHeading>
 
         <Card radius="band" style={{ padding: 'clamp(24px, 4vw, 48px)', background: 'transparent' }}>
           <div style={{ display: 'grid', gap: 20, justifyItems: 'center', padding: '48px 0 56px' }}>

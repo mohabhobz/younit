@@ -17,15 +17,12 @@ const PLATFORM = [
 /**
  * The second column is EFG Hermes ONE — the app an account is opened in, which
  * is where marketing asked this link to go — and LetsYounit!, which took
- * GitHub's place at their asking.
- *
- * LetsYounit! has no address. They have not sent one, and a name is better
- * than a link that goes nowhere, so it is set as plain text beside the other
- * and becomes a link the day an address arrives.
+ * GitHub's place at their asking and now, at their asking again, takes
+ * GitHub's address with it: the name changed, the destination did not.
  */
 const EFG = [
   { href: 'https://www.efghermesone.com', key: 'footer.efgHermes' },
-  { key: 'footer.github' },
+  { href: 'https://github.com/efg-hermes', key: 'footer.github' },
 ]
 
 function Column({ heading, items }) {
@@ -85,17 +82,10 @@ export default function SiteFooter({ tone = 'brand' }) {
         <div style={{ gridColumn: 'span 1' }}>
           {/* Marketing asked for the endorsed logo here too — the footer was
               carrying the bare wordmark. */}
+          {/* "LetsYounit!" stood under the logo as well as in the column on
+              the right, so the footer said it twice. This one goes; the one in
+              the column is the name they asked for there. */}
           <Lockup width={300} tone={dark ? "light" : "dark"} style={{ marginBottom: 18 }} />
-          <div
-            style={{
-              fontFamily: 'var(--yn-display)',
-              fontWeight: 400,
-              fontSize: 22,
-              marginBottom: 8,
-            }}
-          >
-            {t('footer.hub')}
-          </div>
           <p
             style={{
               fontSize: 'var(--yn-small)',

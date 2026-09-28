@@ -49,7 +49,8 @@ export default function Build() {
             </div>
           </div>
 
-          <ArchPyramid tone="purple" animate={false} />
+          {/* It was still. They asked for it to move here too. */}
+          <ArchPyramid tone="purple" />
         </div>
       </Section>
     </Page>

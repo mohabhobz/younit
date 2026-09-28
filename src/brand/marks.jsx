@@ -321,7 +321,13 @@ export function ArchPyramid({ tone = 'blue', animate = true, style }) {
             style={
               animate
                 ? {
-                    animation: `younit-unit-in 0.62s var(--yn-ease) ${u.delay}s both`,
+                    // Two animations, one after the other: the drop, then the
+                    // float that does not stop. The float starts where the
+                    // drop finished, so there is no jump between them.
+                    animation: [
+                      `younit-unit-in 0.62s var(--yn-ease) ${u.delay}s both`,
+                      `younit-unit-float 4.2s ease-in-out ${(u.delay + 0.62).toFixed(2)}s infinite`,
+                    ].join(', '),
                   }
                 : undefined
             }
