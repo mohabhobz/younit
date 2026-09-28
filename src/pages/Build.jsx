@@ -42,12 +42,11 @@ export default function Build() {
 
           </div>
 
-          {/* The branding deck's own arrangement of the block forms. They
-              stood on the homepage for a day and came off it; this is the page
-              they were kept for. Learn takes the staircase instead, so the two
-              are not the same picture. They drop in a row at a time and then
-              keep floating. */}
-          <BlockForms layout="stack" />
+          {/* The branding deck's block forms. They stood on the homepage for
+              a day and came off it; this is the page they were kept for, and
+              the only page that carries them. They drop in a row at a time and
+              then keep floating. */}
+          <BlockForms />
         </div>
 
         {/* Full width, as on Learn, so the two pages keep the same shape. */}
