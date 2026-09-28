@@ -244,59 +244,34 @@ const UNITS = [
 const CUBE = { face: 120, depth: 20, step: 110 }
 
 /**
- * Two compositions, one set of cubes.
+ * The deck's own arrangement: two cubes, four, six, and the same again below,
+ * so the shape reads twice and is symmetrical about its middle. It belongs to
+ * Build, where a stack of parts is the point.
  *
- * The deck is explicit that the block forms "are designed to be rearranged in
- * multiple compositions", so when Build and Learn both needed the black
- * artwork and marketing did not want to meet the same picture twice, the
- * answer was a second arrangement rather than a second drawing. Same lattice,
- * same cube, same frame — so the two pages still read as one brand, and
- * neither hero shifts when a reader moves between them.
- *
- * `stack` is the deck's own arrangement: two cubes, four, six, and the same
- * again below, so the shape reads twice and is symmetrical about its middle.
- * It stays on Build, where a stack of parts is the point.
- *
- * `steps` is Learn's: three treads, each two cubes deep, climbing left to
- * right. The left silhouette is a staircase and so is the top, which is what
- * learning looks like — you arrive at the top of one tread and the next one
- * is there. Twenty-four cubes either way, so the two carry the same weight.
+ * A staircase built from the same cubes stood on Learn for an afternoon. It
+ * was legible as blocks and not as learning, so Learn has its own drawing now
+ * — see `OpenBook` — and this is a single composition again.
  *
  * Every row is a list of columns, painted top row first so each row covers
  * the one behind it and the extrusions interlock.
  */
-const LAYOUTS = {
-  stack: [
-    [2, 3],
-    [1, 2, 3, 4],
-    [0, 1, 2, 3, 4, 5],
-    [2, 3],
-    [1, 2, 3, 4],
-    [0, 1, 2, 3, 4, 5],
-  ],
-  steps: [
-    [4, 5],
-    [4, 5],
-    [2, 3, 4, 5],
-    [2, 3, 4, 5],
-    [0, 1, 2, 3, 4, 5],
-    [0, 1, 2, 3, 4, 5],
-  ],
-}
+const BLOCK_ROWS = [
+  [2, 3],
+  [1, 2, 3, 4],
+  [0, 1, 2, 3, 4, 5],
+  [2, 3],
+  [1, 2, 3, 4],
+  [0, 1, 2, 3, 4, 5],
+]
 
-const blocksFor = (rows) =>
-  rows.flatMap((columns, row) =>
-    columns.map((column, i) => ({
-      x: column * CUBE.face,
-      y: row * CUBE.step,
-      // Each row lands after the one above it, and each cube a beat after its
-      // neighbour, so the shape builds from the top down rather than appearing.
-      delay: 0.06 * row + 0.035 * i,
-    })),
-  )
-
-const BLOCKS = Object.fromEntries(
-  Object.entries(LAYOUTS).map(([name, rows]) => [name, blocksFor(rows)]),
+const BLOCKS = BLOCK_ROWS.flatMap((columns, row) =>
+  columns.map((column, i) => ({
+    x: column * CUBE.face,
+    y: row * CUBE.step,
+    // Each row lands after the one above it, and each cube a beat after its
+    // neighbour, so the shape builds from the top down rather than appearing.
+    delay: 0.06 * row + 0.035 * i,
+  })),
 )
 
 function Cube({ x, y }) {
@@ -312,13 +287,11 @@ function Cube({ x, y }) {
   )
 }
 
-export function BlockForms({ layout = 'stack', animate = true, style }) {
+export function BlockForms({ animate = true, style }) {
   const { t } = useI18n()
-  // The frame is the six-by-six lattice, not the arrangement inside it, so
-  // every composition draws at the same size and in the same place.
   const width = 6 * CUBE.face + CUBE.depth
   const height = 5 * CUBE.step + CUBE.face + CUBE.depth
-  const blocks = BLOCKS[layout] ?? BLOCKS.stack
+  const blocks = BLOCKS
 
   return (
     <svg
@@ -347,6 +320,120 @@ export function BlockForms({ layout = 'stack', animate = true, style }) {
           <Cube x={b.x} y={b.y} />
         </g>
       ))}
+    </svg>
+  )
+}
+
+/**
+ * The open book, built the way the block forms are built.
+ *
+ * Learn carried the arches, then a staircase of cubes, and neither said
+ * "learning" — the staircase in particular read as blocks that happened to be
+ * stacked unevenly. This is the thing itself: two pages opening from a spine,
+ * with the stack of paper under them, so a reader knows what the page is about
+ * before they have read a word of it.
+ *
+ * It is not a picture pasted into the brand. Every page is divided into the
+ * same cells the cubes are, filled in ink and seamed in the page's own
+ * background at the same three pixels, and the twenty-four of them are the
+ * same twenty-four the other two artworks carry. They drop in from the spine
+ * outwards, a row at a time, and then float on the same slow four seconds.
+ *
+ * The geometry is four corners per page — A and D on the outer edge, B and C
+ * at the spine — and every cell is found by interpolating between them, so
+ * the whole shape moves if those eight numbers move.
+ */
+const BOOK = {
+  w: 740,
+  h: 690,
+  // The block of paper under each sheet. Without it the book is a flat V.
+  depth: 55,
+  cols: 3,
+  rows: 4,
+  // The spine edges lean towards each other, wide at the top and all but
+  // touching at the bottom, so the gap between the pages is a valley rather
+  // than a corridor — which is the difference between a book and two panels.
+  pages: [
+    { A: [40, 105], B: [348, 180], C: [366, 540], D: [40, 465] },
+    { A: [700, 105], B: [392, 180], C: [374, 540], D: [700, 465] },
+  ],
+}
+
+const mix = (p, q, t) => [p[0] + (q[0] - p[0]) * t, p[1] + (q[1] - p[1]) * t]
+const pts = (list) => list.map((p) => p.join(',')).join(' ')
+
+function bookPage({ A, B, C, D }) {
+  const { cols, rows, depth } = BOOK
+  // u runs from the outer edge to the spine, v from the top edge to the
+  // bottom one, so a cell is the quad between four of those readings.
+  const at = (u, v) => mix(mix(A, B, u), mix(D, C, u), v)
+  const cells = []
+
+  for (let r = 0; r < rows; r += 1) {
+    for (let c = 0; c < cols; c += 1) {
+      cells.push({
+        key: `${r}-${c}`,
+        points: pts([
+          at(c / cols, r / rows),
+          at((c + 1) / cols, r / rows),
+          at((c + 1) / cols, (r + 1) / rows),
+          at(c / cols, (r + 1) / rows),
+        ]),
+        delay: 0.06 * r + 0.035 * (cols - 1 - c),
+      })
+    }
+  }
+
+  return {
+    cells,
+    edge: pts([D, C, [C[0], C[1] + depth], [D[0], D[1] + depth]]),
+    edgeDelay: 0.06 * rows,
+  }
+}
+
+const BOOK_PAGES = BOOK.pages.map(bookPage)
+
+export function OpenBook({ animate = true, style }) {
+  const { t } = useI18n()
+  const seam = { stroke: 'var(--yn-white)', strokeWidth: 3, strokeLinejoin: 'round' }
+  const rides = (delay) =>
+    animate
+      ? {
+          // The drop, then the float that does not stop — the same pair every
+          // other piece of artwork on the site rides.
+          animation: [
+            `younit-unit-in 0.62s var(--yn-ease) ${delay}s both`,
+            `younit-unit-float 4.2s ease-in-out ${(delay + 0.62).toFixed(2)}s infinite`,
+          ].join(', '),
+        }
+      : undefined
+
+  return (
+    <svg
+      viewBox={`0 0 ${BOOK.w} ${BOOK.h}`}
+      role="img"
+      aria-label={t('common.artwork')}
+      style={{ width: '100%', height: 'auto', display: 'block', ...style }}
+    >
+      <g fill="var(--yn-ink)" {...seam}>
+        {BOOK_PAGES.map((page, i) => (
+          <g key={page.edge}>
+            <polygon
+              points={page.edge}
+              data-unit={animate ? '' : undefined}
+              style={rides(page.edgeDelay)}
+            />
+            {page.cells.map((cell) => (
+              <polygon
+                key={`${i}-${cell.key}`}
+                points={cell.points}
+                data-unit={animate ? '' : undefined}
+                style={rides(cell.delay)}
+              />
+            ))}
+          </g>
+        ))}
+      </g>
     </svg>
   )
 }
