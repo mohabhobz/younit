@@ -293,7 +293,14 @@ export function BlockForms({ animate = true, style }) {
           data-unit={animate ? '' : undefined}
           style={
             animate
-              ? { animation: `younit-unit-in 0.62s var(--yn-ease) ${b.delay}s both` }
+              ? {
+                  // The drop, then the float that does not stop — the same
+                  // pair the arches ride.
+                  animation: [
+                    `younit-unit-in 0.62s var(--yn-ease) ${b.delay}s both`,
+                    `younit-unit-float 4.2s ease-in-out ${(b.delay + 0.62).toFixed(2)}s infinite`,
+                  ].join(', '),
+                }
               : undefined
           }
         >
