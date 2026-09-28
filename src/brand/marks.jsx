@@ -243,23 +243,60 @@ const UNITS = [
  */
 const CUBE = { face: 120, depth: 20, step: 110 }
 
-const BLOCK_ROWS = [
-  [2, 3],
-  [1, 2, 3, 4],
-  [0, 1, 2, 3, 4, 5],
-  [2, 3],
-  [1, 2, 3, 4],
-  [0, 1, 2, 3, 4, 5],
-]
+/**
+ * Two compositions, one set of cubes.
+ *
+ * The deck is explicit that the block forms "are designed to be rearranged in
+ * multiple compositions", so when Build and Learn both needed the black
+ * artwork and marketing did not want to meet the same picture twice, the
+ * answer was a second arrangement rather than a second drawing. Same lattice,
+ * same cube, same frame — so the two pages still read as one brand, and
+ * neither hero shifts when a reader moves between them.
+ *
+ * `stack` is the deck's own arrangement: two cubes, four, six, and the same
+ * again below, so the shape reads twice and is symmetrical about its middle.
+ * It stays on Build, where a stack of parts is the point.
+ *
+ * `steps` is Learn's: three treads, each two cubes deep, climbing left to
+ * right. The left silhouette is a staircase and so is the top, which is what
+ * learning looks like — you arrive at the top of one tread and the next one
+ * is there. Twenty-four cubes either way, so the two carry the same weight.
+ *
+ * Every row is a list of columns, painted top row first so each row covers
+ * the one behind it and the extrusions interlock.
+ */
+const LAYOUTS = {
+  stack: [
+    [2, 3],
+    [1, 2, 3, 4],
+    [0, 1, 2, 3, 4, 5],
+    [2, 3],
+    [1, 2, 3, 4],
+    [0, 1, 2, 3, 4, 5],
+  ],
+  steps: [
+    [4, 5],
+    [4, 5],
+    [2, 3, 4, 5],
+    [2, 3, 4, 5],
+    [0, 1, 2, 3, 4, 5],
+    [0, 1, 2, 3, 4, 5],
+  ],
+}
 
-const BLOCKS = BLOCK_ROWS.flatMap((columns, row) =>
-  columns.map((column, i) => ({
-    x: column * CUBE.face,
-    y: row * CUBE.step,
-    // Each row lands after the one above it, and each cube a beat after its
-    // neighbour, so the shape builds from the top down rather than appearing.
-    delay: 0.06 * row + 0.035 * i,
-  })),
+const blocksFor = (rows) =>
+  rows.flatMap((columns, row) =>
+    columns.map((column, i) => ({
+      x: column * CUBE.face,
+      y: row * CUBE.step,
+      // Each row lands after the one above it, and each cube a beat after its
+      // neighbour, so the shape builds from the top down rather than appearing.
+      delay: 0.06 * row + 0.035 * i,
+    })),
+  )
+
+const BLOCKS = Object.fromEntries(
+  Object.entries(LAYOUTS).map(([name, rows]) => [name, blocksFor(rows)]),
 )
 
 function Cube({ x, y }) {
@@ -275,10 +312,13 @@ function Cube({ x, y }) {
   )
 }
 
-export function BlockForms({ animate = true, style }) {
+export function BlockForms({ layout = 'stack', animate = true, style }) {
   const { t } = useI18n()
+  // The frame is the six-by-six lattice, not the arrangement inside it, so
+  // every composition draws at the same size and in the same place.
   const width = 6 * CUBE.face + CUBE.depth
   const height = 5 * CUBE.step + CUBE.face + CUBE.depth
+  const blocks = BLOCKS[layout] ?? BLOCKS.stack
 
   return (
     <svg
@@ -287,7 +327,7 @@ export function BlockForms({ animate = true, style }) {
       aria-label={t('common.artwork')}
       style={{ width: '100%', height: 'auto', display: 'block', ...style }}
     >
-      {BLOCKS.map((b) => (
+      {blocks.map((b) => (
         <g
           key={`${b.x}-${b.y}`}
           data-unit={animate ? '' : undefined}
