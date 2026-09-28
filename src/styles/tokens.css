@@ -55,6 +55,10 @@
   --yn-eyebrow: 34px;
   --yn-h3: 30px;
   --yn-card-title: 26px;
+  /* The title on a list row. Smaller than a heading on purpose: the row also
+     has to hold a count and an arrow, and on the narrow half of the Learn and
+     Build pages a heading-sized title pushed both onto a second line. */
+  --yn-row-title: 24px;
   --yn-track-title: 24px;
   --yn-stat: 62px;
   --yn-stat-2: 52px;
@@ -97,6 +101,7 @@
     --yn-h2-journey: 36px;
     --yn-eyebrow: 27px;
     --yn-h3: 24px;
+    --yn-row-title: 20px;
     --yn-stat: 52px;
     --yn-stat-2: 44px;
   }
@@ -119,6 +124,7 @@
     --yn-eyebrow: 22px;
     --yn-h3: 20px;
     --yn-card-title: 22px;
+    --yn-row-title: 18px;
     --yn-stat: 46px;
     --yn-stat-2: 38px;
   }

@@ -67,18 +67,25 @@ export default function Learn() {
               {t('learn.sub')}
             </p>
 
-            <div style={{ display: 'grid', gap: 12, marginTop: 40 }}>
-              {TRACKS.map((track) => (
-                <PillRow key={track.title} to={track.to} meta={t(...track.meta)}>
-                  {t(track.title)}
-                </PillRow>
-              ))}
-            </div>
           </div>
 
           {/* The same colour as the header, from the same token, as on the
               other two pages. */}
           <ArchPyramid tone="chrome" />
+        </div>
+
+        {/* The rows run the full frame rather than sharing the width with the
+            artwork. Inside the column they had about four hundred pixels
+            between 900 and 1100, and "Investing on the Egyptian Exchange"
+            plus its count does not fit in four hundred pixels at any size a
+            reader would thank us for. Out here every title sits on one line
+            with its count beside it, at every width. */}
+        <div style={{ display: 'grid', gap: 12, marginTop: 48 }}>
+          {TRACKS.map((track) => (
+            <PillRow key={track.title} to={track.to} meta={t(...track.meta)}>
+              {t(track.title)}
+            </PillRow>
+          ))}
         </div>
       </Section>
     </Page>

@@ -390,9 +390,9 @@ function HowItWorks() {
  * with a film beside it. The words here are the client's own, to the comma,
  * and they end on a working address for the press.
  *
- * The panel is as wide as its writing rather than as wide as the page. Run to
- * the frame it was a bordered box with six hundred pixels of nothing on the
- * right, which reads as a section that failed to load.
+ * The panel runs the full frame, at their asking. It was capped at its own
+ * measure for a day — a bordered box with six hundred pixels of nothing beside
+ * it — and the answer to that was to fill the box rather than to shrink it.
  */
 function WhoWeAre() {
   const { t } = useI18n()
@@ -410,7 +410,6 @@ function WhoWeAre() {
           display: "flex",
           flexDirection: "column",
           gap: 14,
-          maxWidth: "82ch",
         }}
       >
         <Display size="h3" as="h2">

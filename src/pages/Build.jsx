@@ -40,18 +40,20 @@ export default function Build() {
               {t('build.githubCta')}
             </Button>
 
-            <div style={{ display: 'grid', gap: 12, marginTop: 40 }}>
-              {SECTIONS.map((section) => (
-                <PillRow key={section.key} to={section.to} meta={section.meta}>
-                  {t(section.key)}
-                </PillRow>
-              ))}
-            </div>
           </div>
 
           {/* It was still. They asked for it to move here too, and to wear
               the header's colour. */}
           <ArchPyramid tone="chrome" />
+        </div>
+
+        {/* Full width, as on Learn, so the two pages keep the same shape. */}
+        <div style={{ display: 'grid', gap: 12, marginTop: 48 }}>
+          {SECTIONS.map((section) => (
+            <PillRow key={section.key} to={section.to} meta={section.meta}>
+              {t(section.key)}
+            </PillRow>
+          ))}
         </div>
       </Section>
     </Page>

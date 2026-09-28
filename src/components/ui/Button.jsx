@@ -109,10 +109,17 @@ export function PillRow({ children, to, href, meta }) {
     <>
       <span
         className="yn-display"
+        // One step down from the heading size. At `--yn-h3` the longest title
+        // on the Learn index — "Investing on the Egyptian Exchange" — left no
+        // room for its count beside it, so the count and the arrow dropped to
+        // a second line and the row grew to twice the height of its
+        // neighbours. At this size every title on the site sits on one line
+        // with its meta beside it.
+        //
         // `minWidth: 0` lets the title be the thing that shrinks. Without it a
-        // long session title sets the row's minimum width and the whole row
-        // runs off a phone screen.
-        style={{ fontSize: 'var(--yn-h3)', lineHeight: 1.15, minWidth: 0 }}
+        // long title sets the row's minimum width and the whole row runs off a
+        // phone screen.
+        style={{ fontSize: 'var(--yn-row-title)', lineHeight: 1.15, minWidth: 0 }}
       >
         {children}
       </span>
