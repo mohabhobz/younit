@@ -111,13 +111,20 @@ export function ArrowButton({ size = 44 }) {
  * something a stylesheet can say and an inline style cannot. It used to be an
  * inline flex row that wrapped, which is exactly what broke it on a phone:
  * the count and the arrow dropped under a long title and the row grew to
- * twice its neighbours' height. Nothing wraps now; the title does.
+ * twice its neighbours' height. Nothing wraps now but the words.
+ *
+ * The title and its count share a wrapper because on a phone they are one
+ * sentence: the count moves inside the title's own text and is bracketed by
+ * the stylesheet. The brackets are not in the content — they belong to the
+ * layout, and the same words are read out as one line either way.
  */
 export function PillRow({ children, to, href, meta }) {
   const inner = (
     <>
-      <span className="yn-display yn-pill-row__title">{children}</span>
-      {meta ? <span className="yn-pill-row__meta">{meta}</span> : null}
+      <span className="yn-pill-row__text">
+        <span className="yn-display yn-pill-row__title">{children}</span>
+        {meta ? <span className="yn-pill-row__meta">{meta}</span> : null}
+      </span>
       <span className="yn-pill-row__arrow">
         <ArrowButton />
       </span>
