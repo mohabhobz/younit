@@ -419,15 +419,17 @@ pre {
    its neighbours' height with the arrow stranded at the bottom corner — four
    rows that were meant to be a list read as four different things.
 
-   It is a grid now, and nothing wraps. Wide, the three sit on one line and the
-   title takes whatever is left. Narrow, the count moves under the title and
-   the arrow spans both rows, so the title gets the full width to wrap into and
-   the arrow stays where the thumb expects it, in the middle of the right-hand
-   end. Either way the row is as tall as its content and no taller. */
+   It is a grid now: the writing on one side, the arrow on the other, and
+   nothing wraps but the words. Wide, the title sits at one end of its half and
+   the count at the other, as it always did. Narrow, the count stops being a
+   line of its own — it becomes the end of the title's own sentence, in
+   brackets, and wraps with it. A count on its own line under a title that had
+   already wrapped read as a third line of nothing, and the brackets say the
+   same thing in the space the title was already using. */
 
 .yn-pill-row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto auto;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
   gap: 20px;
   width: 100%;
@@ -436,6 +438,14 @@ pre {
   padding-inline: 28px 10px;
   border: 1px solid var(--yn-purple);
   border-radius: var(--yn-r-pill);
+}
+
+.yn-pill-row__text {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 20px;
+  min-width: 0;
 }
 
 .yn-pill-row__title {
@@ -454,21 +464,39 @@ pre {
 }
 
 @media (max-width: 560px) {
+  /* Tighter than the desktop row, because every pixel taken back here is a
+     pixel the title and its count can share a line with. */
   .yn-pill-row {
-    grid-template-columns: minmax(0, 1fr) auto;
-    column-gap: 14px;
-    row-gap: 2px;
-    padding-inline: 22px 8px;
+    column-gap: 10px;
+    padding-inline: 16px 6px;
+  }
+
+  /* The title and its count become one run of text, so the count lands at the
+     end of the last line the title uses rather than starting a line of its
+     own. The brackets are drawn here rather than written into the content,
+     because they belong to this layout and not to the words. */
+  .yn-pill-row__text {
+    display: block;
+  }
+
+  .yn-pill-row__title,
+  .yn-pill-row__meta {
+    display: inline;
   }
 
   .yn-pill-row__meta {
-    grid-column: 1;
-    grid-row: 2;
+    /* A step smaller than it is beside a title, because here it is inside one.
+       It also buys the fifteen pixels that decide whether "What is Algo
+       Trading (8 sessions)" is one line on a phone or two. */
+    font-size: var(--yn-micro);
   }
 
-  .yn-pill-row__arrow {
-    grid-column: 2;
-    grid-row: 1 / -1;
+  .yn-pill-row__meta::before {
+    content: ' (';
+  }
+
+  .yn-pill-row__meta::after {
+    content: ')';
   }
 }
 
