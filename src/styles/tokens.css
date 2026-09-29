@@ -409,6 +409,69 @@ pre {
   }
 }
 
+/* --- The pill row ----------------------------------------------------------
+
+   A title, what it holds, and the way in.
+
+   It was an inline flex row that was allowed to wrap, and wrapping is what
+   broke it. On a phone "Investing on the Egyptian Exchange" filled the line,
+   the count and the arrow dropped underneath it, and the pill grew to twice
+   its neighbours' height with the arrow stranded at the bottom corner — four
+   rows that were meant to be a list read as four different things.
+
+   It is a grid now, and nothing wraps. Wide, the three sit on one line and the
+   title takes whatever is left. Narrow, the count moves under the title and
+   the arrow spans both rows, so the title gets the full width to wrap into and
+   the arrow stays where the thumb expects it, in the middle of the right-hand
+   end. Either way the row is as tall as its content and no taller. */
+
+.yn-pill-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  padding-block: 10px;
+  /* Roomy at the label end, tight at the arrow end — whichever end that is. */
+  padding-inline: 28px 10px;
+  border: 1px solid var(--yn-purple);
+  border-radius: var(--yn-r-pill);
+}
+
+.yn-pill-row__title {
+  /* One step down from the heading size, so a title and its count share a
+     line at every width a desktop offers. */
+  font-size: var(--yn-row-title);
+  line-height: 1.15;
+  min-width: 0;
+}
+
+.yn-pill-row__meta {
+  font-size: var(--yn-small);
+  color: var(--yn-grey-dark);
+  /* "4 sessions" is one thing, not two lines. */
+  white-space: nowrap;
+}
+
+@media (max-width: 560px) {
+  .yn-pill-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 14px;
+    row-gap: 2px;
+    padding-inline: 22px 8px;
+  }
+
+  .yn-pill-row__meta {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .yn-pill-row__arrow {
+    grid-column: 2;
+    grid-row: 1 / -1;
+  }
+}
+
 .yn-card-hover {
   transition:
     border-color 200ms linear,
