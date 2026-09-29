@@ -103,66 +103,38 @@ export function ArrowButton({ size = 44 }) {
   )
 }
 
-/** A full-width pill row with a label and a trailing arrow. */
+/**
+ * A full-width pill row with a label, what it holds, and the way in.
+ *
+ * The shape is a grid, and it lives in `tokens.css` under `.yn-pill-row`
+ * rather than here — the row changes at a breakpoint, and a breakpoint is
+ * something a stylesheet can say and an inline style cannot. It used to be an
+ * inline flex row that wrapped, which is exactly what broke it on a phone:
+ * the count and the arrow dropped under a long title and the row grew to
+ * twice its neighbours' height. Nothing wraps now; the title does.
+ */
 export function PillRow({ children, to, href, meta }) {
   const inner = (
     <>
-      <span
-        className="yn-display"
-        // One step down from the heading size. At `--yn-h3` the longest title
-        // on the Learn index — "Investing on the Egyptian Exchange" — left no
-        // room for its count beside it, so the count and the arrow dropped to
-        // a second line and the row grew to twice the height of its
-        // neighbours. At this size every title on the site sits on one line
-        // with its meta beside it.
-        //
-        // `minWidth: 0` lets the title be the thing that shrinks. Without it a
-        // long title sets the row's minimum width and the whole row runs off a
-        // phone screen.
-        style={{ fontSize: 'var(--yn-row-title)', lineHeight: 1.15, minWidth: 0 }}
-      >
-        {children}
-      </span>
-      <span style={{ display: 'flex', alignItems: 'center', gap: 20, marginInlineStart: 'auto' }}>
-        {meta ? (
-          <span
-            style={{
-              fontSize: 'var(--yn-small)',
-              color: 'var(--yn-grey-dark)',
-              // "4 sessions" broke across two lines beside a title that had
-              // already wrapped, which read as a second title.
-              whiteSpace: 'nowrap',
-            }}
-          >
-            {meta}
-          </span>
-        ) : null}
+      <span className="yn-display yn-pill-row__title">{children}</span>
+      {meta ? <span className="yn-pill-row__meta">{meta}</span> : null}
+      <span className="yn-pill-row__arrow">
         <ArrowButton />
       </span>
     </>
   )
 
-  const style = {
-    display: 'flex',
-    alignItems: 'center',
-    // The meta and the arrow drop under a long title on a narrow screen
-    // rather than pushing the row off the side of it.
-    flexWrap: 'wrap',
-    gap: 20,
-    width: '100%',
-    paddingBlock: 10,
-    // Roomy at the label end, tight at the arrow end — whichever end that is.
-    paddingInline: '28px 10px',
-    border: '1px solid var(--yn-purple)',
-    borderRadius: 'var(--yn-r-pill)',
-  }
-
   return href ? (
-    <a className="yn-card-hover" href={href} style={style} target="_blank" rel="noreferrer noopener">
+    <a
+      className="yn-card-hover yn-pill-row"
+      href={href}
+      target="_blank"
+      rel="noreferrer noopener"
+    >
       {inner}
     </a>
   ) : (
-    <Link className="yn-card-hover" to={to} style={style}>
+    <Link className="yn-card-hover yn-pill-row" to={to}>
       {inner}
     </Link>
   )
