@@ -148,8 +148,54 @@ three ways — "إي اف چي هيرميس", "إي اف چي القابضة" an
 last two inside the same paragraph. Their paragraph is on the page word for
 word, so all three are on it. The rest of the site says "إي إف چي هيرميس".
 
+## The Arabic Learn guide — 1 October
+
+`Younit Learn Arabic Content 2.docx` is the Arabic of "Investing on the
+Egyptian Exchange", the fourth Learn track. It is on the site: four sessions at
+`/ar/learn/egx-guide`, the same four parts, the same slugs and the same session
+numbers as the English, so a reader switching language lands on the same page
+rather than at the top of the track. Every one of the document's 158 paragraphs
+is on a page — checked block by block, machine-read from the file rather than
+retyped — and the only line of it that is not is its own title, which the track
+already carries. Nothing was added: where the English says something their
+Arabic does not, the Arabic page stays quiet.
+
+Which leaves ten places where the two languages now say different things. The
+Arabic is the later document and the more careful one — it drops numbers the
+English states and hedges what the English asserts — so these read as the
+English needing their next pass, not as errors in the Arabic:
+
+- **Stamp duty.** The Arabic gives the rate: 0.05% each side, 0.025% each side
+  intraday, market makers exempt, citing an FRA clarification of August 2026
+  and dating itself to September 2026. The English says only that stamp duty
+  replaced capital gains tax, with no rate at all.
+- **Ramadan hours.** The English names 10:00–13:30. The Arabic says only that
+  the hours are adjusted as the exchange announces each year.
+- **Price limits.** The English names 10% on the Main Market. The Arabic says
+  limits apply under the rules, without a figure.
+- **A minimum to start.** The English adds that many listed shares trade at
+  prices that make a first purchase accessible. The Arabic stops at "there is
+  no general regulatory minimum".
+- **Position sizing.** The English suggests ten to fifteen positions and a 10%
+  ceiling per company. The Arabic gives no numbers.
+- **The first order.** The English recommends a limit order for a first trade.
+  The Arabic makes no recommendation.
+- **Settlement.** The English works the example — Sunday settles Tuesday — and
+  says a broker typically lets you sell before settlement. The Arabic describes
+  T+2 and leaves both out.
+- **A failed broker.** The English says broker failure does not affect
+  ownership. The Arabic says client rights and account transfers follow the
+  relevant regulations.
+- **EGX 70.** The Arabic writes "EGX 70 EW"; the English and the exchange write
+  "EGX 70 EWI". One letter, and theirs to settle.
+- **The company's name.** This guide spells it "إي اف چي هيرميس". The rest of
+  the Arabic site says "إي إف چي هيرميس". Their words are on their page as they
+  wrote them, as with the last document, so both spellings are now on the site.
+
 ## Still with the client
 
+- Whether the English EGX guide should be brought in line with the Arabic on
+  the ten points above — the rates, the hours and the figures in particular.
 - The address behind LetsYounit! (D9).
 - @nouran's confirmation of the hero text (D3) and whether the team wants more
   on the Compete card (D6).
