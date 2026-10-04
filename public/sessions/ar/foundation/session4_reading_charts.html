@@ -161,6 +161,130 @@
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 .yn-deck .section{animation:fadeUp .5s ease both;}
 @media(max-width:680px){.yn-deck .index-grid{grid-template-columns:1fr;}}
+
+/* ── Arabic sets differently ───────────────────────────────────────────────
+
+   This deck was written in English, and its labels ask for IBM Plex Mono. That
+   face carries no Arabic at all, so every Arabic label fell through to whatever
+   monospace the device happened to have, which sets each letter in its own
+   fixed cell and pulls the word apart — "مستثمر" arrived as six loose letters,
+   and a different six on every phone. The stack below keeps Plex Mono for the
+   Latin and the figures and hands the Arabic to Plex Sans Arabic, which is the
+   face the rest of the site is set in.
+
+   The second habit is tracking. Arabic letters join, and letter-spacing prises
+   them apart as well. It is off wherever Arabic can reach, and left alone on
+   the few labels that are only ever Latin — the ticker symbols, the figures,
+   the EFG mark.
+
+   `!important` because a few of these labels carry the family in a style
+   attribute, and nothing in a stylesheet outranks that. */
+.yn-deck .efg-logo-text,
+.yn-deck .nav-item,
+.yn-deck .section-num,
+.yn-deck .session-tag,
+.yn-deck th,
+.yn-deck .chart-subtitle,
+.yn-deck .ghost-btn,
+.yn-deck .primary-btn,
+.yn-deck text[font-family*="IBM Plex Mono"],
+.yn-deck [style*="IBM Plex Mono"] {
+  font-family: 'IBM Plex Mono', 'IBM Plex Sans Arabic', sans-serif !important;
+  letter-spacing: normal !important;
+}
+
+/* The rule above keeps Plex Mono at the front of the stack so the tickers and
+   the figures still set in it, and that is right for a label of two words. It
+   is wrong for a sentence: the space character exists in Plex Mono, so the
+   browser takes it from there, and a monospaced space is more than twice the
+   width of an Arabic one. A caption came out with a gap between every word —
+   the thing the client read as the letters being pulled apart.
+
+   These are the places a whole Arabic sentence is set at label size. They take
+   the Arabic face outright, Latin and figures included, which is how the rest
+   of the Arabic site sets its prose. The labels proper are left above. */
+.yn-deck .chart-subtitle,
+.yn-deck .chart-pros li,
+.yn-deck .fg-context,
+.yn-deck .game-caption,
+.yn-deck .slide-body [style*="IBM Plex Mono"],
+.yn-deck .slide-note {
+  font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+  letter-spacing: normal !important;
+}
+
+/* ── The flow diagrams on a narrow screen ──────────────────────────────────
+
+   A flow row is four boxes and three arrows set side by side, each box asking
+   for at least a hundred and forty pixels. On a phone that cannot hold them,
+   so the row wrapped: two boxes on one line, an arrow stranded at the start of
+   the next, the last box alone under that. It read as four unrelated cards
+   rather than one path.
+
+   Below the breakpoint the path stands up instead. One box a line, the arrows
+   turned a quarter so they point down the page, and a gap between them where
+   there was none — the same sequence, read top to bottom. */
+
+@media (max-width: 680px) {
+  .yn-deck .flow-row,
+  .yn-deck .etf-flow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .yn-deck .flow-arrow,
+  .yn-deck .etf-arrow {
+    padding: 0;
+    text-align: center;
+    line-height: 1;
+    transform: rotate(-90deg);
+  }
+}
+
+/* The deck root asks for IBM Plex Sans, which has no Arabic either, so every
+   word that is not a label was being drawn by whatever the device happened to
+   fall back to — a different face on every phone, and on some of them the
+   letters do not join. Plex Sans Arabic is named here so the deck reads in the
+   same face as the page around it. */
+.yn-deck {
+  font-family: 'IBM Plex Sans', 'IBM Plex Sans Arabic', sans-serif;
+}
+
+
+/* The boxes in a flow row were set side by side with no gap at all: the only
+   air between them was the eight pixels of padding on the arrow, so a box and
+   an arrow read as one run of ink. And because the row centred its children,
+   each box was only as tall as its own sentence — "يضع الأمر" one line, "نقل
+   الأسهم والنقد" two — so four boxes of four different heights sat on a
+   ragged line. The client marked this one.
+
+   Above the phone breakpoint, where the row still runs across: a real gap,
+   every box the height of the tallest, and its label and value centred inside
+   whatever height that turns out to be. The arrows keep their own centre. */
+
+@media (min-width: 681px) {
+  .yn-deck .flow-row,
+  .yn-deck .etf-flow {
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .yn-deck .flow-item,
+  .yn-deck .etf-node {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .yn-deck .flow-arrow,
+  .yn-deck .etf-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+}
 </style>
 <div class="yn-deck">
 <!-- HEADER -->
@@ -263,8 +387,8 @@
       </div>
     </div>
 
-    <h3 style="font-family:'Poppins',sans-serif;font-size:22px;color:var(--yn-ink);margin-bottom:14px;">الشموع تروي قصصاً</h3>
-    <p style="color:var(--text-dim);font-size:14px;line-height:1.75;margin-bottom:24px;max-width:680px;">شكل الشمعة يعكس ما حدث خلال الفترة. الجسم الطويل يعني حركة قوية حاسمة. والظلال الطويلة تعني أن السعر ذهب إلى مكان ما — ثم عاد. والتركيبة تخبرك من كان مسيطراً ومن جرى رفضه. وهذه أربع شمعات يعرفها كل متداول:</p>
+    <h3 style="font-family:'Poppins',sans-serif;font-size:22px;color:var(--yn-ink);margin-bottom:14px;">الشموع تروي قصصًا</h3>
+    <p style="color:var(--text-dim);font-size:14px;line-height:1.75;margin-bottom:24px;max-width:680px;">شكل الشمعة يعكس ما حدث خلال الفترة. الجسم الطويل يعني حركة قوية حاسمة. والظلال الطويلة تعني أن السعر ذهب إلى مكان ما — ثم عاد. والتركيبة تخبرك من كان مسيطرًا ومن جرى رفضه. وهذه أربع شمعات يعرفها كل متداول:</p>
 
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;">
 
@@ -276,7 +400,7 @@
           <line x1="50" y1="70" x2="50" y2="130" stroke="#444444" stroke-width="2"/>
         </svg>
         <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:2px;margin-bottom:6px;">دوجي</div>
-        <div style="font-size:12px;color:var(--text-dim);line-height:1.55;">الافتتاح ≈ الإغلاق. لم يستطع السوق أن يحسم. غالباً نقطة تحول — تردد قبل حركة.</div>
+        <div style="font-size:12px;color:var(--text-dim);line-height:1.55;">الافتتاح ≈ الإغلاق. لم يستطع السوق أن يحسم. غالبًا نقطة تحول — تردد قبل حركة.</div>
       </div>
 
       <!-- Hammer -->
@@ -287,7 +411,7 @@
           <line x1="50" y1="60" x2="50" y2="130" stroke="#1C7A3E" stroke-width="2"/>
         </svg>
         <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--green);letter-spacing:2px;margin-bottom:6px;">المطرقة</div>
-        <div style="font-size:12px;color:var(--text-dim);line-height:1.55;">دفع البائعون السعر إلى الأسفل بعيداً، ثم أعاده المشترون إلى الأعلى بالكامل. إشارة انعكاس صاعد عند القيعان.</div>
+        <div style="font-size:12px;color:var(--text-dim);line-height:1.55;">دفع البائعون السعر إلى الأسفل بعيدًا، ثم أعاده المشترون إلى الأعلى بالكامل. إشارة انعكاس صاعد عند القيعان.</div>
       </div>
 
       <!-- Shooting star -->
@@ -298,7 +422,7 @@
           <line x1="50" y1="105" x2="50" y2="120" stroke="#B3261E" stroke-width="2"/>
         </svg>
         <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--red);letter-spacing:2px;margin-bottom:6px;">الشهاب</div>
-        <div style="font-size:12px;color:var(--text-dim);line-height:1.55;">دفع المشترون السعر إلى الأعلى بعيداً، ثم أعاده البائعون بالكامل. إشارة انعكاس هابط عند القمم.</div>
+        <div style="font-size:12px;color:var(--text-dim);line-height:1.55;">دفع المشترون السعر إلى الأعلى بعيدًا، ثم أعاده البائعون بالكامل. إشارة انعكاس هابط عند القمم.</div>
       </div>
 
       <!-- Engulfing -->
@@ -319,7 +443,7 @@
 
     <div style="background:rgba(255,208,90,.05);border:1px solid rgba(255,208,90,.2);border-radius:4px;padding:18px 22px;margin-top:24px;">
       <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">↳ تحفّظ صادق</div>
-      <div style="font-size:13px;color:var(--text-dim);line-height:1.7;">الشمعة الواحدة نقطة بيانات واحدة — السياق أهم من الشكل. المطرقة عند قمة اتجاه صاعد لا تعني شيئاً تقريباً. أما المطرقة بعد اتجاه هابط طويل، قرب مستوى دعم، وعلى حجم تداول مرتفع — فتلك تستحق الانتباه. الشموع بذاتها ضجيج. الشموع في سياقها إشارة.</div>
+      <div style="font-size:13px;color:var(--text-dim);line-height:1.7;">الشمعة الواحدة نقطة بيانات واحدة — السياق أهم من الشكل. المطرقة عند قمة اتجاه صاعد لا تعني شيئًا تقريبًا. أما المطرقة بعد اتجاه هابط طويل، قرب مستوى دعم، وعلى حجم تداول مرتفع — فتلك تستحق الانتباه. الشموع بذاتها ضجيج. الشموع في سياقها إشارة.</div>
     </div>
   </div>
 </div>
@@ -328,11 +452,11 @@
 <div class="section" id="s2">
   <div class="container">
     <span class="section-num">02 — الاتجاهات والدعم والمقاومة</span>
-    <h2 class="section-title">أكثر مفهومين نفعاً في التحليل الفني</h2>
-    <p class="section-lead">إن لم تتعلم من التحليل الفني سوى شيئين، فتعلّم هذين. الاتجاهات تخبرك بأي اتجاه يتحرك السوق. والدعم والمقاومة يخبرانك أين يُرجَّح أن يتوقف أو يرتد أو يخترق. ومعاً يشكلان الأساس الكامل للتداول القائم على السعر.</p>
+    <h2 class="section-title">أكثر مفهومين نفعًا في التحليل الفني</h2>
+    <p class="section-lead">إن لم تتعلم من التحليل الفني سوى شيئين، فتعلّم هذين. الاتجاهات تخبرك بأي اتجاه يتحرك السوق. والدعم والمقاومة يخبرانك أين يُرجَّح أن يتوقف أو يرتد أو يخترق. ومعًا يشكلان الأساس الكامل للتداول القائم على السعر.</p>
 
     <h3 style="font-family:'Poppins',sans-serif;font-size:22px;color:var(--yn-ink);margin-bottom:10px;">الاتجاهات — ثلاث حالات فقط</h3>
-    <p style="color:var(--text-dim);font-size:14px;line-height:1.75;margin-bottom:20px;max-width:680px;">السوق دائماً في واحدة من ثلاث حالات. يبدو هذا بديهياً — لكن معظم أخطاء الأفراد تأتي من التداول ضد الاتجاه، أو التظاهر بوجود اتجاه بينما السوق في الحقيقة مسطّح.</p>
+    <p style="color:var(--text-dim);font-size:14px;line-height:1.75;margin-bottom:20px;max-width:680px;">السوق دائمًا في واحدة من ثلاث حالات. يبدو هذا بديهيًا — لكن معظم أخطاء الأفراد تأتي من التداول ضد الاتجاه، أو التظاهر بوجود اتجاه بينما السوق في الحقيقة مسطّح.</p>
 
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:32px;">
 
@@ -395,12 +519,12 @@
       <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:20px;border-left:3px solid var(--green);">
         <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--green);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;">الدعم</div>
         <div style="color:var(--yn-ink);font-weight:500;font-size:15px;margin-bottom:8px;">أرضية تحت السعر</div>
-        <div style="font-size:13px;color:var(--text-dim);line-height:1.65;">مستوى سعري يتدخل عنده المشترون تاريخياً. وكلما ارتد السعر عنه أكثر، ازداد قوة. وحين ينكسر الدعم، يصير غالباً المقاومة الجديدة — ما كان أرضية يصير سقفاً.</div>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.65;">مستوى سعري يتدخل عنده المشترون تاريخيًا. وكلما ارتد السعر عنه أكثر، ازداد قوة. وحين ينكسر الدعم، يصير غالبًا المقاومة الجديدة — ما كان أرضية يصير سقفًا.</div>
       </div>
       <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:20px;border-left:3px solid var(--red);">
         <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--red);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;">المقاومة</div>
         <div style="color:var(--yn-ink);font-weight:500;font-size:15px;margin-bottom:8px;">سقف فوق السعر</div>
-        <div style="font-size:13px;color:var(--text-dim);line-height:1.65;">مستوى سعري يتدخل عنده البائعون تاريخياً. غالباً أرقام مستديرة (50 جنيهاً، 100 جنيه) أو قمم حديثة. وحين تنكسر المقاومة، تصير غالباً الدعم الجديد — السقف القديم يصير الأرضية الجديدة.</div>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.65;">مستوى سعري يتدخل عنده البائعون تاريخيًا. غالبًا أرقام مستديرة (50 جنيهًا، 100 جنيه) أو قمم حديثة. وحين تنكسر المقاومة، تصير غالبًا الدعم الجديد — السقف القديم يصير الأرضية الجديدة.</div>
       </div>
     </div>
   </div>
@@ -411,7 +535,7 @@
   <div class="container">
     <span class="section-num">03 — المؤشرات الفنية</span>
     <h2 class="section-title">المؤشرات الفنية الثلاثة التي يعرفها كل متداول</h2>
-    <p class="section-lead">المؤشرات الفنية صيغ رياضية تُطبَّق على السعر لإبراز ما قد تفوته العين. منها المئات. ومعظمها تنويعات على بعضها. وهذه الثلاثة — المتوسطات المتحركة وRSI وMACD — تغطي 80% مما يستخدمه المتداولون الأفراد فعلاً. تحفّظ مهم من البداية: <strong style="color:var(--yn-ink);">المؤشرات الفنية متأخرة عن السوق.</strong> تخبرك بما حدث بالفعل، لا بما سيحدث.</p>
+    <p class="section-lead">المؤشرات الفنية صيغ رياضية تُطبَّق على السعر لإبراز ما قد تفوته العين. منها المئات. ومعظمها تنويعات على بعضها. وهذه الثلاثة — المتوسطات المتحركة وRSI وMACD — تغطي 80% مما يستخدمه المتداولون الأفراد فعلًا. تحفّظ مهم من البداية: <strong style="color:var(--yn-ink);">المؤشرات الفنية متأخرة عن السوق.</strong> تخبرك بما حدث بالفعل، لا بما سيحدث.</p>
 
     <!-- MOVING AVERAGE -->
     <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:24px;margin-bottom:18px;">
@@ -419,12 +543,12 @@
         <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:2px;background:rgba(255,208,90,.1);padding:4px 10px;border-radius:2px;">المؤشر 01</div>
         <h3 style="font-family:'Poppins',sans-serif;font-size:22px;color:var(--yn-ink);margin:0;">المتوسطات المتحركة (MA)</h3>
       </div>
-      <p style="font-size:14px;color:var(--text-dim);line-height:1.7;margin-bottom:16px;">متوسط سعر الإغلاق خلال آخر N يوماً. يُنعّم الضجيج اليومي ليكشف الاتجاه الكامن. والأكثر مراقبة اثنان: <strong style="color:var(--yn-ink);">متوسط 50 يوماً</strong> (اتجاه متوسط المدى) و<strong style="color:var(--yn-ink);">متوسط 200 يوم</strong> (اتجاه طويل المدى).</p>
+      <p style="font-size:14px;color:var(--text-dim);line-height:1.7;margin-bottom:16px;">متوسط سعر الإغلاق خلال آخر N يومًا. يُنعّم الضجيج اليومي ليكشف الاتجاه الكامن. والأكثر مراقبة اثنان: <strong style="color:var(--yn-ink);">متوسط 50 يومًا</strong> (اتجاه متوسط المدى) و<strong style="color:var(--yn-ink);">متوسط 200 يوم</strong> (اتجاه طويل المدى).</p>
 
       <canvas id="maChart" style="max-height:200px;width:100%;"></canvas>
 
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:18px;">
-        <div style="font-size:12px;color:var(--text-dim);line-height:1.6;"><strong style="color:var(--yn-ink);display:block;">فوق متوسط 200 يوم</strong>يُعتبر عموماً سوقاً صاعدة لذلك السهم.</div>
+        <div style="font-size:12px;color:var(--text-dim);line-height:1.6;"><strong style="color:var(--yn-ink);display:block;">فوق متوسط 200 يوم</strong>يُعتبر عمومًا سوقًا صاعدة لذلك السهم.</div>
         <div style="font-size:12px;color:var(--text-dim);line-height:1.6;"><strong style="color:var(--yn-ink);display:block;">التقاطع الذهبي</strong>متوسط 50 يقطع فوق متوسط 200. إشارة صاعدة كلاسيكية.</div>
         <div style="font-size:12px;color:var(--text-dim);line-height:1.6;"><strong style="color:var(--yn-ink);display:block;">تقاطع الموت</strong>متوسط 50 يقطع تحت متوسط 200. إشارة هابطة كلاسيكية.</div>
       </div>
@@ -436,11 +560,11 @@
         <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:2px;background:rgba(163,198,215,.1);padding:4px 10px;border-radius:2px;">المؤشر 02</div>
         <h3 style="font-family:'Poppins',sans-serif;font-size:22px;color:var(--yn-ink);margin:0;">RSI — مؤشر القوة النسبية</h3>
       </div>
-      <p style="font-size:14px;color:var(--text-dim);line-height:1.7;margin-bottom:16px;">درجة من 0 إلى 100 تسأل: هل كان هذا السهم يكسب أم يخسر مؤخراً، وبأي حدة؟ فوق <strong style="color:var(--yn-ink);">70</strong> يعني "تشبعاً شرائياً" — قد يكون الارتفاع قد استُنفد. وتحت <strong style="color:var(--yn-ink);">30</strong> يعني "تشبعاً بيعياً" — قد يكون البيع قد ذهب بعيداً أكثر مما ينبغي.</p>
+      <p style="font-size:14px;color:var(--text-dim);line-height:1.7;margin-bottom:16px;">درجة من 0 إلى 100 تسأل: هل كان هذا السهم يكسب أم يخسر مؤخرًا، وبأي حدة؟ فوق <strong style="color:var(--yn-ink);">70</strong> يعني "تشبعًا شرائيًا" — قد يكون الارتفاع قد استُنفد. وتحت <strong style="color:var(--yn-ink);">30</strong> يعني "تشبعًا بيعيًا" — قد يكون البيع قد ذهب بعيدًا أكثر مما ينبغي.</p>
 
       <canvas id="rsiChart" style="max-height:160px;width:100%;"></canvas>
 
-      <div style="font-size:12px;color:var(--text-muted);margin-top:14px;line-height:1.6;">RSI أنفع ما يكون عند الأطراف. السهم عند RSI 75 في اتجاه صاعد قوي يمكن أن يبقى في التشبع الشرائي أسابيع — والبيع اعتماداً على RSI وحده خطأ شائع للمبتدئين.</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:14px;line-height:1.6;">RSI أنفع ما يكون عند الأطراف. السهم عند RSI 75 في اتجاه صاعد قوي يمكن أن يبقى في التشبع الشرائي أسابيع — والبيع اعتمادًا على RSI وحده خطأ شائع للمبتدئين.</div>
     </div>
 
     <!-- MACD -->
@@ -449,16 +573,16 @@
         <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:2px;background:rgba(172,145,225,.1);padding:4px 10px;border-radius:2px;">المؤشر 03</div>
         <h3 style="font-family:'Poppins',sans-serif;font-size:22px;color:var(--yn-ink);margin:0;">MACD — تقارب وتباعد المتوسطات المتحركة</h3>
       </div>
-      <p style="font-size:14px;color:var(--text-dim);line-height:1.7;margin-bottom:8px;">مؤشر زخم. يقارن متوسطين متحركين (عادة 12 يوماً و26 يوماً) ويُظهر ما إذا كانا يتقاربان أم يتباعدان. وحين يتقاطع الخطان، فتلك إشارة إلى أن الزخم يتحول.</p>
+      <p style="font-size:14px;color:var(--text-dim);line-height:1.7;margin-bottom:8px;">مؤشر زخم. يقارن متوسطين متحركين (عادة 12 يومًا و26 يومًا) ويُظهر ما إذا كانا يتقاربان أم يتباعدان. وحين يتقاطع الخطان، فتلك إشارة إلى أن الزخم يتحول.</p>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:14px;margin-top:14px;">
-        <div style="font-size:13px;color:var(--text-dim);line-height:1.6;"><strong style="color:var(--green);display:block;margin-bottom:4px;">تقاطع صاعد</strong>المتوسط الأسرع يقطع <em>فوق</em> المتوسط الأبطأ. يُستخدم غالباً كإشارة شراء.</div>
-        <div style="font-size:13px;color:var(--text-dim);line-height:1.6;"><strong style="color:var(--red);display:block;margin-bottom:4px;">تقاطع هابط</strong>المتوسط الأسرع يقطع <em>تحت</em> المتوسط الأبطأ. يُستخدم غالباً كإشارة بيع.</div>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.6;"><strong style="color:var(--green);display:block;margin-bottom:4px;">تقاطع صاعد</strong>المتوسط الأسرع يقطع <em>فوق</em> المتوسط الأبطأ. يُستخدم غالبًا كإشارة شراء.</div>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.6;"><strong style="color:var(--red);display:block;margin-bottom:4px;">تقاطع هابط</strong>المتوسط الأسرع يقطع <em>تحت</em> المتوسط الأبطأ. يُستخدم غالبًا كإشارة بيع.</div>
       </div>
     </div>
 
     <div style="background:rgba(179,38,30,.05);border:1px solid rgba(179,38,30,.2);border-radius:4px;padding:18px 22px;margin-top:24px;">
       <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--red);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">↳ لا تُفرط في المؤشرات</div>
-      <div style="font-size:13px;color:var(--text-dim);line-height:1.7;">كثيراً ما يضيف المتداولون الجدد 8 مؤشرات إلى رسم بياني واحد، ظناً أن الأكثر أفضل. وليس كذلك — فمعظمها يقيس الشيء نفسه. اختر اثنين أو ثلاثة، وافهم ما تعنيه فعلاً، وثق بحركة سعر الرسم البياني فوق أي مؤشر. <strong style="color:var(--yn-ink);">المؤشرات لا تتنبأ — بل تصف.</strong></div>
+      <div style="font-size:13px;color:var(--text-dim);line-height:1.7;">كثيرًا ما يضيف المتداولون الجدد 8 مؤشرات إلى رسم بياني واحد، ظنًا أن الأكثر أفضل. وليس كذلك — فمعظمها يقيس الشيء نفسه. اختر اثنين أو ثلاثة، وافهم ما تعنيه فعلًا، وثق بحركة سعر الرسم البياني فوق أي مؤشر. <strong style="color:var(--yn-ink);">المؤشرات لا تتنبأ — بل تصف.</strong></div>
     </div>
   </div>
 </div>
@@ -468,7 +592,7 @@
   <div class="container">
     <span class="section-num">04 — أنماط الرسوم البيانية</span>
     <h2 class="section-title">أشكال يترقبها المتداولون</h2>
-    <p class="section-lead">تتكرر بعض أشكال الرسوم البيانية كثيراً حتى صارت لها أسماء وسمعة. بعض المتداولين يقسمون بها. وآخرون يرونها بارايدوليا مُمجَّدة — كمن يرى وجوهاً في الغيوم. والحقيقة على الأرجح بين الاثنين: الأنماط تعمل جزئياً لأنها تلتقط سيكولوجيا سوق حقيقية، وجزئياً لأن ما يكفي من الناس يراقبونها حتى تصير محققة لذاتها.</p>
+    <p class="section-lead">تتكرر بعض أشكال الرسوم البيانية كثيرًا حتى صارت لها أسماء وسمعة. بعض المتداولين يقسمون بها. وآخرون يرونها بارايدوليا مُمجَّدة — كمن يرى وجوهًا في الغيوم. والحقيقة على الأرجح بين الاثنين: الأنماط تعمل جزئيًا لأنها تلتقط سيكولوجيا سوق حقيقية، وجزئيًا لأن ما يكفي من الناس يراقبونها حتى تصير محققة لذاتها.</p>
 
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-bottom:24px;">
 
@@ -483,7 +607,7 @@
           <text x="180" y="55" fill="#444444" font-size="9" font-family="IBM Plex Mono" text-anchor="middle">الكتف الأيمن</text>
         </svg>
         <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--red);letter-spacing:2px;margin-bottom:6px;">الرأس والكتفان</div>
-        <div style="font-size:12px;color:var(--text-dim);line-height:1.6;">ثلاث قمم، أوسطها الأعلى. يُعتبر من أكثر أنماط الانعكاس الهابط موثوقية. وحين يكسر السعر "خط العنق" إلى الأسفل، فذلك غالباً إشارة إلى نهاية الاتجاه الصاعد.</div>
+        <div style="font-size:12px;color:var(--text-dim);line-height:1.6;">ثلاث قمم، أوسطها الأعلى. يُعتبر من أكثر أنماط الانعكاس الهابط موثوقية. وحين يكسر السعر "خط العنق" إلى الأسفل، فذلك غالبًا إشارة إلى نهاية الاتجاه الصاعد.</div>
       </div>
 
       <!-- Double Top -->
@@ -495,7 +619,7 @@
           <line x1="10" y1="40" x2="230" y2="40" stroke="#B3261E" stroke-width="1" stroke-dasharray="3,3" opacity="0.4"/>
         </svg>
         <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--red);letter-spacing:2px;margin-bottom:6px;">قمة مزدوجة (M)</div>
-        <div style="font-size:12px;color:var(--text-dim);line-height:1.6;">يبلغ السعر القمة نفسها مرتين ويفشل في اختراقها. استسلم المشترون. انعكاس هابط — غالباً يشير إلى قمة ذات مغزى.</div>
+        <div style="font-size:12px;color:var(--text-dim);line-height:1.6;">يبلغ السعر القمة نفسها مرتين ويفشل في اختراقها. استسلم المشترون. انعكاس هابط — غالبًا يشير إلى قمة ذات مغزى.</div>
       </div>
 
       <!-- Double Bottom -->
@@ -507,7 +631,7 @@
           <line x1="10" y1="80" x2="230" y2="80" stroke="#1C7A3E" stroke-width="1" stroke-dasharray="3,3" opacity="0.4"/>
         </svg>
         <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--green);letter-spacing:2px;margin-bottom:6px;">قاع مزدوج (W)</div>
-        <div style="font-size:12px;color:var(--text-dim);line-height:1.6;">يبلغ السعر القاع نفسه مرتين ويرتد. استسلم البائعون. انعكاس صاعد — غالباً يشير إلى قاع ذي مغزى.</div>
+        <div style="font-size:12px;color:var(--text-dim);line-height:1.6;">يبلغ السعر القاع نفسه مرتين ويرتد. استسلم البائعون. انعكاس صاعد — غالبًا يشير إلى قاع ذي مغزى.</div>
       </div>
 
       <!-- Ascending Triangle -->
@@ -518,7 +642,7 @@
           <line x1="10" y1="100" x2="215" y2="40" stroke="#1C7A3E" stroke-width="1" stroke-dasharray="3,3"/>
         </svg>
         <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--green);letter-spacing:2px;margin-bottom:6px;">مثلث صاعد</div>
-        <div style="font-size:12px;color:var(--text-dim);line-height:1.6;">قيعان أعلى تضغط على مقاومة مسطّحة. المشترون يزدادون جرأة. وغالباً ينتهي باختراق صاعد.</div>
+        <div style="font-size:12px;color:var(--text-dim);line-height:1.6;">قيعان أعلى تضغط على مقاومة مسطّحة. المشترون يزدادون جرأة. وغالبًا ينتهي باختراق صاعد.</div>
       </div>
 
       <!-- Descending Triangle -->
@@ -529,7 +653,7 @@
           <line x1="10" y1="20" x2="215" y2="80" stroke="#B3261E" stroke-width="1" stroke-dasharray="3,3"/>
         </svg>
         <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--red);letter-spacing:2px;margin-bottom:6px;">مثلث هابط</div>
-        <div style="font-size:12px;color:var(--text-dim);line-height:1.6;">قمم أدنى تضغط على دعم مسطّح. البائعون يزدادون جرأة. وغالباً ينتهي بكسر هابط.</div>
+        <div style="font-size:12px;color:var(--text-dim);line-height:1.6;">قمم أدنى تضغط على دعم مسطّح. البائعون يزدادون جرأة. وغالبًا ينتهي بكسر هابط.</div>
       </div>
 
       <!-- Flag -->
@@ -565,28 +689,28 @@
         <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--green);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;">فيمَ تنفع الرسوم البيانية</div>
         <div style="font-size:13px;color:var(--text-dim);line-height:1.7;margin-bottom:10px;"><strong style="color:var(--yn-ink);display:block;margin-bottom:2px;">تحديد الاتجاه</strong>أبسط استخدام وأعلاه قيمة. من المسيطر الآن، المشترون أم البائعون؟</div>
         <div style="font-size:13px;color:var(--text-dim);line-height:1.7;margin-bottom:10px;"><strong style="color:var(--yn-ink);display:block;margin-bottom:2px;">تحديد المخاطر</strong>تمنحك الرسوم البيانية مستويات موضوعية (قيعان حديثة، مناطق دعم) تعرف عندها أن فكرتك خاطئة. هكذا تضع أوامر الإيقاف.</div>
-        <div style="font-size:13px;color:var(--text-dim);line-height:1.7;margin-bottom:10px;"><strong style="color:var(--yn-ink);display:block;margin-bottom:2px;">توقيت الدخول</strong>حتى لو قررت شراء سهم بناءً على الأساسيات، يستطيع الرسم البياني أن يخبرك هل تشتري الآن أم تنتظر تصحيحاً.</div>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.7;margin-bottom:10px;"><strong style="color:var(--yn-ink);display:block;margin-bottom:2px;">توقيت الدخول</strong>حتى لو قررت شراء سهم بناءً على الأساسيات، يستطيع الرسم البياني أن يخبرك هل تشتري الآن أم تنتظر تصحيحًا.</div>
         <div style="font-size:13px;color:var(--text-dim);line-height:1.7;"><strong style="color:var(--yn-ink);display:block;margin-bottom:2px;">قراءة المشاعر</strong>قفزات حجم التداول، والفجوات، والشموع الذروية — تخبرك متى يبلغ الخوف أو النشوة ذروته.</div>
       </div>
 
       <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:24px;border-top:3px solid var(--red);">
         <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--red);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;">ما لا تستطيعه الرسوم البيانية</div>
         <div style="font-size:13px;color:var(--text-dim);line-height:1.7;margin-bottom:10px;"><strong style="color:var(--yn-ink);display:block;margin-bottom:2px;">التنبؤ بالأخبار</strong>تراجع في الأرباح، أو تغيير تنظيمي، أو فضيحة رئيس تنفيذي — لا شيء من ذلك على الرسم البياني إلا بعد وقوعه.</div>
-        <div style="font-size:13px;color:var(--text-dim);line-height:1.7;margin-bottom:10px;"><strong style="color:var(--yn-ink);display:block;margin-bottom:2px;">إخبارك بما هو غالٍ</strong>لا يستطيع الرسم البياني إخبارك بأرباح شركة أو أصولها. سهم عند أعلى مستوياته التاريخية قد يظل مقوَّماً بأقل من قيمته؛ وآخر عند أدنى مستوياته قد يكون فخ قيمة.</div>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.7;margin-bottom:10px;"><strong style="color:var(--yn-ink);display:block;margin-bottom:2px;">إخبارك بما هو غالٍ</strong>لا يستطيع الرسم البياني إخبارك بأرباح شركة أو أصولها. سهم عند أعلى مستوياته التاريخية قد يظل مقوَّمًا بأقل من قيمته؛ وآخر عند أدنى مستوياته قد يكون فخ قيمة.</div>
         <div style="font-size:13px;color:var(--text-dim);line-height:1.7;margin-bottom:10px;"><strong style="color:var(--yn-ink);display:block;margin-bottom:2px;">العمل في الأسواق المتذبذبة</strong>معظم التحليل الفني يفترض وجود اتجاه يمكن ركوبه. وفي الأسواق العرضية أو الصاخبة، تتأرجح المؤشرات وتفشل الأنماط باستمرار.</div>
-        <div style="font-size:13px;color:var(--text-dim);line-height:1.7;"><strong style="color:var(--yn-ink);display:block;margin-bottom:2px;">إلغاء العاطفة</strong>يبدو الرسم البياني موضوعياً، لكنك ما زلت تتخذ قرارات ذاتية. تحيّز التأكيد ينجو من أي مؤشر.</div>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.7;"><strong style="color:var(--yn-ink);display:block;margin-bottom:2px;">إلغاء العاطفة</strong>يبدو الرسم البياني موضوعيًا، لكنك ما زلت تتخذ قرارات ذاتية. تحيّز التأكيد ينجو من أي مؤشر.</div>
       </div>
 
     </div>
 
     <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:24px;margin-bottom:24px;">
       <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;">↳ لماذا ينجح التحليل الفني (حين ينجح)</div>
-      <div style="font-size:14px;color:var(--text-dim);line-height:1.75;">التحليل الفني ليس سحراً. وحين ينجح، ينجح لسببين. <strong style="color:var(--yn-ink);">أولاً — النبوءة المحققة لذاتها.</strong> إذا راقب ما يكفي من المتداولين المتوسط المتحرك لـ200 يوم، فسيشترون حين يقترب السعر منه من أعلى. هذا السلوك الجماعي هو ما يجعل المستوى "دعماً". <strong style="color:var(--yn-ink);">ثانياً — الأنماط السلوكية.</strong> الأسواق مصنوعة من بشر، والبشر يتفاعلون على نحو متوقع مع المحفزات العاطفية نفسها. الخوف عند القاع، والطمع عند القمة. والرسوم البيانية تلتقط أثر تلك التفاعلات. وحين يفشل التحليل الفني، فذلك عادة لأن شيئاً خارجياً (خبر، تنظيم، صدمة كلية) يطغى على الأنماط. الأنماط لا تختفي — بل تكف عن الهيمنة فقط.</div>
+      <div style="font-size:14px;color:var(--text-dim);line-height:1.75;">التحليل الفني ليس سحرًا. وحين ينجح، ينجح لسببين. <strong style="color:var(--yn-ink);">أولًا — النبوءة المحققة لذاتها.</strong> إذا راقب ما يكفي من المتداولين المتوسط المتحرك لـ200 يوم، فسيشترون حين يقترب السعر منه من أعلى. هذا السلوك الجماعي هو ما يجعل المستوى "دعمًا". <strong style="color:var(--yn-ink);">ثانيًا — الأنماط السلوكية.</strong> الأسواق مصنوعة من بشر، والبشر يتفاعلون على نحو متوقع مع المحفزات العاطفية نفسها. الخوف عند القاع، والطمع عند القمة. والرسوم البيانية تلتقط أثر تلك التفاعلات. وحين يفشل التحليل الفني، فذلك عادة لأن شيئًا خارجيًا (خبر، تنظيم، صدمة كلية) يطغى على الأنماط. الأنماط لا تختفي — بل تكف عن الهيمنة فقط.</div>
     </div>
 
     <div style="background:rgba(163,198,215,.05);border:1px solid rgba(163,198,215,.2);border-radius:4px;padding:24px;">
       <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;">↳ الخلاصة الصادقة</div>
-      <div style="font-size:14px;color:var(--text-dim);line-height:1.75;">التحليل الفني عدسة، لا كرة بلورية. وأفضل المتداولين يستخدمونه إلى جانب الأساسيات (العدسة التي نغطيها في الجلسة 5)، وإدارة المخاطر، والتواضع أمام ما لا يعرفونه. نمط الرسم البياني بذاته ليس سبباً للتداول. أما نمط الرسم البياني <em>مع</em> أطروحة، ومخاطرة محددة، واستعداد لأن تكون مخطئاً — فتلك صفقة مُعدّة. والجلسة التالية تغطي النصف الآخر من المعادلة: كيف تقرأ الشركة خلف الرمز.</div>
+      <div style="font-size:14px;color:var(--text-dim);line-height:1.75;">التحليل الفني عدسة، لا كرة بلورية. وأفضل المتداولين يستخدمونه إلى جانب الأساسيات (العدسة التي نغطيها في الجلسة 5)، وإدارة المخاطر، والتواضع أمام ما لا يعرفونه. نمط الرسم البياني بذاته ليس سببًا للتداول. أما نمط الرسم البياني <em>مع</em> أطروحة، ومخاطرة محددة، واستعداد لأن تكون مخطئًا — فتلك صفقة مُعدّة. والجلسة التالية تغطي النصف الآخر من المعادلة: كيف تقرأ الشركة خلف الرمز.</div>
     </div>
   </div>
 </div>
@@ -635,8 +759,8 @@ Chart.defaults.borderColor='#AC91E1';
     type:'line',
     data:{labels:labels,datasets:[
       {label:'السعر',data:price,borderColor:'#FFD05A',backgroundColor:'rgba(255,208,90,0.05)',borderWidth:1.5,pointRadius:0,fill:true,tension:0.2},
-      {label:'متوسط 20 يوماً',data:ma20,borderColor:'#A3C6D7',borderWidth:2,pointRadius:0,tension:0.3},
-      {label:'متوسط 50 يوماً',data:ma50,borderColor:'#AC91E1',borderWidth:2,pointRadius:0,tension:0.3,borderDash:[4,3]}
+      {label:'متوسط 20 يومًا',data:ma20,borderColor:'#A3C6D7',borderWidth:2,pointRadius:0,tension:0.3},
+      {label:'متوسط 50 يومًا',data:ma50,borderColor:'#AC91E1',borderWidth:2,pointRadius:0,tension:0.3,borderDash:[4,3]}
     ]},
     options:{responsive:true,
       plugins:{legend:{labels:{color:'#444444',font:{family:'IBM Plex Mono',size:11},boxWidth:14}},
