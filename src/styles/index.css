@@ -10,5 +10,10 @@
 @import '@fontsource/ibm-plex-mono/400.css';
 @import '@fontsource/ibm-plex-mono/500.css';
 @import '@fontsource/ibm-plex-sans-arabic/400.css';
+/* The deck labels are set at 500 and 600. Without these the browser
+   synthesised the weight, which on Arabic smears the joins. Both are the
+   Arabic-only subsets, so they cost a few kilobytes each. */
+@import '@fontsource/ibm-plex-sans-arabic/arabic-500.css';
+@import '@fontsource/ibm-plex-sans-arabic/arabic-600.css';
 
 @import './tokens.css';
