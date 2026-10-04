@@ -160,6 +160,142 @@
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 .yn-deck .section{animation:fadeUp .5s ease both;}
 @media(max-width:680px){.yn-deck .index-grid{grid-template-columns:1fr;}}
+
+/* ── Arabic sets differently ───────────────────────────────────────────────
+
+   This deck was written in English, and its labels ask for IBM Plex Mono. That
+   face carries no Arabic at all, so every Arabic label fell through to whatever
+   monospace the device happened to have, which sets each letter in its own
+   fixed cell and pulls the word apart — "مستثمر" arrived as six loose letters,
+   and a different six on every phone. The stack below keeps Plex Mono for the
+   Latin and the figures and hands the Arabic to Plex Sans Arabic, which is the
+   face the rest of the site is set in.
+
+   The second habit is tracking. Arabic letters join, and letter-spacing prises
+   them apart as well. It is off wherever Arabic can reach, and left alone on
+   the few labels that are only ever Latin — the ticker symbols, the figures,
+   the EFG mark.
+
+   `!important` because a few of these labels carry the family in a style
+   attribute, and nothing in a stylesheet outranks that. */
+.yn-deck .ac-pill,
+.yn-deck .ac-tag,
+.yn-deck .efg-logo-text,
+.yn-deck .etf-node-label,
+.yn-deck .hours-days,
+.yn-deck .hours-time,
+.yn-deck .htag,
+.yn-deck .index-chip,
+.yn-deck .index-label,
+.yn-deck .info-bar-label,
+.yn-deck .info-speed,
+.yn-deck .nav-item,
+.yn-deck .rc-tag,
+.yn-deck .rc-type,
+.yn-deck .section-num,
+.yn-deck .session-tag,
+.yn-deck th,
+.yn-deck .chart-subtitle,
+.yn-deck .ghost-btn,
+.yn-deck .primary-btn,
+.yn-deck text[font-family*="IBM Plex Mono"],
+.yn-deck [style*="IBM Plex Mono"] {
+  font-family: 'IBM Plex Mono', 'IBM Plex Sans Arabic', sans-serif !important;
+  letter-spacing: normal !important;
+}
+
+/* The rule above keeps Plex Mono at the front of the stack so the tickers and
+   the figures still set in it, and that is right for a label of two words. It
+   is wrong for a sentence: the space character exists in Plex Mono, so the
+   browser takes it from there, and a monospaced space is more than twice the
+   width of an Arabic one. A caption came out with a gap between every word —
+   the thing the client read as the letters being pulled apart.
+
+   These are the places a whole Arabic sentence is set at label size. They take
+   the Arabic face outright, Latin and figures included, which is how the rest
+   of the Arabic site sets its prose. The labels proper are left above. */
+.yn-deck .chart-subtitle,
+.yn-deck .chart-pros li,
+.yn-deck .fg-context,
+.yn-deck .game-caption,
+.yn-deck .slide-body [style*="IBM Plex Mono"],
+.yn-deck .slide-note {
+  font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+  letter-spacing: normal !important;
+}
+
+/* ── The flow diagrams on a narrow screen ──────────────────────────────────
+
+   A flow row is four boxes and three arrows set side by side, each box asking
+   for at least a hundred and forty pixels. On a phone that cannot hold them,
+   so the row wrapped: two boxes on one line, an arrow stranded at the start of
+   the next, the last box alone under that. It read as four unrelated cards
+   rather than one path.
+
+   Below the breakpoint the path stands up instead. One box a line, the arrows
+   turned a quarter so they point down the page, and a gap between them where
+   there was none — the same sequence, read top to bottom. */
+
+@media (max-width: 680px) {
+  .yn-deck .flow-row,
+  .yn-deck .etf-flow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .yn-deck .flow-arrow,
+  .yn-deck .etf-arrow {
+    padding: 0;
+    text-align: center;
+    line-height: 1;
+    transform: rotate(-90deg);
+  }
+}
+
+/* The deck root asks for IBM Plex Sans, which has no Arabic either, so every
+   word that is not a label was being drawn by whatever the device happened to
+   fall back to — a different face on every phone, and on some of them the
+   letters do not join. Plex Sans Arabic is named here so the deck reads in the
+   same face as the page around it. */
+.yn-deck {
+  font-family: 'IBM Plex Sans', 'IBM Plex Sans Arabic', sans-serif;
+}
+
+
+/* The boxes in a flow row were set side by side with no gap at all: the only
+   air between them was the eight pixels of padding on the arrow, so a box and
+   an arrow read as one run of ink. And because the row centred its children,
+   each box was only as tall as its own sentence — "يضع الأمر" one line, "نقل
+   الأسهم والنقد" two — so four boxes of four different heights sat on a
+   ragged line. The client marked this one.
+
+   Above the phone breakpoint, where the row still runs across: a real gap,
+   every box the height of the tallest, and its label and value centred inside
+   whatever height that turns out to be. The arrows keep their own centre. */
+
+@media (min-width: 681px) {
+  .yn-deck .flow-row,
+  .yn-deck .etf-flow {
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .yn-deck .flow-item,
+  .yn-deck .etf-node {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .yn-deck .flow-arrow,
+  .yn-deck .etf-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+}
 </style>
 <div class="yn-deck">
 <!-- HEADER -->
@@ -335,11 +471,11 @@
       <p style="font-size:14px;color:var(--text-dim);line-height:1.75;max-width:640px;margin-bottom:6px;">الحقيقة الصعبة عن التفوق على السوق: يُظهر <a href="https://www.spglobal.com/spdji/en/research-insights/spiva/" target="_blank" style="color:var(--yn-ink);">تقرير S&P SPIVA</a>أن نحو 60% من مديري الصناديق النشطة المحترفين يقصّرون عن مؤشرهم المرجعي خلال سنة واحدة، وترتفع النسبة إلى نحو 95% خلال 20 سنة. معظم المحترفين المتفرغين — بفرق بحث وبيانات لحظية وعقود من الخبرة — لا يستطيعون التفوق على صندوق مؤشر بسيط تكلفته تكاد لا تُذكر. هذا هو المعيار.</p>
       <div class="etf-flow">
         <div class="etf-node"><div class="etf-node-label">أنت تستثمر</div><div class="etf-node-val">EGP 1,000</div></div>
-        <div class="etf-arrow">→</div>
+        <div class="etf-arrow">←</div>
         <div class="etf-node"><div class="etf-node-label">الصندوق يشتري</div><div class="etf-node-val">أسهم EGX الثلاثين كلها</div></div>
-        <div class="etf-arrow">→</div>
+        <div class="etf-arrow">←</div>
         <div class="etf-node"><div class="etf-node-label">أنت تحتفظ بـ</div><div class="etf-node-val">سهم واحد في الصندوق</div></div>
-        <div class="etf-arrow">→</div>
+        <div class="etf-arrow">←</div>
         <div class="etf-node"><div class="etf-node-label">عائدك</div><div class="etf-node-val">≈ عائد EGX30</div></div>
       </div>
     </div>
@@ -351,7 +487,7 @@
   <div class="container">
     <span class="section-num">03 — ساعات التداول</span>
     <h2 class="section-title">متى يتداول السوق؟</h2>
-    <p class="section-lead">تعمل الأسواق المختلفة في مناطق زمنية مختلفة. التوقيت ليس مسألة تشغيلية فقط — بل يحدد أي الأسواق أنشط ومتى، وإلى أين يذهب حجم التداول في العالم. تداخل لندن ونيويورك وحده يولّد <strong style="color:var(--yn-ink);">37% من حجم تداول العملات اليومي</strong>في 19% فقط من يوم التداول. <a href="https://www.oanda.com/us-en/trade-tap-blog/asset-classes/forex/best-time-to-trade-forex-volume-insights/" target="_blank" style="color:var(--yn-ink);font-family:'IBM Plex Mono',monospace;font-size:11px;">المصدر: OANDA 2024 ↗</a></p>
+    <p class="section-lead">تعمل الأسواق المختلفة في مناطق زمنية مختلفة. التوقيت ليس مسألة تشغيلية فقط — بل يحدد أي الأسواق أنشط ومتى، وإلى أين يذهب حجم التداول في العالم. تداخل لندن ونيويورك وحده يولّد <strong style="color:var(--yn-ink);">37% من حجم تداول العملات اليومي</strong> في 19% فقط من يوم التداول. <a href="https://www.oanda.com/us-en/trade-tap-blog/asset-classes/forex/best-time-to-trade-forex-volume-insights/" target="_blank" style="color:var(--yn-ink);font-family:'IBM Plex Mono',monospace;font-size:11px;">المصدر: OANDA 2024 ↗</a></p>
 
     <div class="hours-grid">
       <div class="hours-card">
@@ -424,7 +560,7 @@
       <div style="background:var(--card);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:4px;padding:24px;">
         <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">السوق الأولي</div>
         <div style="font-family:'Poppins',sans-serif;font-size:22px;color:var(--yn-ink);margin-bottom:12px;">الشركة → المستثمر</div>
-        <div style="font-size:14px;color:var(--text-dim);line-height:1.7;">تبيع الشركة نفسها أسهمًا جديدة للمستثمرين مباشرة. والنقد يذهب <strong style="color:var(--yn-ink);">إلى الشركة</strong>لتمويل النمو. يحدث ذلك مرة عند الطرح العام الأولي، ثم في كل طرح لاحق أو زيادة رأس مال. هنا فقط <em>تجمع</em>الشركات المدرجة في EGX رأس مال فعليًا.</div>
+        <div style="font-size:14px;color:var(--text-dim);line-height:1.7;">تبيع الشركة نفسها أسهمًا جديدة للمستثمرين مباشرة. والنقد يذهب <strong style="color:var(--yn-ink);">إلى الشركة</strong> لتمويل النمو. يحدث ذلك مرة عند الطرح العام الأولي، ثم في كل طرح لاحق أو زيادة رأس مال. هنا فقط <em>تجمع</em> الشركات المدرجة في EGX رأس مال فعليًا.</div>
       </div>
       <div style="background:var(--card);border:1px solid var(--border);border-left:3px solid var(--teal);border-radius:4px;padding:24px;">
         <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">السوق الثانوي</div>
