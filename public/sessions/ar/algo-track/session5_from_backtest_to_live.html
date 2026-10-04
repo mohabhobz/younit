@@ -148,6 +148,143 @@
   .yn-deck .dashboard-grid{grid-template-columns:1fr;}
   .yn-deck .metric{border-right:none;}
 }
+
+/* ── Arabic sets differently ───────────────────────────────────────────────
+
+   This deck was written in English, and its labels ask for IBM Plex Mono. That
+   face carries no Arabic at all, so every Arabic label fell through to whatever
+   monospace the device happened to have, which sets each letter in its own
+   fixed cell and pulls the word apart — "مستثمر" arrived as six loose letters,
+   and a different six on every phone. The stack below keeps Plex Mono for the
+   Latin and the figures and hands the Arabic to Plex Sans Arabic, which is the
+   face the rest of the site is set in.
+
+   The second habit is tracking. Arabic letters join, and letter-spacing prises
+   them apart as well. It is off wherever Arabic can reach, and left alone on
+   the few labels that are only ever Latin — the ticker symbols, the figures,
+   the EFG mark.
+
+   `!important` because a few of these labels carry the family in a style
+   attribute, and nothing in a stylesheet outranks that. */
+.yn-deck .back-btn,
+.yn-deck .callout,
+.yn-deck .card-label,
+.yn-deck .checklist,
+.yn-deck .compare-label,
+.yn-deck .dashboard-head,
+.yn-deck .efg-logo-text,
+.yn-deck .metric-label,
+.yn-deck .next-btn,
+.yn-deck .next-label,
+.yn-deck .rule-block,
+.yn-deck .section-num,
+.yn-deck .session-tag,
+.yn-deck .takeaway-heading,
+.yn-deck .takeaway-list,
+.yn-deck .rule-block blockquote,
+.yn-deck .checklist li::before,
+.yn-deck .takeaway-list li::before,
+.yn-deck .chart-subtitle,
+.yn-deck .ghost-btn,
+.yn-deck .primary-btn,
+.yn-deck text[font-family*="IBM Plex Mono"],
+.yn-deck [style*="IBM Plex Mono"] {
+  font-family: 'IBM Plex Mono', 'IBM Plex Sans Arabic', sans-serif !important;
+  letter-spacing: normal !important;
+}
+
+/* The rule above keeps Plex Mono at the front of the stack so the tickers and
+   the figures still set in it, and that is right for a label of two words. It
+   is wrong for a sentence: the space character exists in Plex Mono, so the
+   browser takes it from there, and a monospaced space is more than twice the
+   width of an Arabic one. A caption came out with a gap between every word —
+   the thing the client read as the letters being pulled apart.
+
+   These are the places a whole Arabic sentence is set at label size. They take
+   the Arabic face outright, Latin and figures included, which is how the rest
+   of the Arabic site sets its prose. The labels proper are left above. */
+.yn-deck .chart-subtitle,
+.yn-deck .chart-pros li,
+.yn-deck .fg-context,
+.yn-deck .game-caption,
+.yn-deck .slide-body [style*="IBM Plex Mono"],
+.yn-deck .slide-note {
+  font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+  letter-spacing: normal !important;
+}
+
+/* ── The flow diagrams on a narrow screen ──────────────────────────────────
+
+   A flow row is four boxes and three arrows set side by side, each box asking
+   for at least a hundred and forty pixels. On a phone that cannot hold them,
+   so the row wrapped: two boxes on one line, an arrow stranded at the start of
+   the next, the last box alone under that. It read as four unrelated cards
+   rather than one path.
+
+   Below the breakpoint the path stands up instead. One box a line, the arrows
+   turned a quarter so they point down the page, and a gap between them where
+   there was none — the same sequence, read top to bottom. */
+
+@media (max-width: 680px) {
+  .yn-deck .flow-row,
+  .yn-deck .etf-flow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .yn-deck .flow-arrow,
+  .yn-deck .etf-arrow {
+    padding: 0;
+    text-align: center;
+    line-height: 1;
+    transform: rotate(-90deg);
+  }
+}
+
+/* The deck root asks for IBM Plex Sans, which has no Arabic either, so every
+   word that is not a label was being drawn by whatever the device happened to
+   fall back to — a different face on every phone, and on some of them the
+   letters do not join. Plex Sans Arabic is named here so the deck reads in the
+   same face as the page around it. */
+.yn-deck {
+  font-family: 'IBM Plex Sans', 'IBM Plex Sans Arabic', sans-serif;
+}
+
+
+/* The boxes in a flow row were set side by side with no gap at all: the only
+   air between them was the eight pixels of padding on the arrow, so a box and
+   an arrow read as one run of ink. And because the row centred its children,
+   each box was only as tall as its own sentence — "يضع الأمر" one line, "نقل
+   الأسهم والنقد" two — so four boxes of four different heights sat on a
+   ragged line. The client marked this one.
+
+   Above the phone breakpoint, where the row still runs across: a real gap,
+   every box the height of the tallest, and its label and value centred inside
+   whatever height that turns out to be. The arrows keep their own centre. */
+
+@media (min-width: 681px) {
+  .yn-deck .flow-row,
+  .yn-deck .etf-flow {
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .yn-deck .flow-item,
+  .yn-deck .etf-node {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .yn-deck .flow-arrow,
+  .yn-deck .etf-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+}
 </style>
 <div class="yn-deck">
 <!-- HEADER -->
@@ -219,22 +356,22 @@
         <div class="flow-item-label">01</div>
         <div class="flow-item-val">بيانات</div>
       </div>
-      <div class="flow-arrow">→</div>
+      <div class="flow-arrow">←</div>
       <div class="flow-item">
         <div class="flow-item-label">02</div>
         <div class="flow-item-val">إشارة</div>
       </div>
-      <div class="flow-arrow">→</div>
+      <div class="flow-arrow">←</div>
       <div class="flow-item">
         <div class="flow-item-label">03</div>
         <div class="flow-item-val">أمر</div>
       </div>
-      <div class="flow-arrow">→</div>
+      <div class="flow-arrow">←</div>
       <div class="flow-item">
         <div class="flow-item-label">04</div>
         <div class="flow-item-val">مركز</div>
       </div>
-      <div class="flow-arrow">→</div>
+      <div class="flow-arrow">←</div>
       <div class="flow-item">
         <div class="flow-item-label">05</div>
         <div class="flow-item-val">فحص المخاطر</div>
