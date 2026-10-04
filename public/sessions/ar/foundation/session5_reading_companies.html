@@ -160,6 +160,130 @@
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 .yn-deck .section{animation:fadeUp .5s ease both;}
 @media(max-width:680px){.yn-deck .index-grid{grid-template-columns:1fr;}}
+
+/* ── Arabic sets differently ───────────────────────────────────────────────
+
+   This deck was written in English, and its labels ask for IBM Plex Mono. That
+   face carries no Arabic at all, so every Arabic label fell through to whatever
+   monospace the device happened to have, which sets each letter in its own
+   fixed cell and pulls the word apart — "مستثمر" arrived as six loose letters,
+   and a different six on every phone. The stack below keeps Plex Mono for the
+   Latin and the figures and hands the Arabic to Plex Sans Arabic, which is the
+   face the rest of the site is set in.
+
+   The second habit is tracking. Arabic letters join, and letter-spacing prises
+   them apart as well. It is off wherever Arabic can reach, and left alone on
+   the few labels that are only ever Latin — the ticker symbols, the figures,
+   the EFG mark.
+
+   `!important` because a few of these labels carry the family in a style
+   attribute, and nothing in a stylesheet outranks that. */
+.yn-deck .efg-logo-text,
+.yn-deck .nav-item,
+.yn-deck .section-num,
+.yn-deck .session-tag,
+.yn-deck th,
+.yn-deck .chart-subtitle,
+.yn-deck .ghost-btn,
+.yn-deck .primary-btn,
+.yn-deck text[font-family*="IBM Plex Mono"],
+.yn-deck [style*="IBM Plex Mono"] {
+  font-family: 'IBM Plex Mono', 'IBM Plex Sans Arabic', sans-serif !important;
+  letter-spacing: normal !important;
+}
+
+/* The rule above keeps Plex Mono at the front of the stack so the tickers and
+   the figures still set in it, and that is right for a label of two words. It
+   is wrong for a sentence: the space character exists in Plex Mono, so the
+   browser takes it from there, and a monospaced space is more than twice the
+   width of an Arabic one. A caption came out with a gap between every word —
+   the thing the client read as the letters being pulled apart.
+
+   These are the places a whole Arabic sentence is set at label size. They take
+   the Arabic face outright, Latin and figures included, which is how the rest
+   of the Arabic site sets its prose. The labels proper are left above. */
+.yn-deck .chart-subtitle,
+.yn-deck .chart-pros li,
+.yn-deck .fg-context,
+.yn-deck .game-caption,
+.yn-deck .slide-body [style*="IBM Plex Mono"],
+.yn-deck .slide-note {
+  font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+  letter-spacing: normal !important;
+}
+
+/* ── The flow diagrams on a narrow screen ──────────────────────────────────
+
+   A flow row is four boxes and three arrows set side by side, each box asking
+   for at least a hundred and forty pixels. On a phone that cannot hold them,
+   so the row wrapped: two boxes on one line, an arrow stranded at the start of
+   the next, the last box alone under that. It read as four unrelated cards
+   rather than one path.
+
+   Below the breakpoint the path stands up instead. One box a line, the arrows
+   turned a quarter so they point down the page, and a gap between them where
+   there was none — the same sequence, read top to bottom. */
+
+@media (max-width: 680px) {
+  .yn-deck .flow-row,
+  .yn-deck .etf-flow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .yn-deck .flow-arrow,
+  .yn-deck .etf-arrow {
+    padding: 0;
+    text-align: center;
+    line-height: 1;
+    transform: rotate(-90deg);
+  }
+}
+
+/* The deck root asks for IBM Plex Sans, which has no Arabic either, so every
+   word that is not a label was being drawn by whatever the device happened to
+   fall back to — a different face on every phone, and on some of them the
+   letters do not join. Plex Sans Arabic is named here so the deck reads in the
+   same face as the page around it. */
+.yn-deck {
+  font-family: 'IBM Plex Sans', 'IBM Plex Sans Arabic', sans-serif;
+}
+
+
+/* The boxes in a flow row were set side by side with no gap at all: the only
+   air between them was the eight pixels of padding on the arrow, so a box and
+   an arrow read as one run of ink. And because the row centred its children,
+   each box was only as tall as its own sentence — "يضع الأمر" one line, "نقل
+   الأسهم والنقد" two — so four boxes of four different heights sat on a
+   ragged line. The client marked this one.
+
+   Above the phone breakpoint, where the row still runs across: a real gap,
+   every box the height of the tallest, and its label and value centred inside
+   whatever height that turns out to be. The arrows keep their own centre. */
+
+@media (min-width: 681px) {
+  .yn-deck .flow-row,
+  .yn-deck .etf-flow {
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .yn-deck .flow-item,
+  .yn-deck .etf-node {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .yn-deck .flow-arrow,
+  .yn-deck .etf-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+}
 </style>
 <div class="yn-deck">
 <!-- HEADER -->
@@ -171,7 +295,7 @@
     </div>
     <div class="session-tag">الجلسة 05 / 05</div>
     <h1>قراءة<br>الشركات</h1>
-    <p class="subtitle">عدسة التحليل الأساسي — كم تساوي الشركة فعلاً، وكيف تقرأ قوائمها المالية، وكيف تميّز بين عمل جيد وسهم رخيص.</p>
+    <p class="subtitle">عدسة التحليل الأساسي — كم تساوي الشركة فعلًا، وكيف تقرأ قوائمها المالية، وكيف تميّز بين عمل جيد وسهم رخيص.</p>
     <div class="progress-wrap">
       <div class="prog-dot done"></div>
       <div class="prog-dot done"></div>
@@ -197,13 +321,13 @@
 <div class="section" id="s1">
   <div class="container">
     <span class="section-num">01 — ما تعنيه الأساسيات</span>
-    <h2 class="section-title">العدسة التي يستخدمها معظم المحترفين فعلاً</h2>
-    <p class="section-lead">غطّينا الرسوم البيانية قبل الشركات لأن الرسوم أكثر بريقاً — لكن للثروة طويلة الأجل، هذه هي العدسة الأهم. التحليل الأساسي يسأل سؤالاً جوهرياً واحداً: <strong style="color:var(--yn-ink);">هل السعر الذي تدفعه أقل مما تحصل عليه؟</strong> وكل ما تبقى في هذه الجلسة مجرد أدوات للإجابة عن هذا السؤال.</p>
+    <h2 class="section-title">العدسة التي يستخدمها معظم المحترفين فعلًا</h2>
+    <p class="section-lead">غطّينا الرسوم البيانية قبل الشركات لأن الرسوم أكثر بريقًا — لكن للثروة طويلة الأجل، هذه هي العدسة الأهم. التحليل الأساسي يسأل سؤالًا جوهريًا واحدًا: <strong style="color:var(--yn-ink);">هل السعر الذي تدفعه أقل مما تحصل عليه؟</strong> وكل ما تبقى في هذه الجلسة مجرد أدوات للإجابة عن هذا السؤال.</p>
 
     <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:28px;margin-bottom:24px;">
       <div style="font-family:'Poppins',sans-serif;font-size:24px;color:var(--yn-ink);line-height:1.4;font-style:italic;margin-bottom:14px;">"السعر ما تدفعه. القيمة ما تحصل عليه."</div>
       <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:2px;">— وارن بافيت</div>
-      <div style="font-size:14px;color:var(--text-dim);line-height:1.75;margin-top:16px;">الأساسيات هي كل ما يحدد ما <em>تساويه</em> الشركة فعلاً — أرباحها، وأصولها، وديونها، ونموها، وجودة إدارتها، وموقعها التنافسي. أما سعر السهم فهو ما يرغب الناس في دفعه <em>الآن</em>. الاثنان مرتبطان، لكنهما ليسا الشيء نفسه — والفجوة بينهما هي مصدر عوائد الاستثمار.</div>
+      <div style="font-size:14px;color:var(--text-dim);line-height:1.75;margin-top:16px;">الأساسيات هي كل ما يحدد ما <em>تساويه</em> الشركة فعلًا — أرباحها، وأصولها، وديونها، ونموها، وجودة إدارتها، وموقعها التنافسي. أما سعر السهم فهو ما يرغب الناس في دفعه <em>الآن</em>. الاثنان مرتبطان، لكنهما ليسا الشيء نفسه — والفجوة بينهما هي مصدر عوائد الاستثمار.</div>
     </div>
 
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:18px;margin-bottom:24px;">
@@ -211,20 +335,20 @@
       <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:22px;border-left:3px solid var(--gold);">
         <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">الشركة</div>
         <div style="color:var(--yn-ink);font-weight:500;font-size:15px;margin-bottom:10px;">عمل حقيقي يفعل أشياء حقيقية</div>
-        <div style="font-size:13px;color:var(--text-dim);line-height:1.65;">لها موظفون ومصانع وعملاء وعقود وديون وأرباح. تولّد نقداً. لها منافسون. تواجه التنظيم. تدفع الضرائب. الشركة موجودة سواء تداولت سهمها اليوم أم لا.</div>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.65;">لها موظفون ومصانع وعملاء وعقود وديون وأرباح. تولّد نقدًا. لها منافسون. تواجه التنظيم. تدفع الضرائب. الشركة موجودة سواء تداولت سهمها اليوم أم لا.</div>
       </div>
 
       <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:22px;border-left:3px solid var(--teal);">
         <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">السهم</div>
         <div style="color:var(--yn-ink);font-weight:500;font-size:15px;margin-bottom:10px;">حق في جزء صغير من تلك الشركة</div>
-        <div style="font-size:13px;color:var(--text-dim);line-height:1.65;">ورقة (صارت الآن قيداً في قاعدة بيانات) تمنحك ملكية شريحة صغيرة من الشركة. سعره يتحرك كل ثانية. والسعر يعكس ما يظنه المستثمرون الآخرون أن الشركة تساويه — وقد يختلف كثيراً عما تساويه الشركة فعلاً.</div>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.65;">ورقة (صارت الآن قيدًا في قاعدة بيانات) تمنحك ملكية شريحة صغيرة من الشركة. سعره يتحرك كل ثانية. والسعر يعكس ما يظنه المستثمرون الآخرون أن الشركة تساويه — وقد يختلف كثيرًا عما تساويه الشركة فعلًا.</div>
       </div>
 
     </div>
 
     <div style="background:rgba(255,208,90,.05);border:1px solid rgba(255,208,90,.2);border-radius:4px;padding:18px 22px;">
       <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">↳ الفكرة الكبرى</div>
-      <div style="font-size:13px;color:var(--text-dim);line-height:1.7;">شركة عظيمة بسعر فظيع استثمار سيئ. وشركة متوسطة بسعر عظيم قد تكون استثماراً جيداً. التحليل الأساسي ليس عن إيجاد "أفضل" شركة — بل عن إيجاد أكبر فجوة بين ما <em>يساويه</em> الشيء وما <em>يطلبه</em> السوق ثمناً له حالياً.</div>
+      <div style="font-size:13px;color:var(--text-dim);line-height:1.7;">شركة عظيمة بسعر فظيع استثمار سيئ. وشركة متوسطة بسعر عظيم قد تكون استثمارًا جيدًا. التحليل الأساسي ليس عن إيجاد "أفضل" شركة — بل عن إيجاد أكبر فجوة بين ما <em>يساويه</em> الشيء وما <em>يطلبه</em> السوق ثمنًا له حاليًا.</div>
     </div>
   </div>
 </div>
@@ -234,7 +358,7 @@
   <div class="container">
     <span class="section-num">02 — القوائم المالية</span>
     <h2 class="section-title">المستندات الثلاثة التي تخبرك بكل شيء</h2>
-    <p class="section-lead">كل شركة مدرجة ملزمة بنشر ثلاث قوائم مالية كل ربع سنة. ومعاً تخبرك بكل ما تحتاج معرفته تقريباً عمّا إذا كان العمل صحياً ونامياً ويستحق مالك. قراءتها ليست محاسبة — بل تحقيقاً. وكل واحدة تجيب عن سؤال مختلف.</p>
+    <p class="section-lead">كل شركة مدرجة ملزمة بنشر ثلاث قوائم مالية كل ربع سنة. ومعًا تخبرك بكل ما تحتاج معرفته تقريبًا عمّا إذا كان العمل صحيًا وناميًا ويستحق مالك. قراءتها ليست محاسبة — بل تحقيقًا. وكل واحدة تجيب عن سؤال مختلف.</p>
 
     <!-- Income Statement -->
     <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:24px;margin-bottom:18px;">
@@ -274,11 +398,11 @@
         </svg>
       </div>
 
-      <p style="font-size:14px;color:var(--text-dim);line-height:1.7;margin-bottom:14px;">السطر العلوي: إجمالي الإيرادات (المبيعات). ومنه اطرح كل ما أنفقته الشركة — تكلفة البضاعة المباعة (COGS)، والمصروفات التشغيلية، والفوائد، والضرائب. والسطر الأخير هو <strong style="color:var(--yn-ink);">صافي الدخل</strong>: الربح. وأكثر رقم يُقتبس من هذه القائمة هو <strong style="color:var(--yn-ink);">EPS</strong> (ربحية السهم) — صافي الدخل مقسوماً على عدد الأسهم القائمة.</p>
+      <p style="font-size:14px;color:var(--text-dim);line-height:1.7;margin-bottom:14px;">السطر العلوي: إجمالي الإيرادات (المبيعات). ومنه اطرح كل ما أنفقته الشركة — تكلفة البضاعة المباعة (COGS)، والمصروفات التشغيلية، والفوائد، والضرائب. والسطر الأخير هو <strong style="color:var(--yn-ink);">صافي الدخل</strong>: الربح. وأكثر رقم يُقتبس من هذه القائمة هو <strong style="color:var(--yn-ink);">EPS</strong> (ربحية السهم) — صافي الدخل مقسومًا على عدد الأسهم القائمة.</p>
 
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;">
         <div style="font-size:12px;color:var(--text-dim);line-height:1.6;"><strong style="color:var(--yn-ink);display:block;">هامش مجمل الربح</strong>مجمل الربح ÷ الإيرادات. يخبرك بكفاءة العمل الأساسي في تحقيق كل عملية بيع.</div>
-        <div style="font-size:12px;color:var(--text-dim);line-height:1.6;"><strong style="color:var(--yn-ink);display:block;">هامش التشغيل</strong>الدخل التشغيلي ÷ الإيرادات. يخبرك بكفاءة الشركة إجمالاً، قبل التمويل والضرائب.</div>
+        <div style="font-size:12px;color:var(--text-dim);line-height:1.6;"><strong style="color:var(--yn-ink);display:block;">هامش التشغيل</strong>الدخل التشغيلي ÷ الإيرادات. يخبرك بكفاءة الشركة إجمالًا، قبل التمويل والضرائب.</div>
         <div style="font-size:12px;color:var(--text-dim);line-height:1.6;"><strong style="color:var(--yn-ink);display:block;">هامش صافي الربح</strong>صافي الدخل ÷ الإيرادات. ربحية السطر الأخير — ما يتبقى بعد كل شيء.</div>
       </div>
     </div>
@@ -311,7 +435,7 @@
             </div>
           </div>
         </div>
-        <div style="text-align:center;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-muted);margin-top:14px;letter-spacing:1px;">المعادلة المحاسبية الأساسية — تتوازن دائماً</div>
+        <div style="text-align:center;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-muted);margin-top:14px;letter-spacing:1px;">المعادلة المحاسبية الأساسية — تتوازن دائمًا</div>
       </div>
 
       <p style="font-size:14px;color:var(--text-dim);line-height:1.7;margin-bottom:14px;">لقطة في لحظة واحدة. قائمة الدخل فيلم لما حدث خلال ربع سنة — والميزانية العمومية صورة ثابتة لشكل الشركة في آخر يوم من ذلك الربع.</p>
@@ -319,7 +443,7 @@
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;">
         <div style="font-size:12px;color:var(--text-dim);line-height:1.6;"><strong style="color:var(--yn-ink);display:block;">الدين إلى حقوق الملكية</strong>كم تقترض الشركة مقابل ما يملكه المساهمون. الدين المرتفع = هشاشة في السنوات السيئة.</div>
         <div style="font-size:12px;color:var(--text-dim);line-height:1.6;"><strong style="color:var(--yn-ink);display:block;">نسبة التداول</strong>الأصول قصيرة الأجل ÷ الالتزامات قصيرة الأجل. وفوق 1 تعني أن الشركة تستطيع سداد فواتيرها هذا العام.</div>
-        <div style="font-size:12px;color:var(--text-dim);line-height:1.6;"><strong style="color:var(--yn-ink);display:block;">القيمة الدفترية</strong>إجمالي حقوق الملكية. "قيمة" الشركة محاسبياً. وغالباً تختلف كثيراً عن القيمة السوقية.</div>
+        <div style="font-size:12px;color:var(--text-dim);line-height:1.6;"><strong style="color:var(--yn-ink);display:block;">القيمة الدفترية</strong>إجمالي حقوق الملكية. "قيمة" الشركة محاسبيًا. وغالبًا تختلف كثيرًا عن القيمة السوقية.</div>
       </div>
     </div>
 
@@ -329,14 +453,14 @@
         <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:2px;background:rgba(163,198,215,.1);padding:4px 10px;border-radius:2px;">القائمة 03</div>
         <h3 style="font-family:'Poppins',sans-serif;font-size:22px;color:var(--yn-ink);margin:0;">قائمة التدفقات النقدية</h3>
       </div>
-      <div style="font-size:14px;color:var(--text-muted);font-style:italic;margin-bottom:18px;">السؤال الذي تجيب عنه: <span style="color:var(--yn-ink);font-style:normal;">"أين ذهب النقد الحقيقي فعلاً؟"</span></div>
+      <div style="font-size:14px;color:var(--text-muted);font-style:italic;margin-bottom:18px;">السؤال الذي تجيب عنه: <span style="color:var(--yn-ink);font-style:normal;">"أين ذهب النقد الحقيقي فعلًا؟"</span></div>
 
       <!-- 3 buckets -->
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:16px;">
         <div style="background:var(--bg2);border:1px solid var(--border);border-radius:3px;padding:16px;border-top:2px solid var(--green);">
           <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--green);letter-spacing:2px;margin-bottom:6px;">التشغيل</div>
           <div style="color:var(--yn-ink);font-weight:500;font-size:13px;margin-bottom:6px;">نقد من تشغيل العمل</div>
-          <div style="font-size:11px;color:var(--text-dim);line-height:1.6;">النقد المحصّل فعلاً من العملاء، ناقص النقد المدفوع للموردين والموظفين. أهم قسم — والعمل الصحي ينبغي أن يكون موجب النقد هنا دائماً.</div>
+          <div style="font-size:11px;color:var(--text-dim);line-height:1.6;">النقد المحصّل فعلًا من العملاء، ناقص النقد المدفوع للموردين والموظفين. أهم قسم — والعمل الصحي ينبغي أن يكون موجب النقد هنا دائمًا.</div>
         </div>
         <div style="background:var(--bg2);border:1px solid var(--border);border-radius:3px;padding:16px;border-top:2px solid var(--blue);">
           <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--yn-ink);letter-spacing:2px;margin-bottom:6px;">الاستثمار</div>
@@ -350,12 +474,12 @@
         </div>
       </div>
 
-      <p style="font-size:14px;color:var(--text-dim);line-height:1.7;">أهم رقم في هذه القائمة هو <strong style="color:var(--yn-ink);">التدفق النقدي الحر</strong> — النقد التشغيلي ناقص الإنفاق الرأسمالي. وهو النقد الفعلي الذي يدرّه العمل بعد دفع تكلفة الحفاظ على نفسه. الشركات تستطيع تزييف الأرباح بحيل محاسبية، لكن النقد الحقيقي أصعب كثيراً في التصنيع.</p>
+      <p style="font-size:14px;color:var(--text-dim);line-height:1.7;">أهم رقم في هذه القائمة هو <strong style="color:var(--yn-ink);">التدفق النقدي الحر</strong> — النقد التشغيلي ناقص الإنفاق الرأسمالي. وهو النقد الفعلي الذي يدرّه العمل بعد دفع تكلفة الحفاظ على نفسه. الشركات تستطيع تزييف الأرباح بحيل محاسبية، لكن النقد الحقيقي أصعب كثيرًا في التصنيع.</p>
     </div>
 
     <div style="background:rgba(255,208,90,.05);border:1px solid rgba(255,208,90,.2);border-radius:4px;padding:18px 22px;margin-top:24px;">
       <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">↳ أهم درس على الإطلاق</div>
-      <div style="font-size:13px;color:var(--text-dim);line-height:1.7;"><strong style="color:var(--yn-ink);">الربح ليس نقداً، والنقد ليس ربحاً.</strong> تستطيع شركة أن تُظهر "أرباحاً" في قائمة الدخل بينما تنزف نقداً — بتسجيل مبيعات لم تُحصّل قيمتها بعد، أو برسملة تكاليف كان ينبغي أن تكون مصروفات. الشركات لا تفلس تقريباً بسبب انخفاض الأرباح. تفلس لأن النقد ينفد منها. تحقّق دائماً من القائمتين معاً.</div>
+      <div style="font-size:13px;color:var(--text-dim);line-height:1.7;"><strong style="color:var(--yn-ink);">الربح ليس نقدًا، والنقد ليس ربحًا.</strong> تستطيع شركة أن تُظهر "أرباحًا" في قائمة الدخل بينما تنزف نقدًا — بتسجيل مبيعات لم تُحصّل قيمتها بعد، أو برسملة تكاليف كان ينبغي أن تكون مصروفات. الشركات لا تفلس تقريبًا بسبب انخفاض الأرباح. تفلس لأن النقد ينفد منها. تحقّق دائمًا من القائمتين معًا.</div>
     </div>
   </div>
 </div>
@@ -365,7 +489,7 @@
   <div class="container">
     <span class="section-num">03 — نسب التقييم</span>
     <h2 class="section-title">اختصارات لمقارنة الشركات بسرعة</h2>
-    <p class="section-lead">بمجرد أن تقرأ القوائم، تصير لديك المواد الخام لتقييم شركة. لكن ليس لديك دائماً وقت لتفعلها من الصفر — لذلك يستخدم المحترفون النسب كاختصارات مقارنة سريعة. كل نسبة تجيب عن سؤال محدد. ولا واحدة منها هي الجواب بذاتها.</p>
+    <p class="section-lead">بمجرد أن تقرأ القوائم، تصير لديك المواد الخام لتقييم شركة. لكن ليس لديك دائمًا وقت لتفعلها من الصفر — لذلك يستخدم المحترفون النسب كاختصارات مقارنة سريعة. كل نسبة تجيب عن سؤال محدد. ولا واحدة منها هي الجواب بذاتها.</p>
 
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-bottom:24px;">
 
@@ -375,7 +499,7 @@
         <div style="font-family:'Poppins',sans-serif;font-size:22px;color:var(--yn-ink);margin-bottom:6px;">مكرر الربحية (P/E)</div>
         <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--yn-ink);margin-bottom:14px;">السعر ÷ ربحية السهم</div>
         <div style="font-size:13px;color:var(--text-dim);line-height:1.65;margin-bottom:10px;">"كم سنة من الأرباح الحالية أدفع مقابل سهم واحد؟" مكرر ربحية 12 يعني: لو بقيت الأرباح ثابتة، لاستعدت سعر شرائك في 12 سنة.</div>
-        <div style="font-size:12px;color:var(--text-muted);line-height:1.55;"><strong style="color:var(--yn-ink);">مكرر منخفض:</strong> رخيص، أو متعثر فعلاً. <br><strong style="color:var(--yn-ink);">مكرر مرتفع:</strong> غالٍ، أو ينمو بسرعة تكفي لتبريره.</div>
+        <div style="font-size:12px;color:var(--text-muted);line-height:1.55;"><strong style="color:var(--yn-ink);">مكرر منخفض:</strong> رخيص، أو متعثر فعلًا. <br><strong style="color:var(--yn-ink);">مكرر مرتفع:</strong> غالٍ، أو ينمو بسرعة تكفي لتبريره.</div>
       </div>
 
       <!-- P/B -->
@@ -383,7 +507,7 @@
         <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;">النسبة 02</div>
         <div style="font-family:'Poppins',sans-serif;font-size:22px;color:var(--yn-ink);margin-bottom:6px;">نسبة السعر إلى القيمة الدفترية (P/B)</div>
         <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--yn-ink);margin-bottom:14px;">السعر ÷ القيمة الدفترية للسهم</div>
-        <div style="font-size:13px;color:var(--text-dim);line-height:1.65;margin-bottom:10px;">"كم أدفع مقابل كل جنيه من حقوق الملكية المحاسبية؟" أنفع ما تكون للأعمال كثيفة الأصول — البنوك والعقارات والصناعات. وأقل نفعاً للتكنولوجيا والعلامات التجارية حيث معظم القيمة غير ملموسة.</div>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.65;margin-bottom:10px;">"كم أدفع مقابل كل جنيه من حقوق الملكية المحاسبية؟" أنفع ما تكون للأعمال كثيفة الأصول — البنوك والعقارات والصناعات. وأقل نفعًا للتكنولوجيا والعلامات التجارية حيث معظم القيمة غير ملموسة.</div>
         <div style="font-size:12px;color:var(--text-muted);line-height:1.55;"><strong style="color:var(--yn-ink);">P/B &lt; 1:</strong> تداول أقل من القيمة الدفترية — صفقة محتملة أو علامة تحذير. <br><strong style="color:var(--yn-ink);">P/B &gt; 3:</strong> السوق يعتقد أن الشركة تساوي أكثر بكثير مما تقوله دفاترها المحاسبية.</div>
       </div>
 
@@ -392,8 +516,8 @@
         <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--green);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;">النسبة 03</div>
         <div style="font-family:'Poppins',sans-serif;font-size:22px;color:var(--yn-ink);margin-bottom:6px;">عائد التوزيعات</div>
         <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--green);margin-bottom:14px;">التوزيعات السنوية ÷ سعر السهم</div>
-        <div style="font-size:13px;color:var(--text-dim);line-height:1.65;margin-bottom:10px;">"ما العائد النقدي الذي أحصل عليه من مجرد الاحتفاظ بهذا؟" عائد توزيعات 6% يعني أنك ستكسب 6% سنوياً توزيعات نقدية، قبل أي تغير في السعر. قارنه بأسعار الودائع البنكية وعوائد السندات.</div>
-        <div style="font-size:12px;color:var(--text-muted);line-height:1.55;"><strong style="color:var(--yn-ink);">تحذير:</strong> العوائد المرتفعة جداً (مثلاً 15%+) تعني غالباً أن السوق يتوقع خفض التوزيعات قريباً.</div>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.65;margin-bottom:10px;">"ما العائد النقدي الذي أحصل عليه من مجرد الاحتفاظ بهذا؟" عائد توزيعات 6% يعني أنك ستكسب 6% سنويًا توزيعات نقدية، قبل أي تغير في السعر. قارنه بأسعار الودائع البنكية وعوائد السندات.</div>
+        <div style="font-size:12px;color:var(--text-muted);line-height:1.55;"><strong style="color:var(--yn-ink);">تحذير:</strong> العوائد المرتفعة جدًا (مثلًا 15%+) تعني غالبًا أن السوق يتوقع خفض التوزيعات قريبًا.</div>
       </div>
 
       <!-- EV/EBITDA -->
@@ -410,7 +534,7 @@
         <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;">النسبة 05</div>
         <div style="font-family:'Poppins',sans-serif;font-size:22px;color:var(--yn-ink);margin-bottom:6px;">ROE</div>
         <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--yn-ink);margin-bottom:14px;">صافي الدخل ÷ حقوق الملكية</div>
-        <div style="font-size:13px;color:var(--text-dim);line-height:1.65;margin-bottom:10px;">"مقابل كل جنيه من أموال المساهمين، كم ربحاً يولّد العمل؟" أنظف مقياس مفرد لمدى جودة العمل في مراكمة رأس المال. المقياس المفضل لدى بافيت.</div>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.65;margin-bottom:10px;">"مقابل كل جنيه من أموال المساهمين، كم ربحًا يولّد العمل؟" أنظف مقياس مفرد لمدى جودة العمل في مراكمة رأس المال. المقياس المفضل لدى بافيت.</div>
         <div style="font-size:12px;color:var(--text-muted);line-height:1.55;"><strong style="color:var(--yn-ink);">ROE &gt; 15%</strong> باستمرار أمر استثنائي. <br><strong style="color:var(--yn-ink);">ROE &lt; 10%</strong> متوسط.</div>
       </div>
 
@@ -419,14 +543,14 @@
         <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;">النسبة 06</div>
         <div style="font-family:'Poppins',sans-serif;font-size:22px;color:var(--yn-ink);margin-bottom:6px;">نسبة PEG</div>
         <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--yn-ink);margin-bottom:14px;">مكرر الربحية ÷ معدل نمو الأرباح</div>
-        <div style="font-size:13px;color:var(--text-dim);line-height:1.65;margin-bottom:10px;">مكرر الربحية معدَّلاً بالنمو. مكرر 30 يبدو غالياً — لكن إن كانت الأرباح تنمو 30% سنوياً، فقيمة PEG هي 1.0، وهي عادلة. قاعدة بيتر لينش الكلاسيكية: <strong style="color:var(--yn-ink);">PEG تحت 1 مثيرة للاهتمام؛ وفوق 2 غالية.</strong></div>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.65;margin-bottom:10px;">مكرر الربحية معدَّلًا بالنمو. مكرر 30 يبدو غاليًا — لكن إن كانت الأرباح تنمو 30% سنويًا، فقيمة PEG هي 1.0، وهي عادلة. قاعدة بيتر لينش الكلاسيكية: <strong style="color:var(--yn-ink);">PEG تحت 1 مثيرة للاهتمام؛ وفوق 2 غالية.</strong></div>
       </div>
 
     </div>
 
     <div style="background:rgba(179,38,30,.05);border:1px solid rgba(179,38,30,.2);border-radius:4px;padding:18px 22px;">
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--red);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">↳ المكرر المرتفع ليس دائماً "غالياً"</div>
-      <div style="font-size:13px;color:var(--text-dim);line-height:1.7;">مكرر 8 على عمل متراجع أغلى من مكرر 25 على عمل ينمو 30% سنوياً. النسبة بلا معنى دون سياق: الصناعة، ومعدل النمو، وعبء الدين، واتجاه الربحية. <strong style="color:var(--yn-ink);">النسب نقاط انطلاق للأسئلة، لا أجوبة.</strong></div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--red);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">↳ المكرر المرتفع ليس دائمًا "غاليًا"</div>
+      <div style="font-size:13px;color:var(--text-dim);line-height:1.7;">مكرر 8 على عمل متراجع أغلى من مكرر 25 على عمل ينمو 30% سنويًا. النسبة بلا معنى دون سياق: الصناعة، ومعدل النمو، وعبء الدين، واتجاه الربحية. <strong style="color:var(--yn-ink);">النسب نقاط انطلاق للأسئلة، لا أجوبة.</strong></div>
     </div>
   </div>
 </div>
@@ -436,7 +560,7 @@
   <div class="container">
     <span class="section-num">04 — عدسات القطاعات</span>
     <h2 class="section-title">أعمال مختلفة تحتاج عدسات مختلفة</h2>
-    <p class="section-lead">البنك لا يعمل كشركة تكنولوجيا. ومطوّر عقاري لا يعمل كمشغّل اتصالات. وتطبيق النسب نفسها على كل القطاعات ينتج هراءً — فالبنوك تبدو دائماً "رخيصة" على P/B، وشركات التكنولوجيا تبدو دائماً "غالية" على P/E. ولكل قطاع دليله الخاص لما ينبغي النظر إليه أولاً.</p>
+    <p class="section-lead">البنك لا يعمل كشركة تكنولوجيا. ومطوّر عقاري لا يعمل كمشغّل اتصالات. وتطبيق النسب نفسها على كل القطاعات ينتج هراءً — فالبنوك تبدو دائمًا "رخيصة" على P/B، وشركات التكنولوجيا تبدو دائمًا "غالية" على P/E. ولكل قطاع دليله الخاص لما ينبغي النظر إليه أولًا.</p>
 
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px;">
 
@@ -444,7 +568,7 @@
       <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:22px;border-top:3px solid var(--gold);">
         <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">القطاع — البنوك</div>
         <div style="color:var(--yn-ink);font-weight:500;font-size:15px;margin-bottom:10px;">أمثلة: CIB، QNB، بنك فيصل الإسلامي</div>
-        <div style="font-size:13px;color:var(--text-dim);line-height:1.65;margin-bottom:12px;">تكسب البنوك من الفارق بين ما تدفعه للمودعين وما تتقاضاه من المقترضين. ومكرر الربحية أقل إفادة — استخدم هذه بدلاً منه:</div>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.65;margin-bottom:12px;">تكسب البنوك من الفارق بين ما تدفعه للمودعين وما تتقاضاه من المقترضين. ومكرر الربحية أقل إفادة — استخدم هذه بدلًا منه:</div>
         <div style="font-size:12px;color:var(--text-muted);line-height:1.7;">→ <strong style="color:var(--yn-ink);">ROE</strong> — أفضل البنوك تراكم عند 18–25%<br>→ <strong style="color:var(--yn-ink);">NIM</strong> (صافي هامش الفائدة) — كلما اتسع كان أفضل<br>→ <strong style="color:var(--yn-ink);">نسبة القروض المتعثرة</strong> — كلما انخفضت كان أفضل<br>→ <strong style="color:var(--yn-ink);">كفاية رأس المال</strong> — وسادة تنظيمية ضد الخسائر<br>→ <strong style="color:var(--yn-ink);">P/B</strong> — أكثر مقاييس التقييم مراقبة</div>
       </div>
 
@@ -453,7 +577,7 @@
         <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">القطاع — الصناعات والمواد</div>
         <div style="color:var(--yn-ink);font-weight:500;font-size:15px;margin-bottom:10px;">أمثلة: حديد عز، سيدي كرير للبتروكيماويات، مستشفيات كليوباترا</div>
         <div style="font-size:13px;color:var(--text-dim);line-height:1.65;margin-bottom:12px;">دورية وكثيفة رأس المال. تتأرجح أرباحها بعنف مع أسعار السلع والاقتصاد الأوسع. راقب:</div>
-        <div style="font-size:12px;color:var(--text-muted);line-height:1.7;">→ <strong style="color:var(--yn-ink);">هامش التشغيل</strong> — الكفاءة في تحويل المبيعات إلى ربح<br>→ <strong style="color:var(--yn-ink);">الدين إلى حقوق الملكية</strong> — كثافة رأس المال = خطر إن كان الرفع المالي عالياً<br>→ <strong style="color:var(--yn-ink);">معدل استغلال الطاقة</strong> — هل تعمل المصانع بكامل طاقتها؟<br>→ <strong style="color:var(--yn-ink);">EV/EBITDA</strong> — يحيّد فروق الدين</div>
+        <div style="font-size:12px;color:var(--text-muted);line-height:1.7;">→ <strong style="color:var(--yn-ink);">هامش التشغيل</strong> — الكفاءة في تحويل المبيعات إلى ربح<br>→ <strong style="color:var(--yn-ink);">الدين إلى حقوق الملكية</strong> — كثافة رأس المال = خطر إن كان الرفع المالي عاليًا<br>→ <strong style="color:var(--yn-ink);">معدل استغلال الطاقة</strong> — هل تعمل المصانع بكامل طاقتها؟<br>→ <strong style="color:var(--yn-ink);">EV/EBITDA</strong> — يحيّد فروق الدين</div>
       </div>
 
       <!-- Real Estate -->
@@ -469,7 +593,7 @@
         <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">القطاع — الاتصالات</div>
         <div style="color:var(--yn-ink);font-weight:500;font-size:15px;margin-bottom:10px;">أمثلة: المصرية للاتصالات (Orange)، Vodafone</div>
         <div style="font-size:13px;color:var(--text-dim);line-height:1.65;margin-bottom:12px;">أعمال اشتراكات بتكاليف بنية تحتية ثقيلة. إيراد متكرر، ونمو بطيء، وتدفق نقدي مرتفع. والعدسة هي:</div>
-        <div style="font-size:12px;color:var(--text-muted);line-height:1.7;">→ <strong style="color:var(--yn-ink);">ARPU</strong> (متوسط الإيراد لكل مستخدم) — يرتفع أم ينخفض؟<br>→ <strong style="color:var(--yn-ink);">معدل التسرب</strong> — نسبة المشتركين المغادرين كل عام<br>→ <strong style="color:var(--yn-ink);">كثافة الإنفاق الرأسمالي</strong> — الإنفاق الرأسمالي مقابل الإيراد<br>→ <strong style="color:var(--yn-ink);">عائد التدفق النقدي الحر</strong> — نسبة السعر التي يولّدها العمل نقداً</div>
+        <div style="font-size:12px;color:var(--text-muted);line-height:1.7;">→ <strong style="color:var(--yn-ink);">ARPU</strong> (متوسط الإيراد لكل مستخدم) — يرتفع أم ينخفض؟<br>→ <strong style="color:var(--yn-ink);">معدل التسرب</strong> — نسبة المشتركين المغادرين كل عام<br>→ <strong style="color:var(--yn-ink);">كثافة الإنفاق الرأسمالي</strong> — الإنفاق الرأسمالي مقابل الإيراد<br>→ <strong style="color:var(--yn-ink);">عائد التدفق النقدي الحر</strong> — نسبة السعر التي يولّدها العمل نقدًا</div>
       </div>
 
       <!-- Consumer -->
@@ -491,8 +615,8 @@
     </div>
 
     <div style="background:rgba(163,198,215,.05);border:1px solid rgba(163,198,215,.2);border-radius:4px;padding:18px 22px;margin-top:24px;">
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">↳ قارن دائماً المثيل بالمثيل</div>
-      <div style="font-size:13px;color:var(--text-dim);line-height:1.7;">حين تبحث عن مكرر ربحية شركة، تحقق فوراً من متوسط المكرر لقطاعها. CIB عند مكرر 8 قد يكون رخيصاً بالنسبة لسوق EGX عموماً لكنه غالٍ مقابل بنوك مصرية أخرى. المرجع دائماً مجموعة النظراء، لا المؤشر.</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">↳ قارن دائمًا المثيل بالمثيل</div>
+      <div style="font-size:13px;color:var(--text-dim);line-height:1.7;">حين تبحث عن مكرر ربحية شركة، تحقق فورًا من متوسط المكرر لقطاعها. CIB عند مكرر 8 قد يكون رخيصًا بالنسبة لسوق EGX عمومًا لكنه غالٍ مقابل بنوك مصرية أخرى. المرجع دائمًا مجموعة النظراء، لا المؤشر.</div>
     </div>
   </div>
 </div>
@@ -502,21 +626,21 @@
   <div class="container">
     <span class="section-num">05 — قائمة التحقق</span>
     <h2 class="section-title">إطار ذهني للمبتدئ</h2>
-    <p class="section-lead">بعد كل النسب والقوائم وعدسات القطاعات — حين تجلس أمام شركة حقيقية، ماذا تسأل فعلاً؟ إليك قائمة تحقق بسيطة من ٤ أسئلة تصفّي 90% من الأفكار السيئة قبل أن تفتح رسماً بيانياً أصلاً.</p>
+    <p class="section-lead">بعد كل النسب والقوائم وعدسات القطاعات — حين تجلس أمام شركة حقيقية، ماذا تسأل فعلًا؟ إليك قائمة تحقق بسيطة من 4 أسئلة تصفّي 90% من الأفكار السيئة قبل أن تفتح رسمًا بيانيًا أصلًا.</p>
 
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:18px;margin-bottom:28px;">
 
       <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:24px;border-left:3px solid var(--green);">
         <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--green);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">السؤال 01</div>
         <div style="color:var(--yn-ink);font-weight:600;font-size:17px;margin-bottom:10px;">هل تربح؟</div>
-        <div style="font-size:13px;color:var(--text-dim);line-height:1.7;margin-bottom:8px;">افتح قائمة الدخل. هل كانت الشركة رابحة آخر 3 سنوات أو أكثر؟ هل التدفق النقدي التشغيلي موجب باستمرار؟ إن لم يكن — فلماذا تنظر إليها أصلاً؟</div>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.7;margin-bottom:8px;">افتح قائمة الدخل. هل كانت الشركة رابحة آخر 3 سنوات أو أكثر؟ هل التدفق النقدي التشغيلي موجب باستمرار؟ إن لم يكن — فلماذا تنظر إليها أصلًا؟</div>
         <div style="font-size:12px;color:var(--text-muted);line-height:1.55;">الشركات التي لا تربح يمكن أن تظل استثمارات عظيمة — لكن فقط إن كانت لديك أطروحة محددة لسبب تغيّر ذلك. ومعظم المستثمرين الأفراد ليست لديهم.</div>
       </div>
 
       <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:24px;border-left:3px solid var(--blue);">
         <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">السؤال 02</div>
         <div style="color:var(--yn-ink);font-weight:600;font-size:17px;margin-bottom:10px;">هل تنجو من سنة سيئة؟</div>
-        <div style="font-size:13px;color:var(--text-dim);line-height:1.7;margin-bottom:8px;">افتح الميزانية العمومية. هل هناك نقد متاح؟ هل الدين محتمل مقارنة بالأرباح وحقوق الملكية؟ وفي مصر تحديداً — هل لديها انكشاف على العملة الأجنبية قد ينفجر في المرة القادمة التي يتحرك فيها الجنيه؟</div>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.7;margin-bottom:8px;">افتح الميزانية العمومية. هل هناك نقد متاح؟ هل الدين محتمل مقارنة بالأرباح وحقوق الملكية؟ وفي مصر تحديدًا — هل لديها انكشاف على العملة الأجنبية قد ينفجر في المرة القادمة التي يتحرك فيها الجنيه؟</div>
         <div style="font-size:12px;color:var(--text-muted);line-height:1.55;">عمل عظيم بميزانية هشة يمكن أن يفلس في سنة سيئة واحدة. البقاء يسبق النمو.</div>
       </div>
 
@@ -524,30 +648,30 @@
         <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">السؤال 03</div>
         <div style="color:var(--yn-ink);font-weight:600;font-size:17px;margin-bottom:10px;">هل السعر معقول؟</div>
         <div style="font-size:13px;color:var(--text-dim);line-height:1.7;margin-bottom:8px;">قارن نسب تقييمها (P/E، P/B، EV/EBITDA، عائد التوزيعات) بمتوسط القطاع وبتاريخها هي. هل هي أغلى من المعتاد؟ أرخص؟ ولماذا؟</div>
-        <div style="font-size:12px;color:var(--text-muted);line-height:1.55;">"معقول" لا تعني "رخيص". أحياناً يكون الجواب "نعم، هذا سعر عادل لعمل عظيم" — وهذا ما زال قابلاً للاستثمار.</div>
+        <div style="font-size:12px;color:var(--text-muted);line-height:1.55;">"معقول" لا تعني "رخيص". أحيانًا يكون الجواب "نعم، هذا سعر عادل لعمل عظيم" — وهذا ما زال قابلًا للاستثمار.</div>
       </div>
 
       <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:24px;border-left:3px solid var(--indigo);">
         <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">السؤال 04</div>
         <div style="color:var(--yn-ink);font-weight:600;font-size:17px;margin-bottom:10px;">هل أثق بالإدارة؟</div>
-        <div style="font-size:13px;color:var(--text-dim);line-height:1.7;margin-bottom:8px;">اقرأ آخر تقرير سنوي — وتحديداً خطاب الإدارة. هل يصارحون المساهمين بالتحديات؟ هل فعلوا ما قالوا إنهم سيفعلونه خلال السنوات الماضية؟ هل يملكون حصصاً معتبرة بأنفسهم؟</div>
+        <div style="font-size:13px;color:var(--text-dim);line-height:1.7;margin-bottom:8px;">اقرأ آخر تقرير سنوي — وتحديدًا خطاب الإدارة. هل يصارحون المساهمين بالتحديات؟ هل فعلوا ما قالوا إنهم سيفعلونه خلال السنوات الماضية؟ هل يملكون حصصًا معتبرة بأنفسهم؟</div>
         <div style="font-size:12px;color:var(--text-muted);line-height:1.55;">الأرقام يصنعها بشر. وإن لم تكن الإدارة جديرة بالثقة، فلا يمكن أن تكون الأرقام كذلك.</div>
       </div>
 
     </div>
 
     <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:28px;margin-bottom:24px;">
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;">↳ لماذا يخسر المستثمرون الأفراد حقاً</div>
-      <div style="font-size:14px;color:var(--text-dim);line-height:1.75;">معظم المستثمرين الأفراد لا يخسرون لأنهم يختارون شركات سيئة أساسياً. يخسرون لأنهم:</div>
-      <div style="font-size:13px;color:var(--text-dim);line-height:1.85;margin-top:12px;padding-left:20px;">→ يدفعون أكثر من اللازم لشركات جيدة (الشراء بعد أن تصير القصة في السعر)<br>→ يبيعون الشركات الجيدة مبكراً جداً (يأخذون مكاسب صغيرة ويفوّتون المراكمة)<br>→ يخفّضون متوسط التكلفة على شركات سيئة (فيحوّلون خسارة صغيرة إلى كارثية)<br>→ يخلطون بين هبوط سعر السهم وهبوط الشركة (فيبيعون بذعر عند القاع)</div>
-      <div style="font-size:14px;color:var(--text-dim);line-height:1.75;margin-top:14px;">الأساسيات لا تجعل تلك الأخطاء تختفي. لكن معرفتها <em>تساعد</em>. حين يهبط السعر 30% في شركة تفهمها أساسياً، تستطيع أن تقرر هل تغيّر العمل فعلاً — أم أن السوق يذعر فحسب. هذا هو الفرق بين الشراء حين يكون السعر صحيحاً والبيع حين يكون السعر خاطئاً.</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;">↳ لماذا يخسر المستثمرون الأفراد حقًا</div>
+      <div style="font-size:14px;color:var(--text-dim);line-height:1.75;">معظم المستثمرين الأفراد لا يخسرون لأنهم يختارون شركات سيئة أساسيًا. يخسرون لأنهم:</div>
+      <div style="font-size:13px;color:var(--text-dim);line-height:1.85;margin-top:12px;padding-left:20px;">→ يدفعون أكثر من اللازم لشركات جيدة (الشراء بعد أن تصير القصة في السعر)<br>→ يبيعون الشركات الجيدة مبكرًا جدًا (يأخذون مكاسب صغيرة ويفوّتون المراكمة)<br>→ يخفّضون متوسط التكلفة على شركات سيئة (فيحوّلون خسارة صغيرة إلى كارثية)<br>→ يخلطون بين هبوط سعر السهم وهبوط الشركة (فيبيعون بذعر عند القاع)</div>
+      <div style="font-size:14px;color:var(--text-dim);line-height:1.75;margin-top:14px;">الأساسيات لا تجعل تلك الأخطاء تختفي. لكن معرفتها <em>تساعد</em>. حين يهبط السعر 30% في شركة تفهمها أساسيًا، تستطيع أن تقرر هل تغيّر العمل فعلًا — أم أن السوق يذعر فحسب. هذا هو الفرق بين الشراء حين يكون السعر صحيحًا والبيع حين يكون السعر خاطئًا.</div>
     </div>
 
     <div style="background:rgba(255,208,90,.06);border:1px solid rgba(255,208,90,.25);border-radius:4px;padding:32px;text-align:center;">
       <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:3px;text-transform:uppercase;margin-bottom:18px;">نهاية السلسلة</div>
       <div style="font-family:'Poppins',sans-serif;font-size:26px;color:var(--yn-ink);line-height:1.4;margin-bottom:18px;">صار لديك الآن الأساس.</div>
-      <div style="font-size:14px;color:var(--text-dim);line-height:1.75;max-width:580px;margin:0 auto 16px;">عبر ٥ جلسات، تعلّمت كيف تعمل الأسواق، وما الذي يمكنك تداوله، وكيف يقترب الناس من اللعبة، وكيف تقرأ رسماً بيانياً، وكيف تقرأ شركة. لا شيء من هذا يجعلك متداولاً عظيماً. لكنه يجعلك متداولاً متعلّماً — شخصاً يستطيع أن يمسك تقرير بحث أو إفصاحاً سنوياً أو رسم سعر ويفهم ما ينظر إليه.</div>
-      <div style="font-size:14px;color:var(--text-dim);line-height:1.75;max-width:580px;margin:0 auto;">من هنا، الطريق إلى الأمام اختيارك أنت: استمر في التعلم، وابدأ صغيراً، وتذكّر الجملة من الجلسة 3 — <strong style="color:var(--yn-ink);">البقاء وقتاً كافياً للتعلم هو اللعبة كلها.</strong></div>
+      <div style="font-size:14px;color:var(--text-dim);line-height:1.75;max-width:580px;margin:0 auto 16px;">عبر 5 جلسات، تعلّمت كيف تعمل الأسواق، وما الذي يمكنك تداوله، وكيف يقترب الناس من اللعبة، وكيف تقرأ رسمًا بيانيًا، وكيف تقرأ شركة. لا شيء من هذا يجعلك متداولًا عظيمًا. لكنه يجعلك متداولًا متعلّمًا — شخصًا يستطيع أن يمسك تقرير بحث أو إفصاحًا سنويًا أو رسم سعر ويفهم ما ينظر إليه.</div>
+      <div style="font-size:14px;color:var(--text-dim);line-height:1.75;max-width:580px;margin:0 auto;">من هنا، الطريق إلى الأمام اختيارك أنت: استمر في التعلم، وابدأ صغيرًا، وتذكّر الجملة من الجلسة 3 — <strong style="color:var(--yn-ink);">البقاء وقتًا كافيًا للتعلم هو اللعبة كلها.</strong></div>
     </div>
   </div>
 </div>
