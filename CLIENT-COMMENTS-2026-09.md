@@ -192,6 +192,60 @@ English needing their next pass, not as errors in the Arabic:
   the Arabic site says "إي إف چي هيرميس". Their words are on their page as they
   wrote them, as with the last document, so both spellings are now on the site.
 
+## The Arabic decks — 4 October
+
+Five screenshots of the Arabic lesson pages, and four instructions with them.
+The lesson decks are HTML files written in English and translated; the faults
+below are all in what the translation inherited from the English page rather
+than in the Arabic itself.
+
+- [x] **A1 — the content at the top is missing in Arabic and works in English.**
+      The slider moved its track with `translateX(-N%)`, which is the right
+      direction in a left-to-right page and the wrong one in a right-to-left
+      page: slides two to five were pushed off the page and what showed was
+      empty grey. The transform now reads the computed direction and signs
+      itself accordingly.
+- [x] **A2 — the type changes between words, and the boxes need spacing.**
+      Two faults in one picture. The labels ask for IBM Plex Mono, which has no
+      Arabic at all, so every Arabic label fell to whatever monospace the
+      device had — a different face on every phone, and on some of them the
+      letters did not join. Plex Sans Arabic is now named after Plex Mono
+      wherever a label can hold Arabic, letter-spacing is off where Arabic can
+      reach it, and the two Arabic weights the labels ask for are loaded rather
+      than synthesised. Where a whole Arabic sentence is set at label size — a
+      chart's subtitle, a caption — the Arabic face comes first outright,
+      because a monospaced space is more than twice the width of an Arabic one
+      and a sentence came out with a gap between every word.
+
+      The boxes: a flow row set its four boxes side by side with no gap, so the
+      only air between a box and its arrow was eight pixels of padding, and
+      because the row centred its children each box was only as tall as its own
+      sentence. There is a real gap now and every box is the height of the
+      tallest. On a phone the row stands up instead — one box a line, arrows
+      turned a quarter so they point down the page.
+- [x] **A3 — "تعمل بالخوفوالطمع" should be "تعمل بالخوف و الطمع".** The words
+      were run together. The cause was mechanical: the emphasis around each
+      word swallowed the space beside it. Nineteen of these were found and
+      restored across both languages — ten Arabic, nine English.
+- [x] **A4 — read both pages and fix anything that is wrong.** Done line by
+      line against the English. What it turned up:
+      - Three Arabic-Indic figures — ٧ أجزاء, ٤ أسئلة, ٥ جلسات — against
+        Western figures everywhere else on the site, in both languages. Now
+        7, 4 and 5.
+      - Three decks wrote tanween as alef-then-fathatan (اً); the other ten,
+        every page of the site and the client's own documents write it the
+        other way round (ًا), which puts the mark on the letter it belongs to.
+        182 of them, now one way.
+      - The candlestick diagram labelled a bullish day "CLOSE >OPEN" with no
+        space, in both languages, against "CLOSE &lt; OPEN" beside it. Fixed in
+        both, and the bare `>` escaped.
+      - Arrows in the Arabic flow diagrams pointed left to right. They point
+        right to left now — twenty-four of them across six files.
+
+      Nothing else: the two pages carry exactly as many blocks of text as their
+      English originals, element for element, so nothing was dropped in
+      translation.
+
 ## Still with the client
 
 - Whether the English EGX guide should be brought in line with the Arabic on
