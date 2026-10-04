@@ -160,6 +160,70 @@
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 .yn-deck .section{animation:fadeUp .5s ease both;}
 @media(max-width:680px){.yn-deck .index-grid{grid-template-columns:1fr;}}
+
+/* ── The flow diagrams on a narrow screen ──────────────────────────────────
+
+   A flow row is four boxes and three arrows set side by side, each box asking
+   for at least a hundred and forty pixels. On a phone that cannot hold them,
+   so the row wrapped: two boxes on one line, an arrow stranded at the start of
+   the next, the last box alone under that. It read as four unrelated cards
+   rather than one path.
+
+   Below the breakpoint the path stands up instead. One box a line, the arrows
+   turned a quarter so they point down the page, and a gap between them where
+   there was none — the same sequence, read top to bottom. */
+
+@media (max-width: 680px) {
+  .yn-deck .flow-row,
+  .yn-deck .etf-flow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .yn-deck .flow-arrow,
+  .yn-deck .etf-arrow {
+    padding: 0;
+    text-align: center;
+    line-height: 1;
+    transform: rotate(90deg);
+  }
+}
+
+
+/* The boxes in a flow row were set side by side with no gap at all: the only
+   air between them was the eight pixels of padding on the arrow, so a box and
+   an arrow read as one run of ink. And because the row centred its children,
+   each box was only as tall as its own sentence — "يضع الأمر" one line, "نقل
+   الأسهم والنقد" two — so four boxes of four different heights sat on a
+   ragged line. The client marked this one.
+
+   Above the phone breakpoint, where the row still runs across: a real gap,
+   every box the height of the tallest, and its label and value centred inside
+   whatever height that turns out to be. The arrows keep their own centre. */
+
+@media (min-width: 681px) {
+  .yn-deck .flow-row,
+  .yn-deck .etf-flow {
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .yn-deck .flow-item,
+  .yn-deck .etf-node {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .yn-deck .flow-arrow,
+  .yn-deck .etf-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+}
 </style>
 <div class="yn-deck">
 <!-- HEADER -->
@@ -351,7 +415,7 @@
   <div class="container">
     <span class="section-num">03 — MARKET HOURS</span>
     <h2 class="section-title">When Does the Market Trade?</h2>
-    <p class="section-lead">Different markets operate in different time zones. Timing isn't just operational — it shapes which markets are most active when, and where the world's volume goes. The London-New York overlap alone generates <strong style="color:var(--yn-ink);">37% of daily forex volume</strong>in just 19% of the trading day. <a href="https://www.oanda.com/us-en/trade-tap-blog/asset-classes/forex/best-time-to-trade-forex-volume-insights/" target="_blank" style="color:var(--yn-ink);font-family:'IBM Plex Mono',monospace;font-size:11px;">Source: OANDA 2024 ↗</a></p>
+    <p class="section-lead">Different markets operate in different time zones. Timing isn't just operational — it shapes which markets are most active when, and where the world's volume goes. The London-New York overlap alone generates <strong style="color:var(--yn-ink);">37% of daily forex volume</strong> in just 19% of the trading day. <a href="https://www.oanda.com/us-en/trade-tap-blog/asset-classes/forex/best-time-to-trade-forex-volume-insights/" target="_blank" style="color:var(--yn-ink);font-family:'IBM Plex Mono',monospace;font-size:11px;">Source: OANDA 2024 ↗</a></p>
 
     <div class="hours-grid">
       <div class="hours-card">
@@ -424,7 +488,7 @@
       <div style="background:var(--card);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:4px;padding:24px;">
         <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">Primary Market</div>
         <div style="font-family:'Poppins',sans-serif;font-size:22px;color:var(--yn-ink);margin-bottom:12px;">Company → Investor</div>
-        <div style="font-size:14px;color:var(--text-dim);line-height:1.7;">The company itself sells new shares directly to investors. The cash goes <strong style="color:var(--yn-ink);">to the company</strong>to fund growth. Happens once at IPO, then again at each follow-on offering or rights issue. This is when EGX-listed companies actually <em>raise capital</em>.</div>
+        <div style="font-size:14px;color:var(--text-dim);line-height:1.7;">The company itself sells new shares directly to investors. The cash goes <strong style="color:var(--yn-ink);">to the company</strong> to fund growth. Happens once at IPO, then again at each follow-on offering or rights issue. This is when EGX-listed companies actually <em>raise capital</em>.</div>
       </div>
       <div style="background:var(--card);border:1px solid var(--border);border-left:3px solid var(--teal);border-radius:4px;padding:24px;">
         <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">Secondary Market</div>
