@@ -197,6 +197,70 @@
   .yn-deck .slide-inner{grid-template-columns:1fr;}
   .yn-deck .chart-explainer{grid-template-columns:1fr;}
 }
+
+/* ── The flow diagrams on a narrow screen ──────────────────────────────────
+
+   A flow row is four boxes and three arrows set side by side, each box asking
+   for at least a hundred and forty pixels. On a phone that cannot hold them,
+   so the row wrapped: two boxes on one line, an arrow stranded at the start of
+   the next, the last box alone under that. It read as four unrelated cards
+   rather than one path.
+
+   Below the breakpoint the path stands up instead. One box a line, the arrows
+   turned a quarter so they point down the page, and a gap between them where
+   there was none — the same sequence, read top to bottom. */
+
+@media (max-width: 680px) {
+  .yn-deck .flow-row,
+  .yn-deck .etf-flow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .yn-deck .flow-arrow,
+  .yn-deck .etf-arrow {
+    padding: 0;
+    text-align: center;
+    line-height: 1;
+    transform: rotate(90deg);
+  }
+}
+
+
+/* The boxes in a flow row were set side by side with no gap at all: the only
+   air between them was the eight pixels of padding on the arrow, so a box and
+   an arrow read as one run of ink. And because the row centred its children,
+   each box was only as tall as its own sentence — "يضع الأمر" one line, "نقل
+   الأسهم والنقد" two — so four boxes of four different heights sat on a
+   ragged line. The client marked this one.
+
+   Above the phone breakpoint, where the row still runs across: a real gap,
+   every box the height of the tallest, and its label and value centred inside
+   whatever height that turns out to be. The arrows keep their own centre. */
+
+@media (min-width: 681px) {
+  .yn-deck .flow-row,
+  .yn-deck .etf-flow {
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .yn-deck .flow-item,
+  .yn-deck .etf-node {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .yn-deck .flow-arrow,
+  .yn-deck .etf-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+}
 </style>
 <div class="yn-deck">
 <!-- HEADER -->
@@ -231,8 +295,8 @@
       <div class="slide-inner">
         <div class="slide-text">
           <div class="slide-eyebrow">Perspective 01 of 05</div>
-          <h2 class="slide-headline">The market is a machine<br>that runs on <em>fear</em>and <em>greed</em>.</h2>
-          <p class="slide-body">Every price move tells a story about human psychology. When greed dominates, people chase rising prices and buy recklessly. When fear dominates, they panic sell at the worst moment. The market doesn't respond to facts — it responds to how people <em>feel</em>about facts. Warren Buffett's rule: "Be greedy when others are fearful. Be fearful when others are greedy." <span style="display:block;margin-top:14px;font-size:12px;color:var(--text-muted);font-family:'IBM Plex Mono',monospace;">↳ Illustrative readings from major fear/greed sentiment indices.</span></p>
+          <h2 class="slide-headline">The market is a machine<br>that runs on <em>fear</em> and <em>greed</em>.</h2>
+          <p class="slide-body">Every price move tells a story about human psychology. When greed dominates, people chase rising prices and buy recklessly. When fear dominates, they panic sell at the worst moment. The market doesn't respond to facts — it responds to how people <em>feel</em> about facts. Warren Buffett's rule: "Be greedy when others are fearful. Be fearful when others are greedy." <span style="display:block;margin-top:14px;font-size:12px;color:var(--text-muted);font-family:'IBM Plex Mono',monospace;">↳ Illustrative readings from major fear/greed sentiment indices.</span></p>
         </div>
         <div class="slide-visual">
           <div class="fg-meter">
@@ -471,8 +535,8 @@
         <div class="chart-explainer">
           <div class="chart-explain-text">
             <h3>The Line Chart</h3>
-            <p>The simplest price chart. It connects only the <strong>closing prices</strong>of each period — one dot per day (or hour, or minute), joined by a line.</p>
-            <p>Good for seeing the big picture trend. But it throws away a lot of information — you don't see what happened <em>during</em>each period.</p>
+            <p>The simplest price chart. It connects only the <strong>closing prices</strong> of each period — one dot per day (or hour, or minute), joined by a line.</p>
+            <p>Good for seeing the big picture trend. But it throws away a lot of information — you don't see what happened <em>during</em> each period.</p>
             <ul class="chart-pros">
               <li>Clean and easy to read</li>
               <li>Great for long-term trend analysis</li>
@@ -535,7 +599,7 @@
               <line x1="82" y1="185" x2="104" y2="185" stroke="#1C7A3E" stroke-width="1" stroke-dasharray="3"/>
               <!-- Label below -->
               <text x="55" y="212" fill="#1C7A3E" font-size="11" font-family="IBM Plex Mono">BULLISH</text>
-              <text x="52" y="224" fill="#666666" font-size="9" font-family="IBM Plex Mono">CLOSE >OPEN</text>
+              <text x="52" y="224" fill="#666666" font-size="9" font-family="IBM Plex Mono">CLOSE &gt; OPEN</text>
 
               <!-- ── BEARISH CANDLE (red) ── x=230 -->
               <!-- Wick top -->
@@ -574,9 +638,9 @@
       <div class="chart-title">SAME STOCK — LINE CHART + VOLUME (60 DAYS)</div>
       <div class="chart-subtitle">Price and volume are two separate dimensions of information. Neither tells the full story alone.</div>
       <div style="margin-bottom:16px;font-size:14px;color:var(--text-dim);line-height:1.7;">
-        <strong style="color:var(--yn-ink);">Volume</strong>measures how many shares changed hands in a given period. It answers: <em>how much conviction was behind this price move?</em><br>
+        <strong style="color:var(--yn-ink);">Volume</strong> measures how many shares changed hands in a given period. It answers: <em>how much conviction was behind this price move?</em><br>
         <span style="color:var(--green);">● Green volume bar</span> = price closed higher than previous day — buyers were in control.<br>
-        <span style="color:var(--red);">● Red volume bar</span> = price closed lower than previous day — sellers were in control.<br>A large price move on <strong>high volume</strong>is a strong signal. The same move on <strong>low volume</strong>is weak and likely to reverse.
+        <span style="color:var(--red);">● Red volume bar</span> = price closed lower than previous day — sellers were in control.<br>A large price move on <strong>high volume</strong> is a strong signal. The same move on <strong>low volume</strong> is weak and likely to reverse.
       </div>
       <canvas id="priceChart" style="max-height:200px;"></canvas>
       <div style="height:16px;"></div>
@@ -984,7 +1048,7 @@ function drawOHLC(){
     prices.push(parseFloat(p.toFixed(2)));
     volumes.push(Math.floor(Math.random()*900000+100000));
   }
-  // color volume bars: green if close >prev close, red if close < prev close
+  // color volume bars: green if close > prev close, red if close < prev close
   for(let i=0;i<days;i++){
     const up = i===0 ? true : prices[i] >= prices[i-1];
     volColors.push(up ? 'rgba(28,122,62,0.5)' : 'rgba(179,38,30,0.5)');
