@@ -148,6 +148,70 @@
   .yn-deck .dashboard-grid{grid-template-columns:1fr;}
   .yn-deck .metric{border-right:none;}
 }
+
+/* ── The flow diagrams on a narrow screen ──────────────────────────────────
+
+   A flow row is four boxes and three arrows set side by side, each box asking
+   for at least a hundred and forty pixels. On a phone that cannot hold them,
+   so the row wrapped: two boxes on one line, an arrow stranded at the start of
+   the next, the last box alone under that. It read as four unrelated cards
+   rather than one path.
+
+   Below the breakpoint the path stands up instead. One box a line, the arrows
+   turned a quarter so they point down the page, and a gap between them where
+   there was none — the same sequence, read top to bottom. */
+
+@media (max-width: 680px) {
+  .yn-deck .flow-row,
+  .yn-deck .etf-flow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .yn-deck .flow-arrow,
+  .yn-deck .etf-arrow {
+    padding: 0;
+    text-align: center;
+    line-height: 1;
+    transform: rotate(90deg);
+  }
+}
+
+
+/* The boxes in a flow row were set side by side with no gap at all: the only
+   air between them was the eight pixels of padding on the arrow, so a box and
+   an arrow read as one run of ink. And because the row centred its children,
+   each box was only as tall as its own sentence — "يضع الأمر" one line, "نقل
+   الأسهم والنقد" two — so four boxes of four different heights sat on a
+   ragged line. The client marked this one.
+
+   Above the phone breakpoint, where the row still runs across: a real gap,
+   every box the height of the tallest, and its label and value centred inside
+   whatever height that turns out to be. The arrows keep their own centre. */
+
+@media (min-width: 681px) {
+  .yn-deck .flow-row,
+  .yn-deck .etf-flow {
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .yn-deck .flow-item,
+  .yn-deck .etf-node {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .yn-deck .flow-arrow,
+  .yn-deck .etf-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+}
 </style>
 <div class="yn-deck">
 <!-- HEADER -->
