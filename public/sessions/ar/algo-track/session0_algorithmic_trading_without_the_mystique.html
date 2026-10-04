@@ -106,6 +106,75 @@
   .yn-deck .track-item{grid-template-columns:1fr;gap:8px;padding:24px 0;}
   .yn-deck .track-link{width:max-content;}
 }
+
+/* ── Arabic sets differently ───────────────────────────────────────────────
+
+   This deck was written in English, and its labels ask for IBM Plex Mono. That
+   face carries no Arabic at all, so every Arabic label fell through to whatever
+   monospace the device happened to have, which sets each letter in its own
+   fixed cell and pulls the word apart — "مستثمر" arrived as six loose letters,
+   and a different six on every phone. The stack below keeps Plex Mono for the
+   Latin and the figures and hands the Arabic to Plex Sans Arabic, which is the
+   face the rest of the site is set in.
+
+   The second habit is tracking. Arabic letters join, and letter-spacing prises
+   them apart as well. It is off wherever Arabic can reach, and left alone on
+   the few labels that are only ever Latin — the ticker symbols, the figures,
+   the EFG mark.
+
+   `!important` because a few of these labels carry the family in a style
+   attribute, and nothing in a stylesheet outranks that. */
+.yn-deck .back-btn,
+.yn-deck .callout,
+.yn-deck .efg-logo-text,
+.yn-deck .mission-label,
+.yn-deck .next-btn,
+.yn-deck .next-label,
+.yn-deck .primary-btn,
+.yn-deck .principle-label,
+.yn-deck .repo-heading,
+.yn-deck .repo-slot,
+.yn-deck .section-num,
+.yn-deck .session-tag,
+.yn-deck .track-link,
+.yn-deck .track-num,
+.yn-deck .chart-subtitle,
+.yn-deck .ghost-btn,
+.yn-deck .primary-btn,
+.yn-deck text[font-family*="IBM Plex Mono"],
+.yn-deck [style*="IBM Plex Mono"] {
+  font-family: 'IBM Plex Mono', 'IBM Plex Sans Arabic', sans-serif !important;
+  letter-spacing: normal !important;
+}
+
+/* The rule above keeps Plex Mono at the front of the stack so the tickers and
+   the figures still set in it, and that is right for a label of two words. It
+   is wrong for a sentence: the space character exists in Plex Mono, so the
+   browser takes it from there, and a monospaced space is more than twice the
+   width of an Arabic one. A caption came out with a gap between every word —
+   the thing the client read as the letters being pulled apart.
+
+   These are the places a whole Arabic sentence is set at label size. They take
+   the Arabic face outright, Latin and figures included, which is how the rest
+   of the Arabic site sets its prose. The labels proper are left above. */
+.yn-deck .chart-subtitle,
+.yn-deck .chart-pros li,
+.yn-deck .fg-context,
+.yn-deck .game-caption,
+.yn-deck .slide-body [style*="IBM Plex Mono"],
+.yn-deck .slide-note {
+  font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+  letter-spacing: normal !important;
+}
+
+/* The deck root asks for IBM Plex Sans, which has no Arabic either, so every
+   word that is not a label was being drawn by whatever the device happened to
+   fall back to — a different face on every phone, and on some of them the
+   letters do not join. Plex Sans Arabic is named here so the deck reads in the
+   same face as the page around it. */
+.yn-deck {
+  font-family: 'IBM Plex Sans', 'IBM Plex Sans Arabic', sans-serif;
+}
 </style>
 <div class="yn-deck">
 <header>
@@ -117,7 +186,7 @@
     </div>
     <div class="session-tag">7 أجزاء</div>
     <h1>التداول الخوارزمي،<br>بلا غموض</h1>
-    <p class="subtitle">جسر للمبتدئين من أساسيات سوق الأسهم إلى القواعد والاختبارات الرجعية وضوابط المخاطر وأنظمة صغيرة يستطيع الناس فهمها وبناءها فعلاً.</p>
+    <p class="subtitle">جسر للمبتدئين من أساسيات سوق الأسهم إلى القواعد والاختبارات الرجعية وضوابط المخاطر وأنظمة صغيرة يستطيع الناس فهمها وبناءها فعلًا.</p>
     <div class="header-actions">
       <a class="primary-btn" href="/learn/algo-track/01-what-is-an-algorithm" target="_top">ابدأ الجزء 01</a>
       <a class="ghost-btn" href="#track-map">اعرض خريطة المسار</a>
@@ -129,16 +198,16 @@
   <div class="container">
     <span class="section-num">01 — المهمة</span>
     <h2 class="section-title">ما الغرض من هذا المسار</h2>
-    <p class="section-lead">هذه ليست شهادة، وليست وعداً بأن الأتمتة تجعل التداول سهلاً. هي مقدمة مفتوحة المصدر لمن يفهمون أساسيات الأسهم ويريدون تعلّم كيف تتحول أفكار التداول إلى أنظمة.</p>
+    <p class="section-lead">هذه ليست شهادة، وليست وعدًا بأن الأتمتة تجعل التداول سهلًا. هي مقدمة مفتوحة المصدر لمن يفهمون أساسيات الأسهم ويريدون تعلّم كيف تتحول أفكار التداول إلى أنظمة.</p>
 
     <div class="mission-wrap">
       <div class="mission-label">الوعد</div>
       <div class="mission-statement">فتح سوق الأسهم كساحة تجريب لطلاب مصر والشرق الأوسط، والبنّائين، والمستثمرين الفضوليين.</div>
-      <p class="mission-body">لست بحاجة لأن تكون محلّلاً كمّياً. لست بحاجة إلى الذكاء الاصطناعي. لست بحاجة إلى رياضيات متقدمة. أنت بحاجة إلى فهم <strong>القواعد</strong> و<strong>الاختبار</strong> و<strong>المخاطر</strong> و<strong>التنفيذ</strong> بوضوح يكفي للتجريب بمسؤولية.</p>
+      <p class="mission-body">لست بحاجة لأن تكون محلّلًا كمّيًا. لست بحاجة إلى الذكاء الاصطناعي. لست بحاجة إلى رياضيات متقدمة. أنت بحاجة إلى فهم <strong>القواعد</strong> و<strong>الاختبار</strong> و<strong>المخاطر</strong> و<strong>التنفيذ</strong> بوضوح يكفي للتجريب بمسؤولية.</p>
     </div>
 
-    <p class="prose">مسار الأساسيات يعلّم سوق الأسهم نفسه. وهذا المسار يبدأ بعده: بمجرد أن تعرف ما السهم، وما السعر، وكيف يتداول الناس، يصير السؤال التالي بسيطاً — <em>هل يمكن كتابة فكرة تداول على هيئة قواعد؟</em></p>
-    <p class="prose">إن أمكن، أمكن اختبارها. وإن أمكن اختبارها، أمكن تحسينها. وإن أمكن تحسينها، أمكن أن تصير نظاماً صغيراً. هذا هو التحول الذهني الذي بُني حوله هذا المسار.</p>
+    <p class="prose">مسار الأساسيات يعلّم سوق الأسهم نفسه. وهذا المسار يبدأ بعده: بمجرد أن تعرف ما السهم، وما السعر، وكيف يتداول الناس، يصير السؤال التالي بسيطًا — <em>هل يمكن كتابة فكرة تداول على هيئة قواعد؟</em></p>
+    <p class="prose">إن أمكن، أمكن اختبارها. وإن أمكن اختبارها، أمكن تحسينها. وإن أمكن تحسينها، أمكن أن تصير نظامًا صغيرًا. هذا هو التحول الذهني الذي بُني حوله هذا المسار.</p>
   </div>
 </section>
 
@@ -151,37 +220,37 @@
     <div class="principle-grid">
       <div class="principle-card">
         <div class="principle-label">لا سحر</div>
-        <div class="principle-body">الخوارزمية مجرد مجموعة قواعد محددة. الحاسوب يضيف السرعة والاتساق والتغطية — لا تنبؤاً خارقاً.</div>
+        <div class="principle-body">الخوارزمية مجرد مجموعة قواعد محددة. الحاسوب يضيف السرعة والاتساق والتغطية — لا تنبؤًا خارقًا.</div>
       </div>
       <div class="principle-card">
         <div class="principle-label">لا ضجيج</div>
         <div class="principle-body">الأتمتة لا تعني الربحية. كل جزء في هذا المسار يُبقي الحدود ظاهرة.</div>
       </div>
       <div class="principle-card">
-        <div class="principle-label">المخاطر أولاً</div>
+        <div class="principle-label">المخاطر أولًا</div>
         <div class="principle-body">الاستراتيجية ناقصة بلا تحديد لحجم المركز، وقواعد إيقاف، وحدود للتراجع، ومفتاح إيقاف طارئ.</div>
       </div>
       <div class="principle-card">
         <div class="principle-label">عقلية البنّاء</div>
-        <div class="principle-body">المقالات تشرح المفاهيم. والمستودعات ستحتوي لاحقاً الأمثلة العاملة والقوالب والتجارب.</div>
+        <div class="principle-body">المقالات تشرح المفاهيم. والمستودعات ستحتوي لاحقًا الأمثلة العاملة والقوالب والتجارب.</div>
       </div>
     </div>
 
-    <div class="callout">↳ الهدف ليس جعل المبتدئين متهورين. الهدف جعل التجريب أكثر أماناً ووضوحاً وصدقاً.</div>
+    <div class="callout">↳ الهدف ليس جعل المبتدئين متهورين. الهدف جعل التجريب أكثر أمانًا ووضوحًا وصدقًا.</div>
   </div>
 </section>
 
 <section class="section" id="track-map">
   <div class="container">
     <span class="section-num">03 — خريطة المسار</span>
-    <h2 class="section-title">٧ أجزاء، مسار واحد واضح</h2>
-    <p class="section-lead">ينتقل المسار من القواعد البسيطة إلى التفكير في أنظمة تعمل مباشرة. كل جزء قصير ومحدود ومفهوم دون الحاجة إلى البرمجة أولاً.</p>
+    <h2 class="section-title">7 أجزاء، مسار واحد واضح</h2>
+    <p class="section-lead">ينتقل المسار من القواعد البسيطة إلى التفكير في أنظمة تعمل مباشرة. كل جزء قصير ومحدود ومفهوم دون الحاجة إلى البرمجة أولًا.</p>
 
     <ul class="track-list">
       <li class="track-item current">
         <div class="track-num">الجزء 01</div>
         <div>
-          <div class="track-title">ما الخوارزمية حقاً؟</div>
+          <div class="track-title">ما الخوارزمية حقًا؟</div>
           <div class="track-desc">انزع الغموض. الخوارزمية مجموعة قواعد محددة تُطبَّق باتساق. إذا أمكن كتابة فكرة تداول بوضوح، فهي قابلة للتحويل إلى خوارزمية.</div>
         </div>
         <a class="track-link" href="/learn/algo-track/01-what-is-an-algorithm" target="_top">افتح</a>
@@ -189,8 +258,8 @@
       <li class="track-item">
         <div class="track-num">الجزء 02</div>
         <div>
-          <div class="track-title">لماذا الخوارزميات أصلاً؟</div>
-          <div class="track-desc">الحجة الصادقة والحدود الصادقة: العاطفة، والاتساق، والحجم، وتغطية السوق كاملاً، والإفراط في المواءمة، وتغيّر الأنظمة السوقية، ولماذا لا تعني الأتمتة الربح.</div>
+          <div class="track-title">لماذا الخوارزميات أصلًا؟</div>
+          <div class="track-desc">الحجة الصادقة والحدود الصادقة: العاطفة، والاتساق، والحجم، وتغطية السوق كاملًا، والإفراط في المواءمة، وتغيّر الأنظمة السوقية، ولماذا لا تعني الأتمتة الربح.</div>
         </div>
         <a class="track-link" href="/learn/algo-track/02-why-algos-at-all" target="_top">افتح</a>
       </li>
@@ -198,7 +267,7 @@
         <div class="track-num">الجزء 03</div>
         <div>
           <div class="track-title">تشريح الصفقة والاستراتيجية</div>
-          <div class="track-desc">كل صفقة تحتاج نقطة دخول، وجني أرباح، ووقف خسارة، ومدة. وكل استراتيجية تحتاج إشارة، وقاعدة دخول، وقاعدة خروج، وتحديداً لحجم المركز.</div>
+          <div class="track-desc">كل صفقة تحتاج نقطة دخول، وجني أرباح، ووقف خسارة، ومدة. وكل استراتيجية تحتاج إشارة، وقاعدة دخول، وقاعدة خروج، وتحديدًا لحجم المركز.</div>
         </div>
         <a class="track-link" href="/learn/algo-track/03-anatomy-of-a-trade" target="_top">افتح</a>
       </li>
@@ -222,7 +291,7 @@
         <div class="track-num">الجزء 06</div>
         <div>
           <div class="track-title">صمّم خوارزميتك كشركة مصغّرة</div>
-          <div class="track-desc">النظام الجاد ليس سكربتاً عملاقاً واحداً. له أدوار: البيانات، والبحث، والتنفيذ، وإدارة المحفظة، ومسؤول مخاطر يستطيع إيقاف كل شيء.</div>
+          <div class="track-desc">النظام الجاد ليس سكربتًا عملاقًا واحدًا. له أدوار: البيانات، والبحث، والتنفيذ، وإدارة المحفظة، ومسؤول مخاطر يستطيع إيقاف كل شيء.</div>
         </div>
         <a class="track-link" href="/learn/algo-track/06-architect-your-algo" target="_top">افتح</a>
       </li>
@@ -246,8 +315,8 @@
 
     <div class="repo-wrap">
       <div class="repo-heading">خانات المستودعات</div>
-      <p class="repo-body">كل جزء سينتهي لاحقاً بمربع مثال عامل نظيف. يبقى المقال مفاهيمياً؛ ويصير المستودع المثال الحي. وإلى أن تجهز EFG API والأمثلة، يمكن لكل جزء أن يحمل عنصراً بديلاً مؤقتاً.</p>
-      <div class="repo-slot">&lt;RepoLink&gt; الكود العامل لهذا الجزء: المسار يُحدَّد لاحقاً بمجرد تشغيل EFG API.</div>
+      <p class="repo-body">كل جزء سينتهي لاحقًا بمربع مثال عامل نظيف. يبقى المقال مفاهيميًا؛ ويصير المستودع المثال الحي. وإلى أن تجهز EFG API والأمثلة، يمكن لكل جزء أن يحمل عنصرًا بديلًا مؤقتًا.</p>
+      <div class="repo-slot">&lt;RepoLink&gt; الكود العامل لهذا الجزء: المسار يُحدَّد لاحقًا بمجرد تشغيل EFG API.</div>
     </div>
   </div>
 </section>
@@ -261,7 +330,7 @@
     <div class="next-card">
       <div>
         <div class="next-label">البداية — الجزء 01 / 07</div>
-        <div class="next-title">ما الخوارزمية حقاً؟<br><span style="font-size:16px;color:var(--text-dim);font-family:'IBM Plex Sans',sans-serif;font-weight:400;">التعريف، وأبسط خوارزمية ممكنة، وما الذي يتغير حين يشغّلها الحاسوب.</span></div>
+        <div class="next-title">ما الخوارزمية حقًا؟<br><span style="font-size:16px;color:var(--text-dim);font-family:'IBM Plex Sans',sans-serif;font-weight:400;">التعريف، وأبسط خوارزمية ممكنة، وما الذي يتغير حين يشغّلها الحاسوب.</span></div>
       </div>
       <a class="next-btn" href="/learn/algo-track/01-what-is-an-algorithm" target="_top">الجزء 01 ←</a>
     </div>
