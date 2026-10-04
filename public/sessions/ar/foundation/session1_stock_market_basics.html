@@ -197,6 +197,141 @@
   .yn-deck .slide-inner{grid-template-columns:1fr;}
   .yn-deck .chart-explainer{grid-template-columns:1fr;}
 }
+
+/* ── Arabic sets differently ───────────────────────────────────────────────
+
+   This deck was written in English, and its labels ask for IBM Plex Mono. That
+   face carries no Arabic at all, so every Arabic label fell through to whatever
+   monospace the device happened to have, which sets each letter in its own
+   fixed cell and pulls the word apart — "مستثمر" arrived as six loose letters,
+   and a different six on every phone. The stack below keeps Plex Mono for the
+   Latin and the figures and hands the Arabic to Plex Sans Arabic, which is the
+   face the rest of the site is set in.
+
+   The second habit is tracking. Arabic letters join, and letter-spacing prises
+   them apart as well. It is off wherever Arabic can reach, and left alone on
+   the few labels that are only ever Latin — the ticker symbols, the figures,
+   the EFG mark.
+
+   `!important` because a few of these labels carry the family in a style
+   attribute, and nothing in a stylesheet outranks that. */
+.yn-deck .chart-pros,
+.yn-deck .chart-tab,
+.yn-deck .chart-title,
+.yn-deck .efg-logo-text,
+.yn-deck .eq-wrap,
+.yn-deck .fg-btn,
+.yn-deck .fg-caption,
+.yn-deck .flow-item-label,
+.yn-deck .game-caption,
+.yn-deck .section-num,
+.yn-deck .session-tag,
+.yn-deck .slide-eyebrow,
+.yn-deck .tag,
+.yn-deck .term,
+.yn-deck th,
+.yn-deck .chart-pros li,
+.yn-deck .chart-subtitle,
+.yn-deck .ghost-btn,
+.yn-deck .primary-btn,
+.yn-deck text[font-family*="IBM Plex Mono"],
+.yn-deck [style*="IBM Plex Mono"] {
+  font-family: 'IBM Plex Mono', 'IBM Plex Sans Arabic', sans-serif !important;
+  letter-spacing: normal !important;
+}
+
+/* The rule above keeps Plex Mono at the front of the stack so the tickers and
+   the figures still set in it, and that is right for a label of two words. It
+   is wrong for a sentence: the space character exists in Plex Mono, so the
+   browser takes it from there, and a monospaced space is more than twice the
+   width of an Arabic one. A caption came out with a gap between every word —
+   the thing the client read as the letters being pulled apart.
+
+   These are the places a whole Arabic sentence is set at label size. They take
+   the Arabic face outright, Latin and figures included, which is how the rest
+   of the Arabic site sets its prose. The labels proper are left above. */
+.yn-deck .chart-subtitle,
+.yn-deck .chart-pros li,
+.yn-deck .fg-context,
+.yn-deck .game-caption,
+.yn-deck .slide-body [style*="IBM Plex Mono"],
+.yn-deck .slide-note {
+  font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+  letter-spacing: normal !important;
+}
+
+/* ── The flow diagrams on a narrow screen ──────────────────────────────────
+
+   A flow row is four boxes and three arrows set side by side, each box asking
+   for at least a hundred and forty pixels. On a phone that cannot hold them,
+   so the row wrapped: two boxes on one line, an arrow stranded at the start of
+   the next, the last box alone under that. It read as four unrelated cards
+   rather than one path.
+
+   Below the breakpoint the path stands up instead. One box a line, the arrows
+   turned a quarter so they point down the page, and a gap between them where
+   there was none — the same sequence, read top to bottom. */
+
+@media (max-width: 680px) {
+  .yn-deck .flow-row,
+  .yn-deck .etf-flow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .yn-deck .flow-arrow,
+  .yn-deck .etf-arrow {
+    padding: 0;
+    text-align: center;
+    line-height: 1;
+    transform: rotate(-90deg);
+  }
+}
+
+/* The deck root asks for IBM Plex Sans, which has no Arabic either, so every
+   word that is not a label was being drawn by whatever the device happened to
+   fall back to — a different face on every phone, and on some of them the
+   letters do not join. Plex Sans Arabic is named here so the deck reads in the
+   same face as the page around it. */
+.yn-deck {
+  font-family: 'IBM Plex Sans', 'IBM Plex Sans Arabic', sans-serif;
+}
+
+
+/* The boxes in a flow row were set side by side with no gap at all: the only
+   air between them was the eight pixels of padding on the arrow, so a box and
+   an arrow read as one run of ink. And because the row centred its children,
+   each box was only as tall as its own sentence — "يضع الأمر" one line, "نقل
+   الأسهم والنقد" two — so four boxes of four different heights sat on a
+   ragged line. The client marked this one.
+
+   Above the phone breakpoint, where the row still runs across: a real gap,
+   every box the height of the tallest, and its label and value centred inside
+   whatever height that turns out to be. The arrows keep their own centre. */
+
+@media (min-width: 681px) {
+  .yn-deck .flow-row,
+  .yn-deck .etf-flow {
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .yn-deck .flow-item,
+  .yn-deck .etf-node {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .yn-deck .flow-arrow,
+  .yn-deck .etf-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+}
 </style>
 <div class="yn-deck">
 <!-- HEADER -->
@@ -231,8 +366,8 @@
       <div class="slide-inner">
         <div class="slide-text">
           <div class="slide-eyebrow">منظور 01 من 05</div>
-          <h2 class="slide-headline">السوق آلة<br>تعمل بـ<em>الخوف</em>و<em>الطمع</em>.</h2>
-          <p class="slide-body">كل حركة سعر تحكي قصة عن النفس البشرية. حين يسود الطمع، يطارد الناس الأسعار الصاعدة ويشترون بتهور. وحين يسود الخوف، يبيعون في ذعر في أسوأ لحظة. السوق لا يستجيب للحقائق — بل يستجيب لما <em>يشعر</em>به الناس تجاه الحقائق. قاعدة وارن بافيت: "كن طامعًا حين يخاف الآخرون. وكن خائفًا حين يطمع الآخرون." <span style="display:block;margin-top:14px;font-size:12px;color:var(--text-muted);font-family:'IBM Plex Mono',monospace;">↳ قراءات توضيحية من مؤشرات المشاعر الكبرى للخوف والطمع.</span></p>
+          <h2 class="slide-headline">السوق آلة<br>تعمل بـ<em>الخوف</em> و<em>الطمع</em>.</h2>
+          <p class="slide-body">كل حركة سعر تحكي قصة عن النفس البشرية. حين يسود الطمع، يطارد الناس الأسعار الصاعدة ويشترون بتهور. وحين يسود الخوف، يبيعون في ذعر في أسوأ لحظة. السوق لا يستجيب للحقائق — بل يستجيب لما <em>يشعر</em> به الناس تجاه الحقائق. قاعدة وارن بافيت: "كن طامعًا حين يخاف الآخرون. وكن خائفًا حين يطمع الآخرون." <span style="display:block;margin-top:14px;font-size:12px;color:var(--text-muted);font-family:'IBM Plex Mono',monospace;">↳ قراءات توضيحية من مؤشرات المشاعر الكبرى للخوف والطمع.</span></p>
         </div>
         <div class="slide-visual">
           <div class="fg-meter">
@@ -384,11 +519,11 @@
       <div class="chart-subtitle">من نية المستثمر إلى صفقة منفّذة</div>
       <div class="flow-row">
         <div class="flow-item"><div class="flow-item-label">مستثمر</div><div class="flow-item-val">يريد شراء أسهم</div></div>
-        <div class="flow-arrow">→</div>
+        <div class="flow-arrow">←</div>
         <div class="flow-item"><div class="flow-item-label">الوسيط (EFG)</div><div class="flow-item-val">يضع الأمر</div></div>
-        <div class="flow-arrow">→</div>
+        <div class="flow-arrow">←</div>
         <div class="flow-item"><div class="flow-item-label">البورصة (EGX)</div><div class="flow-item-val">تطابق المشتري والبائع</div></div>
-        <div class="flow-arrow">→</div>
+        <div class="flow-arrow">←</div>
         <div class="flow-item"><div class="flow-item-label">التسوية</div><div class="flow-item-val">نقل الأسهم والنقد (T+2 في EGX)</div></div>
       </div>
     </div>
@@ -471,8 +606,8 @@
         <div class="chart-explainer">
           <div class="chart-explain-text">
             <h3>الرسم الخطي</h3>
-            <p>أبسط رسم بياني للسعر. يصل فقط بين <strong>أسعار الإغلاق</strong>لكل فترة — نقطة لكل يوم (أو ساعة، أو دقيقة)، يربطها خط.</p>
-            <p>جيد لرؤية الاتجاه العام. لكنه يهدر كثيرًا من المعلومات — لا ترى ما حدث <em>خلال</em>كل فترة.</p>
+            <p>أبسط رسم بياني للسعر. يصل فقط بين <strong>أسعار الإغلاق</strong> لكل فترة — نقطة لكل يوم (أو ساعة، أو دقيقة)، يربطها خط.</p>
+            <p>جيد لرؤية الاتجاه العام. لكنه يهدر كثيرًا من المعلومات — لا ترى ما حدث <em>خلال</em> كل فترة.</p>
             <ul class="chart-pros">
               <li>نظيف وسهل القراءة</li>
               <li>ممتاز لتحليل الاتجاه طويل المدى</li>
@@ -535,7 +670,7 @@
               <line x1="82" y1="185" x2="104" y2="185" stroke="#1C7A3E" stroke-width="1" stroke-dasharray="3"/>
               <!-- Label below -->
               <text x="55" y="212" fill="#1C7A3E" font-size="11" font-family="IBM Plex Mono">صاعدة</text>
-              <text x="52" y="224" fill="#666666" font-size="9" font-family="IBM Plex Mono">الإغلاق >الافتتاح</text>
+              <text x="52" y="224" fill="#666666" font-size="9" font-family="IBM Plex Mono">الإغلاق &gt; الافتتاح</text>
 
               <!-- ── BEARISH CANDLE (red) ── x=230 -->
               <!-- Wick top -->
@@ -574,9 +709,9 @@
       <div class="chart-title">السهم نفسه — رسم خطي + حجم التداول (60 يومًا)</div>
       <div class="chart-subtitle">السعر وحجم التداول بُعدان منفصلان من المعلومات. لا يروي أيٌّ منهما القصة كاملة وحده.</div>
       <div style="margin-bottom:16px;font-size:14px;color:var(--text-dim);line-height:1.7;">
-        <strong style="color:var(--yn-ink);">حجم التداول</strong>يقيس كم سهمًا تغيّرت ملكيته في فترة ما. وهو يجيب: <em>كم من القناعة كان وراء حركة السعر هذه؟</em><br>
+        <strong style="color:var(--yn-ink);">حجم التداول</strong> يقيس كم سهمًا تغيّرت ملكيته في فترة ما. وهو يجيب: <em>كم من القناعة كان وراء حركة السعر هذه؟</em><br>
         <span style="color:var(--green);">● عمود حجم أخضر</span> = أُغلق السعر أعلى من اليوم السابق — المشترون في السيطرة.<br>
-        <span style="color:var(--red);">● عمود حجم أحمر</span> = أُغلق السعر أدنى من اليوم السابق — البائعون في السيطرة.<br>حركة سعرية كبيرة على <strong>حجم تداول مرتفع</strong>إشارة قوية. والحركة نفسها على <strong>حجم منخفض</strong>ضعيفة ومرشحة للانعكاس.
+        <span style="color:var(--red);">● عمود حجم أحمر</span> = أُغلق السعر أدنى من اليوم السابق — البائعون في السيطرة.<br>حركة سعرية كبيرة على <strong>حجم تداول مرتفع</strong> إشارة قوية. والحركة نفسها على <strong>حجم منخفض</strong> ضعيفة ومرشحة للانعكاس.
       </div>
       <canvas id="priceChart" style="max-height:200px;"></canvas>
       <div style="height:16px;"></div>
@@ -656,7 +791,13 @@ for(let i=0;i<total;i++){
 
 function goSlide(n){
   cur=Math.max(0,Math.min(total-1,n));
-  track.style.transform=`translateX(-${cur*100}%)`;
+  // The slides are laid out right to left on this page, so they stack
+  // to the left of the origin and the negative translate the English
+  // deck uses walks away from them — the first slide was fine and the
+  // rest were a blank grey screen. The sign follows the direction
+  // rather than assuming one.
+  const rtl = getComputedStyle(track).direction === 'rtl';
+  track.style.transform=`translateX(${rtl ? '' : '-'}${cur*100}%)`;
   document.querySelectorAll('.s-dot').forEach((d,i)=>d.classList.toggle('on',i===cur));
   document.getElementById('slideNum').textContent=`${cur+1} / ${total}`;
 }
@@ -984,7 +1125,7 @@ function drawOHLC(){
     prices.push(parseFloat(p.toFixed(2)));
     volumes.push(Math.floor(Math.random()*900000+100000));
   }
-  // color volume bars: green if close >prev close, red if close < prev close
+  // color volume bars: green if close > prev close, red if close < prev close
   for(let i=0;i<days;i++){
     const up = i===0 ? true : prices[i] >= prices[i-1];
     volColors.push(up ? 'rgba(28,122,62,0.5)' : 'rgba(179,38,30,0.5)');
