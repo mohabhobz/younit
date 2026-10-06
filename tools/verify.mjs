@@ -30,7 +30,6 @@ const ROUTES = [
   ['/learn/algo-track/01-what-is-an-algorithm/deck', 'algo-session-deck'],
 
   ['/build', 'build'],
-  ['/build/repositories', 'build-repositories'],
   ['/build/templates', 'build-templates'],
   ['/build/showcase', 'showcase'],
   ['/build/capstones', 'capstones'],
