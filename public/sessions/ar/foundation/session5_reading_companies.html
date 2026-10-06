@@ -186,8 +186,7 @@
 .yn-deck .chart-subtitle,
 .yn-deck .ghost-btn,
 .yn-deck .primary-btn,
-.yn-deck text[font-family*="IBM Plex Mono"],
-.yn-deck [style*="IBM Plex Mono"] {
+.yn-deck text[font-family*="IBM Plex Mono"] {
   font-family: 'IBM Plex Mono', 'IBM Plex Sans Arabic', sans-serif !important;
   letter-spacing: normal !important;
 }
@@ -206,8 +205,38 @@
 .yn-deck .chart-pros li,
 .yn-deck .fg-context,
 .yn-deck .game-caption,
-.yn-deck .slide-body [style*="IBM Plex Mono"],
+.yn-deck [style*="IBM Plex Mono"],
 .yn-deck .slide-note {
+  font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+  letter-spacing: normal !important;
+}
+
+/* The same rule, for the blocks that turned out to carry whole sentences
+   rather than labels: a takeaway, a checklist item, a rule's quotation, a
+   callout, a footnote. They were in the list above, which keeps Plex Mono at
+   the front of the stack, so their spaces came out at mono width and the
+   Arabic read as though it had been tracked out. */
+.yn-deck .callout,
+.yn-deck .compound-footnote,
+.yn-deck .rule-block blockquote,
+.yn-deck .carousel-rule blockquote,
+.yn-deck .takeaway-list li,
+.yn-deck .checklist li,
+.yn-deck .when-list li,
+.yn-deck .chart-pros li {
+  font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+  letter-spacing: normal !important;
+}
+
+/* And the last of them: a chart's explanation, a carousel's body, the text a
+   part divider carries, a rule's small print. Same reason — these are
+   sentences, and a sentence takes the Arabic face and the Arabic space. */
+.yn-deck .chart-explain-text p,
+.yn-deck .card-body-text,
+.yn-deck .card-body-text span,
+.yn-deck .part-divider span,
+.yn-deck .rule-mini p,
+.yn-deck .chart-wrap > .chart-title {
   font-family: 'IBM Plex Sans Arabic', sans-serif !important;
   letter-spacing: normal !important;
 }
@@ -346,7 +375,7 @@
 
     </div>
 
-    <div style="background:rgba(255,208,90,.05);border:1px solid rgba(255,208,90,.2);border-radius:4px;padding:18px 22px;">
+    <div style="background:var(--card);border:1px solid rgba(255,208,90,.55);border-radius:4px;padding:18px 22px;">
       <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">↳ الفكرة الكبرى</div>
       <div style="font-size:13px;color:var(--text-dim);line-height:1.7;">شركة عظيمة بسعر فظيع استثمار سيئ. وشركة متوسطة بسعر عظيم قد تكون استثمارًا جيدًا. التحليل الأساسي ليس عن إيجاد "أفضل" شركة — بل عن إيجاد أكبر فجوة بين ما <em>يساويه</em> الشيء وما <em>يطلبه</em> السوق ثمنًا له حاليًا.</div>
     </div>
@@ -477,7 +506,7 @@
       <p style="font-size:14px;color:var(--text-dim);line-height:1.7;">أهم رقم في هذه القائمة هو <strong style="color:var(--yn-ink);">التدفق النقدي الحر</strong> — النقد التشغيلي ناقص الإنفاق الرأسمالي. وهو النقد الفعلي الذي يدرّه العمل بعد دفع تكلفة الحفاظ على نفسه. الشركات تستطيع تزييف الأرباح بحيل محاسبية، لكن النقد الحقيقي أصعب كثيرًا في التصنيع.</p>
     </div>
 
-    <div style="background:rgba(255,208,90,.05);border:1px solid rgba(255,208,90,.2);border-radius:4px;padding:18px 22px;margin-top:24px;">
+    <div style="background:var(--card);border:1px solid rgba(255,208,90,.55);border-radius:4px;padding:18px 22px;margin-top:24px;">
       <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">↳ أهم درس على الإطلاق</div>
       <div style="font-size:13px;color:var(--text-dim);line-height:1.7;"><strong style="color:var(--yn-ink);">الربح ليس نقدًا، والنقد ليس ربحًا.</strong> تستطيع شركة أن تُظهر "أرباحًا" في قائمة الدخل بينما تنزف نقدًا — بتسجيل مبيعات لم تُحصّل قيمتها بعد، أو برسملة تكاليف كان ينبغي أن تكون مصروفات. الشركات لا تفلس تقريبًا بسبب انخفاض الأرباح. تفلس لأن النقد ينفد منها. تحقّق دائمًا من القائمتين معًا.</div>
     </div>
@@ -548,7 +577,7 @@
 
     </div>
 
-    <div style="background:rgba(179,38,30,.05);border:1px solid rgba(179,38,30,.2);border-radius:4px;padding:18px 22px;">
+    <div style="background:var(--card);border:1px solid rgba(179,38,30,.55);border-radius:4px;padding:18px 22px;">
       <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--red);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">↳ المكرر المرتفع ليس دائمًا "غاليًا"</div>
       <div style="font-size:13px;color:var(--text-dim);line-height:1.7;">مكرر 8 على عمل متراجع أغلى من مكرر 25 على عمل ينمو 30% سنويًا. النسبة بلا معنى دون سياق: الصناعة، ومعدل النمو، وعبء الدين، واتجاه الربحية. <strong style="color:var(--yn-ink);">النسب نقاط انطلاق للأسئلة، لا أجوبة.</strong></div>
     </div>
@@ -614,7 +643,7 @@
 
     </div>
 
-    <div style="background:rgba(163,198,215,.05);border:1px solid rgba(163,198,215,.2);border-radius:4px;padding:18px 22px;margin-top:24px;">
+    <div style="background:var(--card);border:1px solid rgba(163,198,215,.55);border-radius:4px;padding:18px 22px;margin-top:24px;">
       <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;">↳ قارن دائمًا المثيل بالمثيل</div>
       <div style="font-size:13px;color:var(--text-dim);line-height:1.7;">حين تبحث عن مكرر ربحية شركة، تحقق فورًا من متوسط المكرر لقطاعها. CIB عند مكرر 8 قد يكون رخيصًا بالنسبة لسوق EGX عمومًا لكنه غالٍ مقابل بنوك مصرية أخرى. المرجع دائمًا مجموعة النظراء، لا المؤشر.</div>
     </div>
@@ -667,7 +696,7 @@
       <div style="font-size:14px;color:var(--text-dim);line-height:1.75;margin-top:14px;">الأساسيات لا تجعل تلك الأخطاء تختفي. لكن معرفتها <em>تساعد</em>. حين يهبط السعر 30% في شركة تفهمها أساسيًا، تستطيع أن تقرر هل تغيّر العمل فعلًا — أم أن السوق يذعر فحسب. هذا هو الفرق بين الشراء حين يكون السعر صحيحًا والبيع حين يكون السعر خاطئًا.</div>
     </div>
 
-    <div style="background:rgba(255,208,90,.06);border:1px solid rgba(255,208,90,.25);border-radius:4px;padding:32px;text-align:center;">
+    <div style="background:var(--card);border:1px solid rgba(255,208,90,.55);border-radius:4px;padding:32px;text-align:center;">
       <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--yn-ink);letter-spacing:3px;text-transform:uppercase;margin-bottom:18px;">نهاية السلسلة</div>
       <div style="font-family:'Poppins',sans-serif;font-size:26px;color:var(--yn-ink);line-height:1.4;margin-bottom:18px;">صار لديك الآن الأساس.</div>
       <div style="font-size:14px;color:var(--text-dim);line-height:1.75;max-width:580px;margin:0 auto 16px;">عبر 5 جلسات، تعلّمت كيف تعمل الأسواق، وما الذي يمكنك تداوله، وكيف يقترب الناس من اللعبة، وكيف تقرأ رسمًا بيانيًا، وكيف تقرأ شركة. لا شيء من هذا يجعلك متداولًا عظيمًا. لكنه يجعلك متداولًا متعلّمًا — شخصًا يستطيع أن يمسك تقرير بحث أو إفصاحًا سنويًا أو رسم سعر ويفهم ما ينظر إليه.</div>
