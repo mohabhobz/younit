@@ -600,7 +600,9 @@ function Journey() {
               radius="tile"
               alt={t("home.journey.buildPhotoAlt")}
             />
-            <CardCta tone="blue" to="/build/repositories">
+            {/* This went to the Repositories page, which Raslan asked to be
+                removed; Build itself is where the GitHub button now lives. */}
+            <CardCta tone="blue" to="/build">
               {t("home.journey.getStarted")}
             </CardCta>
           </SnapshotCard>
