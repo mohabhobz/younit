@@ -246,6 +246,64 @@ than in the Arabic itself.
       English originals, element for element, so nothing was dropped in
       translation.
 
+## Ahmed Raslan's review — 6 October
+
+A Word document of eleven notes against `younit-stg.efg-hermes.com`, each one a
+marked-up screenshot, plus two screen recordings and a photograph from Hobz of
+the same page with its figures missing.
+
+- [x] **R1 — the Build button should say github.com/efg-hermes-younit and go to
+      the SDK.** Both the words and the address are his. The button now opens
+      `https://github.com/efg-hermes-younit/younit-python-sdk`.
+- [x] **R2 — remove the Repositories row and its page.** The button above opens
+      what that page listed. The row, the page, its route and its string are
+      gone, and the Build card on the homepage, which pointed at it, now points
+      at Build itself.
+- [x] **R3 — the breadcrumb's "Stock Market Basics" is a broken link.** It was
+      never a link — it is the page you are on — but every step was set in the
+      same small grey uppercase, so the only way to find that out was to click.
+      The steps that go somewhere are in ink and underlined now; the one you are
+      standing on stays grey and is marked as the current page.
+- [x] **R4 — broken figures on 01-market-basics and 04-reading-charts, and the
+      tab's colours are broken.** Two faults.
+
+      The figures: Chart.js measures the canvas's parent once, in the tick the
+      deck's markup lands in. If anything is still settling then the figure is
+      drawn against the wrong box — which is why his screenshot shows one chart
+      painted quarter-size in the corner of its panel and another missing
+      altogether, on pages that draw correctly here. Every figure in a deck is
+      now told to measure itself again once the frame has settled, once the web
+      fonts have arrived, and thereafter whenever its own box changes size —
+      which also covers a figure created inside a closed tab, with no size until
+      the reader opens it.
+
+      The colours: the active chart tab was the brand's gold at a tenth over
+      white, with gold text on top. That is the beige he marked, and the text on
+      it never read. The tab now takes the same light blue as every other
+      selected control on the site, with ink on top.
+- [x] **R5 — the boxes blend into the background across all tutorials.**
+      Forty-eight panels were an accent colour at five or six per cent with a
+      border at twenty — invisible on a grey ground. They are white cards now,
+      and the border carries the accent at a weight that can be seen. Hobz chose
+      this treatment over tinting them.
+- [x] **R6 — the three-column takeaway tables should be one sentence a row.**
+      They were already written as one sentence a row. The row was a flex
+      container, so every `<strong>` inside the sentence became a column of its
+      own and the text broke into ragged thirds — which is also what he meant by
+      "the first row is broken" in Part 07. The row is a block again with the
+      tick as a marker beside it, so the sentence reads as a sentence. Parts 01,
+      02, 03 and 07, in both languages, and the checklists with them.
+- [x] **R7 — remove sections 4 and 5 of the algo intro.** Repository Slots and
+      Start With the Simplest Idea are off the page. The track map above them
+      carries an Open link for every part, so nothing is stranded.
+- [x] **R8 — remove the Track Complete block at the end of Part 07.** Gone.
+
+While the Arabic decks were open: the blocks that carry a whole Arabic sentence
+at label size — a takeaway, a checklist item, a rule's quotation, a callout, a
+chart's explanation — were still taking their spaces from Plex Mono, which is
+more than twice the width of an Arabic space, so the words sat too far apart.
+They take the Arabic face outright now, as the prose does.
+
 ## Still with the client
 
 - Whether the English EGX guide should be brought in line with the Arabic on
