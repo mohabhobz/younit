@@ -95,6 +95,77 @@ function runInlineScripts(scripts) {
 }
 
 /**
+ * Chart.js measures the canvas's parent once, at the moment the deck's script
+ * creates the chart — which is the same tick the markup lands in. If anything
+ * is still settling then, the figure is drawn against the wrong box: the
+ * reviewer's screenshots show one chart painted a quarter-size in the corner of
+ * its panel and another missing altogether, on pages that draw perfectly here.
+ * The cause is a measurement, not the data, so the fix is to measure again
+ * rather than to redraw differently.
+ *
+ * Every chart inside this deck is told to resize once the frame has settled,
+ * once the web fonts have arrived (a font swap changes the axis labels and so
+ * the plot area), and thereafter whenever the deck's own box changes width —
+ * which also covers a figure that was created inside a hidden tab and has no
+ * size until the reader opens it.
+ */
+function keepChartsMeasured(container) {
+  const charts = () => {
+    const Chart = window.Chart
+    if (!Chart?.instances) return []
+    return Object.values(Chart.instances).filter(
+      (chart) => chart?.canvas && container.contains(chart.canvas),
+    )
+  }
+
+  const remeasure = () => {
+    for (const chart of charts()) {
+      try {
+        chart.resize()
+      } catch {
+        // A chart torn down between the lookup and the call is not a problem.
+      }
+    }
+  }
+
+  // Each figure is watched at its own box rather than at the deck's, so a
+  // panel that is revealed — a chart tab the reader opens — counts as a change
+  // even though the page around it has not moved.
+  const observer = new ResizeObserver((entries) => {
+    for (const entry of entries) {
+      for (const chart of charts()) {
+        if (entry.target.contains(chart.canvas)) {
+          try {
+            chart.resize()
+          } catch {
+            // Torn down between the lookup and the call; nothing to do.
+          }
+        }
+      }
+    }
+  })
+
+  const watch = () => {
+    for (const chart of charts()) {
+      const box = chart.canvas.parentElement
+      if (box) observer.observe(box)
+    }
+    remeasure()
+  }
+
+  let frame = requestAnimationFrame(() => {
+    frame = requestAnimationFrame(watch)
+  })
+
+  document.fonts?.ready?.then(remeasure).catch(() => {})
+
+  return () => {
+    cancelAnimationFrame(frame)
+    observer.disconnect()
+  }
+}
+
+/**
  * Render `url` into `container`. Resolves to a teardown function.
  * `signal` lets a navigation that happens mid-fetch cancel the render.
  */
@@ -122,8 +193,10 @@ export async function mountDeck(url, container, signal) {
   const scripts = [...container.querySelectorAll('script')]
   scripts.forEach((s) => s.remove())
   const stop = runInlineScripts(scripts)
+  const stopMeasuring = keepChartsMeasured(container)
 
   return () => {
+    stopMeasuring()
     stop()
     container.innerHTML = ''
   }
