@@ -202,7 +202,6 @@
   "build": {
     "title": "Build",
     "sub": "This is where building happens, in the open.",
-    "repositoriesTitle": "Repositories",
     "repositoriesSub": "Curated public repositories from EFG Hermes.",
     "startupKitLead": "Explore the startup kit to get started",
     "startupKitSlot": "Link coming soon",
@@ -221,7 +220,7 @@
       "archived": "Archived"
     },
     "lead": "Start by exploring EFG Hermes' public repositories.",
-    "githubCta": "github.com/efg-hermes →"
+    "githubCta": "github.com/efg-hermes-younit →"
   },
   "compete": {
     "title": "Compete",
