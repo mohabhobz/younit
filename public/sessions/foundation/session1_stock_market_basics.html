@@ -170,7 +170,7 @@
 .yn-deck .chart-tabs{display:flex;gap:0;border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:0;}
 .yn-deck .chart-tab{flex:1;padding:12px 20px;background:var(--card);border:none;color:var(--text-dim);font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:1px;cursor:pointer;text-transform:uppercase;transition:all .2s;border-right:1px solid var(--border);}
 .yn-deck .chart-tab:last-child{border-right:none;}
-.yn-deck .chart-tab.on{background:rgba(255,208,90,.1);color:var(--gold);}
+.yn-deck .chart-tab.on{background:var(--teal);color:var(--yn-ink);}
 .yn-deck .chart-panel{display:none;background:var(--card);border:1px solid var(--border);border-top:none;border-radius:0 0 4px 4px;padding:28px;}
 .yn-deck .chart-panel.on{display:block;}
 .yn-deck .chart-explainer{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:32px;align-items:start;margin-bottom:24px;}
@@ -506,7 +506,7 @@
       <div class="card"><div class="card-title">Stop-Loss Order</div><div class="card-body">If price falls to EGP 55, automatically sell to cut losses. Critical for risk management — lets you sleep at night.</div></div>
       <div class="card"><div class="card-title">Stop-Limit Order</div><div class="card-body">Triggered at the stop price, but only executes within your limit range. More control, but can miss in fast markets.</div></div>
     </div>
-    <div style="background:rgba(255,208,90,.06);border:1px solid rgba(255,208,90,.2);border-radius:4px;padding:14px 20px;margin-bottom:24px;font-size:13px;color:var(--text-dim);font-family:'IBM Plex Mono',monospace;">
+    <div style="background:var(--card);border:1px solid rgba(255,208,90,.55);border-radius:4px;padding:14px 20px;margin-bottom:24px;font-size:13px;color:var(--text-dim);font-family:'IBM Plex Mono',monospace;">
       ↳ The order book below is the real-world version of the <strong>supply vs. demand curves above</strong> — captured at a single moment in time, at actual price levels, with real quantities waiting to trade.
     </div>
     <div class="chart-wrap">
