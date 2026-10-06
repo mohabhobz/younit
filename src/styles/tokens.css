@@ -299,6 +299,27 @@ pre {
   color: var(--yn-grey-dark);
 }
 
+/* A breadcrumb that does not say which of its steps are links is a row of
+   small grey words, and the reviewer reported the page's own title as a broken
+   link after clicking it. The steps that go somewhere carry the ink colour and
+   an underline; the step you are standing on stays grey and plain. */
+.yn-crumb__link {
+  color: var(--yn-ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--yn-grey-dark);
+}
+
+.yn-crumb__link:hover,
+.yn-crumb__link:focus-visible {
+  text-decoration-color: var(--yn-ink);
+}
+
+.yn-crumb__here {
+  color: var(--yn-grey-dark);
+}
+
 /* --- Interaction ---------------------------------------------------------- */
 
 /* A button inverts on hover: the fill becomes ink and the label takes the fill.
