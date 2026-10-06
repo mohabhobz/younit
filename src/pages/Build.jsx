@@ -1,15 +1,8 @@
 import Page from '../components/layout/Page.jsx'
 import { BlockForms } from '../brand/marks.jsx'
-import { Button, PillRow } from '../components/ui/Button.jsx'
+import { Button } from '../components/ui/Button.jsx'
 import { Display, Section } from '../components/ui/Pieces.jsx'
 import { useI18n } from '../lib/i18n.jsx'
-
-/**
- * One section for now. Templates, Showcase, Capstones and Apps were the other
- * four and marketing asked for all of them to go; the counts they advertised
- * went with them.
- */
-const SECTIONS = [{ key: 'build.repositoriesTitle', to: '/build/repositories' }]
 
 export default function Build() {
   const { t } = useI18n()
@@ -36,7 +29,14 @@ export default function Build() {
             <p style={{ margin: '24px 0 16px', fontSize: 'var(--yn-body-size)', color: 'var(--yn-grey-dark)' }}>
               {t('build.lead')}
             </p>
-            <Button tone="purple" size="sm" href="https://github.com/efg-hermes">
+            {/* Raslan gave both the words and the address: the button names
+                the organisation and opens the SDK, which is the repository a
+                reader coming off this page actually wants. */}
+            <Button
+              tone="purple"
+              size="sm"
+              href="https://github.com/efg-hermes-younit/younit-python-sdk"
+            >
               {t('build.githubCta')}
             </Button>
 
@@ -49,14 +49,9 @@ export default function Build() {
           <BlockForms />
         </div>
 
-        {/* Full width, as on Learn, so the two pages keep the same shape. */}
-        <div style={{ display: 'grid', gap: 12, marginTop: 48 }}>
-          {SECTIONS.map((section) => (
-            <PillRow key={section.key} to={section.to} meta={section.meta}>
-              {t(section.key)}
-            </PillRow>
-          ))}
-        </div>
+        {/* The Repositories row stood here and led to a page that listed what
+            the button above already opens. Raslan struck both out: the button
+            is the way in now, so the row and its page are gone. */}
       </Section>
     </Page>
   )
