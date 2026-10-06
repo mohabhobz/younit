@@ -11,7 +11,6 @@ import DeckMoved from './pages/DeckMoved.jsx'
 import Glossary from './pages/Glossary.jsx'
 import GlossaryTerm from './pages/GlossaryTerm.jsx'
 import Build from './pages/Build.jsx'
-import BuildSection from './pages/BuildSection.jsx'
 import Compete from './pages/Compete.jsx'
 import NotFound from './pages/NotFound.jsx'
 
@@ -66,7 +65,6 @@ function pages() {
           nothing else on the site linked to any of them. Their writing is
           still in the repository. */}
       <Route path="build" element={<Build />} />
-      <Route path="build/repositories" element={<BuildSection section="repositories" />} />
 
       {/* Compete is one page now: Leaderboard, Seasons, Hackathons and Wall of
           Fame were asked for by marketing to go, and so were Editorial,
