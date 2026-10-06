@@ -30,7 +30,6 @@ const ROUTES = [
   '/learn/foundation/01-market-basics',
   '/learn/foundation/01-market-basics/deck',
   '/build',
-  '/build/repositories',
   '/build/templates',
   '/build/showcase',
   '/build/showcase/arabic-sentiment-egx',
