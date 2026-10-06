@@ -53,7 +53,7 @@
 .yn-deck .rule-block blockquote strong{color:var(--gold);}
 
 /* CALLOUT */
-.yn-deck .callout{background:rgba(255,208,90,.06);border:1px solid rgba(255,208,90,.2);border-radius:4px;padding:14px 20px;margin-bottom:24px;font-size:13px;color:var(--text-dim);font-family:'IBM Plex Mono',monospace;line-height:1.6;}
+.yn-deck .callout{background:var(--card);border:1px solid rgba(255,208,90,.55);border-radius:4px;padding:14px 20px;margin-bottom:24px;font-size:13px;color:var(--text-dim);font-family:'IBM Plex Mono',monospace;line-height:1.6;}
 .yn-deck .callout strong{color:var(--yn-ink);}
 
 /* CARD GRID */
@@ -98,9 +98,9 @@
 
 /* CHECKLIST */
 .yn-deck .checklist{list-style:none;padding:0;margin:0 0 32px;}
-.yn-deck .checklist li{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--border);font-size:14px;color:var(--text-dim);line-height:1.65;max-width:760px;}
+.yn-deck .checklist li{display:block;position:relative;padding:14px 0;padding-inline-start:28px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text-dim);line-height:1.65;max-width:760px;}
 .yn-deck .checklist li:last-child{border-bottom:none;}
-.yn-deck .checklist li::before{content:'✓';color:var(--teal);font-family:'IBM Plex Mono',monospace;font-size:12px;flex-shrink:0;margin-top:2px;}
+.yn-deck .checklist li::before{content:'✓';color:var(--teal);font-family:'IBM Plex Mono',monospace;font-size:12px;position:absolute;inset-inline-start:0;top:14px;}
 .yn-deck .checklist li strong{color:var(--yn-ink);}
 
 /* DASHBOARD MOCK */
@@ -121,9 +121,9 @@
 .yn-deck .takeaway-wrap{background:linear-gradient(135deg,rgba(255,208,90,.06),rgba(163,198,215,.04));border:1px solid rgba(255,208,90,.25);border-radius:4px;padding:36px 40px;margin-top:16px;}
 .yn-deck .takeaway-heading{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:20px;}
 .yn-deck .takeaway-list{list-style:none;padding:0;}
-.yn-deck .takeaway-list li{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid var(--border);font-size:14px;color:var(--text-dim);line-height:1.6;}
+.yn-deck .takeaway-list li{display:block;position:relative;padding:12px 0;padding-inline-start:28px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text-dim);line-height:1.6;}
 .yn-deck .takeaway-list li:last-child{border-bottom:none;}
-.yn-deck .takeaway-list li::before{content:'✓';color:var(--teal);font-family:'IBM Plex Mono',monospace;font-size:12px;flex-shrink:0;margin-top:2px;}
+.yn-deck .takeaway-list li::before{content:'✓';color:var(--teal);font-family:'IBM Plex Mono',monospace;font-size:12px;position:absolute;inset-inline-start:0;top:14px;}
 .yn-deck .takeaway-list li strong{color:var(--yn-ink);}
 
 /* NEXT CARD */
@@ -187,8 +187,7 @@
 .yn-deck .chart-subtitle,
 .yn-deck .ghost-btn,
 .yn-deck .primary-btn,
-.yn-deck text[font-family*="IBM Plex Mono"],
-.yn-deck [style*="IBM Plex Mono"] {
+.yn-deck text[font-family*="IBM Plex Mono"] {
   font-family: 'IBM Plex Mono', 'IBM Plex Sans Arabic', sans-serif !important;
   letter-spacing: normal !important;
 }
@@ -207,8 +206,38 @@
 .yn-deck .chart-pros li,
 .yn-deck .fg-context,
 .yn-deck .game-caption,
-.yn-deck .slide-body [style*="IBM Plex Mono"],
+.yn-deck [style*="IBM Plex Mono"],
 .yn-deck .slide-note {
+  font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+  letter-spacing: normal !important;
+}
+
+/* The same rule, for the blocks that turned out to carry whole sentences
+   rather than labels: a takeaway, a checklist item, a rule's quotation, a
+   callout, a footnote. They were in the list above, which keeps Plex Mono at
+   the front of the stack, so their spaces came out at mono width and the
+   Arabic read as though it had been tracked out. */
+.yn-deck .callout,
+.yn-deck .compound-footnote,
+.yn-deck .rule-block blockquote,
+.yn-deck .carousel-rule blockquote,
+.yn-deck .takeaway-list li,
+.yn-deck .checklist li,
+.yn-deck .when-list li,
+.yn-deck .chart-pros li {
+  font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+  letter-spacing: normal !important;
+}
+
+/* And the last of them: a chart's explanation, a carousel's body, the text a
+   part divider carries, a rule's small print. Same reason — these are
+   sentences, and a sentence takes the Arabic face and the Arabic space. */
+.yn-deck .chart-explain-text p,
+.yn-deck .card-body-text,
+.yn-deck .card-body-text span,
+.yn-deck .part-divider span,
+.yn-deck .rule-mini p,
+.yn-deck .chart-wrap > .chart-title {
   font-family: 'IBM Plex Sans Arabic', sans-serif !important;
   letter-spacing: normal !important;
 }
