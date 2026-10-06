@@ -202,7 +202,6 @@
   "build": {
     "title": "ابنِ",
     "sub": "مساحتك لبناء الأفكار ومشاركتها.",
-    "repositoriesTitle": "المستودعات",
     "startupKitLead": "استكشف حزمة البداية لتبدأ",
     "startupKitSlot": "الرابط قادم قريبًا",
     "repositoriesSub": "مستودعات عامة مختارة من إي إف چي هيرميس.",
@@ -221,7 +220,7 @@
       "archived": "مؤرشف"
     },
     "lead": "ابدأ باستكشاف المستودعات العامة",
-    "githubCta": "github.com/efg-hermes →"
+    "githubCta": "github.com/efg-hermes-younit →"
   },
   "compete": {
     "title": "نافِس",
