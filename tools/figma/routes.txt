@@ -5,7 +5,6 @@
 /learn/deep-dives
 /learn/glossary
 /build
-/build/repositories
 /build/templates
 /build/showcase
 /build/capstones
