@@ -170,7 +170,7 @@
 .yn-deck .chart-tabs{display:flex;gap:0;border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:0;}
 .yn-deck .chart-tab{flex:1;padding:12px 20px;background:var(--card);border:none;color:var(--text-dim);font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:1px;cursor:pointer;text-transform:uppercase;transition:all .2s;border-right:1px solid var(--border);}
 .yn-deck .chart-tab:last-child{border-right:none;}
-.yn-deck .chart-tab.on{background:rgba(255,208,90,.1);color:var(--gold);}
+.yn-deck .chart-tab.on{background:var(--teal);color:var(--yn-ink);}
 .yn-deck .chart-panel{display:none;background:var(--card);border:1px solid var(--border);border-top:none;border-radius:0 0 4px 4px;padding:28px;}
 .yn-deck .chart-panel.on{display:block;}
 .yn-deck .chart-explainer{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:32px;align-items:start;margin-bottom:24px;}
@@ -234,8 +234,7 @@
 .yn-deck .chart-subtitle,
 .yn-deck .ghost-btn,
 .yn-deck .primary-btn,
-.yn-deck text[font-family*="IBM Plex Mono"],
-.yn-deck [style*="IBM Plex Mono"] {
+.yn-deck text[font-family*="IBM Plex Mono"] {
   font-family: 'IBM Plex Mono', 'IBM Plex Sans Arabic', sans-serif !important;
   letter-spacing: normal !important;
 }
@@ -254,8 +253,38 @@
 .yn-deck .chart-pros li,
 .yn-deck .fg-context,
 .yn-deck .game-caption,
-.yn-deck .slide-body [style*="IBM Plex Mono"],
+.yn-deck [style*="IBM Plex Mono"],
 .yn-deck .slide-note {
+  font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+  letter-spacing: normal !important;
+}
+
+/* The same rule, for the blocks that turned out to carry whole sentences
+   rather than labels: a takeaway, a checklist item, a rule's quotation, a
+   callout, a footnote. They were in the list above, which keeps Plex Mono at
+   the front of the stack, so their spaces came out at mono width and the
+   Arabic read as though it had been tracked out. */
+.yn-deck .callout,
+.yn-deck .compound-footnote,
+.yn-deck .rule-block blockquote,
+.yn-deck .carousel-rule blockquote,
+.yn-deck .takeaway-list li,
+.yn-deck .checklist li,
+.yn-deck .when-list li,
+.yn-deck .chart-pros li {
+  font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+  letter-spacing: normal !important;
+}
+
+/* And the last of them: a chart's explanation, a carousel's body, the text a
+   part divider carries, a rule's small print. Same reason — these are
+   sentences, and a sentence takes the Arabic face and the Arabic space. */
+.yn-deck .chart-explain-text p,
+.yn-deck .card-body-text,
+.yn-deck .card-body-text span,
+.yn-deck .part-divider span,
+.yn-deck .rule-mini p,
+.yn-deck .chart-wrap > .chart-title {
   font-family: 'IBM Plex Sans Arabic', sans-serif !important;
   letter-spacing: normal !important;
 }
@@ -577,7 +606,7 @@
       <div class="card"><div class="card-title">أمر وقف الخسارة</div><div class="card-body">إذا هبط السعر إلى EGP 55، يبيع تلقائيًا لوقف الخسارة. أساسي لإدارة المخاطر — يجعلك تنام ليلًا.</div></div>
       <div class="card"><div class="card-title">أمر وقف محدد السعر</div><div class="card-body">يُفعَّل عند سعر الوقف، لكنه لا يُنفَّذ إلا داخل نطاق الحد الذي وضعته. تحكم أكبر، لكنه قد يفوتك في الأسواق السريعة.</div></div>
     </div>
-    <div style="background:rgba(255,208,90,.06);border:1px solid rgba(255,208,90,.2);border-radius:4px;padding:14px 20px;margin-bottom:24px;font-size:13px;color:var(--text-dim);font-family:'IBM Plex Mono',monospace;">
+    <div style="background:var(--card);border:1px solid rgba(255,208,90,.55);border-radius:4px;padding:14px 20px;margin-bottom:24px;font-size:13px;color:var(--text-dim);font-family:'IBM Plex Mono',monospace;">
       ↳ سجل الأوامر أدناه هو النسخة الواقعية من <strong>منحنيات العرض والطلب أعلاه</strong> — ملتقطة في لحظة واحدة، عند مستويات سعرية فعلية، بكميات حقيقية تنتظر التنفيذ.
     </div>
     <div class="chart-wrap">
