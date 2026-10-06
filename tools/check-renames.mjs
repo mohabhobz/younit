@@ -50,8 +50,6 @@ const ROUTES = [
   ['/learn/foundation', [], ['45 min', '50 min', 'min read']],
   ['/ar/learn/foundation', [], ['45', 'دقيقة']],
   ['/build', ['Repositories'], ['Templates', 'Showcase', 'Capstones', 'Apps']],
-  ['/build/repositories', ['Explore the startup kit to get started', 'Link coming soon'], ['Clone, fork, build']],
-  ['/ar/build/repositories', ['استكشف حزمة البداية لتبدأ'], ['انسخها']],
   ['/ar/learn', ['سوق الأسهم 101', 'ما هو التداول الخوارزمي'], ['تحليلات معمّقة']],
   ['/learn/foundation', ['Stock Market 101'], []],
   ['/ar/learn/foundation', ['سوق الأسهم 101'], []],
