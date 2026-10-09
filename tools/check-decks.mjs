@@ -259,7 +259,13 @@ for (const width of [390, 1440]) {
     const retired = r.palette.filter((c) => RETIRED.includes(c))
     if (retired.length) failures.push(`${name}: retired colour still painted ${retired.join(', ')}`)
     if (r.ground !== 'rgb(215, 215, 215)') failures.push(`${name}: ground is ${r.ground}, expected the grey`)
-    if (r.displayFont && !/Poppins/.test(r.displayFont)) failures.push(`${name}: headings set in ${r.displayFont}`)
+    // The brand's display face. Poppins is behind it in the stack until the
+    // licensed file is dropped into `public/vendor/fonts/`, so a deck that
+    // asks for either is asking for the right thing; anything else is a deck
+    // that has drifted off the brand.
+    if (r.displayFont && !/ITC Avant Garde Gothic Pro|Poppins/.test(r.displayFont)) {
+      failures.push(`${name}: headings set in ${r.displayFont}`)
+    }
     if (r.overflow > 1) failures.push(`${name}: horizontal overflow ${r.overflow}px`)
     if (r.blankCanvases) failures.push(`${name}: ${r.blankCanvases} chart canvases never drew`)
     if (r.headingAlign === 'center') failures.push(`${name}: the opening heading is still centred`)

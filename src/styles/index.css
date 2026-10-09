@@ -1,19 +1,61 @@
-/* Fonts are self-hosted from node_modules — no third-party request at runtime,
-   and the build does not depend on a CDN being reachable.
+/* Every `@import` has to stand before any rule in the file — a browser drops
+   the ones that follow one — so the imports come first here and the brand's
+   own `@font-face` blocks sit underneath them. Where a face is declared makes
+   no difference to the cascade; where an import is declared decides whether it
+   is read at all. */
 
-   Poppins stands in for ITC Avant Garde Gothic Pro (Book).
-   Anybody is loaded from the wdth bundle because the brand specifies width 117;
-   that bundle registers the family as "Anybody Variable". */
+/* Self-hosted from node_modules — no third-party request at runtime, and the
+   build does not depend on a CDN being reachable.
+
+   Anybody is loaded from the wdth bundle because the brand specifies width
+   117; that bundle registers the family as "Anybody Variable". */
+@import '@fontsource-variable/anybody/wdth.css';
+
+/* Poppins stands in for ITC Avant Garde Gothic Pro Book until its file lands.
+   Never above 400. */
 @import '@fontsource/poppins/300.css';
 @import '@fontsource/poppins/400.css';
-@import '@fontsource-variable/anybody/wdth.css';
-@import '@fontsource/ibm-plex-mono/400.css';
-@import '@fontsource/ibm-plex-mono/500.css';
-@import '@fontsource/ibm-plex-sans-arabic/400.css';
-/* The deck labels are set at 500 and 600. Without these the browser
+
+/* IBM Plex Sans Arabic stands in for ABC Favorit Arabic Book the same way.
+   The deck labels are set at 500 and 600; without these the browser
    synthesised the weight, which on Arabic smears the joins. Both are the
    Arabic-only subsets, so they cost a few kilobytes each. */
+@import '@fontsource/ibm-plex-sans-arabic/400.css';
 @import '@fontsource/ibm-plex-sans-arabic/arabic-500.css';
 @import '@fontsource/ibm-plex-sans-arabic/arabic-600.css';
 
+/* The brand pack carries no monospace — the branding deck set its own code
+   labels in a trial mono. This one is kept for `code` and `pre` only, where a
+   proportional face would make a Python sample unreadable. */
+@import '@fontsource/ibm-plex-mono/400.css';
+@import '@fontsource/ibm-plex-mono/500.css';
+
 @import './tokens.css';
+
+/* The two faces the brand licenses that cannot be committed here — Avant
+   Garde is Adobe Fonts, Favorit Arabic is Dinamo. They are declared anyway,
+   against the two filenames below. A font file that is not there fails to load
+   and the browser moves to the next family in the stack, so the site renders
+   exactly as it does today; drop either file into `public/vendor/fonts/` and
+   that face takes over everywhere, with no change to any rule. See that
+   folder's README for the two names.
+
+   `itc-avant-garde-gothic-pro` is in the display stack as well: that is the
+   family an Adobe Fonts web-project kit registers, so if the kit link is added
+   to `index.html` instead of a file being dropped in, it is honoured too. */
+
+@font-face {
+  font-family: 'ITC Avant Garde Gothic Pro';
+  font-style: normal;
+  font-weight: 300 400;
+  font-display: swap;
+  src: url('/vendor/fonts/itc-avant-garde-gothic-pro-book.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'ABC Favorit Arabic';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url('/vendor/fonts/abc-favorit-arabic-book.woff2') format('woff2');
+}

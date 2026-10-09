@@ -2,7 +2,7 @@
    Younit — lesson deck theme
 
    The thirteen lesson decks arrived styled in the previous brand: a dark navy
-   ground, gold and teal accents, Playfair Display headings. Their markup and
+   ground, gold and teal accents, serif headings. Their markup and
    their teaching content are kept exactly as written; only the presentation is
    replaced. This sheet loads after each deck's own \3c style>, so it overrides
    rather than edits, and one file governs all thirteen.
@@ -49,8 +49,14 @@
   --yn-ink: #000000;
   --yn-ink-2: #1a1a1a;
 
-  --yn-display: 'Poppins', sans-serif;
-  --yn-body: 'Anybody', system-ui, sans-serif;
+  /* The three faces the brand licenses. Avant Garde and Favorit Arabic are
+     declared in `src/styles/index.css` against files in `vendor/fonts/`; the
+     face behind each is what paints until that file is dropped in. */
+  --yn-display: 'ITC Avant Garde Gothic Pro', itc-avant-garde-gothic-pro, Poppins, sans-serif;
+  --yn-body: 'Anybody Variable', 'Anybody', system-ui, sans-serif;
+  --yn-arabic: 'ABC Favorit Arabic', 'IBM Plex Sans Arabic', sans-serif;
+  /* Code samples only. The brand pack carries no monospace, so every label
+     and tag in a deck now takes the display face. */
   --yn-mono: 'IBM Plex Mono', monospace;
 
   /* The deck's own names, rebound. */
@@ -166,7 +172,7 @@
 .yn-deck.yn-deck .series-num,
 .yn-deck.yn-deck .track-num,
 .yn-deck.yn-deck .item-num {
-  font-family: var(--yn-mono);
+  font-family: var(--yn-display);
   color: var(--yn-grey-dark);
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -255,7 +261,7 @@
 }
 
 .yn-deck.yn-deck .nav-item {
-  font-family: var(--yn-mono);
+  font-family: var(--yn-display);
   color: var(--yn-grey-dark);
 }
 
@@ -300,7 +306,7 @@
    only a rule to divide it from the label it follows — the way the site marks
    an eyebrow. */
 .yn-deck.yn-deck .session-tag {
-  font-family: var(--yn-mono);
+  font-family: var(--yn-display);
   font-size: 11px;
   letter-spacing: 0.16em;
   color: var(--yn-grey-dark);
@@ -335,7 +341,7 @@
 .yn-deck.yn-deck .rc-tag,
 .yn-deck.yn-deck .ac-tag,
 .yn-deck.yn-deck .sum-tag {
-  font-family: var(--yn-mono);
+  font-family: var(--yn-display);
   border-radius: 999px;
   border: 1px solid var(--yn-ink);
   background: #ffffff;
@@ -431,7 +437,7 @@
 }
 
 .yn-deck.yn-deck th {
-  font-family: var(--yn-mono);
+  font-family: var(--yn-display);
   color: var(--yn-ink);
   background: var(--yn-blue);
   border-bottom: 1px solid var(--yn-ink);
@@ -567,6 +573,16 @@
 .yn-deck.yn-deck .cap-card:hover,
 .yn-deck.yn-deck .principle-card:hover,
 .yn-deck.yn-deck .nav-item:hover,
+/* The carousel arrows are the last two characters on a deck that take the
+   browser's own button face rather than the brand's. Two glyphs each, but
+   they are the only thing on the page set in anything else. */
+.yn-deck.yn-deck .c-prev,
+.yn-deck.yn-deck .c-next,
+.yn-deck.yn-deck .s-prev,
+.yn-deck.yn-deck .s-next {
+  font-family: var(--yn-display);
+}
+
 .yn-deck.yn-deck .c-prev:hover,
 .yn-deck.yn-deck .c-next:hover,
 .yn-deck.yn-deck .s-prev:hover,

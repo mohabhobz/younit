@@ -40,13 +40,20 @@
   --yn-on-chrome: var(--yn-ink);
 
   /* --- Type -------------------------------------------------------------- */
-  /* Poppins 300/400 stands in for ITC Avant Garde Gothic Pro (Book).
-     Never above 400. */
-  --yn-display: Poppins, sans-serif;
+  /* The three faces the brand licenses, in the order the browser should try
+     them. Avant Garde and Favorit Arabic are first; the face behind each is
+     what paints until that file is dropped into `public/vendor/fonts/` (see
+     `index.css`). Display never goes above 400. */
+  --yn-display: 'ITC Avant Garde Gothic Pro', itc-avant-garde-gothic-pro, Poppins, sans-serif;
   --yn-body: 'Anybody Variable', 'Anybody', system-ui, sans-serif;
-  --yn-mono: 'IBM Plex Mono', monospace;
-  --yn-arabic: 'IBM Plex Sans Arabic', sans-serif;
+  --yn-arabic: 'ABC Favorit Arabic', 'IBM Plex Sans Arabic', sans-serif;
   --yn-body-variation: 'wdth' 117, 'wght' 348;
+
+  /* Code, and nothing else. The brand pack has no monospace, so every label
+     and tag that used to be set in one now takes the display face; what is
+     left here is `code` and `pre`, where a proportional face would make a
+     Python sample unreadable. */
+  --yn-mono: 'IBM Plex Mono', monospace;
 
   --yn-hero: 76px;
   --yn-h1: 64px;
@@ -198,10 +205,23 @@ pre {
 }
 
 /* Arabic carries marks above and below the line, so a leading set for Latin
-   makes two lines touch. Every heading gets the room back. */
+   makes two lines touch. Every heading gets the room back.
+
+   The two Latin faces are re-stacked here as well. Neither Avant Garde nor
+   Anybody draws a single Arabic letter, and a stack that ends in `sans-serif`
+   hands every Arabic heading to whatever the device happens to have — which
+   is a different face on a Mac, a Windows machine and a phone. Behind each
+   Latin face the Arabic one now stands, so a heading sets its Latin in the
+   brand face and its Arabic in the brand's Arabic face, and nothing is left
+   to the device. */
 [dir='rtl'] {
   --yn-lh-hero: 1.35;
   --yn-lh-eyebrow: 1.45;
+
+  --yn-display: 'ITC Avant Garde Gothic Pro', itc-avant-garde-gothic-pro, Poppins,
+    'ABC Favorit Arabic', 'IBM Plex Sans Arabic', sans-serif;
+  --yn-body: 'Anybody Variable', 'Anybody', 'ABC Favorit Arabic',
+    'IBM Plex Sans Arabic', sans-serif;
 }
 
 [dir='rtl'] /* The hero's claim.
@@ -599,7 +619,7 @@ pre {
 }
 
 .yn-contents__number {
-  font-family: var(--yn-mono);
+  font-family: var(--yn-display);
   font-size: var(--yn-micro);
 }
 
@@ -895,8 +915,8 @@ pre {
   justify-content: center;
   border: 1px solid var(--yn-purple);
   border-radius: var(--yn-r-pill);
-  font-family: var(--yn-mono);
-  font-size: var(--yn-small);
+  font-family: var(--yn-display);
+  font-size: var(--yn-body-size);
   line-height: 1;
 }
 
@@ -952,17 +972,17 @@ pre {
    step it is and marked as waiting, rather than linked at a guess. */
 .yn-faq__pending {
   color: var(--yn-grey-dark);
-  font-family: var(--yn-mono);
+  font-family: var(--yn-display);
   font-size: var(--yn-micro);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   margin-inline-start: 8px;
 }
 
-/* The mono face has no Arabic, and the tracking that makes a Latin label read
-   as a label pulls an Arabic word apart at its joins. In Arabic the note is
-   set in the Arabic face at the small size instead, which is how the rest of
-   the site writes a quiet aside. */
+/* Neither the display face nor a mono carries Arabic, and the tracking that
+   makes a Latin label read as a label pulls an Arabic word apart at its
+   joins. In Arabic the note is set in the Arabic face at the small size
+   instead, which is how the rest of the site writes a quiet aside. */
 [dir='rtl'] .yn-faq__pending {
   font-family: var(--yn-arabic);
   font-size: var(--yn-small);
