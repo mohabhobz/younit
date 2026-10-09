@@ -10,6 +10,7 @@
 /build/capstones
 /build/apps
 /compete
+/faq
 /compete/leaderboard
 /compete/seasons
 /compete/hackathons

@@ -8,10 +8,17 @@ import { Link, useI18n } from '../../lib/i18n.jsx'
  * product.
  */
 
+/**
+ * The three pages the top bar names, and then the FAQs — which is the page a
+ * reader goes to the bottom of a site to find. It takes its name from the page
+ * itself rather than from a footer string of its own, so the two cannot drift
+ * apart.
+ */
 const PLATFORM = [
   { to: '/learn', key: 'nav.learn' },
   { to: '/build', key: 'nav.build' },
   { to: '/compete', key: 'nav.compete' },
+  { to: '/faq', key: 'faq.title' },
 ]
 
 /**

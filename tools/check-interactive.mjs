@@ -34,6 +34,7 @@ const ROUTES = [
   '/build/showcase',
   '/build/showcase/arabic-sentiment-egx',
   '/compete',
+  '/faq',
   '/compete/leaderboard',
   '/editorial',
   '/editorial/2026-04-week-2',

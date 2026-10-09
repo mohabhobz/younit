@@ -228,6 +228,98 @@
     "loading": "Loading",
     "photoAlt": "Two builders at a desk, one screen showing code"
   },
+  "faq": {
+    "title": "FAQs",
+    "sub": "What Younit is, what you can build with it, and how to get started.",
+    "linkPending": "Link coming soon",
+    "items": [
+      {
+        "q": "What is Younit?",
+        "a": [
+          "Younit is EFG Hermes' API-powered trading platform, giving developers and traders access to EFG Hermes' brokerage infrastructure through an API and Python SDK. Built around Learn, Build and Compete, it gives developers and traders the tools to access the Egyptian market, work with market data, build and test trading strategies, and execute trades through EFG Hermes."
+        ]
+      },
+      {
+        "q": "How does Younit work?",
+        "a": [
+          "Younit connects your code to EFG Hermes' brokerage infrastructure through an API. Once you have your API key, you can use Python SDK to access live prices, historical market data, market depth, your portfolio and order placement.",
+          "You can then develop your own trading logic, test your strategies against historical market data and, when ready, connect them to your account for live execution."
+        ]
+      },
+      {
+        "q": "What can I build with Younit?",
+        "a": [
+          "You can build your own trading applications, tools, and algorithmic trading strategies using Younit's API and Python SDK.",
+          "Whether you're creating a simple trading rule, developing a more advanced model or building something entirely new, Younit gives you the infrastructure to turn your ideas into code and connect them to the Egyptian market."
+        ]
+      },
+      {
+        "q": "Who is Younit for?",
+        "a": ["Younit is built for anyone who wants to explore, build or automate their trading experience:"],
+        "list": [
+          {
+            "label": "Developers",
+            "text": "Software engineers and developers who want to build their own trading applications or automate their trading strategies."
+          },
+          {
+            "label": "Students",
+            "text": "University students looking to explore algorithmic trading through graduation projects or EFG-sponsored opportunities and internships."
+          },
+          {
+            "label": "Traders and Investors",
+            "text": "Existing EFG Hermes clients who want to explore API-based trading and discover new ways to interact with the markets."
+          }
+        ]
+      },
+      {
+        "q": "How do I get onboarded on Younit?",
+        "a": [
+          "To get started with Younit, you first need an active EFG Hermes ONE account. Once your account is set up, you can access Younit and generate your API Key to start building and connecting your applications to EFG Hermes' trading infrastructure."
+        ],
+        "stepsTitle": "Follow this process:",
+        "steps": [
+          { "text": "Open an EFG Hermes ONE account." },
+          { "text": "Generate your Younit API Key.", "pending": true },
+          { "text": "Start building with Younit's APIs and developer tools." }
+        ]
+      },
+      {
+        "q": "Do I need an EFG Hermes ONE account to onboard on Younit?",
+        "a": [
+          "Yes. You need an active EFG Hermes ONE account to onboard on Younit and access its trading APIs. Once your ONE account is set up, you can generate your API Key and start building with Younit."
+        ]
+      },
+      {
+        "q": "What markets can I access through Younit?",
+        "a": [
+          "Younit gives you access to the markets available through EFG Hermes' brokerage infrastructure, including the Egyptian Exchange (EGX) and other supported markets."
+        ]
+      },
+      {
+        "q": "Do I need programming experience?",
+        "a": [
+          "Yes. You don't need to be an expert, but a basic understanding of programming and APIs will help you get started."
+        ]
+      },
+      {
+        "q": "Where are the docs and examples?",
+        "a": ["You'll find them on GitHub, linked directly from the Younit website."],
+        "link": { "href": "https://github.com/efg-hermes-younit", "label": "github.com/efg-hermes-younit →" }
+      },
+      {
+        "q": "Can EFG Hermes give me a strategy?",
+        "a": [
+          "No. Younit provides the access, tools, APIs, data, and infrastructure you need to build and execute your own strategies. The trading strategy, decisions, and how you use these tools are entirely up to you."
+        ]
+      },
+      {
+        "q": "Is Younit regulated?",
+        "a": [
+          "Younit operates through EFG Hermes, a regulated financial services group. Trading activities are carried out through EFG Hermes' regulated brokerage infrastructure and are subject to the applicable regulatory requirements."
+        ]
+      }
+    ]
+  },
   "footer": {
     "mission": "Egypt's open initiative for capital markets education and infrastructure.",
     "platform": "Platform",

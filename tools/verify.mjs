@@ -39,6 +39,7 @@ const ROUTES = [
   ['/build/apps/egx-daily-snapshot', 'app'],
 
   ['/compete', 'compete'],
+  ['/faq', 'faq'],
   ['/compete/leaderboard', 'compete-leaderboard'],
   ['/compete/seasons', 'compete-seasons'],
   ['/compete/hackathons', 'compete-hackathons'],

@@ -837,6 +837,145 @@ pre {
   opacity: 0.65;
 }
 
+/* --- The questions -------------------------------------------------------- *
+
+   Eleven answers, and a reader who came for one of them. So the page is a list
+   of the questions and nothing else until one is asked for: the whole row is
+   the control, the sign at its end says which way it will go, and the answer
+   opens underneath where the question still is.
+
+   Everything here is logical — `inline-start`, `inline-end`, `text-align:
+   start` — so the same rules lay the page out right-to-left without a second
+   set for Arabic.
+   -------------------------------------------------------------------------- */
+.yn-faq {
+  border-top: 1px solid var(--yn-purple);
+}
+
+.yn-faq__row {
+  border-bottom: 1px solid var(--yn-purple);
+}
+
+.yn-faq__q {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  width: 100%;
+  padding: 24px 0;
+  border: 0;
+  background: none;
+  color: var(--yn-ink);
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+
+.yn-faq__q:hover .yn-faq__label,
+.yn-faq__q:focus-visible .yn-faq__label {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.yn-faq__label {
+  font-size: var(--yn-row-title);
+  line-height: 1.25;
+}
+
+/* The same pill the glossary's jump bar is drawn with, so the sign at the end
+   of a row reads as part of the same set of small round controls. The glyph is
+   swapped rather than the mark rotated: a plus turned 45 degrees lands on a
+   cross, which is the sign for closing a window, not for closing a row. */
+.yn-faq__sign {
+  flex: 0 0 auto;
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--yn-purple);
+  border-radius: var(--yn-r-pill);
+  font-family: var(--yn-mono);
+  font-size: var(--yn-small);
+  line-height: 1;
+}
+
+.yn-faq__a {
+  padding: 0 0 28px;
+  max-width: 72ch;
+}
+
+.yn-faq__a p {
+  font-size: var(--yn-body-size);
+  line-height: 1.7;
+  color: var(--yn-grey-dark);
+  margin: 0 0 14px;
+}
+
+.yn-faq__a p:last-child {
+  margin-bottom: 0;
+}
+
+.yn-faq__a ul,
+.yn-faq__a ol {
+  margin: 0;
+  padding-inline-start: 22px;
+}
+
+.yn-faq__a li {
+  font-size: var(--yn-body-size);
+  line-height: 1.7;
+  color: var(--yn-grey-dark);
+  margin-bottom: 10px;
+}
+
+.yn-faq__a li:last-child {
+  margin-bottom: 0;
+}
+
+/* The name of a group, inside a line about it. Set in the ink so the three
+   groups can be found by running down the list, which is what a reader
+   looking for themselves in it does. */
+.yn-faq__a li strong {
+  color: var(--yn-ink);
+  font-weight: inherit;
+}
+
+.yn-faq__steps-title {
+  font-size: var(--yn-body-size);
+  line-height: 1.7;
+  color: var(--yn-ink);
+  margin: 18px 0 10px;
+}
+
+/* A step whose destination the client has not given yet. It is written as the
+   step it is and marked as waiting, rather than linked at a guess. */
+.yn-faq__pending {
+  color: var(--yn-grey-dark);
+  font-family: var(--yn-mono);
+  font-size: var(--yn-micro);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-inline-start: 8px;
+}
+
+/* The mono face has no Arabic, and the tracking that makes a Latin label read
+   as a label pulls an Arabic word apart at its joins. In Arabic the note is
+   set in the Arabic face at the small size instead, which is how the rest of
+   the site writes a quiet aside. */
+[dir='rtl'] .yn-faq__pending {
+  font-family: var(--yn-arabic);
+  font-size: var(--yn-small);
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+@media (max-width: 700px) {
+  .yn-faq__label {
+    font-size: var(--yn-body-size);
+  }
+}
+
 /* --- The seven steps ------------------------------------------------------ *
 
    Three across, and the four that open below them keep the same three tracks

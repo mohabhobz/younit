@@ -12,6 +12,7 @@ import Glossary from './pages/Glossary.jsx'
 import GlossaryTerm from './pages/GlossaryTerm.jsx'
 import Build from './pages/Build.jsx'
 import Compete from './pages/Compete.jsx'
+import Faq from './pages/Faq.jsx'
 import NotFound from './pages/NotFound.jsx'
 
 /** Every navigation starts at the top of the new page, as a document should. */
@@ -73,6 +74,10 @@ function pages() {
           lost its two links with them. Their writing is still here. */}
       <Route path="compete" element={<Compete />} />
 
+      {/* The client's FAQ document, as a page. It is reached from the footer:
+          it is the kind of thing a reader goes looking for at the bottom of a
+          page rather than one of the three the top bar names. */}
+      <Route path="faq" element={<Faq />} />
 
       <Route path="*" element={<NotFound />} />
     </>
