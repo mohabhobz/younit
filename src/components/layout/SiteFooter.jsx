@@ -30,6 +30,12 @@ const PLATFORM = [
 const EFG = [
   { href: 'https://www.efghermesone.com', key: 'footer.efgHermes' },
   { href: 'https://github.com/efg-hermes', key: 'footer.github' },
+  // Marketing asked for the support address and asked for it here only: it is
+  // the one place on the site that says how to reach a person. It prints the
+  // address rather than the word "Support", because a reader who cannot click
+  // a mailto — on a machine with no mail client set up, which is most office
+  // machines — still leaves with something they can copy.
+  { mail: 'support@younit.io' },
 ]
 
 function Column({ heading, items }) {
@@ -51,6 +57,20 @@ function Column({ heading, items }) {
               rel="noreferrer noopener"
             >
               {t(item.key)}
+            </a>
+          ) : item.mail ? (
+            // A mailto opens the reader's own mail client in place, so it takes
+            // neither `target` nor `rel`: a new tab for it opens and closes
+            // again with nothing in it.
+            //
+            // The address is wrapped rather than given `dir="ltr"` itself. It
+            // is all Latin and its dots and at-sign are direction-neutral, so
+            // an Arabic page can reorder them — but setting the direction on
+            // the link also sets where the link sits, and it ended up alone on
+            // the left of a column whose other rows are on the right. `bdi`
+            // isolates the characters and leaves the row where the page put it.
+            <a key={item.mail} className="yn-navlink" href={`mailto:${item.mail}`}>
+              <bdi>{item.mail}</bdi>
             </a>
           ) : item.to ? (
             <Link key={item.key} className="yn-navlink" to={item.to}>
